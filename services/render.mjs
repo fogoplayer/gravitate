@@ -1,3 +1,6 @@
+import htm from "https://unpkg.com/htm?module";
+export const html = htm.bind(render);
+
 export function render(type, props, ...children) {
   const newEl = document.createElement(type);
   Object.assign(newEl, props);

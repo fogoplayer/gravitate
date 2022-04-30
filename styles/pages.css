@@ -1,0 +1,22 @@
+.app-main > form {
+  /* display */
+  /* positioning */
+  /* box-model */
+  padding: 1.5rem;
+
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
+.app-main label {
+  /* display */
+  display: block;
+
+  /* positioning */
+  /* box-model */
+  /* typography */
+  color: var(--theme-secondary-color);
+  /* manipulation */
+  /* misc */
+}
