@@ -4,14 +4,14 @@ import { render, append } from "./services/render.mjs";
 const page = ""; // temporary, remove later
 
 const html = htm.bind(render);
-append(document.body, html`<header class="app-header">
-  <button classList="open-menu">
+append(document.body, html`<header classList="app-header">
+  <button classList="menu-button">
     <span classList="material-symbols-sharp"> menu </span>
   </button>
-  <h1 class="page-title">${document.title}</h1>
+  <h1 classList="page-title">${document.title}</h1>
 </header>
-<main class="app-main">${page}</main>
-<footer class="app-footer">
+<main classList="app-main">${page}</main>
+<footer classList="app-footer">
   <nav>
     <button id="view-contacts footer-button">
       <span classList="material-symbols-sharp footer-icon"> person </span>
