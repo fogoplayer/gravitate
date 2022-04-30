@@ -46,9 +46,6 @@ button {
 }
 
 .app-header * {
-  /* display */
-  display: inline-block;
-
   /* box-model */
   background-color: inherit;
   padding: 0.5em;
@@ -60,4 +57,41 @@ button {
 
 .app-header button {
   display: contents;
+}
+
+/* Footer */
+
+.app-footer nav {
+  /* display */
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+
+  /* positioning */
+  /* box-model */
+
+  /* typography */
+  color: hsl(var(--theme-hue) var(--theme-sat) var(--theme-light));
+  font-size: 1rem;
+  font-weight: 400;
+
+  /* manipulation */
+  /* misc */
+}
+
+.app-footer * {
+  /* box-model */
+  background-color: inherit;
+  padding: 0.5em;
+
+  /* typography */
+  font: inherit;
+  line-height: 1;
+}
+
+.app-footer button {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
