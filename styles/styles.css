@@ -37,6 +37,19 @@ button {
   font-family: "Material Symbols Sharp" !important;
 }
 
+body {
+  /* display */
+  display: flex;
+  flex-flow: column nowrap;
+  /* positioning */
+  /* box-model */
+  height: 100vh;
+
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
 /* Header */
 
 .app-header {
@@ -73,6 +86,9 @@ button {
 }
 
 /* Footer */
+.app-main {
+  flex: 1 1 auto;
+}
 
 .app-footer nav {
   /* display */
@@ -86,7 +102,6 @@ button {
 
   /* box-model */
   background-color: var(--theme-primary-color);
-  border-top: 1px solid var(--theme-secondary-color);
   outline: 1px var(--light-text);
 
   /* typography */
@@ -117,7 +132,7 @@ button {
 
   /* box-model */
   padding: 0.5em;
-  flex: 1 1 auto;
+  flex: 1 1 100px;
 
   /* typography */
   /* manipulation */
@@ -129,14 +144,14 @@ button {
   display: flex;
 
   /* positioning */
-  position: relative;
-  top: -1.5rem;
+  position: absolute;
+  top: -0.75em;
 
   /* box-model */
   background-color: var(--light-text);
   border-radius: 50%;
   padding: 0.25em;
-  /* box-shadow: 0 0 0 2px var(--theme-color); */
+  box-shadow: 0 0 0 2px var(--theme-primary-color);
 
   /* typography */
   font-size: 2em;
@@ -144,4 +159,14 @@ button {
 
   /* manipulation */
   /* misc */
+}
+
+.app-footer .footer-button.active {
+  background-color: var(--theme-tertiary-color);
+  color: var(--dark-text);
+}
+
+.app-header,
+.app-footer {
+  filter: drop-shadow(0 0 10px var(--theme-tertiary-color));
 }
