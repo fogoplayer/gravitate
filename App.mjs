@@ -13,14 +13,14 @@ append(document.body, html`<header classList="app-header">
 <main classList="app-main">${page}</main>
 <footer classList="app-footer">
   <nav>
-    <button id="view-contacts footer-button">
+    <button id="view-contacts" classList="footer-button">
       <span classList="material-symbols-sharp footer-icon"> person </span>
       <span classList="footer-title">Contacts</span>
     </button>
-    <button id="create-event footer-button fab">
+    <button id="create-event" classList="footer-button fab">
       <span classList="material-symbols-sharp footer-icon"> add </span>
     </button>
-    <button id="view-contacts footer-button">
+    <button id="view-contacts" classList="footer-button">
       <span classList="material-symbols-sharp footer-icon"> person </span>
       <span classList="footer-title">Your invites</span>
     </button>
