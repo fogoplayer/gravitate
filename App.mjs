@@ -2,11 +2,11 @@ import { append, html } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 
-console.log(Contacts());
 
 page("/create-attraction", () => showPage(CreateAttraction()));
 page("/contacts", () => showPage(Contacts()));
 page("/", () => showPage(CreateAttraction()));
+page.start();
 
 
 function showPage(contents) {
