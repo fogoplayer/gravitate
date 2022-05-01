@@ -6,7 +6,7 @@ import CreateAttraction from "./pages/CreateAttraction.mjs";
 page("/create-attraction", () => showPage(CreateAttraction()));
 page("/contacts", () => showPage(Contacts()));
 page("/", () => showPage(CreateAttraction()));
-if (window.location.hostname == "github") page.base("/gravitate");
+if (window.location.hostname == "fogoplayer.github.io") page.base("/gravitate");
 page.start();
 
 
