@@ -1,0 +1,24 @@
+.interaction-list {
+  list-style: none;
+  width: 100%;
+  border: 1px solid var(--theme-secondary-color);
+  border-top: none;
+}
+
+.interaction-list > li > ul {
+  list-style: none;
+}
+
+.interaction-list > li > ul > li,
+.interaction-list > li > h2 {
+  border-top: 1px solid var(--theme-secondary-color);
+  padding: 0.5em;
+}
+
+.interaction-list > li > h2 {
+  background-color: var(--theme-tertiary-color);
+  color: var(--theme-secondary-color);
+
+  background-color: white;
+  font-size: inherit;
+}

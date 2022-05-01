@@ -2,7 +2,7 @@ import { html } from "../services/render.mjs";
 
 
 export default function SelectInvitees() {
-  return html`<ul classList="select-invitees">
+  return html`<ul classList="interaction-list select-invitees">
   <li classList="orbits-wrapper">
     <h2>Orbits</h2>
     <ul classList="orbits">

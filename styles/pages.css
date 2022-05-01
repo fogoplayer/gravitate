@@ -33,6 +33,7 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: flex-start;
+  gap: 0.5em;
 
   /* positioning */
   /* box-model */
@@ -57,8 +58,6 @@
 .app-main .text-input-wrapper {
   /* display */
   /* positioning */
-  /* box-model */
-  margin-top: 0.5em;
 
   /* typography */
   font-size: 1.5rem;

@@ -1,7 +1,7 @@
 import { html } from "../services/render.mjs";
 
 export default function Contacts() {
-  return html`<ul classList="contacts-list">
+  return html`<ul classList="interaction-list contacts-list">
   <li classList="orbits-wrapper">
     <h2>Orbits</h2>
     <ul classList="orbits">
