@@ -1,5 +1,8 @@
 .app-main > form {
   /* display */
+  display: flex;
+  flex-flow: column nowrap;
+
   /* positioning */
   /* box-model */
   padding: 1.5rem;

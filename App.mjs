@@ -1,7 +1,7 @@
-import CreateEvent from "./pages/CreateEvent.mjs";
+import CreateAttraction from "./pages/CreateAttraction.mjs";
 import { append, html } from "./services/render.mjs";
 
-page("/", showPage(CreateEvent()));
+page("/", showPage(CreateAttraction()));
 
 function showPage(contents) {
   append(document.body, html`<header classList="app-header">
