@@ -17,18 +17,24 @@ export default function CreateAttraction() {
         center: [position.longitude, position.latitude],
         zoom: 13,
       });
-      const marker = new mapboxgl.Marker().setLngLat([position.longitude, position.latitude]).addTo(map);
+      const marker = new mapboxgl.Marker()
+        .setLngLat([position.longitude, position.latitude])
+        .addTo(map);
     });
   </script>
   <form>
     ${TextInput({ label: "Event Name", id: "event-name", name: "event-name", })}
-    ${TextInput({
+    <div classList="inline-inputs">
+      ${TextInput({
     label: "Event Location", id: "event-location", name:
       "event-location",
   })}
-  <button classList="flat" type="button">Use my location</button>
-  ${TextInput({ label: "Expiration Time", id: "expiration-time", name: "expiration-time", type: "time" })}
-    ${SelectInvitees()}
+      <button classList="flat" type="button">Use my location</button>
+    </div>
+    ${TextInput({
+    label: "Expiration Time", id: "expiration-time", name:
+      "expiration-time", type: "time"
+  })} ${SelectInvitees()}
     <button id="submit-button" classList="primary">Create attraction</button>
   </form>
 </div>

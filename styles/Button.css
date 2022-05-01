@@ -1,4 +1,5 @@
 button.primary,
+button.outline,
 button.flat {
   /* display */
   /* positioning */
@@ -26,11 +27,22 @@ button.primary {
   /* misc */
 }
 
+button.outline {
+  /* display */
+  /* positioning */
+  /* box-model */
+  border: 1px solid var(--theme-secondary-color);
+
+  /* typography */
+  color: var(--theme-secondary-color);
+  /* manipulation */
+  /* misc */
+}
+
 button.flat {
   /* display */
   /* positioning */
   /* box-model */
-  padding-inline: 0;
 
   /* typography */
   color: var(--theme-secondary-color);
