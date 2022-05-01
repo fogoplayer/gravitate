@@ -40,7 +40,3 @@ export default function CreateAttraction() {
 </div>
 `;
 }
-async function onMapLoad() {
-  console.log(this);
-
-};
