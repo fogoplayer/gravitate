@@ -15,8 +15,9 @@ export default function CreateAttraction() {
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
         center: [position.longitude, position.latitude],
-        zoom:13,
+        zoom: 13,
       });
+      const marker = new mapboxgl.Marker().setLngLat([position.longitude, position.latitude]).addTo(map);
     });
   </script>
   <form>
