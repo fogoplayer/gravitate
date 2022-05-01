@@ -14,7 +14,7 @@
 
   /* manipulation */
   /* misc */
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .text-input-wrapper:focus-within {
