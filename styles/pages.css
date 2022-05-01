@@ -1,4 +1,33 @@
-.app-main > form {
+.app-main {
+  /* display */
+  display: flex;
+  flex-flow: column nowrap;
+
+  /* box-model */
+  height: 100%;
+
+  /* misc */
+  overflow-y: scroll;
+}
+
+.app-main .ignore {
+  display: contents;
+}
+
+.app-main #map {
+  /* display */
+  flex: 1 1 0;
+  /* positioning */
+  /* box-model */
+  min-height: 15vh;
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
+.app-main form {
+  flex: 0 0 auto;
+
   /* display */
   display: flex;
   flex-flow: column nowrap;
