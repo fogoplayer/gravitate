@@ -75,6 +75,11 @@
   width: 100%;
 }
 
+.app-main .inline-inputs :last-child {
+  margin-right: 0;
+  padding-right: 0;
+}
+
 .app-main .inline-inputs .text-input-wrapper {
   flex: 1 0 100px;
 }
