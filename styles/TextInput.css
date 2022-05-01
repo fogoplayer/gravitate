@@ -32,7 +32,7 @@
 
   /* manipulation */
   transition: 0.25s linear transform;
-  transform: scale(2);
+  transform: scale(1.9);
   transform-origin: top left;
   /* misc */
 }

@@ -9,4 +9,5 @@ export default function TextInput({ label, ...props }) {
 function onInput(e) {
   const target = e.target;
   if (target.value) target.parentNode.classList.add("not-empty");
+  else target.parentNode.classList.remove("not-empty");
 }
