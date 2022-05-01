@@ -1,0 +1,74 @@
+.text-input-wrapper {
+  /* display */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+
+  /* positioning */
+  /* box-model */
+  min-height: 1.75em;
+
+  /* typography */
+  --current-color: var(--theme-secondary-color);
+
+  /* manipulation */
+  /* misc */
+}
+
+.text-input-wrapper:focus-within {
+  --current-color: var(--theme-primary-color);
+}
+
+.text-input-wrapper .text-input-label {
+  /* display */
+  /* positioning */
+  /* box-model */
+  /* typography */
+  color: var(--current-color);
+  font-size: 0.5em;
+  line-height: 1;
+
+  /* manipulation */
+  transition: 0.25s linear transform;
+  transform: scale(2);
+  transform-origin: top left;
+  /* misc */
+}
+
+.text-input-wrapper .text-input {
+  /* display */
+  /* positioning */
+  /* box-model */
+  max-height: 0.5em;
+  border: none;
+  border-bottom: 1px solid var(--current-color);
+
+  /* typography */
+  font-size: inherit;
+  /* manipulation */
+  transition: 0.25s linear max-height;
+
+  /* misc */
+}
+
+.text-input-wrapper:focus-within .text-input-label,
+.text-input-wrapper.not-empty .text-input-label {
+  /* typography */
+
+  /* manipulation */
+  transform: scale(1);
+  /* misc */
+}
+
+.text-input-wrapper:focus-within .text-input:focus,
+.text-input-wrapper.not-empty .text-input {
+  /* display */
+  /* positioning */
+  /* box-model */
+  max-height: 1.25em;
+
+  /* typography */
+  /* manipulation */
+  outline: none;
+  /* misc */
+}
