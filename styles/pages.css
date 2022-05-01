@@ -2,6 +2,8 @@
   /* display */
   display: flex;
   flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 
   /* positioning */
   /* box-model */
@@ -9,6 +11,17 @@
 
   /* typography */
   font-size: 1.5rem;
+  /* manipulation */
+  /* misc */
+}
+
+.app-main button#submit-button {
+  /* display */
+  align-self: flex-end;
+
+  /* positioning */
+  /* box-model */
+  /* typography */
   /* manipulation */
   /* misc */
 }

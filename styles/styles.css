@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  all: unset;
+}
+
+:root {
+  --theme-hue: 281;
+  --theme-sat: 100%;
+  --theme-primary-lightness: 25%;
+  --theme-secondary-lightness: 60%;
+  --theme-tertiary-lightness: 80%;
+  --theme-primary-color: hsl(
+    var(--theme-hue) var(--theme-sat) var(--theme-primary-lightness)
+  );
+  --theme-secondary-color: hsl(
+    var(--theme-hue) 50% var(--theme-secondary-lightness)
+  );
+  --theme-tertiary-color: hsl(
+    var(--theme-hue) 50% var(--theme-tertiary-lightness)
+  );
+
+  --light-text: white;
+  --dark-text: black;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.material-symbols-sharp {
+  font-family: "Material Symbols Sharp" !important;
+}

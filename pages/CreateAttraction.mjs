@@ -15,7 +15,7 @@ export default function CreateEvent() {
   })}
   <button classList="flat small" type="button">Use my location</button>
   ${SelectInvitees()}
-  <button classList="primary">Create event</button>
+  <button id="submit-button" classList="primary">Create event</button>
 </form >
   `;
 }

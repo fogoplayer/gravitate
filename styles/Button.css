@@ -35,6 +35,17 @@ button.flat {
   /* misc */
 }
 
+button.disabled {
+  /* display */
+  /* positioning */
+  /* box-model */
+  background-color: var(--disabled-color);
+
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
 button.small {
   /* display */
   /* positioning */
