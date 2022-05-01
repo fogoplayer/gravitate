@@ -1,3 +1,4 @@
+import SelectInvitees from "../components/SelectInvitees.mjs";
 import TextInput from "../components/TextInput.mjs";
 import { html } from "../services/render.mjs";
 
@@ -19,7 +20,3 @@ export default function CreateEvent() {
 </form >
   `;
 }
-
-function SelectInvitees() {
-  return html`<ul>Invitee selection here</ul>`;
-};
