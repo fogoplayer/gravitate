@@ -3,6 +3,9 @@ button.flat {
   /* display */
   /* positioning */
   /* box-model */
+  border-radius: 0.5em;
+  padding: 0.675em 1em;
+
   /* typography */
   font-weight: 700;
   text-transform: uppercase;
@@ -16,8 +19,6 @@ button.primary {
   /* positioning */
   /* box-model */
   background-color: var(--theme-primary-color);
-  border-radius: 0.5em;
-  padding: 0.675em 1em;
 
   /* typography */
   color: var(--light-text);
@@ -29,6 +30,8 @@ button.flat {
   /* display */
   /* positioning */
   /* box-model */
+  padding-inline: 0;
+
   /* typography */
   color: var(--theme-secondary-color);
   /* manipulation */
@@ -51,7 +54,7 @@ button.small {
   /* positioning */
   /* box-model */
   /* typography */
-  font-size: 0.5em;
+  font-size: 0.75em;
 
   /* manipulation */
   /* misc */

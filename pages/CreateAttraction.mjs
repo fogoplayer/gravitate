@@ -13,9 +13,9 @@ export default function CreateEvent() {
     id: "event-location",
     name: "event-location",
   })}
-  <button classList="flat small" type="button">Use my location</button>
+  <button classList="flat" type="button">Use my location</button>
   ${SelectInvitees()}
-  <button id="submit-button" classList="primary">Create event</button>
+  <button id="submit-button" classList="primary">Create attraction</button>
 </form >
   `;
 }
