@@ -6,6 +6,7 @@ console.log(Contacts());
 
 page("/create-attraction", () => showPage(CreateAttraction()));
 page("/contacts", () => showPage(Contacts()));
+page("/", () => showPage(CreateAttraction()));
 
 
 function showPage(contents) {
