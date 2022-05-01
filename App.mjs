@@ -2,22 +2,13 @@ import { append, html } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 
-
-page("/create-attraction", () => showPage(CreateAttraction()));
-page("/contacts", () => showPage(Contacts()));
-page("/", () => showPage(CreateAttraction()));
-if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
-page.start();
-
-
-function showPage(contents) {
-  append(document.body, html`<header classList="app-header">
+append(document.body, html`<header classList="app-header">
   <button classList="menu-button">
     <span classList="material-symbols-sharp"> menu </span>
   </button>
   <h1 classList="page-title">${document.title}</h1>
 </header>
-<main classList="app-main">${contents}</main>
+<main classList="app-main"></main>
 <footer classList="app-footer">
   <nav>
     <a href="contacts" id="view-contacts" classList="footer-link">
@@ -34,5 +25,15 @@ function showPage(contents) {
   </nav>
 </footer>
 `);
-}
 
+page("/create-attraction", () => showPage(CreateAttraction()));
+page("/contacts", () => showPage(Contacts()));
+page("/", () => showPage(CreateAttraction()));
+if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
+page.start();
+
+function showPage(contents) {
+  const main = document.querySelector(".app-main");
+  main.innerHTML = ``;
+  append(main, html`${contents}`);
+}
