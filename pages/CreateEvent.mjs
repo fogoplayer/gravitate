@@ -8,18 +8,18 @@ export default function CreateEvent() {
     id: "event-name",
     name: "event-name",
   })}
-  <label
-    >Event name <input type="text" name="event-name" id="event-name"
-  /></label>
-  <label
-    >Event location <input type="text" name="event-address" id="event-address"
-  /></label>
-  <button>Use my location</button>
+  ${TextInput({
+    label: "Event Location",
+    id: "event-location",
+    name: "event-location",
+  })}
+  <button classList="flat small" type="button">Use my location</button>
   ${SelectInvitees()}
-</form>
-`;
+  <button classList="primary">Create event</button>
+</form >
+  `;
 }
 
 function SelectInvitees() {
-  return html`<input/>`;
-};;
+  return html`<ul>Invitee selection here</ul>`;
+};

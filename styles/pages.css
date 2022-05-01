@@ -5,6 +5,17 @@
   padding: 1.5rem;
 
   /* typography */
+  font-size: 1.5rem;
+  /* manipulation */
+  /* misc */
+}
+
+.app-main .text-input-wrapper {
+  /* display */
+  /* positioning */
+  /* box-model */
+  margin-top: 0.5em;
+  /* typography */
   /* manipulation */
   /* misc */
 }
