@@ -3,6 +3,6 @@
   "description": "An app to help people build connections",
   "authors": "Zarin Loosli",
   "version": "1.0.0",
-  "main": "./",
+  "main": "~/Downloads/gravitate",
   "dependencies": {}
 }
