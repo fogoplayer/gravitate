@@ -83,7 +83,11 @@ body {
   line-height: 1;
 }
 
-.app-footer .footer-button:not(.fab) {
+.app-footer a {
+  all: unset;
+}
+
+.app-footer .footer-link:not(.fab) {
   /* display */
   display: flex;
   flex-flow: column nowrap;
@@ -100,7 +104,7 @@ body {
   /* misc */
 }
 
-.app-footer .footer-button.fab {
+.app-footer .footer-link.fab {
   /* display */
   display: flex;
 
@@ -122,7 +126,7 @@ body {
   /* misc */
 }
 
-.app-footer .footer-button.active {
+.app-footer .footer-link.active {
   background-color: var(--theme-tertiary-color);
   color: var(--dark-text);
 }

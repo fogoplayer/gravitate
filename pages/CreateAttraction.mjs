@@ -2,7 +2,7 @@ import SelectInvitees from "../components/SelectInvitees.mjs";
 import TextInput from "../components/TextInput.mjs";
 import { html } from "../services/render.mjs";
 
-export default function CreateEvent() {
+export default function CreateAttraction() {
   return html`<form>
   ${TextInput({
     label: "Event Name",

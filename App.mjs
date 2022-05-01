@@ -1,7 +1,12 @@
-import CreateAttraction from "./pages/CreateAttraction.mjs";
 import { append, html } from "./services/render.mjs";
+import Contacts from "./pages/Contacts.mjs";
+import CreateAttraction from "./pages/CreateAttraction.mjs";
 
-page("/", showPage(CreateAttraction()));
+console.log(Contacts());
+
+page("/create-attraction", () => showPage(CreateAttraction()));
+page("/contacts", () => showPage(Contacts()));
+
 
 function showPage(contents) {
   append(document.body, html`<header classList="app-header">
@@ -13,17 +18,17 @@ function showPage(contents) {
 <main classList="app-main">${contents}</main>
 <footer classList="app-footer">
   <nav>
-    <button id="view-contacts" classList="footer-button">
+    <a href="contacts" id="view-contacts" classList="footer-link">
       <span classList="material-symbols-sharp footer-icon"> person </span>
       <span classList="footer-title">Contacts</span>
-    </button>
-    <button id="create-event" classList="footer-button fab">
+    </a>
+    <a href="./" id="view-create-event" classList="footer-link fab">
       <span classList="material-symbols-sharp footer-icon"> add </span>
-    </button>
-    <button id="view-contacts" classList="footer-button">
+    </a>
+    <a href="invites" id="view-invites" classList="footer-link">
       <span classList="material-symbols-sharp footer-icon"> person </span>
       <span classList="footer-title">Your invites</span>
-    </button>
+    </a>
   </nav>
 </footer>
 `);
