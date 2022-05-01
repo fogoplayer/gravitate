@@ -1,14 +1,14 @@
 import SelectInvitees from "../components/SelectInvitees.mjs";
 import TextInput from "../components/TextInput.mjs";
-import { MAPBOX_KEY } from "../services/config.mjs";
+// import { MAPBOX_KEY } from "../services/config.mjs";
 import { html } from "../services/render.mjs";
 
 
 export default function CreateAttraction() {
   return html`<div classList="ignore">
-  <div id="map"></div>
+  <div id="map">Map goes here</div>
   <script>
-    mapboxgl.accessToken = "${MAPBOX_KEY}";
+    ${""/* mapboxgl.accessToken = "${MAPBOX_KEY}";
     navigator.geolocation.getCurrentPosition((position) => {
       position = position.coords;
       const map = new mapboxgl.Map({
@@ -20,7 +20,7 @@ export default function CreateAttraction() {
       const marker = new mapboxgl.Marker()
         .setLngLat([position.longitude, position.latitude])
         .addTo(map);
-    });
+    }); */}
   </script>
   <form>
     ${TextInput({ label: "Event Name", id: "event-name", name: "event-name", })}
