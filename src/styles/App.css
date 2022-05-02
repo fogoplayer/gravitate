@@ -11,8 +11,35 @@ body {
   /* misc */
 }
 
-/* Header */
+#skip-to-content {
+  /* display */
+  display: block;
 
+  /* positioning */
+  position: fixed;
+  z-index: 1000;
+
+  /* box-model */
+  background-color: var(--theme-tertiary-color);
+  padding: 0.5em;
+  width: 100vw;
+
+  /* typography */
+  font-size: 1rem;
+  text-align: center;
+
+  /* manipulation */
+  transform: translateY(-100%);
+  transition: 0.25s linear transform;
+
+  /* misc */
+}
+
+#skip-to-content:focus-within {
+  transform: none;
+}
+
+/* Header */
 .app-header {
   /* display */
   display: flex;
@@ -42,8 +69,12 @@ body {
   line-height: 1;
 }
 
-.app-header button {
+.app-header .app-header button {
   display: contents;
+}
+
+.app-header button:focus {
+  background-color: var(--theme-tertiary-color);
 }
 
 /* Footer */
