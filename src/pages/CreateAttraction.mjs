@@ -76,9 +76,13 @@ async function ContactTemplate(contacts, name) {
 function onCheckboxInput(e) {
   const currUserData = getCurrUserData();
   if (e.target.checked) {
-    newAttraction[e.target.name].add(e.target.value);
+    const index = currUserData[e.target.name].findIndex(el => (el.name === e.target.value));
+    console.log(index);
+    newAttraction[e.target.name].add(index);
   } else {
-    newAttraction[e.target.name].delete(e.target.value);
+    const index = currUserData[e.target.name].findIndex(el => (el.name === e.target.value));
+    console.log(index);
+    newAttraction[e.target.name].delete(index);
   }
 }
 
