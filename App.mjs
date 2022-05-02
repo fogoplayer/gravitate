@@ -7,7 +7,7 @@ append(document.body, html`<header classList="app-header">
   <button classList="menu-button">
     <span classList="material-symbols-sharp"> menu </span>
   </button>
-  <h1 classList="page-title">${document.title}</h1>
+  <h1 classList="page-title">Gravitate</h1>
 </header>
 <main classList="app-main"></main>
 <footer classList="app-footer">
