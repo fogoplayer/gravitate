@@ -4,6 +4,7 @@ import CreateAttraction from "./pages/CreateAttraction.mjs";
 import ViewAttractions from "./pages/ViewAttractions.mjs";
 import { signIn, authStateChanged } from "./services/firebase/auth.mjs";
 import { initUserData } from "./services/firebase/db.mjs";
+import { getCurrUserData } from "./services/firebase/db.mjs";
 
 append(document.body, html`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
@@ -38,6 +39,7 @@ append(document.body, html`
 
 authStateChanged(async (user) => {
   await initUserData(user);
+  console.log(getCurrUserData());
   if (user) {
     page("/create-attraction", () => showPage(CreateAttraction()));
     page("/view-attractions", () => showPage(ViewAttractions()));

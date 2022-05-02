@@ -2,6 +2,7 @@ import ContactsList from "../components/ContactsList.mjs";
 import TextInput from "../components/TextInput.mjs";
 import { sendInvites } from "../services/attractions.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
+import { getCurrUserData } from "../services/firebase/db.mjs";
 import { getDocData } from "../services/firebase/db.mjs";
 import { html } from "../services/render.mjs";
 import { Attraction } from "../services/structures.mjs";
@@ -60,9 +61,6 @@ export default function CreateAttraction() {
 async function ContactTemplate(contacts, name) {
   const jsx = html`<ul></ul>`;
   contacts.forEach(async (contact) => {
-    if (contact.type === "document") {
-      contact = await getDocData(contact);
-    }
     jsx.append(html`<li>
   <label>
     <input type="checkbox" name="${name}" id="${contact.name}" value="${contact.name}" oninput=${onCheckboxInput} tabIndex=0/>
@@ -76,6 +74,8 @@ async function ContactTemplate(contacts, name) {
 }
 
 function onCheckboxInput(e) {
+  const currUserData = getCurrUserData();
+  console.log(currUserData);
   if (e.target.checked) {
     newAttraction[e.target.name].add(e.target.value);
   } else {

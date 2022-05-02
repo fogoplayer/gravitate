@@ -11,8 +11,20 @@ const db = getFirestore(app);
 let currUserData;
 
 export async function initUserData(user) {
-  const docSnap = await getDoc(doc(db, "users", user.uid));
-  currUserData = docSnap.data();
+  currUserData = await getDocData(doc(db, "users", user.uid));
+
+  // Convert references to objects
+  const systems = currUserData.systems;
+  for (let i = 0; i < systems.length; i++) {
+    const system = systems[i];
+    systems[i] = await getDocData(system);
+  }
+
+  const friends = currUserData.friends;
+  for (let i = 0; i < friends.length; i++) {
+    const friend = friends[i];
+    friends[i] = await getDocData(friend);
+  }
 }
 
 export function getCurrUserData() {
