@@ -31,7 +31,7 @@ export class Attraction {
 }
 
 export class Invitation {
-  constructor(organizer = "", name = "", location = "", expiration = new Date();) {
+  constructor(organizer = "", name = "", location = "", expiration = new Date()) {
     Object.assign(this, arguments);
   }
 }
