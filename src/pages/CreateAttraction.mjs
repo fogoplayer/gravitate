@@ -25,7 +25,7 @@ export default function CreateAttraction() {
       });
     }catch{}
   </script>
-  <form>
+  <form onsubmit=${onSubmit}>
     ${TextInput({ label: "Event Name", id: "event-name", name: "event-name", })}
     <div classList="inline-inputs">
       ${TextInput({
@@ -62,4 +62,10 @@ async function ContactTemplate(contacts) {
 `);
   });
   return jsx;
+}
+
+function onSubmit(e) {
+  e.preventDefault();
+  console.log(e.target);
+  console.log(new FormData(e.target));
 }

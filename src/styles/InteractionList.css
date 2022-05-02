@@ -67,13 +67,18 @@
   min-width: 0;
 }
 
+.interaction-list > li > ul > li label input:checked ~ * {
+  background-color: var(--theme-tertiary-color);
+}
+
 .interaction-list > li > ul > li label .contact-icon {
   font-family: "Noto Emoji";
+  line-height: 1.3333em;
   font-size: 1.5em;
-  line-height: 1em;
   padding-inline: 0.35rem;
 }
 
 .interaction-list > li > ul > li label .contact-name {
   padding: 0.5em;
+  flex: 1 0 auto;
 }
