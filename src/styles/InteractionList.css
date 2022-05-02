@@ -54,3 +54,26 @@
 .interaction-list > li > h2 > .header-text {
   padding: 0.5rem;
 }
+
+.interaction-list > li > ul > li label {
+  display: flex;
+  align-items: center;
+  margin: -0.5rem;
+}
+
+.interaction-list > li > ul > li label input[type="checkbox"] {
+  visibility: hidden;
+  max-width: 0;
+  min-width: 0;
+}
+
+.interaction-list > li > ul > li label .contact-icon {
+  font-family: "Noto Emoji";
+  font-size: 1.5em;
+  line-height: 1em;
+  padding-inline: 0.35rem;
+}
+
+.interaction-list > li > ul > li label .contact-name {
+  padding: 0.5em;
+}

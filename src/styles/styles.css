@@ -34,3 +34,8 @@ button {
 .material-symbols-sharp {
   font-family: "Material Symbols Sharp" !important;
 }
+
+@font-face {
+  font-family: "Noto Emoji";
+  src: url(./NotoEmoji-VariableFont_wght.ttf);
+}

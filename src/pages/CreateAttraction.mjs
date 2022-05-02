@@ -1,8 +1,7 @@
 import ContactsList from "../components/ContactsList.mjs";
-import ContactsPageContact from "../components/ContactsPageContact.mjs";
-import SelectInvitees from "../components/SelectInvitees.mjs";
 import TextInput from "../components/TextInput.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
+import { getDocData } from "../services/firebase/db.mjs";
 import { html } from "../services/render.mjs";
 
 
@@ -39,9 +38,28 @@ export default function CreateAttraction() {
     label: "Expiration Time", id: "expiration-time", name:
       "expiration-time", type: "time"
   })}
-  ${ContactsList(ContactsPageContact)}
+  ${ContactsList(ContactTemplate)}
     <button id="submit-button" classList="primary">Create attraction</button>
   </form>
 </div>
 `;
+}
+
+async function ContactTemplate(contacts) {
+  const jsx = html`<ul></ul>`;
+  contacts.forEach(async (contact) => {
+    if (contact.type === "document") {
+      contact = await getDocData(contact);
+    }
+    console.log(contact);
+    jsx.append(html`<li>
+  <label>
+    <input type="checkbox" name="${contact.name}" id="${contact.name}" />
+    ${(contact.icon && contact.icon[0]) === "/" ? "" : html`<span classList="contact-icon">${contact.icon || "🟣"}</span>`}
+    <span classList="contact-name">${contact.name}</span>
+  </label>
+</li>
+`);
+  });
+  return jsx;
 }
