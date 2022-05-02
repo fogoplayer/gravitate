@@ -17,7 +17,10 @@
 .interaction-list > li > h2 {
   display: flex;
   flex-flow: row nowrap;
+  border-top: 1px solid var(--theme-secondary-color);
+
   /* font-size: inherit; */
+  color: var(--theme-secondary-color);
   line-height: 1em;
 }
 
@@ -28,8 +31,5 @@
 
 .interaction-list > li > ul > li,
 .interaction-list > li > h2 > .header-text {
-  color: var(--theme-secondary-color);
-
-  background-color: white;
   padding: 0.5em;
 }
