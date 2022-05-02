@@ -34,7 +34,7 @@ append(document.body, html`<header classList="app-header">
 page("/create-attraction", () => showPage(CreateAttraction()));
 page("/view-attractions", () => showPage(ViewAttractions()));
 page("/contacts", () => showPage(Contacts()));
-page("/", () => showPage(ViewAttractions()));
+page("/", () => showPage(Contacts()));
 if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
 page.start();
 

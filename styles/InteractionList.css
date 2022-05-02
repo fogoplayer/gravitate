@@ -5,20 +5,31 @@
   border-top: none;
 }
 
+.interaction-list > li .header-icon {
+  background-color: var(--theme-secondary-color);
+  height: 2em;
+}
+
 .interaction-list > li > ul {
   list-style: none;
 }
 
-.interaction-list > li > ul > li,
 .interaction-list > li > h2 {
-  border-top: 1px solid var(--theme-secondary-color);
-  padding: 0.5em;
+  display: flex;
+  flex-flow: row nowrap;
+  /* font-size: inherit; */
+  line-height: 1em;
 }
 
-.interaction-list > li > h2 {
-  background-color: var(--theme-tertiary-color);
+.interaction-list > li > ul > li {
+  border-top: 1px solid var(--theme-secondary-color);
+  line-height: 1em;
+}
+
+.interaction-list > li > ul > li,
+.interaction-list > li > h2 > .header-text {
   color: var(--theme-secondary-color);
 
   background-color: white;
-  font-size: inherit;
+  padding: 0.5em;
 }
