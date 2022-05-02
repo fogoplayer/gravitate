@@ -3,7 +3,6 @@ import { getCurrUserData } from "../services/firebase/db.mjs";
 import { append, html } from "../services/render.mjs";
 
 export default function ContactsList(Template) {
-  console.log(Template);
   let page = html`<ul classList="interaction-list contacts-list">
   <li classList="orbits-wrapper">
     <h2>

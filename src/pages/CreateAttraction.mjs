@@ -51,7 +51,6 @@ async function ContactTemplate(contacts) {
     if (contact.type === "document") {
       contact = await getDocData(contact);
     }
-    console.log(contact);
     jsx.append(html`<li>
   <label>
     <input type="checkbox" name="${contact.name}" id="${contact.name}" />

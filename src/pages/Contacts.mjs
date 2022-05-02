@@ -12,7 +12,6 @@ async function Contact(contacts) {
     if (contact.type === "document") {
       contact = await getDocData(contact);
     }
-    console.log(contact);
     jsx.append(html`<li>${contact.name}</li>`);
   });
   return jsx;
