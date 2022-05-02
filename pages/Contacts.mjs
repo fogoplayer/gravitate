@@ -4,25 +4,21 @@ import { html } from "../services/render.mjs";
 
 export default async function Contacts() {
   let { orbits, systems, friends, ...rest } = await getCurrUserData(await getCurrentUser());
-  orbits = html`${ContactsList(orbits)}`;
-  systems = html`${ContactsList(systems)}`;
-  friends = html`${ContactsList(friends)}`;
-  console.log(orbits, systems);
 
-  return html`<ul classList = "interaction-list contacts-list" >
+  return html`<ul classList="interaction-list contacts-list" >
   <li classList="orbits-wrapper">
     <h2>
       <img src="./images/orbit.svg" alt="Orbit icon" classList="header-icon" />
       <span classList="header-text">Orbits</span>
     </h2>
-    ${orbits}
+    ${html`${ContactsList(orbits)}`}
   </li >
   <li classList="systems-wrapper">
     <h2>
       <img src="./images/system.svg" alt="Systems icon" classList="header-icon" />
       <span classList="header-text">Systems</span>
     </h2>
-    ${systems}
+    ${html`${ContactsList(systems)}`}
     <ul classList="orbits">
       <li>Friends</li>
       <li>Family</li>
