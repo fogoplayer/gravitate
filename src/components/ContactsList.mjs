@@ -38,7 +38,7 @@ export default function ContactsList(Template) {
 
 async function populate(page, Template) {
   let { orbits, systems, friends, ...rest } = await getCurrUserData(await getCurrentUser());
-  Template(orbits).then(contactsList => append(page.querySelector(".orbits-wrapper"), contactsList));
-  Template(systems).then(contactsList => append(page.querySelector(".systems-wrapper"), contactsList));
-  Template(friends).then(contactsList => append(page.querySelector(".friends-wrapper"), contactsList));
+  Template(orbits, "orbits").then(contactsList => append(page.querySelector(".orbits-wrapper"), contactsList));
+  Template(systems, "systems").then(contactsList => append(page.querySelector(".systems-wrapper"), contactsList));
+  Template(friends, "friends").then(contactsList => append(page.querySelector(".friends-wrapper"), contactsList));
 }
