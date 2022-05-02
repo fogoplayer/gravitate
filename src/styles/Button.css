@@ -19,7 +19,7 @@ button.primary {
   /* display */
   /* positioning */
   /* box-model */
-  background-color: var(--theme-primary-color);
+  background-color: var(--theme-secondary-color);
 
   /* typography */
   color: var(--light-text);
@@ -70,4 +70,9 @@ button.small {
 
   /* manipulation */
   /* misc */
+}
+
+button:focus {
+  background-color: var(--theme-primary-color);
+  color: var(--light-text);
 }
