@@ -1,2 +1,4 @@
 config.mjs
 node_modules
+firebase-debug-log
+hosting..cache
