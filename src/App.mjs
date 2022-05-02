@@ -2,7 +2,7 @@ import { append, html } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 import ViewAttractions from "./pages/ViewAttractions.mjs";
-import { signIn, authStateChanged } from "./services/firebase.mjs";
+import { signIn, authStateChanged } from "./services/firebase/auth.mjs";
 
 append(document.body, html`<header classList="app-header">
   <button classList="menu-button">

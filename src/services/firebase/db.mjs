@@ -1,3 +1,4 @@
+import { app } from "./app.mjs";
 import {
   getFirestore,
   collection,
@@ -5,13 +6,12 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
 
+const db = getFirestore(app);
+
+
 export async function getCurrUserData(user) {
   const docSnap = await getDoc(doc(db, "users", user.uid));
   return docSnap.data();
-}
-
-export function getCurrentUser() {
-  return auth.currentUser;
 }
 
 export async function getDocData(ref) {
