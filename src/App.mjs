@@ -8,7 +8,7 @@ append(document.body, html`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
 <header classList="app-header">
   <button classList="menu-button" tabIndex=2>
-    <span classList="material-symbols-sharp"> menu </span>
+    <div classList="material-symbols-sharp"> menu </div>
   </button>
   <h1 classList="page-title">Gravitate</h1>
 </header>

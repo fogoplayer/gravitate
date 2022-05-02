@@ -59,7 +59,10 @@ body {
   /* misc */
 }
 
-.app-header * {
+.app-header>* {
+  /* display */
+  display: flex;
+
   /* box-model */
   background-color: inherit;
   padding: 0.5em;
@@ -69,12 +72,12 @@ body {
   line-height: 1;
 }
 
-.app-header button {
-  display: contents;
-}
-
 .app-header button:focus {
   background-color: var(--theme-tertiary-color);
+}
+
+.app-header button .material-symbols-sharp {
+  font-size: 1em;
 }
 
 /* Footer */
