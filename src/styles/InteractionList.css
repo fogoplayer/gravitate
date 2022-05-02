@@ -37,6 +37,9 @@
   color: var(--theme-secondary-color);
   line-height: 1em;
 
+  color: var(--light-text);
+  background-color: var(--theme-secondary-color);
+
   /* manipulation */
   /* misc */
 }
