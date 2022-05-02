@@ -41,7 +41,7 @@ export default function CreateAttraction() {
       "event-location", required: true,
     oninput: (e) => newAttraction.location = e.target.value
   })}
-      <button classList="flat" type="button">Use my location</button>
+      <button classList="flat inline small" type="button">Use my location</button>
     </div>
     ${TextInput({
     label: "Expiration Time", id: "expiration-time", name:
