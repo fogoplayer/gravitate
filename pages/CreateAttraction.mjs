@@ -1,6 +1,6 @@
 import SelectInvitees from "../components/SelectInvitees.mjs";
 import TextInput from "../components/TextInput.mjs";
-// import { MAPBOX_KEY } from "../services/config.mjs";
+import { MAPBOX_KEY } from "../services/config.mjs";
 import { html } from "../services/render.mjs";
 
 
