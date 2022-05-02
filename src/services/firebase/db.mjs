@@ -5,13 +5,18 @@ import {
   getDoc,
   doc
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
+import { authStateChanged } from "./auth.mjs";
 
 const db = getFirestore(app);
+let currUserData;
 
-
-export async function getCurrUserData(user) {
+export async function initUserData(user) {
   const docSnap = await getDoc(doc(db, "users", user.uid));
-  return docSnap.data();
+  currUserData = docSnap.data();
+}
+
+export function getCurrUserData() {
+  return currUserData;
 }
 
 export async function getDocData(ref) {

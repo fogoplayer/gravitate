@@ -3,6 +3,7 @@ import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 import ViewAttractions from "./pages/ViewAttractions.mjs";
 import { signIn, authStateChanged } from "./services/firebase/auth.mjs";
+import { initUserData } from "./services/firebase/db.mjs";
 
 append(document.body, html`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
@@ -36,6 +37,7 @@ append(document.body, html`
 `);
 
 authStateChanged(async (user) => {
+  await initUserData(user);
   if (user) {
     page("/create-attraction", () => showPage(CreateAttraction()));
     page("/view-attractions", () => showPage(ViewAttractions()));
@@ -51,6 +53,7 @@ function showPage(contents) {
   const main = document.querySelector(".app-main");
   main.innerHTML = ``;
   append(main, html`${contents}`);
+  document.activeElement.blur();
 }
 
 signIn("zarinloosli+testing@gmail.com", "Testing123!");

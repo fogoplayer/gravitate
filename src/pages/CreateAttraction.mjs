@@ -1,5 +1,6 @@
 import ContactsList from "../components/ContactsList.mjs";
 import TextInput from "../components/TextInput.mjs";
+import { sendInvites } from "../services/attractions.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getDocData } from "../services/firebase/db.mjs";
 import { html } from "../services/render.mjs";
@@ -64,7 +65,7 @@ async function ContactTemplate(contacts, name) {
     }
     jsx.append(html`<li>
   <label>
-    <input type="checkbox" name="${name}" id="${contact.name}" value="${contact.name}" oninput=${onInput} tabIndex=0/>
+    <input type="checkbox" name="${name}" id="${contact.name}" value="${contact.name}" oninput=${onCheckboxInput} tabIndex=0/>
     ${(contact.icon && contact.icon[0]) === "/" ? "" : html`<span classList="contact-icon">${contact.icon || "🟣"}</span>`}
     <span classList="contact-name">${contact.name}</span>
   </label>
@@ -72,17 +73,18 @@ async function ContactTemplate(contacts, name) {
 `);
   });
   return jsx;
+}
 
-  function onInput(e) {
-    if (e.target.checked) {
-      newAttraction[e.target.name].add(e.target.value);
-    } else {
-      newAttraction[e.target.name].delete(e.target.value);
-    }
+function onCheckboxInput(e) {
+  if (e.target.checked) {
+    newAttraction[e.target.name].add(e.target.value);
+  } else {
+    newAttraction[e.target.name].delete(e.target.value);
   }
 }
 
 function onSubmit(e) {
   e.preventDefault();
   console.log(newAttraction);
+  sendInvites(newAttraction);
 }
