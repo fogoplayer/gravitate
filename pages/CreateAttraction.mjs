@@ -8,19 +8,21 @@ export default function CreateAttraction() {
   return html`<div classList="ignore">
   <div id="map">Map goes here</div>
   <script>
-    ${""/* mapboxgl.accessToken = "${MAPBOX_KEY}";
-    navigator.geolocation.getCurrentPosition((position) => {
-      position = position.coords;
-      const map = new mapboxgl.Map({
-        container: "map",
-        style: "mapbox://styles/mapbox/streets-v11",
-        center: [position.longitude, position.latitude],
-        zoom: 13,
+    try{
+      mapboxgl.accessToken = "${MAPBOX_KEY}";
+      navigator.geolocation.getCurrentPosition((position) => {
+        position = position.coords;
+        const map = new mapboxgl.Map({
+          container: "map",
+          style: "mapbox://styles/mapbox/streets-v11",
+          center: [position.longitude, position.latitude],
+          zoom: 13,
+        });
+        const marker = new mapboxgl.Marker()
+          .setLngLat([position.longitude, position.latitude])
+          .addTo(map);
       });
-      const marker = new mapboxgl.Marker()
-        .setLngLat([position.longitude, position.latitude])
-        .addTo(map);
-    }); */}
+    }catch{}
   </script>
   <form>
     ${TextInput({ label: "Event Name", id: "event-name", name: "event-name", })}
