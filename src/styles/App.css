@@ -72,12 +72,8 @@ body {
   line-height: 1;
 }
 
-.app-header button:focus {
-  background-color: var(--theme-tertiary-color);
-}
-
 .app-header button .material-symbols-sharp {
-  font-size: 1em;
+  font-size: inherit;
 }
 
 /* Footer */
@@ -170,4 +166,9 @@ body {
 .app-footer {
   z-index: 100;
   filter: drop-shadow(0 0 5px var(--theme-primary-color));
+}
+
+.app-header button:focus,
+.app-footer .footer-link:focus {
+  background-color: var(--theme-tertiary-color);
 }
