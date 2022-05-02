@@ -1,0 +1,7 @@
+.view-attractions #map {
+  min-height: 50%;
+}
+
+.view-attractions .interaction-list {
+  margin-bottom: 1em;
+}
