@@ -39,7 +39,6 @@ append(document.body, html`
 
 authStateChanged(async (user) => {
   await initUserData(user);
-  console.log(getCurrUserData());
   if (user) {
     page("/create-attraction", () => showPage(CreateAttraction()));
     page("/view-attractions", () => showPage(ViewAttractions()));

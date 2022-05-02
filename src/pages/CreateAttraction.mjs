@@ -75,7 +75,6 @@ async function ContactTemplate(contacts, name) {
 
 function onCheckboxInput(e) {
   const currUserData = getCurrUserData();
-  console.log(currUserData);
   if (e.target.checked) {
     newAttraction[e.target.name].add(e.target.value);
   } else {
@@ -85,6 +84,5 @@ function onCheckboxInput(e) {
 
 function onSubmit(e) {
   e.preventDefault();
-  console.log(newAttraction);
   sendInvites(newAttraction);
 }

@@ -1,23 +1,28 @@
-export function sendInvites(attraction) {
+import { getUserFromUsername } from "./firebase/db.mjs";
+
+export async function sendInvites(attraction) {
+  console.log(attraction);
   let { orbits, systems, friends } = attraction;
 
-  Array.from(orbits).forEach(orbit => {
-    orbit.members.forEach((person) => {
+  orbits.forEach(orbit => {
+    orbit.members?.forEach((person) => {
       sendInvite(person);
     });
   });
 
-  Array.from(systems).forEach(system => {
-    system.members.forEach((person) => {
+  systems.forEach(system => {
+    system.members?.forEach((person) => {
       sendInvite(person);
     });
   });
 
-  Array.from(friends).forEach(friend => {
-    sendInvite(friend);
+  friends.forEach(person => {
+    sendInvite(person);
   });
 }
 
-function sendInvite(id) {
-  console.log(id);
+export async function sendInvite(person) {
+  debugger;
+  console.log(person);
+  console.log(await getUserFromUsername(person.name));
 }

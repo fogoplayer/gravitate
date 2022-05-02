@@ -3,11 +3,15 @@ import {
   getFirestore,
   collection,
   getDoc,
-  doc
+  doc,
+  where
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
 import { authStateChanged } from "./auth.mjs";
 
 const db = getFirestore(app);
+const users = collection(db, "users");
+const systems = collection(db, "systems");
+
 let currUserData;
 
 export async function initUserData(user) {
@@ -23,6 +27,7 @@ export async function initUserData(user) {
   const friends = currUserData.friends;
   for (let i = 0; i < friends.length; i++) {
     const friend = friends[i];
+    console.log(friend);
     friends[i] = await getDocData(friend);
   }
 }
@@ -34,4 +39,16 @@ export function getCurrUserData() {
 export async function getDocData(ref) {
   const snap = await getDoc(ref);
   return snap.data();
+}
+
+export async function getUserFromUsername(username) {
+  const q = query(users, where("name", "==", username));
+
+  const querySnapshot = await getDocs(q);
+  if (querySnapshot.length > 1) throw new Error("Duplicate username exists");
+  return querySnapshot[0];
+
+  return querySnapshot.map((doc) => {
+    console.log(doc.id, " => ", doc.data());
+  });
 }
