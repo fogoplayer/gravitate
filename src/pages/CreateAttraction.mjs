@@ -63,7 +63,7 @@ async function ContactTemplate(contacts, name) {
     }
     jsx.append(html`<li>
   <label>
-    <input type="checkbox" name="${name}" id="${contact.name}" value="${contact.name}" oninput=${onInput}/>
+    <input type="checkbox" name="${name}" id="${contact.name}" value="${contact.name}" oninput=${onInput} tabIndex=0/>
     ${(contact.icon && contact.icon[0]) === "/" ? "" : html`<span classList="contact-icon">${contact.icon || "🟣"}</span>`}
     <span classList="contact-name">${contact.name}</span>
   </label>

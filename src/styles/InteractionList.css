@@ -61,18 +61,20 @@
   margin: -0.5rem;
 }
 
-.contacts-list>li>ul>li label:focus-within {
-  background-color: var(--theme-tertiary-color);
-}
-
 
 .contacts-list>li>ul>li label input[type="checkbox"] {
-  visibility: hidden;
+  /* visibility: hidden; */
+  transform: scale(0);
   max-width: 0;
   min-width: 0;
 }
 
 .contacts-list>li>ul>li label input:checked~* {
+  background-color: hsl(var(--theme-hue) 50% 90%);
+  font-weight: 700;
+}
+
+.contacts-list>li>ul>li label input:focus~* {
   background-color: var(--theme-tertiary-color);
 }
 
