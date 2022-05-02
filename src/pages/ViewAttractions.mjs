@@ -24,7 +24,7 @@ export default function CreateAttraction() {
       });
     }catch{}
   </script>
-  <ul classList="interaction-list">
+  <ul classList="contacts-list">
     <li>
       <h2><span classList="header-text">My Attractions</span></h2>
       <ul>

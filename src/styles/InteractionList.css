@@ -1,4 +1,4 @@
-.interaction-list {
+.contacts-list {
   /* display */
   /* positioning */
   /* box-model */
@@ -12,7 +12,7 @@
   list-style: none;
 }
 
-.interaction-list > li .header-icon {
+.contacts-list>li .header-icon {
   /* display */
   /* positioning */
   /* box-model */
@@ -25,7 +25,7 @@
   /* misc */
 }
 
-.interaction-list > li > h2 {
+.contacts-list>li>h2 {
   /* display */
   display: flex;
   flex-flow: row nowrap;
@@ -41,44 +41,49 @@
   /* misc */
 }
 
-.interaction-list > li > ul {
+.contacts-list>li>ul {
   list-style: none;
 }
 
-.interaction-list > li > ul > li {
+.contacts-list>li>ul>li {
   border-top: 1px solid var(--theme-secondary-color);
   line-height: 1em;
 }
 
-.interaction-list > li > ul > li,
-.interaction-list > li > h2 > .header-text {
+.contacts-list>li>ul>li,
+.contacts-list>li>h2>.header-text {
   padding: 0.5rem;
 }
 
-.interaction-list > li > ul > li label {
+.contacts-list>li>ul>li label {
   display: flex;
   align-items: center;
   margin: -0.5rem;
 }
 
-.interaction-list > li > ul > li label input[type="checkbox"] {
+.contacts-list>li>ul>li label:focus-within {
+  background-color: var(--theme-tertiary-color);
+}
+
+
+.contacts-list>li>ul>li label input[type="checkbox"] {
   visibility: hidden;
   max-width: 0;
   min-width: 0;
 }
 
-.interaction-list > li > ul > li label input:checked ~ * {
+.contacts-list>li>ul>li label input:checked~* {
   background-color: var(--theme-tertiary-color);
 }
 
-.interaction-list > li > ul > li label .contact-icon {
+.contacts-list>li>ul>li label .contact-icon {
   font-family: "Noto Emoji";
   line-height: 1.3333em;
   font-size: 1.5em;
   padding-inline: 0.35rem;
 }
 
-.interaction-list > li > ul > li label .contact-name {
+.contacts-list>li>ul>li label .contact-name {
   padding: 0.5em;
   flex: 1 0 auto;
 }
