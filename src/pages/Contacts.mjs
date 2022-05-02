@@ -1,5 +1,5 @@
 import ContactsList from "../components/ContactsList.mjs";
-import { getCurrentUser, getCurrUserData } from "../services/firebase.mjs";
+import { getCurrentUser, getCurrUserData } from "../services/firebase/app.mjs";
 import { append, html } from "../services/render.mjs";
 
 export default function Contacts() {

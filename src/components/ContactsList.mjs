@@ -1,4 +1,4 @@
-import { getDocData } from "../services/firebase.mjs";
+import { getDocData } from "../services/firebase/app.mjs";
 import { html } from "../services/render.mjs";
 
 export default async function ContactsList(contacts) {
