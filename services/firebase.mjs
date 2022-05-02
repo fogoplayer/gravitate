@@ -52,3 +52,8 @@ export function authStateChanged(callback) {
 export function getCurrentUser() {
   return auth.currentUser;
 }
+
+export async function getDocData(ref) {
+  const snap = await getDoc(ref);
+  return snap.data();
+}

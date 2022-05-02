@@ -11,29 +11,21 @@ export default async function Contacts() {
       <img src="./images/orbit.svg" alt="Orbit icon" classList="header-icon" />
       <span classList="header-text">Orbits</span>
     </h2>
-    ${html`${ContactsList(orbits)}`}
+    ${html`${await ContactsList(orbits)}`}
   </li >
   <li classList="systems-wrapper">
     <h2>
       <img src="./images/system.svg" alt="Systems icon" classList="header-icon" />
       <span classList="header-text">Systems</span>
     </h2>
-    ${html`${ContactsList(systems)}`}
-    <ul classList="orbits">
-      <li>Friends</li>
-      <li>Family</li>
-      <li>School</li>
-    </ul>
+    ${html`${await ContactsList(systems)}`}
   </li>
   <li classList="friends-wrapper">
     <h2>
       <img src="./images/friend.svg" alt="Friends icon" classList="header-icon" />
       <span classList="header-text">Friends</span>
     </h2>
-    <ul class="friends">
-      <li>John Doe</li>
-      <li>Sarah Jane</li>
-    </ul>
+    ${html`${await ContactsList(friends)}`}
   </li>
 </ul >
   `;
@@ -44,14 +36,14 @@ export default async function Contacts() {
       <img src="./images/orbit.svg" alt="Orbit icon" classList="header-icon" />
       <span classList="header-text">Orbits</span>
     </h2>
-    ${html`${ContactsList(orbits)}`}
+    ${html`${await ContactsList(orbits)}`}
   </li>
   <li classList="systems-wrapper">
     <h2>
       <img src="./images/system.svg" alt="Systems icon" classList="header-icon" />
       <span classList="header-text">Systems</span>
     </h2>
-    ${html`${ContactsList(systems)}`}
+    ${html`${await ContactsList(systems)}`}
     <ul classList="orbits">
       <li>Friends</li>
       <li>Family</li>
