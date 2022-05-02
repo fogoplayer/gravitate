@@ -26,13 +26,13 @@ export default function CreateAttraction() {
   </script>
   <ul classList="interaction-list">
     <li>
-      <h2>My Attractions</h2>
+      <h2><span classList="header-text">My Attractions</span></h2>
       <ul>
         <li>Library</li>
       </ul>
     </li>
     <li>
-      <h2>My Invitations</h2>
+      <h2><span classList="header-text">My Invitations</span></h2>
       <ul>
         <li>Study Group | John Doe</li>
         <li>Workout | Sarah Jane</li>
