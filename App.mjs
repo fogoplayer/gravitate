@@ -16,10 +16,10 @@ append(document.body, html`<header classList="app-header">
       <span classList="material-symbols-sharp footer-icon"> person </span>
       <span classList="footer-title">Contacts</span>
     </a>
-    <a href="./" id="view-create-event" classList="footer-link fab">
+    <a href="create-attraction" id="view-create-event" classList="footer-link fab">
       <span classList="material-symbols-sharp footer-icon"> add </span>
     </a>
-    <a href="invites" id="view-invites" classList="footer-link">
+    <a href="view-attractions" id="view-invites" classList="footer-link">
       <span classList="material-symbols-sharp footer-icon"> person </span>
       <span classList="footer-title">Your invites</span>
     </a>
@@ -28,7 +28,7 @@ append(document.body, html`<header classList="app-header">
 `);
 
 page("/create-attraction", () => showPage(CreateAttraction()));
-page("/contacts", () => showPage(Contacts()));
+page("/view-attractions", () => showPage(ViewAttractions()));
 page("/contacts", () => showPage(Contacts()));
 page("/", () => showPage(ViewAttractions()));
 if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
