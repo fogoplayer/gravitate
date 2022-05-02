@@ -36,8 +36,8 @@ authStateChanged(async (user) => {
   if (user) {
     page("/create-attraction", () => showPage(CreateAttraction()));
     page("/view-attractions", () => showPage(ViewAttractions()));
-    page("/contacts", showPage(await Contacts()));
-    page("/", showPage(await Contacts()));
+    page("/contacts", () => showPage(Contacts()));
+    page("/", () => showPage(Contacts()));
     // page("/", () => showPage(CreateAttraction()));
   }
   if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
