@@ -2,7 +2,7 @@ import { append, html } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 import ViewAttractions from "./pages/ViewAttractions.mjs";
-import { signIn } from "./services/firebase.mjs";
+import { signIn, authStateChanged } from "./services/firebase.mjs";
 
 append(document.body, html`<header classList="app-header">
   <button classList="menu-button">
@@ -32,12 +32,16 @@ append(document.body, html`<header classList="app-header">
 </footer>
 `);
 
-page("/create-attraction", () => showPage(CreateAttraction()));
-page("/view-attractions", () => showPage(ViewAttractions()));
-page("/contacts", () => showPage(Contacts()));
-page("/", () => showPage(Contacts()));
-if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
-page.start();
+authStateChanged(() => {
+  if (user) {
+    page("/create-attraction", () => showPage(CreateAttraction()));
+    page("/view-attractions", () => showPage(ViewAttractions()));
+    page("/contacts", () => showPage(Contacts()));
+    page("/", () => showPage(Contacts()));
+  }
+  if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
+  page.start();
+});
 
 function showPage(contents) {
   const main = document.querySelector(".app-main");

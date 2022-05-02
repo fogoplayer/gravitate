@@ -48,3 +48,7 @@ export async function getCurrUserData() {
   const docSnap = await getDoc(doc(db, "users", user.uid));
   return docSnap.data();
 }
+
+export function authStateChanged(callback) {
+  onAuthStateChanged(auth, callback);
+};
