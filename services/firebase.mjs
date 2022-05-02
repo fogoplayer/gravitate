@@ -28,23 +28,19 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 
-let user;
-
 export async function signIn(email, password) {
   const userCredential = await signInWithEmailAndPassword(
     auth,
     email,
     password
   );
-  user = userCredential.user;
 }
 
 onAuthStateChanged(auth, async (user) => {
   console.log("auth changed");
-
 });
 
-export async function getCurrUserData() {
+export async function getCurrUserData(user) {
   const docSnap = await getDoc(doc(db, "users", user.uid));
   return docSnap.data();
 }
@@ -52,3 +48,7 @@ export async function getCurrUserData() {
 export function authStateChanged(callback) {
   onAuthStateChanged(auth, callback);
 };
+
+export function getCurrentUser() {
+  return auth.currentUser;
+}

@@ -32,12 +32,13 @@ append(document.body, html`<header classList="app-header">
 </footer>
 `);
 
-authStateChanged(() => {
+authStateChanged(async (user) => {
   if (user) {
     page("/create-attraction", () => showPage(CreateAttraction()));
     page("/view-attractions", () => showPage(ViewAttractions()));
-    page("/contacts", () => showPage(Contacts()));
-    page("/", () => showPage(Contacts()));
+    page("/contacts", async () => await showPage(await Contacts()));
+    page("/", async () => await showPage(await Contacts()));
+    // page("/", () => showPage(CreateAttraction()));
   }
   if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
   page.start();

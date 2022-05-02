@@ -1,12 +1,17 @@
+import { getCurrentUser, getCurrUserData } from "../services/firebase.mjs";
 import { html } from "../services/render.mjs";
 
-export default function Contacts() {
+export default async function Contacts() {
+  const { orbits, systems, friends } = await getCurrUserData(await getCurrentUser());
+  console.log(orbits, systems, friends);
+
   return html`<ul classList="interaction-list contacts-list">
   <li classList="orbits-wrapper">
     <h2>
       <img src="./images/orbit.svg" alt="Orbit icon" classList="header-icon" />
       <span classList="header-text">Orbits</span>
     </h2>
+    ${html`${await renderOrbits(orbits)}`}
     <ul classList="orbits">
       <li>Friends</li>
       <li>Family</li>
@@ -37,3 +42,9 @@ export default function Contacts() {
 </ul>
 `;
 }
+
+async function renderOrbits(orbits) {
+  const jsx = html`<ul classList="orbits"></ul>`;
+  orbits.forEach(orbit => jsx.append(html`<li>${orbit.name}</li>`));
+  return jsx;
+};
