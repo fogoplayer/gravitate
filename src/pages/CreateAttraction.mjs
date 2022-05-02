@@ -20,6 +20,7 @@ export default function CreateAttraction() {
           style: "mapbox://styles/mapbox/streets-v11",
           center: [position.longitude, position.latitude],
           zoom: 13,
+          interactive:false,
         });
         const marker = new mapboxgl.Marker()
           .setLngLat([position.longitude, position.latitude])
