@@ -1,8 +1,18 @@
 {
-  "name": "Gravitate",
-  "description": "An app to help people build connections",
-  "authors": "Zarin Loosli",
+  "name": "gravitate",
   "version": "1.0.0",
-  "main": "~/Downloads/gravitate",
-  "dependencies": {}
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fogoplayer/gravitate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fogoplayer/gravitate/issues"
+  },
+  "homepage": "https://github.com/fogoplayer/gravitate#readme",
+  "dependencies": {
+    "firebase": "^9.7.0"
+  }
 }
