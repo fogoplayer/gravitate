@@ -1,6 +1,7 @@
 import { append, html } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
+import ViewAttractions from "./pages/ViewAttractions.mjs";
 
 append(document.body, html`<header classList="app-header">
   <button classList="menu-button">
@@ -28,7 +29,8 @@ append(document.body, html`<header classList="app-header">
 
 page("/create-attraction", () => showPage(CreateAttraction()));
 page("/contacts", () => showPage(Contacts()));
-page("/", () => showPage(CreateAttraction()));
+page("/contacts", () => showPage(Contacts()));
+page("/", () => showPage(ViewAttractions()));
 if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
 page.start();
 
