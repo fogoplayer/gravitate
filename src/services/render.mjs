@@ -2,6 +2,7 @@ import htm from "https://unpkg.com/htm?module";
 export const html = htm.bind(render);
 
 export function render(type, props, ...children) {
+  this[0] = 3;
   const newEl = document.createElement(type);
   Object.assign(newEl, props);
   if (children) {
