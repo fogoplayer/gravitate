@@ -1,3 +1,5 @@
+import ContactsList from "../components/ContactsList.mjs";
+import ContactsPageContact from "../components/ContactsPageContact.mjs";
 import SelectInvitees from "../components/SelectInvitees.mjs";
 import TextInput from "../components/TextInput.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
@@ -36,7 +38,8 @@ export default function CreateAttraction() {
     ${TextInput({
     label: "Expiration Time", id: "expiration-time", name:
       "expiration-time", type: "time"
-  })} ${SelectInvitees()}
+  })}
+  ${ContactsList(ContactsPageContact)}
     <button id="submit-button" classList="primary">Create attraction</button>
   </form>
 </div>
