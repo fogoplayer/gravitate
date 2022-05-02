@@ -1,27 +1,47 @@
 .interaction-list {
-  list-style: none;
+  /* display */
+  /* positioning */
+  /* box-model */
   width: 100%;
   border: 1px solid var(--theme-secondary-color);
   border-top: none;
-}
 
-.interaction-list > li .header-icon {
-  background-color: var(--theme-secondary-color);
-  height: 2em;
-}
-
-.interaction-list > li > ul {
+  /* typography */
+  /* manipulation */
+  /* misc */
   list-style: none;
 }
 
+.interaction-list > li .header-icon {
+  /* display */
+  /* positioning */
+  /* box-model */
+  background-color: var(--theme-secondary-color);
+  height: 2em;
+
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
 .interaction-list > li > h2 {
+  /* display */
   display: flex;
   flex-flow: row nowrap;
   border-top: 1px solid var(--theme-secondary-color);
 
-  /* font-size: inherit; */
+  /* positioning */
+  /* box-model */
+  /* typography */
   color: var(--theme-secondary-color);
   line-height: 1em;
+
+  /* manipulation */
+  /* misc */
+}
+
+.interaction-list > li > ul {
+  list-style: none;
 }
 
 .interaction-list > li > ul > li {
