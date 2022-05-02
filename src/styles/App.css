@@ -168,5 +168,6 @@ body {
 
 .app-header,
 .app-footer {
+  z-index: 100;
   filter: drop-shadow(0 0 5px var(--theme-primary-color));
 }
