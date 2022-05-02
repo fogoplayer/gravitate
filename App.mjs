@@ -2,6 +2,7 @@ import { append, html } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 import ViewAttractions from "./pages/ViewAttractions.mjs";
+import { signIn } from "./services/firebase.mjs";
 
 append(document.body, html`<header classList="app-header">
   <button classList="menu-button">
@@ -43,3 +44,5 @@ function showPage(contents) {
   main.innerHTML = ``;
   append(main, html`${contents}`);
 }
+
+signIn("zarinloosli+testing@gmail.com", "Testing123!");
