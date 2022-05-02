@@ -6,7 +6,7 @@ import { html } from "../services/render.mjs";
 
 export default function CreateAttraction() {
   return html`<div classList="ignore view-attractions">
-  <div id="map">Map goes here</div>
+  <div id="map">Loading map...</div>
   <script>
     try{
       mapboxgl.accessToken = "${MAPBOX_KEY}";
