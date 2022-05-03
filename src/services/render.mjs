@@ -4,7 +4,12 @@ export const html = htm.bind(render);
 export function render(type, props, ...children) {
   this[0] = 3;
   const newEl = document.createElement(type);
-  Object.assign(newEl, props);
+  for (const prop in props) {
+    if (props[prop]) {
+      newEl.setAttribute(prop, props[prop]);
+    }
+  }
+  // console.log(props);
   if (children) {
     children.forEach(child => {
       newEl.append(child);

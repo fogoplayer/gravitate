@@ -13,7 +13,7 @@ const newAttraction = { orbits: new Set(), systems: new Set(), friends: new Set(
 let timer;
 
 export default function CreateAttraction() {
-  return html`<div classList="ignore">
+  return html`<div class="ignore">
   <div id="map">Loading map...</div>
   <script>
     try{
@@ -42,26 +42,35 @@ export default function CreateAttraction() {
     required: true,
     oninput: (e) => { newAttraction.name = e.target.value; },
   })}
-    <div classList="inline-inputs">
+    <div class="inline-inputs">
       ${TextInput({
     label: "Event Location",
     id: "event-location",
     name: "event-location",
     required: true,
-    oninput: (e) => newAttraction.location = e.target.value
+    list: "location-options",
+    oninput: (e) => {
+      // locationSearch(e.target.value);
+      newAttraction.location = e.target.value;
+      navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+        map?.panTo([coords.longitude, coords.latitude]);
+      }
+      );
+    }
   })}
-      <button classList="flat inline small" type="button" onclick=${useMyLocation}>Use my location</button>
-    </div>
-    ${TextInput({
+    <datalist id="location-options"></datalist>
+    <button class="flat inline small" type="button" onclick=${useMyLocation}>Use my location</button>
+  </div>
+  ${TextInput({
     label: "Expiration Time",
     id: "expiration-time",
     name: "expiration-time",
     type: "time",
     required: true,
-    oninput: (e) => newAttraction.expiration = e.target.value
+    oninput: (e) => { newAttraction.expiration = e.target.value; }
   })}
   ${ContactsList(ContactTemplate)}
-    <button id="submit-button" classList="primary">Create attraction</button>
+    <button id="submit-button" class="primary">Create attraction</button>
   </form>
 </div>
 `;
@@ -71,10 +80,10 @@ function ContactTemplate(contacts, name) {
   const jsx = html`<ul></ul>`;
   contacts.forEach(async (contact) => {
     jsx.append(html`<li>
-  <label classList="contact-header-container">
+  <label class="contact-header-container">
     <input type="checkbox" name="${name}" id="${contact.name}" value="${contact.name}" oninput=${onCheckboxInput} tabIndex=0/>
-    ${(contact.icon && contact.icon[0]) === "/" ? "" : html`<span classList="contact-icon">${contact.icon || "🟣"}</span>`}
-    <span classList="contact-name">${contact.name}</span>
+    ${(contact.icon && contact.icon[0]) === "/" ? "" : html`<span class="contact-icon">${contact.icon || "🟣"}</span>`}
+    <span class="contact-name">${contact.name}</span>
   </label>
 </li>
 `);
@@ -86,17 +95,29 @@ async function useMyLocation() {
   const getAddress = async () => {
     await navigator.geolocation.getCurrentPosition(async ({ coords }) => {
       let [address] = await mapboxAPI(`${coords.longitude},${coords.latitude}`);
-      console.log(address);
       document.querySelector("#event-location").value = address.place_name;
-      console.log(map);
-      map.panTo([coords.longitude, coords.latitude]);
     });
   };
 
   clearTimeout(timer);
   const newTimer = setTimeout(getAddress, 500);
   timer = newTimer;
+}
 
+async function locationSearch(searchTerm) {
+  const getAddress = async () => {
+    let addresses = await mapboxAPI(encodeURIComponent(searchTerm), 5);
+    // document.querySelector("#location-options").append(
+    //   addresses.map(address =>
+    //     html`<option value=${address.place_name}>${address.place_name}</option>`
+    //   ));
+    console.log(addresses);
+    console.log(map);
+  };
+
+  clearTimeout(timer);
+  const newTimer = setTimeout(getAddress, 500);
+  timer = newTimer;
 }
 
 function onCheckboxInput(e) {

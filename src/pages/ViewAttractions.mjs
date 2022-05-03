@@ -8,7 +8,7 @@ import { html } from "../services/render.mjs";
 export default function CreateAttraction() {
   let { attractions, systems, friends, ...rest } = getCurrUserData();
 
-  return html`<div classList="ignore view-attractions">
+  return html`<div class="ignore view-attractions">
   <div id="map">Loading map...</div>
   <script>
     try{
@@ -27,33 +27,33 @@ export default function CreateAttraction() {
       });
     }catch{}
   </script>
-  <ul classList="contacts-list contacts-list">
-    <li classList="orbits-wrapper">
+  <ul class="contacts-list contacts-list">
+    <li class="orbits-wrapper">
       <h2>
-        <img src="./images/your-attractions.svg" alt="Your attractions icon" classList="header-icon" />
-        <span classList="header-text">Your Attractions</span>
+        <img src="./images/your-attractions.svg" alt="Your attractions icon" class="header-icon" />
+        <span class="header-text">Your Attractions</span>
       </h2>
       ${Template(attractions)}
     </li>
-    <li classList="systems-wrapper">
+    <li class="systems-wrapper">
       <h2>
         <img
           src="./images/system.svg"
           alt="Systems icon"
-          classList="header-icon"
+          class="header-icon"
         />
-        <span classList="header-text">Systems</span>
+        <span class="header-text">Systems</span>
       </h2>
       ${Template(systems)}
     </li>
-    <li classList="friends-wrapper">
+    <li class="friends-wrapper">
       <h2>
         <img
           src="./images/friend.svg"
           alt="Friends icon"
-          classList="header-icon"
+          class="header-icon"
         />
-        <span classList="header-text">Friends</span>
+        <span class="header-text">Friends</span>
       </h2>
       ${Template(friends)}
     </li>
@@ -66,9 +66,9 @@ export default function CreateAttraction() {
     attractions.forEach(async (attraction) => {
       console.log(attraction);
       jsx.append(html`<li>
-    <h3 classList="contact-header-container">
-      ${(attraction.icon && attraction.icon[0]) === "/" ? "" : html`<span classList="contact-icon">${attraction.icon || "🟣"}</span>`}
-      <span classList="contact-name">${attraction.name}</span>
+    <h3 class="contact-header-container">
+      ${(attraction.icon && attraction.icon[0]) === "/" ? "" : html`<span class="contact-icon">${attraction.icon || "🟣"}</span>`}
+      <span class="contact-name">${attraction.name}</span>
     </h3>
   </li>`);
     });

@@ -2,33 +2,33 @@ import { html } from "../services/render.mjs";
 
 
 export default function SelectInvitees() {
-  return html`<ul classList="contacts-list select-invitees">
-  <li classList="orbits-wrapper">
+  return html`<ul class="contacts-list select-invitees">
+  <li class="orbits-wrapper">
     <h2>
-      <img src="./images/orbit.svg" alt="Orbit icon" classList="header-icon" />
-      <span classList="header-text">Orbits</span>
+      <img src="./images/orbit.svg" alt="Orbit icon" class="header-icon" />
+      <span class="header-text">Orbits</span>
     </h2>
-    <ul classList="orbits">
+    <ul class="orbits">
       <li>Friends</li>
       <li>Family</li>
       <li>School</li>
     </ul>
   </li>
-  <li classList="systems-wrapper">
+  <li class="systems-wrapper">
     <h2>
-      <img src="./images/system.svg" alt="Systems icon" classList="header-icon" />
-      <span classList="header-text">Systems</span>
+      <img src="./images/system.svg" alt="Systems icon" class="header-icon" />
+      <span class="header-text">Systems</span>
     </h2>
-    <ul classList="orbits">
+    <ul class="orbits">
       <li>Friends</li>
       <li>Family</li>
       <li>School</li>
     </ul>
   </li>
-  <li classList="friends-wrapper">
+  <li class="friends-wrapper">
     <h2>
-      <img src="./images/friend.svg" alt="Friends icon" classList="header-icon" />
-      <span classList="header-text">Friends</span>
+      <img src="./images/friend.svg" alt="Friends icon" class="header-icon" />
+      <span class="header-text">Friends</span>
     </h2>
     <ul class="friends">
       <li>John Doe</li>
