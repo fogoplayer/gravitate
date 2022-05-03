@@ -42,23 +42,23 @@ function showAppShell() {
   if (!document.querySelector(".app-header")) {
     append(document.body, html`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
-<dialog classList="side-nav" onclick=${hideAppDrawer}>
+<dialog classList="side-nav" onclick=${hideAppDrawer} tabindex=-1>
     <nav>
       <ol>
         <li>
-          <a href="view-attractions" classList="nav-link">
+          <a href="view-attractions" classList="nav-link" tabindex=0>
             <span classList="material-symbols-sharp nav-icon">view_list</span>
             <span classList="nav-title">Attractions</span>
           </a>
         </li>
         <li>
-          <a href="create-attraction" classList="nav-link">
+          <a href="create-attraction" classList="nav-link" tabindex=0>
             <span classList="material-symbols-sharp nav-icon">add</span>
             <span classList="nav-title">Attractions</span>
           </a>
         </li>
         <li>
-          <a href="contacts" id="view-contacts" classList="nav-link">
+          <a href="contacts" id="view-contacts" classList="nav-link" tabindex=0>
             <span classList="material-symbols-sharp nav-icon">person</span>
             <span classList="nav-title">Contacts</span>
           </a>
@@ -66,13 +66,13 @@ function showAppShell() {
       </ol>
       <ol>
         <li>
-          <a href="settings" classList="nav-link">
+          <a href="settings" classList="nav-link" tabindex=0>
             <span classList="material-symbols-sharp nav-icon">settings</span>
             <span classList="nav-title">Settings</span>
           </a>
         </li>
         <li>
-          <a href="logout" classList="nav-link">
+          <a href="logout" classList="nav-link" tabindex=0>
             <span classList="material-symbols-sharp nav-icon">logout</span>
             <span classList="nav-title">Log out</span>
           </a>

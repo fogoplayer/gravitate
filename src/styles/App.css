@@ -120,13 +120,6 @@ dialog.closing::backdrop {
   }
 }
 
-.side-nav nav ol,
-.side-nav nav li,
-.side-nav nav a {
-  display: contents;
-  color: inherit;
-}
-
 .side-nav nav {
   /* display */
   display: flex;
@@ -136,14 +129,19 @@ dialog.closing::backdrop {
   /* positioning */
   /* box-model */
   height: 100%;
-  padding: 1em;
-
+  border-right: 1px solid var(--theme-primary-color);
   /* typography */
   /* manipulation */
   /* misc */
 }
 
-.side-nav nav ol {
+.side-nav nav ol+ol {
+  border-top: 1px solid var(--theme-primary-color);
+}
+
+.side-nav nav a,
+.side-nav nav a:visited,
+.side-nav nav a:link {
   /* display */
   display: grid;
   grid-template-columns: auto auto;
@@ -151,6 +149,18 @@ dialog.closing::backdrop {
   column-gap: 1em;
   align-items: center;
   justify-content: start;
+
+  /* box-model */
+  padding-inline: 1em;
+
+  /* typography */
+  text-decoration: none;
+  font: inherit;
+  color: var(--dark-text);
+}
+
+.side-nav a:focus {
+  outline-color: var(--theme-primary-color);
 }
 
 /* Header */
