@@ -3,6 +3,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-auth.js";
 
 
@@ -23,3 +24,7 @@ export function getCurrentUser() {
 export function authStateChanged(callback) {
   onAuthStateChanged(auth, callback);
 };
+
+export function logOut() {
+  return signOut(auth);
+}

@@ -1,0 +1,32 @@
+.login-page {
+  /* display */
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 1em;
+
+  /* positioning */
+  inset: 0;
+
+  /* box-model */
+  background-color: var(--light-text);
+  border-radius: 2em;
+  border: 1px solid var(--theme-secondary-color);
+  margin: auto;
+  padding: 2em;
+
+  /* typography */
+  font-size: 1.5em;
+  /* manipulation */
+  /* misc */
+}
+
+.login-page h1 {
+  font: inherit;
+  font-size: 1.5em;
+  color: var(--theme-primary-color);
+}
+
+.login-page form {
+  display: contents;
+}

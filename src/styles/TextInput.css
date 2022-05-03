@@ -44,6 +44,7 @@
   max-height: 0.5em;
   border: none;
   border-bottom: 1px solid var(--current-color);
+  background-color: transparent;
 
   /* typography */
   font-size: inherit;

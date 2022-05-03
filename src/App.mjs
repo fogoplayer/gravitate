@@ -5,22 +5,32 @@ import ViewAttractions from "./pages/ViewAttractions.mjs";
 import { signIn, authStateChanged } from "./services/firebase/auth.mjs";
 import { initUserData } from "./services/firebase/db.mjs";
 import { getCurrUserData } from "./services/firebase/db.mjs";
-
-
+import { logOut } from "./services/firebase/auth.mjs";
+import Login from "./pages/Login.mjs";
 
 authStateChanged(async (user) => {
-  await initUserData(user);
+  console.log(user);
   if (user) {
-    page("/create-attraction", () => showPage(CreateAttraction()));
-    page("/view-attractions", () => showPage(ViewAttractions()));
-    page("/contacts", () => showPage(Contacts()));
-    page("/", () => showPage(ViewAttractions()));
+    await initUserData(user);
+    page("/create-attraction", () => showAppPage(CreateAttraction()));
+    page("/view-attractions", () => showAppPage(ViewAttractions()));
+    page("/contacts", () => showAppPage(Contacts()));
   }
+  page("/login", () => showExternalPage(Login()));
+  page("/", () => {
+    if (user) { console.log("user"); showAppPage(ViewAttractions()); }
+    else { console.log("no user"); showExternalPage(Login()); }
+  });
+
   if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
   page.start();
 });
 
-function showPage(contents) {
+function showAppPage(contents) {
+  if (!getCurrUserData()) {
+    showExternalPage(Login());
+    return;
+  }
   showAppShell();
   const main = document.querySelector(".app-main");
   main.innerHTML = ``;
@@ -63,4 +73,8 @@ function showAppShell() {
   }
 }
 
-signIn("zarinloosli+testing@gmail.com", "Testing123!");
+function showExternalPage(contents) {
+  document.body.innerHTML = "";
+  console.log(document);
+  append(document.body, contents);
+}

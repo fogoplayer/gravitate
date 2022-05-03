@@ -23,7 +23,7 @@ export function append(parent, element) {
   // if array of elements, recurse through array
   if (element[0]) {
     for (const el in element) {
-      append(parent, element[el]);
+      append(parent, element[el]);; // contains something other than whitespace
     };
     return;
   }
