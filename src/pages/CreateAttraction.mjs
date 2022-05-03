@@ -1,6 +1,6 @@
 import ContactsList from "../components/ContactsList.mjs";
 import TextInput from "../components/TextInput.mjs";
-import { sendInvites } from "../services/attractions.mjs";
+import createAttraction from "../services/attractions.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { getDocData } from "../services/firebase/db.mjs";
@@ -94,5 +94,5 @@ function onCheckboxInput(e) {
 
 function onSubmit(e) {
   e.preventDefault();
-  sendInvites(newAttraction);
+  createAttraction(newAttraction);
 }
