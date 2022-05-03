@@ -43,7 +43,7 @@ export default function CreateAttraction() {
     oninput: (e) => { newAttraction.name = e.target.value; },
   })}
     <div classList="inline-inputs">
-      ${TextInput({
+  ${TextInput({
     label: "Event Location",
     id: "event-location",
     name: "event-location",
@@ -91,10 +91,8 @@ async function useMyLocation() {
   const getAddress = async () => {
     await navigator.geolocation.getCurrentPosition(async ({ coords }) => {
       let [address] = await mapboxAPI(`${coords.longitude},${coords.latitude}`);
-      console.log(address);
       document.querySelector("#event-location").value = address.place_name;
-      console.log(map);
-      map.panTo([coords.longitude, coords.latitude]);
+      map?.panTo([coords.longitude, coords.latitude]);
     });
   };
 
@@ -104,13 +102,19 @@ async function useMyLocation() {
 }
 
 async function locationSearch(searchTerm) {
-  // debugger;
-  let addresses = await mapboxAPI(searchTerm, 5);
-  console.log(addresses.map(address => address.place_name));
-  addresses.forEach(address => {
-    console.log(html`<option value=${address.place_name}>${address.place_name}</option>`);
-    document.querySelector("#location-options").appendChild(html`<option value=${address.place_name}>${address.place_name}</option>`);
-  });
+  const getAddress = async () => {
+    let addresses = await mapboxAPI(searchTerm, 5);
+    document.querySelector("#location-options").innerHTML = ``;
+    addresses.forEach(address => {
+      document.querySelector("#location-options").appendChild(html`<option value=${address.place_name}>${address.place_name}</option>`);
+    });
+
+    map?.panTo(addresses[0].center);
+  };
+
+  clearTimeout(timer);
+  const newTimer = setTimeout(getAddress, 500);
+  timer = newTimer;
 }
 
 function onCheckboxInput(e) {
