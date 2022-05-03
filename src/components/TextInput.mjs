@@ -2,8 +2,8 @@ import { html } from "../services/render.mjs";
 
 export default function TextInput({ label, oninput = () => { }, ...props }) {
 
-  const input = html`<label class="text-input-wrapper"
-  ><span class="text-input-label">${label}</span><input oninput=${onInput}class="text-input" type="text" ...${props}
+  const input = html`<label classList="text-input-wrapper"
+  ><span classList="text-input-label">${label}</span><input oninput=${onInput}classList="text-input" type="text" ...${props}
 /></label>
 `;
   onInput({ target: input.querySelector("input") });

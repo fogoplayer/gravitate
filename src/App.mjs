@@ -8,30 +8,30 @@ import { getCurrUserData } from "./services/firebase/db.mjs";
 
 append(document.body, html`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
-<header class="app-header">
-  <button class="menu-button" tabIndex=2>
-    <div class="material-symbols-sharp"> menu </div>
+<header classList="app-header">
+  <button classList="menu-button" tabIndex=2>
+    <div classList="material-symbols-sharp"> menu </div>
   </button>
-  <h1 class="page-title">Gravitate</h1>
+  <h1 classList="page-title">Gravitate</h1>
 </header>
-<main id="app-main" class="app-main"></main>
-<footer class="app-footer">
+<main id="app-main" classList="app-main"></main>
+<footer classList="app-footer">
   <nav>
-    <a href="view-attractions" id="view-invites" class="footer-link" tabIndex=3>
-      <span class="material-symbols-sharp footer-icon">view_list</span>
-      <span class="footer-title">Attractions</span>
+    <a href="view-attractions" id="view-invites" classList="footer-link" tabIndex=3>
+      <span classList="material-symbols-sharp footer-icon">view_list</span>
+      <span classList="footer-title">Attractions</span>
     </a>
     <a
       href="create-attraction"
       id="view-create-event"
-      class="footer-link fab"
+      classList="footer-link fab"
       tabIndex=4
     >
-      <span class="material-symbols-sharp footer-icon">add</span>
+      <span classList="material-symbols-sharp footer-icon">add</span>
     </a>
-    <a href="contacts" id="view-contacts" class="footer-link"  tabIndex=5>
-      <span class="material-symbols-sharp footer-icon">person</span>
-      <span class="footer-title">Contacts</span>
+    <a href="contacts" id="view-contacts" classList="footer-link"  tabIndex=5>
+      <span classList="material-symbols-sharp footer-icon">person</span>
+      <span classList="footer-title">Contacts</span>
     </a>
   </nav>
 </footer>
