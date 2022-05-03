@@ -6,16 +6,19 @@ export default function Login() {
   let email, password;
   return html`<main classList="login-page">
   <h1>Gravitate</h1>
-  <form>
+  <form onsubmit=${submit}>
     ${TextInput({ label: "Email", id: "email" })}
     ${TextInput({ label: "Password", type: "password", id: "password" })}
-    <button classList="primary" onclick=${submit}>Log in</button>
+    <button classList="primary">Log in</button>
   </form>
   <div>
     <button classList="flat small">Forgot password</button>
     <button classList="flat small">Sign up</button>
   </div>
 </main>`;
-  function submit() { signIn(document.querySelector("#email").value, document.querySelector("#password").value); }
+  function submit(e) {
+    e.preventDefault();
+    signIn(document.querySelector("#email").value, document.querySelector("#password").value);
+  }
 };
 
