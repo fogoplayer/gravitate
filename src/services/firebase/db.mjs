@@ -35,8 +35,7 @@ export async function initUserData(user) {
 
   const systems = currUserData.systems;
   for (let system = 0; system < systems.length; system++) {
-    const system = systems[system];
-    systems[system] = await getDocData(system);
+    systems[system] = await getDocData(systems[system]);
     for (let member = 0; member < systems[system].members.length; member++) {
       const ref = systems[system].members[member];
       systems[system].members[member] = await getDocData(systems[system].members[member]);
