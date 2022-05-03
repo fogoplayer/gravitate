@@ -6,7 +6,31 @@ import { signIn, authStateChanged } from "./services/firebase/auth.mjs";
 import { initUserData } from "./services/firebase/db.mjs";
 import { getCurrUserData } from "./services/firebase/db.mjs";
 
-append(document.body, html`
+
+
+authStateChanged(async (user) => {
+  await initUserData(user);
+  if (user) {
+    page("/create-attraction", () => showPage(CreateAttraction()));
+    page("/view-attractions", () => showPage(ViewAttractions()));
+    page("/contacts", () => showPage(Contacts()));
+    page("/", () => showPage(ViewAttractions()));
+  }
+  if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
+  page.start();
+});
+
+function showPage(contents) {
+  showAppShell();
+  const main = document.querySelector(".app-main");
+  main.innerHTML = ``;
+  append(main, html`${contents}`);
+  document.activeElement.blur();
+}
+
+function showAppShell() {
+  if (!document.querySelector(".app-header")) {
+    append(document.body, html`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
 <header classList="app-header">
   <button classList="menu-button" tabIndex=2>
@@ -36,24 +60,7 @@ append(document.body, html`
   </nav>
 </footer>
 `);
-
-authStateChanged(async (user) => {
-  await initUserData(user);
-  if (user) {
-    page("/create-attraction", () => showPage(CreateAttraction()));
-    page("/view-attractions", () => showPage(ViewAttractions()));
-    page("/contacts", () => showPage(Contacts()));
-    page("/", () => showPage(CreateAttraction()));
   }
-  if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
-  page.start();
-});
-
-function showPage(contents) {
-  const main = document.querySelector(".app-main");
-  main.innerHTML = ``;
-  append(main, html`${contents}`);
-  document.activeElement.blur();
 }
 
 signIn("zarinloosli+testing@gmail.com", "Testing123!");
