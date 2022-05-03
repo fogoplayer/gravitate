@@ -7,7 +7,7 @@ import { getUserFromUsername } from "./firebase/db.mjs";
 export async function sendInvites(attraction) {
   let { orbits, systems, friends, ...invitation } = attraction;
   let { name } = getCurrUserData();
-  // invitation.organizer = await getUserFromUsername(name);
+  invitation.organizer = await getUserFromUsername(name);
 
 
   orbits.forEach(orbit => {
@@ -30,8 +30,5 @@ export async function sendInvites(attraction) {
 
 export async function sendInvite(invitation, person) {
   const ref = await getUserFromUsername(person.name);
-  // console.log(await getDocData(invitation.organizer));
-  update(ref, {
-    invitations: push(invitation)
-  });
+  update(ref, { invitations: push(invitation) });
 }
