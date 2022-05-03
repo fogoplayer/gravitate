@@ -4,7 +4,8 @@ import {
   collection,
   getDoc,
   doc,
-  where
+  where,
+  query
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
 import { authStateChanged } from "./auth.mjs";
 

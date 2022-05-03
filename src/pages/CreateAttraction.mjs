@@ -77,12 +77,10 @@ function onCheckboxInput(e) {
   const currUserData = getCurrUserData();
   if (e.target.checked) {
     const index = currUserData[e.target.name].findIndex(el => (el.name === e.target.value));
-    console.log(index);
-    newAttraction[e.target.name].add(index);
+    newAttraction[e.target.name].add(currUserData[e.target.name][index]);
   } else {
     const index = currUserData[e.target.name].findIndex(el => (el.name === e.target.value));
-    console.log(index);
-    newAttraction[e.target.name].delete(index);
+    newAttraction[e.target.name].delete(currUserData[e.target.name][index]);
   }
 }
 
