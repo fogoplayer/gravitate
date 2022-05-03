@@ -19,13 +19,17 @@ const systems = collection(db, "systems");
 let currUserData;
 
 export async function initUserData(user) {
-  currUserData = await getDocData(doc(db, "users", user.uid));
+  const ref = doc(db, "users", user.uid);
+  currUserData = await getDocData(ref);
+  currUserData.ref = ref;
 
   // Convert references to objects
   const orbits = currUserData.orbits;
   for (let i = 0; i < orbits.length; i++) {
     for (let j = 0; j < orbits[i].members.length; j++) {
+      const ref = orbits[i].members[j];
       orbits[i].members[j] = await getDocData(orbits[i].members[j]);
+      orbits[i].members[j].ref = ref;
     }
   }
 
@@ -34,14 +38,17 @@ export async function initUserData(user) {
     const system = systems[i];
     systems[i] = await getDocData(system);
     for (let j = 0; j < systems[i].members.length; j++) {
+      const ref = systems[i].members[j];
       systems[i].members[j] = await getDocData(systems[i].members[j]);
+      systems[i].members[j].ref = ref;
     }
   }
 
   const friends = currUserData.friends;
   for (let i = 0; i < friends.length; i++) {
-    const friend = friends[i];
-    friends[i] = await getDocData(friend);
+    const ref = friends[i];
+    friends[i] = await getDocData(ref);
+    friends[i].ref = ref;
   }
 }
 
@@ -52,14 +59,6 @@ export function getCurrUserData() {
 export async function getDocData(ref) {
   const snap = await getDoc(ref);
   return snap.data();
-}
-
-export async function getUserFromUsername(username) {
-  const q = query(users, where("name", "==", username));
-
-  const querySnapshot = await getDocs(q);
-  if (querySnapshot.size > 1) throw new Error("Duplicate username exists");
-  return querySnapshot.docs[0].ref;
 }
 
 export async function update(ref, data) {

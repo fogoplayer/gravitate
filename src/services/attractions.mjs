@@ -2,18 +2,18 @@ import { push } from "./firebase/db.mjs";
 import { getDocData } from "./firebase/db.mjs";
 import { getCurrUserData } from "./firebase/db.mjs";
 import { update } from "./firebase/db.mjs";
-import { getUserFromUsername } from "./firebase/db.mjs";
 
 export default async function createAttraction(attraction) {
-  saveAttraction(attraction);
+  console.log(attraction);
   sendInvites(attraction);
+  saveAttraction(attraction);
 }
 
 async function saveAttraction(attraction) {
   attraction = await prepAttractionForFirebase(attraction);
 
-  let { name } = getCurrUserData();
-  const ref = await getUserFromUsername(name);
+  const { ref } = getCurrUserData();
+  debugger;
   update(ref, { attractions: push(attraction) });
 }
 
@@ -30,19 +30,18 @@ async function prepAttractionForFirebase(attraction) {
   for (let orbit = 0; orbit < attraction.orbits.length; orbit++) {
     for (let member = 0; member < attraction.orbits[orbit].members.length; member++) {
       console.log(attraction.orbits[orbit][member]);
-      console.log("ref", (await getUserFromUsername(attraction.orbits[orbit].members[member].name)));
-      attraction.orbits[orbit].members[member] = await getUserFromUsername(attraction.orbits[orbit].members[member].name);
+      attraction.orbits[orbit].members[member] = attraction.orbits[orbit].members[member].ref;
     }
   }
 
   for (let system = 0; system < attraction.systems.length; system++) {
     for (let member = 0; member < attraction.systems[system].members.length; member++) {
-      attraction.systems[system].members[member] = await getUserFromUsername(attraction.systems[system].members[member].name);
+      attraction.systems[system].members[member] = await attraction.systems[system].members[member].ref;
     }
   }
 
   for (let member = 0; member < attraction.friends.length; member++) {
-    attraction.friends[member] = await getUserFromUsername(attraction.friends[member].name);
+    attraction.friends[member] = attraction.friends[member].ref;
   }
 
 
@@ -52,8 +51,8 @@ async function prepAttractionForFirebase(attraction) {
 
 async function sendInvites(attraction) {
   let { orbits, systems, friends, ...invitation } = attraction;
-  let { name } = getCurrUserData();
-  invitation.organizer = await getUserFromUsername(name);
+  let { ref } = getCurrUserData();
+  invitation.organizer = ref;
 
 
   orbits.forEach(orbit => {
@@ -75,6 +74,5 @@ async function sendInvites(attraction) {
 }
 
 export async function sendInvite(invitation, person) {
-  const ref = await getUserFromUsername(person.name);
-  update(ref, { invitations: push(invitation) });
+  update(person.ref, { invitations: push(invitation) });
 }
