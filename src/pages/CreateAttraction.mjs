@@ -55,7 +55,7 @@ export default function CreateAttraction() {
     }
   })}
       <datalist id="location-options"></datalist>
-      <button classList="flat inline small" type="button" onclick=${useMyLocation}>Use my location</button>
+      <button classList="flat inline small" onclick=${useMyLocation} type="button">Use my location</button>
     </div>
     ${TextInput({
     label: "Expiration Time",

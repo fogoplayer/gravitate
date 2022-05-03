@@ -42,8 +42,46 @@ function showAppShell() {
   if (!document.querySelector(".app-header")) {
     append(document.body, html`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
+<dialog classList="side-nav">
+    <nav>
+      <ol>
+        <li>
+          <a href="view-attractions" classList="nav-link">
+            <span classList="material-symbols-sharp nav-icon">view_list</span>
+            <span classList="nav-title">Attractions</span>
+          </a>
+        </li>
+        <li>
+          <a href="create-attraction" classList="nav-link">
+            <span classList="material-symbols-sharp nav-icon">add</span>
+            <span classList="nav-title">Attractions</span>
+          </a>
+        </li>
+        <li>
+          <a href="contacts" id="view-contacts" classList="nav-link">
+            <span classList="material-symbols-sharp nav-icon">person</span>
+            <span classList="nav-title">Contacts</span>
+          </a>
+        </li>
+      </ol>
+      <ol>
+        <li>
+          <a href="settings" classList="nav-link">
+            <span classList="material-symbols-sharp nav-icon">settings</span>
+            <span classList="nav-title">Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="logout" classList="nav-link">
+            <span classList="material-symbols-sharp nav-icon">logout</span>
+            <span classList="nav-title">Log out</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+  </dialog>
 <header classList="app-header">
-  <button classList="menu-button" tabIndex=2>
+  <button classList="menu-button" tabIndex=2 onclick=${showAppDrawer} }>
     <div classList="material-symbols-sharp"> menu </div>
   </button>
   <h1 classList="page-title">Gravitate</h1>
@@ -77,4 +115,8 @@ function showExternalPage(contents) {
   document.body.innerHTML = "";
   console.log(document);
   append(document.body, contents);
+}
+
+function showAppDrawer() {
+  document.querySelector('.side-nav').showModal();
 }

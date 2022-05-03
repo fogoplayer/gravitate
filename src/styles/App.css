@@ -40,6 +40,59 @@ body {
   transform: none;
 }
 
+.side-nav {
+  /* display */
+
+  /* positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  /* box-model */
+  background-color: var(--light-text);
+  border: none;
+  height: 100vh;
+  width: min(16em, calc(100vw - 3.5em));
+  padding: 1em;
+
+
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
+.side-nav nav ol,
+.side-nav nav li,
+.side-nav nav a {
+  display: contents;
+  color: inherit;
+}
+
+.side-nav nav {
+  /* display */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+
+  /* positioning */
+  /* box-model */
+  height: 100%;
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
+.side-nav nav ol {
+  /* display */
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-auto-rows: 3em;
+  column-gap: 1em;
+  align-items: center;
+  justify-content: start;
+}
+
 /* Header */
 .app-header {
   /* display */
