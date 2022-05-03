@@ -3,6 +3,7 @@ import {
   getFirestore,
   collection,
   getDoc,
+  getDocs,
   doc,
   where,
   query
@@ -19,6 +20,13 @@ export async function initUserData(user) {
   currUserData = await getDocData(doc(db, "users", user.uid));
 
   // Convert references to objects
+  const orbits = currUserData.orbits;
+  for (let i = 0; i < orbits.length; i++) {
+    for (let j = 0; j < orbits[i].members.length; j++) {
+      orbits[i].members[j] = await getDocData(orbits[i].members[j]);
+    }
+  }
+
   const systems = currUserData.systems;
   for (let i = 0; i < systems.length; i++) {
     const system = systems[i];
@@ -28,7 +36,6 @@ export async function initUserData(user) {
   const friends = currUserData.friends;
   for (let i = 0; i < friends.length; i++) {
     const friend = friends[i];
-    console.log(friend);
     friends[i] = await getDocData(friend);
   }
 }
@@ -48,8 +55,4 @@ export async function getUserFromUsername(username) {
   const querySnapshot = await getDocs(q);
   if (querySnapshot.length > 1) throw new Error("Duplicate username exists");
   return querySnapshot[0];
-
-  return querySnapshot.map((doc) => {
-    console.log(doc.id, " => ", doc.data());
-  });
 }
