@@ -22,7 +22,7 @@
   justify-content: center;
   /* positioning */
   /* box-model */
-  min-height: 15vh;
+  min-height: max(15vh, 200px);
   /* typography */
   /* manipulation */
   /* misc */

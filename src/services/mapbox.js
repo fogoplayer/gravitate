@@ -1,5 +1,8 @@
 import { MAPBOX_KEY } from "./config.mjs";
 
+export let map;
+window.globalSetMap = (_map) => { map = _map; };
+
 export async function mapboxAPI(searchTerm, limit = 1) {
   return await fetch(
     `https://api.mapbox.com/geocoding/v5/mapbox.places/` +

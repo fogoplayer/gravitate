@@ -4,6 +4,7 @@ import createAttraction from "../services/attractions.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { getDocData } from "../services/firebase/db.mjs";
+import { map } from "../services/mapbox.js";
 import { mapboxAPI } from "../services/mapbox.js";
 import { html } from "../services/render.mjs";
 import { Attraction } from "../services/structures.mjs";
@@ -29,6 +30,7 @@ export default function CreateAttraction() {
         const marker = new mapboxgl.Marker()
           .setLngLat([position.longitude, position.latitude])
           .addTo(map);
+        globalSetMap(map)
       });
     }catch{}
   </script>
@@ -89,6 +91,8 @@ async function useMyLocation() {
       let [address] = await mapboxAPI(`${coords.longitude},${coords.latitude}`);
       console.log(address);
       document.querySelector("#event-location").value = address.place_name;
+      console.log(map);
+      map.panTo([coords.longitude, coords.latitude]);
     });
   };
 
