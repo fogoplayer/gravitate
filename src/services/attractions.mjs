@@ -12,7 +12,6 @@ async function saveAttraction(attraction) {
   attraction = await prepAttractionForFirebase(attraction);
 
   const { ref } = getCurrUserData();
-  debugger;
   update(ref, { attractions: push(attraction) });
 }
 
@@ -48,6 +47,7 @@ async function sendInvites(attraction) {
   let { orbits, systems, friends, ...invitation } = attraction;
   let { ref } = getCurrUserData();
   invitation.organizer = ref;
+  invitation.origin = undefined;
 
 
   orbits.forEach(orbit => {
@@ -56,15 +56,16 @@ async function sendInvites(attraction) {
     });
   });
 
+  friends.forEach(person => {
+    sendInvite(invitation, person);
+  });
 
   systems.forEach(system => {
     system.members?.forEach((person) => {
+      console.log(system);
+      invitation.origin = system.ref;
       sendInvite(invitation, person);
     });
-  });
-
-  friends.forEach(person => {
-    sendInvite(invitation, person);
   });
 }
 

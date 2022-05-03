@@ -35,11 +35,13 @@ export async function initUserData(user) {
 
   const systems = currUserData.systems;
   for (let system = 0; system < systems.length; system++) {
+    const systemRef = systems[system];
     systems[system] = await getDocData(systems[system]);
+    systems[system].ref = systemRef;
     for (let member = 0; member < systems[system].members.length; member++) {
-      const ref = systems[system].members[member];
+      const memberRef = systems[system].members[member];
       systems[system].members[member] = await getDocData(systems[system].members[member]);
-      systems[system].members[member].ref = ref;
+      systems[system].members[member].ref = memberRef;
     }
   }
 

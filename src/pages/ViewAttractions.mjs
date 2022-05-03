@@ -6,7 +6,7 @@ import { html } from "../services/render.mjs";
 
 
 export default function CreateAttraction() {
-  let { orbits, systems, friends, ...rest } = getCurrUserData();
+  let { attractions, systems, friends, ...rest } = getCurrUserData();
 
   return html`<div classList="ignore view-attractions">
   <div id="map">Loading map...</div>
@@ -33,7 +33,7 @@ export default function CreateAttraction() {
         <img src="./images/your-attractions.svg" alt="Your attractions icon" classList="header-icon" />
         <span classList="header-text">Your Attractions</span>
       </h2>
-      ${Template(orbits, "orbits")}
+      ${Template(attractions, "orbits")}
     </li>
     <li classList="systems-wrapper">
       <h2>
