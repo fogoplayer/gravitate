@@ -48,8 +48,10 @@ export default function CreateAttraction() {
     id: "event-location",
     name: "event-location",
     required: true,
+    list: "location-options",
     oninput: (e) => newAttraction.location = e.target.value
   })}
+      <datalist id="location-options"></datalist>
       <button classList="flat inline small" type="button" onclick=${useMyLocation}>Use my location</button>
     </div>
     ${TextInput({
