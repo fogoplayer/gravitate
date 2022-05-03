@@ -49,7 +49,10 @@ export default function CreateAttraction() {
     name: "event-location",
     required: true,
     list: "location-options",
-    oninput: (e) => newAttraction.location = e.target.value
+    oninput: (e) => {
+      locationSearch(e.target.value);
+      newAttraction.location = e.target.value;
+    }
   })}
       <datalist id="location-options"></datalist>
       <button classList="flat inline small" type="button" onclick=${useMyLocation}>Use my location</button>
@@ -98,7 +101,16 @@ async function useMyLocation() {
   clearTimeout(timer);
   const newTimer = setTimeout(getAddress, 500);
   timer = newTimer;
+}
 
+async function locationSearch(searchTerm) {
+  // debugger;
+  let addresses = await mapboxAPI(searchTerm, 5);
+  console.log(addresses.map(address => address.place_name));
+  addresses.forEach(address => {
+    console.log(html`<option value=${address.place_name}>${address.place_name}</option>`);
+    document.querySelector("#location-options").appendChild(html`<option value=${address.place_name}>${address.place_name}</option>`);
+  });
 }
 
 function onCheckboxInput(e) {
@@ -115,4 +127,4 @@ function onCheckboxInput(e) {
 function onSubmit(e) {
   e.preventDefault();
   createAttraction(newAttraction);
-};
+};;
