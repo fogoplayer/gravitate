@@ -4,10 +4,12 @@ import createAttraction from "../services/attractions.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { getDocData } from "../services/firebase/db.mjs";
+import { mapboxAPI } from "../services/mapbox.js";
 import { html } from "../services/render.mjs";
 import { Attraction } from "../services/structures.mjs";
 
 const newAttraction = { orbits: new Set(), systems: new Set(), friends: new Set() };
+let timer;
 
 export default function CreateAttraction() {
   return html`<div classList="ignore">
@@ -48,7 +50,7 @@ export default function CreateAttraction() {
     value: "Ipsum", // TODO remove
     oninput: (e) => newAttraction.location = e.target.value
   })}
-      <button classList="flat inline small" type="button">Use my location</button>
+      <button classList="flat inline small" type="button" onclick=${useMyLocation}>Use my location</button>
     </div>
     ${TextInput({
     label: "Expiration Time",
@@ -81,6 +83,20 @@ function ContactTemplate(contacts, name) {
   return jsx;
 }
 
+async function useMyLocation() {
+  const getAddress = async () => {
+    await navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+      let address = await mapboxAPI(`${coords.longitude},${coords.latitude}`);
+      console.log(address);
+    });
+  };
+
+  clearTimeout(timer);
+  const newTimer = setTimeout(getAddress, 500);
+  timer = newTimer;
+
+}
+
 function onCheckboxInput(e) {
   const currUserData = getCurrUserData();
   if (e.target.checked) {
@@ -95,4 +111,4 @@ function onCheckboxInput(e) {
 function onSubmit(e) {
   e.preventDefault();
   createAttraction(newAttraction);
-}
+};
