@@ -86,8 +86,9 @@ function ContactTemplate(contacts, name) {
 async function useMyLocation() {
   const getAddress = async () => {
     await navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-      let address = await mapboxAPI(`${coords.longitude},${coords.latitude}`);
+      let [address] = await mapboxAPI(`${coords.longitude},${coords.latitude}`);
       console.log(address);
+      document.querySelector("#event-location").value = address.place_name;
     });
   };
 

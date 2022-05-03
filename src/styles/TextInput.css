@@ -47,6 +47,8 @@
 
   /* typography */
   font-size: inherit;
+  text-overflow: ellipsis;
+
   /* manipulation */
   transition: 0.25s linear max-height;
 
@@ -81,12 +83,9 @@
   /* misc */
 }
 
-.text-input-wrapper:focus-within
-  .text-input:focus::-webkit-calendar-picker-indicator,
+.text-input-wrapper:focus-within .text-input:focus::-webkit-calendar-picker-indicator,
 .text-input-wrapper:focus-within .text-input:focus::-webkit-datetime-edit,
-.text-input-wrapper.text-input-wrapper.not-empty
-  .text-input::-webkit-calendar-picker-indicator,
-.text-input-wrapper.text-input-wrapper.not-empty
-  .text-input::-webkit-datetime-edit {
+.text-input-wrapper.text-input-wrapper.not-empty .text-input::-webkit-calendar-picker-indicator,
+.text-input-wrapper.text-input-wrapper.not-empty .text-input::-webkit-datetime-edit {
   opacity: 1;
 }
