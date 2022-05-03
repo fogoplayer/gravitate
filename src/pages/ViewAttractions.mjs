@@ -33,7 +33,7 @@ export default function CreateAttraction() {
         <img src="./images/your-attractions.svg" alt="Your attractions icon" classList="header-icon" />
         <span classList="header-text">Your Attractions</span>
       </h2>
-      ${Template(attractions, "orbits")}
+      ${Template(attractions)}
     </li>
     <li classList="systems-wrapper">
       <h2>
@@ -44,7 +44,7 @@ export default function CreateAttraction() {
         />
         <span classList="header-text">Systems</span>
       </h2>
-      ${Template(systems, "systems")}
+      ${Template(systems)}
     </li>
     <li classList="friends-wrapper">
       <h2>
@@ -55,13 +55,23 @@ export default function CreateAttraction() {
         />
         <span classList="header-text">Friends</span>
       </h2>
-      ${Template(friends, "friends")}
+      ${Template(friends)}
     </li>
   </ul>
 </div>
 `;
 
-  function Template(params) {
-
+  function Template(attractions) {
+    const jsx = html`<ul></ul>`;
+    attractions.forEach(async (attraction) => {
+      console.log(attraction);
+      jsx.append(html`<li>
+    <h3 classList="contact-header-container">
+      ${(attraction.icon && attraction.icon[0]) === "/" ? "" : html`<span classList="contact-icon">${attraction.icon || "🟣"}</span>`}
+      <span classList="contact-name">${attraction.name}</span>
+    </h3>
+  </li>`);
+    });
+    return jsx;
   }
 }

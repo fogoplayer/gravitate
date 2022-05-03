@@ -5,3 +5,7 @@
 .view-attractions .contacts-list {
   margin-bottom: 1em;
 }
+
+.view-attractions .contacts-list .contact-header-container {
+  font: inherit;
+}

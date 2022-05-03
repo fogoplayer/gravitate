@@ -70,7 +70,7 @@ function ContactTemplate(contacts, name) {
   const jsx = html`<ul></ul>`;
   contacts.forEach(async (contact) => {
     jsx.append(html`<li>
-  <label>
+  <label classList="contact-header-container">
     <input type="checkbox" name="${name}" id="${contact.name}" value="${contact.name}" oninput=${onCheckboxInput} tabIndex=0/>
     ${(contact.icon && contact.icon[0]) === "/" ? "" : html`<span classList="contact-icon">${contact.icon || "🟣"}</span>`}
     <span classList="contact-name">${contact.name}</span>
