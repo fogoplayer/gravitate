@@ -36,19 +36,27 @@ export default function CreateAttraction() {
     id: "event-name",
     name: "event-name",
     required: true,
+    value: "Lorem",
     oninput: (e) => { newAttraction.name = e.target.value; },
   })}
     <div classList="inline-inputs">
       ${TextInput({
-    label: "Event Location", id: "event-location", name:
-      "event-location", required: true,
+    label: "Event Location",
+    id: "event-location",
+    name: "event-location",
+    required: true,
+    value: "Ipsum", // TODO remove
     oninput: (e) => newAttraction.location = e.target.value
   })}
       <button classList="flat inline small" type="button">Use my location</button>
     </div>
     ${TextInput({
-    label: "Expiration Time", id: "expiration-time", name:
-      "expiration-time", type: "time", required: true,
+    label: "Expiration Time",
+    id: "expiration-time",
+    name: "expiration-time",
+    type: "time",
+    required: true,
+    value: "12:45", // TODO remove
     oninput: (e) => newAttraction.expiration = e.target.value
   })}
   ${ContactsList(ContactTemplate)}

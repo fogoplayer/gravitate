@@ -1,12 +1,14 @@
 import { app } from "./app.mjs";
 import {
+  arrayUnion,
   getFirestore,
   collection,
   getDoc,
   getDocs,
   doc,
   where,
-  query
+  query,
+  updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
 import { authStateChanged } from "./auth.mjs";
 
@@ -31,6 +33,9 @@ export async function initUserData(user) {
   for (let i = 0; i < systems.length; i++) {
     const system = systems[i];
     systems[i] = await getDocData(system);
+    for (let j = 0; j < systems[i].members.length; j++) {
+      systems[i].members[j] = await getDocData(systems[i].members[j]);
+    }
   }
 
   const friends = currUserData.friends;
@@ -53,6 +58,14 @@ export async function getUserFromUsername(username) {
   const q = query(users, where("name", "==", username));
 
   const querySnapshot = await getDocs(q);
-  if (querySnapshot.length > 1) throw new Error("Duplicate username exists");
-  return querySnapshot[0];
+  if (querySnapshot.size > 1) throw new Error("Duplicate username exists");
+  return querySnapshot.docs[0].ref;
+}
+
+export async function update(ref, data) {
+  return await updateDoc(ref, data);
+}
+
+export function push(data) {
+  return arrayUnion(data);
 }
