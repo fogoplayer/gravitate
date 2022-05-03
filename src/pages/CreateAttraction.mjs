@@ -40,7 +40,6 @@ export default function CreateAttraction() {
     id: "event-name",
     name: "event-name",
     required: true,
-    value: "Lorem",
     oninput: (e) => { newAttraction.name = e.target.value; },
   })}
     <div classList="inline-inputs">
@@ -49,7 +48,6 @@ export default function CreateAttraction() {
     id: "event-location",
     name: "event-location",
     required: true,
-    value: "Ipsum", // TODO remove
     oninput: (e) => newAttraction.location = e.target.value
   })}
       <button classList="flat inline small" type="button" onclick=${useMyLocation}>Use my location</button>
@@ -60,7 +58,6 @@ export default function CreateAttraction() {
     name: "expiration-time",
     type: "time",
     required: true,
-    value: "12:45", // TODO remove
     oninput: (e) => newAttraction.expiration = e.target.value
   })}
   ${ContactsList(ContactTemplate)}
