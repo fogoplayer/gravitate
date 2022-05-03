@@ -66,7 +66,7 @@ export default function CreateAttraction() {
 `;
 }
 
-async function ContactTemplate(contacts, name) {
+function ContactTemplate(contacts, name) {
   const jsx = html`<ul></ul>`;
   contacts.forEach(async (contact) => {
     jsx.append(html`<li>
