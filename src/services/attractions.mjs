@@ -4,7 +4,6 @@ import { getCurrUserData } from "./firebase/db.mjs";
 import { update } from "./firebase/db.mjs";
 
 export default async function createAttraction(attraction) {
-  console.log(attraction);
   sendInvites(attraction);
   saveAttraction(attraction);
 }
@@ -23,13 +22,10 @@ async function prepAttractionForFirebase(attraction) {
   attraction.systems = Array.from(attraction.systems);
   attraction.friends = Array.from(attraction.friends);
 
-  console.log(attraction.orbits, attraction.systems, attraction.friends);
-
 
   // Convert to references
   for (let orbit = 0; orbit < attraction.orbits.length; orbit++) {
     for (let member = 0; member < attraction.orbits[orbit].members.length; member++) {
-      console.log(attraction.orbits[orbit][member]);
       attraction.orbits[orbit].members[member] = attraction.orbits[orbit].members[member].ref;
     }
   }
@@ -45,7 +41,6 @@ async function prepAttractionForFirebase(attraction) {
   }
 
 
-  console.log(attraction.orbits, attraction.systems, attraction.friends);
   return attraction;
 }
 

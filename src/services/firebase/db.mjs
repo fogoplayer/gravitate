@@ -25,30 +25,30 @@ export async function initUserData(user) {
 
   // Convert references to objects
   const orbits = currUserData.orbits;
-  for (let i = 0; i < orbits.length; i++) {
-    for (let j = 0; j < orbits[i].members.length; j++) {
-      const ref = orbits[i].members[j];
-      orbits[i].members[j] = await getDocData(orbits[i].members[j]);
-      orbits[i].members[j].ref = ref;
+  for (let orbit = 0; orbit < orbits.length; orbit++) {
+    for (let member = 0; member < orbits[orbit].members.length; member++) {
+      const ref = orbits[orbit].members[member];
+      orbits[orbit].members[member] = await getDocData(orbits[orbit].members[member]);
+      orbits[orbit].members[member].ref = ref;
     }
   }
 
   const systems = currUserData.systems;
-  for (let i = 0; i < systems.length; i++) {
-    const system = systems[i];
-    systems[i] = await getDocData(system);
-    for (let j = 0; j < systems[i].members.length; j++) {
-      const ref = systems[i].members[j];
-      systems[i].members[j] = await getDocData(systems[i].members[j]);
-      systems[i].members[j].ref = ref;
+  for (let system = 0; system < systems.length; system++) {
+    const system = systems[system];
+    systems[system] = await getDocData(system);
+    for (let member = 0; member < systems[system].members.length; member++) {
+      const ref = systems[system].members[member];
+      systems[system].members[member] = await getDocData(systems[system].members[member]);
+      systems[system].members[member].ref = ref;
     }
   }
 
   const friends = currUserData.friends;
-  for (let i = 0; i < friends.length; i++) {
-    const ref = friends[i];
-    friends[i] = await getDocData(ref);
-    friends[i].ref = ref;
+  for (let friend = 0; friend < friends.length; friend++) {
+    const ref = friends[friend];
+    friends[friend] = await getDocData(ref);
+    friends[friend].ref = ref;
   }
 }
 
