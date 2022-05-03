@@ -42,7 +42,7 @@ function showAppShell() {
   if (!document.querySelector(".app-header")) {
     append(document.body, html`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
-<dialog classList="side-nav">
+<dialog classList="side-nav" onclick=${hideAppDrawer}>
     <nav>
       <ol>
         <li>
@@ -119,4 +119,15 @@ function showExternalPage(contents) {
 
 function showAppDrawer() {
   document.querySelector('.side-nav').showModal();
+}
+
+function hideAppDrawer(e) {
+  if (e.target === document.querySelector('.side-nav')) {
+    e.preventDefault();
+    document.querySelector('.side-nav').classList.add("closing");
+    setTimeout(() => {
+      document.querySelector('.side-nav').close();
+      document.querySelector('.side-nav').classList.remove("closing");
+    }, 250);
+  }
 }

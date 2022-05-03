@@ -46,20 +46,78 @@ body {
   /* positioning */
   position: fixed;
   top: 0;
-  left: 0;
   z-index: 1000;
 
   /* box-model */
   background-color: var(--light-text);
   border: none;
   height: 100vh;
+  max-height: 100vh;
   width: min(16em, calc(100vw - 3.5em));
-  padding: 1em;
 
 
   /* typography */
   /* manipulation */
   /* misc */
+}
+
+.side-nav[open] {
+  animation: open-drawer 0.25s ease-out forwards;
+}
+
+.side-nav.closing {
+  animation: close-drawer .25s ease-out forwards;
+}
+
+
+dialog::backdrop {
+  background-color: hsl(281 50% 80%);
+  opacity: .5;
+  animation: fade-in .25s ease-out forwards;
+}
+
+dialog.closing::backdrop {
+  animation: fade-out .25s ease-out forwards;
+}
+
+@keyframes open-drawer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes close-drawer {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: .5;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: .5;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .side-nav nav ol,
@@ -78,6 +136,8 @@ body {
   /* positioning */
   /* box-model */
   height: 100%;
+  padding: 1em;
+
   /* typography */
   /* manipulation */
   /* misc */
