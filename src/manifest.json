@@ -1,0 +1,22 @@
+{
+  "background_color": "#570080",
+  "description": "Invite people to come along for the ride",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Gravitate",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "Gravitate",
+  "start_url": "/",
+  "theme_color": "#570080",
+  "icons": [
+    {
+      "src": "images/logo.svg",
+      "purpose": "maskable any",
+      "sizes": "any"
+    }
+  ],
+  "categories": [],
+  "screenshots": [],
+  "shortcuts": []
+}
