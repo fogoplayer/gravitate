@@ -166,7 +166,7 @@ dialog.closing::backdrop {
   color: var(--theme-primary-color)
 }
 
-.side-nav a:focus {
+.side-nav a:focus-visible {
   outline-color: var(--theme-primary-color);
 }
 
@@ -310,7 +310,7 @@ dialog.closing::backdrop {
   filter: drop-shadow(0 0 5px var(--theme-primary-color));
 }
 
-.app-header button:focus,
-.app-footer .footer-link:focus {
+.app-header button:focus-visible,
+.app-footer .footer-link:focus-visible {
   background-color: var(--theme-tertiary-color);
 }

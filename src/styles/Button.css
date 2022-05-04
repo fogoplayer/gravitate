@@ -76,12 +76,12 @@ button.inline {
   margin: -0.675em -1em;
 }
 
-button:focus {
+button:focus-visible {
   background-color: var(--theme-primary-color);
   color: var(--light-text);
 }
 
-button.flat:focus {
+button.flat:focus-visible {
   color: var(--theme-primary-color);
   border: 1px solid var(--theme-primary-color);
   background-color: unset;

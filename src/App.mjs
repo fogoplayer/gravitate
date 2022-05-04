@@ -37,7 +37,6 @@ function showAppPage(contents, context) {
   append(main, html`${contents}`);
 
   // Functions for after render
-  document.activeElement.blur();
   setActiveLinks(context);
   hideAppDrawer();
 }
