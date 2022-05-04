@@ -86,3 +86,11 @@ button.flat:focus-visible {
   border: 1px solid var(--theme-primary-color);
   background-color: unset;
 }
+
+button .spinner {
+  display: none;
+}
+
+button.loading .spinner {
+  display: inline-block
+}

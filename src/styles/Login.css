@@ -1,4 +1,5 @@
-.login-page {
+.login-page,
+.login-spinner {
   /* display */
   display: flex;
   flex-flow: column nowrap;
@@ -9,14 +10,20 @@
   inset: 0;
 
   /* box-model */
-  background-color: var(--light-text);
-  border-radius: 2em;
-  border: 1px solid var(--theme-secondary-color);
   margin: auto;
-  padding: 2em;
 
   /* typography */
   font-size: 1.5em;
+  color: var(--light-text);
+}
+
+.login-page {
+  /* box-model */
+  background-color: var(--light-text);
+  border-radius: 2em;
+  border: 1px solid var(--theme-secondary-color);
+  padding: 2em;
+
   /* manipulation */
   /* misc */
 }

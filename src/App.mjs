@@ -9,6 +9,13 @@ import { getCurrUserData } from "./services/firebase/db.mjs";
 import { logOut } from "./services/firebase/auth.mjs";
 import Login from "./pages/Login.mjs";
 import AppShell from "./components/AppShell.mjs";
+import Spinner from "./components/Spinner.mjs";
+
+// immediately show loading spinner
+append(document.body, html`<div classList="login-spinner">
+  ${Spinner()}
+<div>Checking login status...</div>
+</div>`);
 
 authStateChanged(async (user) => {
   await initUserData(user);
