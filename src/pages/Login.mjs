@@ -8,8 +8,8 @@ export default function Login() {
   return html`<main classList="login-page">
   <h1>Gravitate</h1>
   <form onsubmit=${submit}>
-    ${TextInput({ label: "Email", id: "email" })}
-    ${TextInput({ label: "Password", type: "password", id: "password" })}
+    ${TextInput({ label: "Email", id: "email", required: true })}
+    ${TextInput({ label: "Password", type: "password", id: "password", required: true })}
     <button classList="primary">Log in</button>
   </form>
   <div>

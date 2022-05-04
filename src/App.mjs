@@ -17,7 +17,7 @@ authStateChanged(async (user) => {
     page("/contacts", (context) => showAppPage(Contacts(), context));
   }
   page("/login", () => showExternalPage(Login()));
-  page("*", () => {
+  page("/*", () => {
     if (user) page.redirect("view-attractions");
     else page.redirect("login");
 
