@@ -16,7 +16,7 @@ authStateChanged(async (user) => {
     page("/contacts", (context) => showAppPage(Contacts(), context));
   }
   page("/login", () => showExternalPage(Login()));
-  page("/", () => {
+  page("*", () => {
     if (user) page.redirect("view-attractions");
     else page.redirect("login");
 
@@ -43,6 +43,7 @@ function showAppPage(contents, context) {
 
 function showAppShell() {
   if (!document.querySelector(".app-header")) {
+    document.body.innerHTML = ``;
     append(document.body, html`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
 <dialog classList="side-nav" onclick=${(e) => {
@@ -80,7 +81,7 @@ function showAppShell() {
           </a>
         </li>
         <li>
-          <a href="logout" classList="nav-link" tabindex=0>
+          <a href="" classList="nav-link" tabindex=0 onclick=${logOut}>
             <span classList="material-symbols-sharp nav-icon">logout</span>
             <span classList="nav-title">Log out</span>
           </a>

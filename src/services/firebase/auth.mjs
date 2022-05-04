@@ -25,6 +25,7 @@ export function authStateChanged(callback) {
   onAuthStateChanged(auth, callback);
 };
 
-export function logOut() {
-  return signOut(auth);
+export async function logOut() {
+  await signOut(auth);
+  page.redirect("/login");
 }

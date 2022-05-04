@@ -1,4 +1,5 @@
 import TextInput from "../components/TextInput.mjs";
+import { authStateChanged } from "../services/firebase/auth.mjs";
 import { signIn } from "../services/firebase/auth.mjs";
 import { html } from "../services/render.mjs";
 
@@ -16,9 +17,11 @@ export default function Login() {
     <button classList="flat small">Sign up</button>
   </div>
 </main>`;
-  function submit(e) {
+  async function submit(e) {
     e.preventDefault();
-    signIn(document.querySelector("#email").value, document.querySelector("#password").value);
+    await signIn(document.querySelector("#email").value, document.querySelector("#password").value);
+    page.redirect("view-attractions");
+    // authStateChanged(() => page.redirect("view-attractions")))
   }
 };
 
