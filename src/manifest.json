@@ -22,7 +22,26 @@
       "sizes": "any"
     }
   ],
-  "categories": [],
+  "categories": [
+    {
+      "src": "images/screenshots/contacts.png",
+      "sizes": "393x851",
+      "type": "image/png",
+      "label": "Contacts Page"
+    },
+    {
+      "src": "images/screenshots/create-attraction.png",
+      "sizes": "393x851",
+      "type": "image/png",
+      "label": "Create Attraction Page"
+    },
+    {
+      "src": "images/screenshots/view-attractions.png",
+      "sizes": "393x851",
+      "type": "image/png",
+      "label": "View Attractions Page"
+    }
+  ],
   "screenshots": [],
   "shortcuts": []
 }
