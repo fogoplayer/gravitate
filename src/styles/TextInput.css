@@ -75,6 +75,7 @@
   text-overflow: ellipsis;
 
   /* manipulation */
+  transition: .25s linear max-height;
 
   /* misc */
 }
@@ -116,12 +117,6 @@
   display: none;
 }
 
-.text-input-component .text-input::-webkit-calendar-picker-indicator,
-.text-input-component .text-input::-webkit-datetime-edit {
-  opacity: 0;
-  transition: 0.25s linear opacity;
-}
-
 .text-input-component:focus-within .text-input-label,
 .text-input-component.not-empty .text-input-label {
   /* typography */
@@ -144,11 +139,4 @@
   /* manipulation */
   outline: none;
   /* misc */
-}
-
-.text-input-component:focus-within .text-input:focus::-webkit-calendar-picker-indicator,
-.text-input-component:focus-within .text-input:focus::-webkit-datetime-edit,
-.text-input-component.text-input-component.not-empty .text-input::-webkit-calendar-picker-indicator,
-.text-input-component.text-input-component.not-empty .text-input::-webkit-datetime-edit {
-  opacity: 1;
 }
