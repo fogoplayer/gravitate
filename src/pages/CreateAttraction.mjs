@@ -92,18 +92,12 @@ function ContactTemplate(contacts, name) {
 }
 
 async function useMyLocation() {
-  const getAddress = async () => {
-    await navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-      let [address] = await mapboxAPI(`${coords.longitude},${coords.latitude}`);
-      document.querySelector("#event-location").value = address.place_name;
-      document.querySelector("#event-location").parentNode.parentNode.classList.add("not-empty");
-      map?.panTo([coords.longitude, coords.latitude]);
-    });
-  };
-
-  clearTimeout(timer);
-  const newTimer = setTimeout(getAddress, 500);
-  timer = newTimer;
+  await navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+    let [address] = await mapboxAPI(`${coords.longitude},${coords.latitude}`);
+    document.querySelector("#event-location").value = address.place_name;
+    document.querySelector("#event-location").parentNode.parentNode.classList.add("not-empty");
+    map?.panTo([coords.longitude, coords.latitude]);
+  });
 }
 
 async function locationSearch(searchTerm) {
