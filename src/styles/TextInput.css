@@ -25,6 +25,8 @@
   /* display */
   /* positioning */
   /* box-model */
+  max-width: 100%;
+
   /* typography */
   color: var(--current-color);
   font-size: 0.5em;
@@ -37,11 +39,29 @@
   /* misc */
 }
 
+.text-input-wrapper .curtain {
+  /* display */
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+
+  /* positioning */
+  /* box-model */
+  min-height: 0.5em;
+  line-height: 0;
+  max-width: 100%;
+
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
 .text-input-wrapper .text-input {
   /* display */
   /* positioning */
+
   /* box-model */
-  max-height: 0.5em;
+  max-height: 0;
   border: none;
   border-bottom: 1px solid var(--current-color);
   background-color: transparent;
