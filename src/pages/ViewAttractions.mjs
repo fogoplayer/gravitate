@@ -6,7 +6,19 @@ import { html } from "../services/render.mjs";
 
 
 export default function CreateAttraction() {
-  let { attractions, systems, friends, ...rest } = getCurrUserData();
+  let { attractions, systems, friends, invitations, ...rest } = getCurrUserData();
+  let friendInvites = [];
+  let systemInvites = [];
+
+  invitations.forEach(invite => {
+    if (invite.origin)
+      systemInvites.push(invite);
+    else
+      friendInvites.push(invite);
+  });
+
+  console.log("system invites", systemInvites);
+  console.log("friend invites", friendInvites);
 
   return html`<div classList="ignore view-attractions">
   <div id="map">Loading map...</div>
@@ -44,7 +56,7 @@ export default function CreateAttraction() {
         />
         <span classList="header-text">Systems</span>
       </h2>
-      ${Template(systems)}
+      ${Template(systemInvites)}
     </li>
     <li classList="friends-wrapper">
       <h2>
@@ -55,7 +67,7 @@ export default function CreateAttraction() {
         />
         <span classList="header-text">Friends</span>
       </h2>
-      ${Template(friends)}
+      ${Template(friendInvites)}
     </li>
   </ul>
 </div>
