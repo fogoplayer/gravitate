@@ -1,3 +1,4 @@
+import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
 import { append, html } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
@@ -18,7 +19,6 @@ authStateChanged(async (user) => {
   page("/*", () => {
     if (user) page.redirect("view-attractions");
     else page.redirect("login");
-
   });
 
   if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");

@@ -8,7 +8,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
         e.preventDefault();
         hideAppDrawer();
       }
-    }} tabindex = -1 >
+    }} tabindex = -1>
     <nav>
       <ol>
         <li>
@@ -28,8 +28,8 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
             <span classList="material-symbols-sharp nav-icon">person</span>
             <span classList="nav-title">Contacts</span>
           </a>
-        </li >
-      </ol >
+        </li>
+      </ol>
       <ol>
         <li>
           <a href="settings" classList="nav-link" tabindex=0>
@@ -42,16 +42,16 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
             <span classList="material-symbols-sharp nav-icon">logout</span>
             <span classList="nav-title">Log out</span>
           </a>
-        </li >
-      </ol >
-    </nav >
-  </dialog >
+        </li>
+      </ol>
+    </nav>
+  </dialog>
 <header classList="app-header">
   <button classList="menu-button" tabIndex=2 onclick=${showAppDrawer} }>
     <div classList="material-symbols-sharp"> menu </div>
   </button>
   <h1 classList="page-title">Gravitate</h1>
-</header >
+</header>
 <main id="app-main" classList="app-main"></main>
 <footer classList="app-footer">
   <nav>
@@ -67,11 +67,12 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
     >
       <span classList="material-symbols-sharp footer-icon">add</span>
     </a>
-    <a href="contacts" id="view-contacts" classList="footer-link"  tabIndex=5 >
+    <a href="contacts" id="view-contacts" classList="footer-link"  tabIndex=5>
       <span classList="material-symbols-sharp footer-icon">person</span>
       <span classList="footer-title">Contacts</span>
-    </a >
-  </nav >
-</footer >
+    </a>
+  </nav>
+</footer>
+<pwa-update/>
       `;
 }
