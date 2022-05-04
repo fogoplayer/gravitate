@@ -1,4 +1,4 @@
-.text-input-wrapper {
+.text-input-component {
   /* display */
   display: flex;
   flex-flow: column nowrap;
@@ -17,11 +17,11 @@
   overflow: hidden;
 }
 
-.text-input-wrapper:focus-within {
+.text-input-component:focus-within {
   --current-color: var(--theme-primary-color);
 }
 
-.text-input-wrapper .text-input-label {
+.text-input-component .text-input-label {
   /* display */
   /* positioning */
   /* box-model */
@@ -39,7 +39,7 @@
   /* misc */
 }
 
-.text-input-wrapper .curtain {
+.text-input-component .text-input-wrapper {
   /* display */
   display: flex;
   flex-flow: row nowrap;
@@ -56,8 +56,12 @@
   /* misc */
 }
 
-.text-input-wrapper .text-input {
+.text-input-component .text-input {
   /* display */
+  display: flex;
+  flex-flow: row nowrap;
+  flex: 1 1 auto;
+
   /* positioning */
 
   /* box-model */
@@ -71,19 +75,55 @@
   text-overflow: ellipsis;
 
   /* manipulation */
+
+  /* misc */
+}
+
+.text-input-component .show-hide-password {
+  display: none;
+}
+
+.text-input-component .password~.show-hide-password {
+  /* display */
+  display: initial;
+  flex: 0 0 auto;
+
+  /* positioning */
+  /* box-model */
+  background-color: transparent;
+  font-size: inherit;
+  border-bottom: 1px solid var(--current-color);
+  max-height: 0;
+
+  /* typography */
+  /* manipulation */
   transition: 0.25s linear max-height;
 
   /* misc */
 }
 
-.text-input-wrapper .text-input::-webkit-calendar-picker-indicator,
-.text-input-wrapper .text-input::-webkit-datetime-edit {
+.text-input-component .password~.show-hide-password:focus {
+  color: initial;
+}
+
+.text-input-component .password~.show-hide-password .show-password,
+.text-input-component .password~.show-hide-password .hide-password {
+  display: initial;
+}
+
+.text-input-component .password[type="password"]~.show-hide-password .hide-password,
+.text-input-component .password:not([type="password"])~.show-hide-password .show-password {
+  display: none;
+}
+
+.text-input-component .text-input::-webkit-calendar-picker-indicator,
+.text-input-component .text-input::-webkit-datetime-edit {
   opacity: 0;
   transition: 0.25s linear opacity;
 }
 
-.text-input-wrapper:focus-within .text-input-label,
-.text-input-wrapper.not-empty .text-input-label {
+.text-input-component:focus-within .text-input-label,
+.text-input-component.not-empty .text-input-label {
   /* typography */
 
   /* manipulation */
@@ -91,8 +131,10 @@
   /* misc */
 }
 
-.text-input-wrapper:focus-within .text-input:focus,
-.text-input-wrapper.not-empty .text-input {
+.text-input-component:focus-within .text-input,
+.text-input-component.not-empty .text-input,
+.text-input-component:focus-within .show-hide-password,
+.text-input-component.not-empty .show-hide-password {
   /* display */
   /* positioning */
   /* box-model */
@@ -104,9 +146,9 @@
   /* misc */
 }
 
-.text-input-wrapper:focus-within .text-input:focus::-webkit-calendar-picker-indicator,
-.text-input-wrapper:focus-within .text-input:focus::-webkit-datetime-edit,
-.text-input-wrapper.text-input-wrapper.not-empty .text-input::-webkit-calendar-picker-indicator,
-.text-input-wrapper.text-input-wrapper.not-empty .text-input::-webkit-datetime-edit {
+.text-input-component:focus-within .text-input:focus::-webkit-calendar-picker-indicator,
+.text-input-component:focus-within .text-input:focus::-webkit-datetime-edit,
+.text-input-component.text-input-component.not-empty .text-input::-webkit-calendar-picker-indicator,
+.text-input-component.text-input-component.not-empty .text-input::-webkit-datetime-edit {
   opacity: 1;
 }

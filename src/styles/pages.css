@@ -58,7 +58,7 @@
   /* misc */
 }
 
-.app-main .text-input-wrapper {
+.app-main .text-input-component {
   /* display */
   /* positioning */
 
@@ -79,7 +79,7 @@
   font-size: 1.5em;
 }
 
-.app-main .inline-inputs .text-input-wrapper {
+.app-main .inline-inputs .text-input-component {
   flex: 1 0 100px;
   font-size: 1em;
 }
