@@ -10,12 +10,10 @@ import Login from "./pages/Login.mjs";
 import AppShell from "./components/AppShell.mjs";
 
 authStateChanged(async (user) => {
-  if (user) {
-    await initUserData(user);
-    page("/create-attraction", (context) => showAppPage(CreateAttraction(), context));
-    page("/view-attractions", (context) => showAppPage(ViewAttractions(), context));
-    page("/contacts", (context) => showAppPage(Contacts(), context));
-  }
+  await initUserData(user);
+  page("/create-attraction", (context) => showAppPage(CreateAttraction(), context));
+  page("/view-attractions", (context) => showAppPage(ViewAttractions(), context));
+  page("/contacts", (context) => showAppPage(Contacts(), context));
   page("/login", () => showExternalPage(Login()));
   page("/*", () => {
     if (user) page.redirect("view-attractions");

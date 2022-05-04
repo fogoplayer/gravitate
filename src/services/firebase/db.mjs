@@ -19,6 +19,9 @@ const systems = collection(db, "systems");
 let currUserData;
 
 export async function initUserData(user) {
+  if (!user) {
+    return false;
+  }
   const ref = doc(db, "users", user.uid);
   currUserData = await getDocData(ref);
   currUserData.ref = ref;
