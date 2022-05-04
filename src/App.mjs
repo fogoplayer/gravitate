@@ -9,24 +9,24 @@ import { logOut } from "./services/firebase/auth.mjs";
 import Login from "./pages/Login.mjs";
 
 authStateChanged(async (user) => {
-  console.log(user);
   if (user) {
     await initUserData(user);
-    page("/create-attraction", () => showAppPage(CreateAttraction()));
-    page("/view-attractions", () => showAppPage(ViewAttractions()));
-    page("/contacts", () => showAppPage(Contacts()));
+    page("/create-attraction", (context) => showAppPage(CreateAttraction(), context));
+    page("/view-attractions", (context) => showAppPage(ViewAttractions(), context));
+    page("/contacts", (context) => showAppPage(Contacts(), context));
   }
   page("/login", () => showExternalPage(Login()));
   page("/", () => {
-    if (user) { console.log("user"); showAppPage(ViewAttractions()); }
-    else { console.log("no user"); showExternalPage(Login()); }
+    if (user) page.redirect("view-attractions");
+    else page.redirect("login");
+
   });
 
   if (window.location.hostname === "fogoplayer.github.io") page.base("/gravitate");
   page.start();
 });
 
-function showAppPage(contents) {
+function showAppPage(contents, context) {
   if (!getCurrUserData()) {
     showExternalPage(Login());
     return;
@@ -36,6 +36,7 @@ function showAppPage(contents) {
   main.innerHTML = ``;
   append(main, html`${contents}`);
   document.activeElement.blur();
+  setActiveLinks(context);
 }
 
 function showAppShell() {
@@ -111,9 +112,20 @@ function showAppShell() {
   }
 }
 
+function setActiveLinks(context) {
+  // un-active existing links
+  Array.from(document.querySelectorAll("a.active")).forEach(link => link.classList.remove("active"));
+
+  // mark new active links
+  let activeLinks = Array.from(document.querySelectorAll(`[href="${context.pathname}"]`));
+  activeLinks = activeLinks.concat(Array.from(document.querySelectorAll(`[href="${context.pathname.substring(1)}"]`)));
+  activeLinks.forEach(activeLink => {
+    activeLink.classList.add("active");
+  });
+}
+
 function showExternalPage(contents) {
   document.body.innerHTML = "";
-  console.log(document);
   append(document.body, contents);
 }
 

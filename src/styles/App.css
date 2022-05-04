@@ -256,6 +256,7 @@ dialog.closing::backdrop {
   flex: 1 1 100px;
 
   /* typography */
+  color: var(--theme-tertiary-color);
   /* manipulation */
   /* misc */
 }
@@ -276,15 +277,24 @@ dialog.closing::backdrop {
 
   /* typography */
   font-size: 2em;
-  color: var(--theme-primary-color);
+  color: var(--theme-secondary-color);
 
   /* manipulation */
   /* misc */
 }
 
-.app-footer .footer-link.active {
-  background-color: var(--theme-tertiary-color);
-  color: var(--dark-text);
+.app-footer .footer-link:not(.fab).active {
+  /* background-color: var(--theme-tertiary-color); */
+  /* color: var(--dark-text); */
+  color: var(--light-text);
+  font-weight: 500;
+}
+
+.app-footer .footer-link.fab.active {
+  /* background-color: var(--theme-tertiary-color); */
+  /* color: var(--dark-text); */
+  color: var(--theme-primary-color);
+  font-weight: 500;
 }
 
 .app-header,

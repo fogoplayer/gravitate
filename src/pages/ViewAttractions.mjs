@@ -64,7 +64,6 @@ export default function CreateAttraction() {
   function Template(attractions) {
     const jsx = html`<ul></ul>`;
     attractions.forEach(async (attraction) => {
-      console.log(attraction);
       jsx.append(html`<li>
     <h3 classList="contact-header-container">
       ${(attraction.icon && attraction.icon[0]) === "/" ? "" : html`<span classList="contact-icon">${attraction.icon || "🟣"}</span>`}
