@@ -1,3 +1,4 @@
+import Spinner from "../components/Spinner.mjs";
 import TextInput from "../components/TextInput.mjs";
 import { authStateChanged } from "../services/firebase/auth.mjs";
 import { signIn } from "../services/firebase/auth.mjs";
@@ -10,7 +11,9 @@ export default function Login() {
   <form onsubmit=${submit}>
     ${TextInput({ label: "Email", id: "email", required: true })}
     ${TextInput({ label: "Password", type: "password", id: "password", required: true, classList: "password" })}
-    <button classList="primary">Log in</button>
+    <button classList="primary">
+    Log in ${Spinner()}
+    </button>
   </form>
   <div>
     <button classList="flat small">Forgot password</button>

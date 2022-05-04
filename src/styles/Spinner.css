@@ -1,0 +1,21 @@
+.spinner {
+  display: inline-block;
+  width: 1em;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  border: 0.15em solid currentColor;
+  border-right-color: transparent;
+  vertical-align: text-top;
+
+  animation: rotate360 2s ease-in-out infinite;
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
