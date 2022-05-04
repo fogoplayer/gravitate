@@ -47,7 +47,6 @@ async function sendInvites(attraction) {
   let { orbits, systems, friends, ...invitation } = attraction;
   let { ref } = getCurrUserData();
   invitation.organizer = ref;
-  invitation.origin = undefined;
 
 
   orbits.forEach(orbit => {
@@ -70,5 +69,6 @@ async function sendInvites(attraction) {
 }
 
 export async function sendInvite(invitation, person) {
+  console.log(invitation);
   update(person.ref, { invitations: push(invitation) });
 }
