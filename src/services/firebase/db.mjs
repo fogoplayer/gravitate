@@ -9,6 +9,7 @@ import {
   where,
   query,
   updateDoc,
+  enableIndexedDbPersistence
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
 import { authStateChanged } from "./auth.mjs";
 
@@ -55,6 +56,20 @@ export async function initUserData(user) {
     friends[friend].ref = ref;
   }
 }
+
+
+enableIndexedDbPersistence(db)
+  .catch((err) => {
+    if (err.code == 'failed-precondition') {
+      // Multiple tabs open, persistence can only be enabled
+      // in one tab at a a time.
+      // ...
+    } else if (err.code == 'unimplemented') {
+      // The current browser does not support all of the
+      // features required to enable persistence
+      // ...
+    }
+  });
 
 export function getCurrUserData() {
   return currUserData;
