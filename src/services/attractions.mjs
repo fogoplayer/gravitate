@@ -4,15 +4,14 @@ import { getCurrUserData } from "./firebase/db.mjs";
 import { update } from "./firebase/db.mjs";
 
 export default async function createAttraction(attraction) {
-  sendInvites(attraction);
-  saveAttraction(attraction);
+  await Promise.all([sendInvites(attraction), saveAttraction(attraction)]);
 }
 
 async function saveAttraction(attraction) {
   attraction = await prepAttractionForFirebase(attraction);
 
   const { ref } = getCurrUserData();
-  update(ref, { attractions: push(attraction) });
+  await update(ref, { attractions: push(attraction) });
 }
 
 async function prepAttractionForFirebase(attraction) {
@@ -38,7 +37,6 @@ async function prepAttractionForFirebase(attraction) {
   for (let member = 0; member < attraction.friends.length; member++) {
     attraction.friends[member] = attraction.friends[member].ref;
   }
-
 
   return attraction;
 }

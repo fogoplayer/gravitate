@@ -1,5 +1,6 @@
 import ContactsList from "../components/ContactsList.mjs";
 import TextInput from "../components/TextInput.mjs";
+import Spinner from "../components/Spinner.mjs";
 import createAttraction from "../services/attractions.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
@@ -66,7 +67,10 @@ export default function CreateAttraction() {
     oninput: (e) => newAttraction.expiration = e.target.value
   })}
   ${ContactsList(ContactTemplate)}
-    <button id="submit-button" classList="primary">Create attraction</button>
+    <button id="submit-button" classList="primary">
+      Create attraction
+      ${Spinner()}
+    </button>
   </form>
 </div>
 `;
@@ -129,7 +133,13 @@ function onCheckboxInput(e) {
   }
 }
 
-function onSubmit(e) {
-  e.preventDefault();
-  createAttraction(newAttraction);
-};;
+async function onSubmit(e) {
+  try {
+    e.preventDefault();
+    e.submitter.classList.add("loading");
+    await createAttraction(newAttraction);
+    page("view-attractions");
+  } catch (error) {
+
+  }
+};
