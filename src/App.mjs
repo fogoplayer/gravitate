@@ -35,15 +35,23 @@ function showAppPage(contents, context) {
   const main = document.querySelector(".app-main");
   main.innerHTML = ``;
   append(main, html`${contents}`);
+
+  // Functions for after render
   document.activeElement.blur();
   setActiveLinks(context);
+  hideAppDrawer();
 }
 
 function showAppShell() {
   if (!document.querySelector(".app-header")) {
     append(document.body, html`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
-<dialog classList="side-nav" onclick=${hideAppDrawer} tabindex=-1>
+<dialog classList="side-nav" onclick=${(e) => {
+        if (e.target === document.querySelector('.side-nav')) {
+          e.preventDefault();
+          hideAppDrawer();
+        }
+      }} tabindex = -1 >
     <nav>
       <ol>
         <li>
@@ -55,7 +63,7 @@ function showAppShell() {
         <li>
           <a href="create-attraction" classList="nav-link" tabindex=0>
             <span classList="material-symbols-sharp nav-icon">add</span>
-            <span classList="nav-title">Attractions</span>
+            <span classList="nav-title">Create Attraction</span>
           </a>
         </li>
         <li>
@@ -63,8 +71,8 @@ function showAppShell() {
             <span classList="material-symbols-sharp nav-icon">person</span>
             <span classList="nav-title">Contacts</span>
           </a>
-        </li>
-      </ol>
+        </li >
+      </ol >
       <ol>
         <li>
           <a href="settings" classList="nav-link" tabindex=0>
@@ -77,16 +85,16 @@ function showAppShell() {
             <span classList="material-symbols-sharp nav-icon">logout</span>
             <span classList="nav-title">Log out</span>
           </a>
-        </li>
-      </ol>
-    </nav>
-  </dialog>
+        </li >
+      </ol >
+    </nav >
+  </dialog >
 <header classList="app-header">
   <button classList="menu-button" tabIndex=2 onclick=${showAppDrawer} }>
     <div classList="material-symbols-sharp"> menu </div>
   </button>
   <h1 classList="page-title">Gravitate</h1>
-</header>
+</header >
 <main id="app-main" classList="app-main"></main>
 <footer classList="app-footer">
   <nav>
@@ -102,13 +110,13 @@ function showAppShell() {
     >
       <span classList="material-symbols-sharp footer-icon">add</span>
     </a>
-    <a href="contacts" id="view-contacts" classList="footer-link"  tabIndex=5>
+    <a href="contacts" id="view-contacts" classList="footer-link"  tabIndex=5 >
       <span classList="material-symbols-sharp footer-icon">person</span>
       <span classList="footer-title">Contacts</span>
-    </a>
-  </nav>
-</footer>
-`);
+    </a >
+  </nav >
+</footer >
+      `);
   }
 }
 
@@ -117,8 +125,8 @@ function setActiveLinks(context) {
   Array.from(document.querySelectorAll("a.active")).forEach(link => link.classList.remove("active"));
 
   // mark new active links
-  let activeLinks = Array.from(document.querySelectorAll(`[href="${context.pathname}"]`));
-  activeLinks = activeLinks.concat(Array.from(document.querySelectorAll(`[href="${context.pathname.substring(1)}"]`)));
+  let activeLinks = Array.from(document.querySelectorAll(`[href = "${context.pathname}"]`));
+  activeLinks = activeLinks.concat(Array.from(document.querySelectorAll(`[href = "${context.pathname.substring(1)}"]`)));
   activeLinks.forEach(activeLink => {
     activeLink.classList.add("active");
   });
@@ -134,12 +142,9 @@ function showAppDrawer() {
 }
 
 function hideAppDrawer(e) {
-  if (e.target === document.querySelector('.side-nav')) {
-    e.preventDefault();
-    document.querySelector('.side-nav').classList.add("closing");
-    setTimeout(() => {
-      document.querySelector('.side-nav').close();
-      document.querySelector('.side-nav').classList.remove("closing");
-    }, 250);
-  }
-}
+  document.querySelector('.side-nav').classList.add("closing");
+  setTimeout(() => {
+    document.querySelector('.side-nav').close();
+    document.querySelector('.side-nav').classList.remove("closing");
+  }, 250);
+};;

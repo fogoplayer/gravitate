@@ -151,12 +151,19 @@ dialog.closing::backdrop {
   justify-content: start;
 
   /* box-model */
-  padding-inline: 1em;
+  padding-inline: 0.5em;
+  margin-inline: 0.5em;
+  border-radius: 0.5em;
 
   /* typography */
   text-decoration: none;
   font: inherit;
   color: var(--dark-text);
+}
+
+.side-nav a.active {
+  background-color: var(--theme-tertiary-color);
+  color: var(--theme-primary-color)
 }
 
 .side-nav a:focus {
