@@ -13,7 +13,12 @@
   "icons": [
     {
       "src": "images/logo.svg",
-      "purpose": "maskable any",
+      "purpose": "any",
+      "sizes": "any"
+    },
+    {
+      "src": "images/maskable-logo.svg",
+      "purpose": "maskable",
       "sizes": "any"
     }
   ],
