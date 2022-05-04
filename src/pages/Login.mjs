@@ -22,6 +22,7 @@ export default function Login() {
 </main>`;
   async function submit(e) {
     e.preventDefault();
+    e.submitter.classList.add("loading");
     await signIn(document.querySelector("#email").value, document.querySelector("#password").value);
     page.redirect("view-attractions");
     // authStateChanged(() => page.redirect("view-attractions")))
