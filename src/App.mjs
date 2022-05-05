@@ -1,4 +1,5 @@
 import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
 import { append, html } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
@@ -19,6 +20,7 @@ append(document.body, html`<div classList="login-spinner">
 
 authStateChanged(async (user) => {
   await initUserData(user);
+  import("./services/firebase/messaging.mjs");
   page("/create-attraction", (context) => showAppPage(CreateAttraction(), context));
   page("/view-attractions", (context) => showAppPage(ViewAttractions(), context));
   page("/contacts", (context) => showAppPage(Contacts(), context));
