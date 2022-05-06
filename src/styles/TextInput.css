@@ -97,6 +97,8 @@
   max-height: 0;
 
   /* typography */
+  color: initial;
+
   /* manipulation */
   transition: 0.25s linear max-height;
 
