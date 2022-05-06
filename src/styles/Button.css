@@ -1,6 +1,9 @@
 button.primary,
+a.button.primary,
 button.outline,
-button.flat {
+a.button.outline,
+button.flat,
+a.button.flat {
   /* display */
   /* positioning */
   /* box-model */
@@ -10,12 +13,14 @@ button.flat {
   /* typography */
   font-weight: 700;
   text-transform: uppercase;
+  text-decoration: none;
 
   /* manipulation */
   /* misc */
 }
 
-button.primary {
+button.primary,
+a.button.primary {
   /* display */
   /* positioning */
   /* box-model */
@@ -27,7 +32,8 @@ button.primary {
   /* misc */
 }
 
-button.outline {
+button.outline,
+a.button.outline {
   /* display */
   /* positioning */
   /* box-model */
@@ -39,7 +45,8 @@ button.outline {
   /* misc */
 }
 
-button.flat {
+button.flat,
+a.button.flat {
   /* display */
   /* positioning */
   /* box-model */
@@ -50,7 +57,8 @@ button.flat {
   /* misc */
 }
 
-button.disabled {
+button.disabled,
+a.button.disabled {
   /* display */
   /* positioning */
   /* box-model */
@@ -61,7 +69,8 @@ button.disabled {
   /* misc */
 }
 
-button.small {
+button.small,
+a.button.small {
   /* display */
   /* positioning */
   /* box-model */
@@ -72,25 +81,30 @@ button.small {
   /* misc */
 }
 
-button.inline {
+button.inline,
+a.button.inline {
   margin: -0.675em -1em;
 }
 
-button:focus {
+button:focus,
+a.button:focus {
   background-color: var(--theme-primary-color);
   color: var(--light-text);
 }
 
-button.flat:focus-visible {
+button.flat:focus-visible,
+a.button.flat:focus-visible {
   color: var(--theme-primary-color);
-  border: 1px solid var(--theme-primary-color);
+  outline: 1px solid var(--theme-primary-color);
   background-color: unset;
 }
 
-button .spinner {
+button .spinner,
+a.button .spinner {
   display: none;
 }
 
-button.loading .spinner {
+button.loading .spinner,
+a.button.loading .spinner {
   display: inline-block
 }

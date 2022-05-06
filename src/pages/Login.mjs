@@ -17,7 +17,7 @@ export default function Login() {
   </form>
   <div>
     <button classList="flat small">Forgot password</button>
-    <button classList="flat small">Sign up</button>
+    <a href="signup" classList="button flat small">Sign up</button>
   </div>
 </main>`;
   async function submit(e) {
