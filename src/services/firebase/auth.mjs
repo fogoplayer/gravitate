@@ -2,12 +2,17 @@ import { app } from "./app.mjs";
 import {
   getAuth,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-auth.js";
 
 
 const auth = getAuth();
+
+export async function createAccount(email, password) {
+  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+}
 
 export async function signIn(email, password) {
   const userCredential = await signInWithEmailAndPassword(

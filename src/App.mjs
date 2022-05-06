@@ -9,6 +9,7 @@ import { initUserData } from "./services/firebase/db.mjs";
 import { getCurrUserData } from "./services/firebase/db.mjs";
 import { logOut } from "./services/firebase/auth.mjs";
 import Login from "./pages/Login.mjs";
+import SignUp from "./pages/SignUp.mjs";
 import AppShell from "./components/AppShell.mjs";
 import Spinner from "./components/Spinner.mjs";
 
@@ -25,6 +26,7 @@ authStateChanged(async (user) => {
   page("/view-attractions", (context) => showAppPage(ViewAttractions(), context));
   page("/contacts", (context) => showAppPage(Contacts(), context));
   page("/login", () => showExternalPage(Login()));
+  page("/signup", () => showExternalPage(SignUp()));
   page("/*", () => {
     if (user) page.redirect("view-attractions");
     else page.redirect("login");
