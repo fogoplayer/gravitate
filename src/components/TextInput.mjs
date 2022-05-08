@@ -1,9 +1,9 @@
-import { html } from "../services/render.mjs";
+import { jsx } from "../services/render.mjs";
 
 export default function TextInput({ label, ref, classList = "", oninput = () => { }, ...props }) {
   classList = classList.concat(" text-input");
 
-  const input = html`<label classList="text-input-component">
+  const input = jsx`<label classList="text-input-component">
     <span classList="text-input-label">${label}</span>
     <div classList="text-input-wrapper">
       <input oninput=${onInput} classList=${classList} type="text" ...${props}/>

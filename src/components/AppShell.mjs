@@ -1,7 +1,7 @@
-import { html } from "../services/render.mjs";
+import { jsx } from "../services/render.mjs";
 
 export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
-  return html`
+  return jsx`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
 <dialog classList="side-nav" onclick=${(e) => {
       if (e.target === document.querySelector('.side-nav')) {

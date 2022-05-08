@@ -1,15 +1,15 @@
 import ContactsList from "../components/ContactsList.mjs";
 import { getDocData } from "../services/firebase/db.mjs";
-import { html } from "../services/render.mjs";
+import { jsx } from "../services/render.mjs";
 
 export default function Contacts() {
   return ContactsList(ContactsPageContact);
 }
 
 function ContactsPageContact(contacts) {
-  const jsx = html`<ul></ul>`;
+  const jsx = jsx`<ul></ul>`;
   contacts.forEach(async (contact) => {
-    jsx.append(html`<li>${contact.name}</li>`);
+    jsx.append(jsx`<li>${contact.name}</li>`);
   });
   return jsx;
 }

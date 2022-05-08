@@ -7,14 +7,14 @@ import { getCurrUserData } from "../services/firebase/db.mjs";
 import { getDocData } from "../services/firebase/db.mjs";
 import { map } from "../services/mapbox.js";
 import { mapboxAPI } from "../services/mapbox.js";
-import { html } from "../services/render.mjs";
+import { jsx } from "../services/render.mjs";
 import { Attraction } from "../services/structures.mjs";
 
 const newAttraction = { orbits: new Set(), systems: new Set(), friends: new Set() };
 let timer;
 
 export default function CreateAttraction() {
-  return html`<div classList="ignore">
+  return jsx`<div classList="ignore">
   <div id="map">Loading map...</div>
   <script>
     try{
@@ -77,12 +77,12 @@ export default function CreateAttraction() {
 }
 
 function ContactTemplate(contacts, name) {
-  const jsx = html`<ul></ul>`;
+  const jsx = jsx`<ul></ul>`;
   contacts.forEach(async (contact) => {
-    jsx.append(html`<li>
+    jsx.append(jsx`<li>
   <label classList="contact-header-container">
     <input type="checkbox" name="${name}" id="${contact.name}" value="${contact.name}" oninput=${onCheckboxInput} tabIndex=0/>
-    ${(contact.icon && contact.icon[0]) === "/" ? "" : html`<span classList="contact-icon">${contact.icon || "🟣"}</span>`}
+    ${(contact.icon && contact.icon[0]) === "/" ? "" : jsx`<span classList="contact-icon">${contact.icon || "🟣"}</span>`}
     <span classList="contact-name">${contact.name}</span>
   </label>
 </li>
@@ -105,7 +105,7 @@ async function locationSearch(searchTerm) {
     let addresses = await mapboxAPI(searchTerm, 5);
     document.querySelector("#location-options").innerHTML = ``;
     addresses.forEach(address => {
-      document.querySelector("#location-options").appendChild(html`<option value=${address.place_name}>${address.place_name}</option>`);
+      document.querySelector("#location-options").appendChild(jsx`<option value=${address.place_name}>${address.place_name}</option>`);
     });
 
     map?.panTo(addresses[0]?.center);

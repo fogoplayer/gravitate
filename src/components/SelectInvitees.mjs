@@ -1,8 +1,8 @@
-import { html } from "../services/render.mjs";
+import { jsx } from "../services/render.mjs";
 
 
 export default function SelectInvitees() {
-  return html`<ul classList="contacts-list select-invitees">
+  return jsx`<ul classList="contacts-list select-invitees">
   <li classList="orbits-wrapper">
     <h2>
       <img src="./images/orbit.svg" alt="Orbit icon" classList="header-icon" />

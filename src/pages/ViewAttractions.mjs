@@ -2,7 +2,7 @@ import SelectInvitees from "../components/SelectInvitees.mjs";
 import TextInput from "../components/TextInput.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
-import { html } from "../services/render.mjs";
+import { jsx } from "../services/render.mjs";
 
 
 export default function CreateAttraction() {
@@ -20,7 +20,7 @@ export default function CreateAttraction() {
   console.log("system invites", systemInvites);
   console.log("friend invites", friendInvites);
 
-  return html`<div classList="ignore view-attractions">
+  return jsx`<div classList="ignore view-attractions">
   <div id="map">Loading map...</div>
   <script>
     try{
@@ -74,11 +74,11 @@ export default function CreateAttraction() {
 `;
 
   function Template(attractions) {
-    const jsx = html`<ul></ul>`;
+    const jsx = jsx`<ul></ul>`;
     attractions.forEach(async (attraction) => {
-      jsx.append(html`<li>
+      jsx.append(jsx`<li>
     <h3 classList="contact-header-container">
-      ${(attraction.icon && attraction.icon[0]) === "/" ? "" : html`<span classList="contact-icon">${attraction.icon || "🟣"}</span>`}
+      ${(attraction.icon && attraction.icon[0]) === "/" ? "" : jsx`<span classList="contact-icon">${attraction.icon || "🟣"}</span>`}
       <span classList="contact-name">${attraction.name}</span>
     </h3>
   </li>`);

@@ -2,11 +2,11 @@ import Spinner from "../components/Spinner.mjs";
 import TextInput from "../components/TextInput.mjs";
 import { authStateChanged } from "../services/firebase/auth.mjs";
 import { signIn } from "../services/firebase/auth.mjs";
-import { html } from "../services/render.mjs";
+import { jsx } from "../services/render.mjs";
 
 export default function Login() {
   let email, password;
-  return html`<main classList="login-page">
+  return jsx`<main classList="login-page">
   <h1>Gravitate</h1>
   <form onsubmit=${submit}>
     ${TextInput({ label: "Email", id: "email", required: true })}

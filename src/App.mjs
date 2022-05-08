@@ -1,6 +1,6 @@
 import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
 
-import { append, html } from "./services/render.mjs";
+import { append, jsx } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 import ViewAttractions from "./pages/ViewAttractions.mjs";
@@ -17,7 +17,7 @@ import Onboarding from "./pages/Onboarding/index.js";
 // immediately show loading spinner
 append(
   document.body,
-  html`<div classList="login-spinner">
+  jsx`<div classList="login-spinner">
     ${Spinner()}
     <div>Checking login status...</div>
   </div>`
@@ -55,7 +55,7 @@ function showAppPage(contents, context) {
   showAppShell();
   const main = document.querySelector(".app-main");
   main.innerHTML = ``;
-  append(main, html`${contents}`);
+  append(main, jsx`${contents}`);
 
   // Functions for after render
   setActiveLinks(context);

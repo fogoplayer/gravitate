@@ -1,5 +1,5 @@
 import htm from "https://unpkg.com/htm?module";
-export const html = htm.bind(render);
+export const jsx = htm.bind(render);
 
 export function render(type, props, ...children) {
   this[0] = 3;
