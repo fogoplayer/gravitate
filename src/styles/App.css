@@ -55,7 +55,6 @@ body {
   max-height: 100vh;
   width: min(16em, calc(100vw - 3.5em));
 
-
   /* typography */
   /* manipulation */
   /* misc */
@@ -66,18 +65,17 @@ body {
 }
 
 .side-nav.closing {
-  animation: close-drawer .25s ease-out forwards;
+  animation: close-drawer 0.25s ease-out forwards;
 }
-
 
 dialog::backdrop {
   background-color: hsl(281 50% 80%);
-  opacity: .5;
-  animation: fade-in .25s ease-out forwards;
+  opacity: 0.5;
+  animation: fade-in 0.25s ease-out forwards;
 }
 
 dialog.closing::backdrop {
-  animation: fade-out .25s ease-out forwards;
+  animation: fade-out 0.25s ease-out forwards;
 }
 
 @keyframes open-drawer {
@@ -106,13 +104,13 @@ dialog.closing::backdrop {
   }
 
   100% {
-    opacity: .5;
+    opacity: 0.5;
   }
 }
 
 @keyframes fade-out {
   0% {
-    opacity: .5;
+    opacity: 0.5;
   }
 
   100% {
@@ -135,7 +133,7 @@ dialog.closing::backdrop {
   /* misc */
 }
 
-.side-nav nav ol+ol {
+.side-nav nav ol + ol {
   border-top: 1px solid var(--theme-primary-color);
 }
 
@@ -163,7 +161,7 @@ dialog.closing::backdrop {
 
 .side-nav a.active {
   background-color: var(--theme-tertiary-color);
-  color: var(--theme-primary-color)
+  color: var(--theme-primary-color);
 }
 
 .side-nav a:focus-visible {
@@ -190,7 +188,7 @@ dialog.closing::backdrop {
   /* misc */
 }
 
-.app-header>* {
+.app-header > * {
   /* display */
   display: flex;
 
@@ -313,4 +311,8 @@ dialog.closing::backdrop {
 .app-header button:focus-visible,
 .app-footer .footer-link:focus-visible {
   background-color: var(--theme-tertiary-color);
+}
+
+pwa-update::part(updateToast) {
+  z-index: 101;
 }
