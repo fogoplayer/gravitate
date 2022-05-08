@@ -6,12 +6,14 @@ import {
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-auth.js";
+import { createUserData } from "./db.mjs";
 
 
 const auth = getAuth();
 
 export async function createAccount(email, password) {
   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  createUserData(userCredential);
 }
 
 export async function signIn(email, password) {

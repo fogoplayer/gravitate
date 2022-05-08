@@ -5,13 +5,14 @@ import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 import ViewAttractions from "./pages/ViewAttractions.mjs";
 import { signIn, authStateChanged } from "./services/firebase/auth.mjs";
-import { initUserData } from "./services/firebase/db.mjs";
+import { loadUserData } from "./services/firebase/db.mjs";
 import { getCurrUserData } from "./services/firebase/db.mjs";
 import { logOut } from "./services/firebase/auth.mjs";
 import Login from "./pages/Login.mjs";
 import SignUp from "./pages/SignUp.mjs";
 import AppShell from "./components/AppShell.mjs";
 import Spinner from "./components/Spinner.mjs";
+import Onboarding from './pages/Onboarding/index.js';
 
 // immediately show loading spinner
 append(document.body, html`<div classList="login-spinner">
@@ -20,13 +21,15 @@ append(document.body, html`<div classList="login-spinner">
 </div>`);
 
 authStateChanged(async (user) => {
-  await initUserData(user);
+  await loadUserData(user);
   import("./services/firebase/messaging.mjs");
+
   page("/create-attraction", (context) => showAppPage(CreateAttraction(), context));
   page("/view-attractions", (context) => showAppPage(ViewAttractions(), context));
   page("/contacts", (context) => showAppPage(Contacts(), context));
   page("/login", () => showExternalPage(Login()));
   page("/signup", () => showExternalPage(SignUp()));
+  page("/onboarding/:page", (context) => showExternalPage(Onboarding(context)));
   page("/*", () => {
     if (user) page.redirect("view-attractions");
     else page.redirect("login");

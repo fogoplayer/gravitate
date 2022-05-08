@@ -1,6 +1,7 @@
 import { app } from "./app.mjs";
 import {
   arrayUnion,
+  setDoc,
   getFirestore,
   collection,
   getDoc,
@@ -9,7 +10,7 @@ import {
   where,
   query,
   updateDoc,
-  enableIndexedDbPersistence
+  enableIndexedDbPersistence,
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
 import { authStateChanged } from "./auth.mjs";
 
@@ -19,10 +20,21 @@ const systems = collection(db, "systems");
 
 let currUserData;
 
-export async function initUserData(user) {
-  if (!user) {
-    return false;
-  }
+export async function createUserData(userCredential) {
+  const uid = userCredential.user.uid;
+  const newDoc = await setDoc(doc(db, "users", uid), {
+    name: "",
+    icon: "",
+    orbits: [],
+    systems: [],
+    friends: [],
+    invitations: [],
+    attractions: [],
+  });
+  console.log(newDoc);
+}
+
+export async function loadUserData(user) {
   const ref = doc(db, "users", user.uid);
   currUserData = await getDocData(ref);
   currUserData.ref = ref;
@@ -32,7 +44,9 @@ export async function initUserData(user) {
   for (let orbit = 0; orbit < orbits.length; orbit++) {
     for (let member = 0; member < orbits[orbit].members.length; member++) {
       const ref = orbits[orbit].members[member];
-      orbits[orbit].members[member] = await getDocData(orbits[orbit].members[member]);
+      orbits[orbit].members[member] = await getDocData(
+        orbits[orbit].members[member]
+      );
       orbits[orbit].members[member].ref = ref;
     }
   }
@@ -44,7 +58,9 @@ export async function initUserData(user) {
     systems[system].ref = systemRef;
     for (let member = 0; member < systems[system].members.length; member++) {
       const memberRef = systems[system].members[member];
-      systems[system].members[member] = await getDocData(systems[system].members[member]);
+      systems[system].members[member] = await getDocData(
+        systems[system].members[member]
+      );
       systems[system].members[member].ref = memberRef;
     }
   }
@@ -57,19 +73,17 @@ export async function initUserData(user) {
   }
 }
 
-
-enableIndexedDbPersistence(db)
-  .catch((err) => {
-    if (err.code == 'failed-precondition') {
-      // Multiple tabs open, persistence can only be enabled
-      // in one tab at a a time.
-      // ...
-    } else if (err.code == 'unimplemented') {
-      // The current browser does not support all of the
-      // features required to enable persistence
-      // ...
-    }
-  });
+enableIndexedDbPersistence(db).catch((err) => {
+  if (err.code == "failed-precondition") {
+    // Multiple tabs open, persistence can only be enabled
+    // in one tab at a a time.
+    // ...
+  } else if (err.code == "unimplemented") {
+    // The current browser does not support all of the
+    // features required to enable persistence
+    // ...
+  }
+});
 
 export function getCurrUserData() {
   return currUserData;
