@@ -72,9 +72,9 @@ export default function CreateAttraction() {
 `;
 
   function Template(attractions) {
-    const jsx = jsx`<ul></ul>`;
+    const html = jsx`<ul></ul>`;
     attractions.forEach(async (attraction) => {
-      jsx.append(jsx`<li>
+      html.append(jsx`<li>
     <h3 classList="contact-header-container">
       ${
         (attraction.icon && attraction.icon[0]) === "/"
@@ -87,6 +87,6 @@ export default function CreateAttraction() {
     </h3>
   </li>`);
     });
-    return jsx;
+    return html;
   }
 }
