@@ -1,20 +1,18 @@
 import SelectInvitees from "../components/SelectInvitees.mjs";
-import TextInput from "../components/TextInput.mjs";
+import Input from "../components/Input.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { jsx } from "../services/render.mjs";
 
-
 export default function CreateAttraction() {
-  let { attractions, systems, friends, invitations, ...rest } = getCurrUserData();
+  let { attractions, systems, friends, invitations, ...rest } =
+    getCurrUserData();
   let friendInvites = [];
   let systemInvites = [];
 
-  invitations.forEach(invite => {
-    if (invite.origin)
-      systemInvites.push(invite);
-    else
-      friendInvites.push(invite);
+  invitations.forEach((invite) => {
+    if (invite.origin) systemInvites.push(invite);
+    else friendInvites.push(invite);
   });
 
   console.log("system invites", systemInvites);
@@ -78,7 +76,13 @@ export default function CreateAttraction() {
     attractions.forEach(async (attraction) => {
       jsx.append(jsx`<li>
     <h3 classList="contact-header-container">
-      ${(attraction.icon && attraction.icon[0]) === "/" ? "" : jsx`<span classList="contact-icon">${attraction.icon || "🟣"}</span>`}
+      ${
+        (attraction.icon && attraction.icon[0]) === "/"
+          ? ""
+          : jsx`<span classList="contact-icon">${
+              attraction.icon || "🟣"
+            }</span>`
+      }
       <span classList="contact-name">${attraction.name}</span>
     </h3>
   </li>`);

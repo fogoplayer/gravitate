@@ -1,6 +1,12 @@
 import { jsx } from "../services/render.mjs";
 
-export default function TextInput({ label, ref, classList = "", oninput = () => { }, ...props }) {
+export default function Input({
+  label,
+  ref,
+  classList = "",
+  oninput = () => {},
+  ...props
+}) {
   classList = classList.concat(" text-input");
 
   const input = jsx`<label classList="text-input-component">
@@ -29,8 +35,7 @@ export default function TextInput({ label, ref, classList = "", oninput = () => 
   function showHidePassword(e) {
     if (e.target.parentNode.previousSibling.type === "password")
       e.target.parentNode.previousSibling.type = "text";
-    else
-      e.target.parentNode.previousSibling.type = "password";
+    else e.target.parentNode.previousSibling.type = "password";
     e.target.parentNode.previousSibling.focus();
   }
 }

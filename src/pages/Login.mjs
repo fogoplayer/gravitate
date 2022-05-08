@@ -1,5 +1,5 @@
 import Spinner from "../components/Spinner.mjs";
-import TextInput from "../components/TextInput.mjs";
+import Input from "../components/Input.mjs";
 import { authStateChanged } from "../services/firebase/auth.mjs";
 import { signIn } from "../services/firebase/auth.mjs";
 import { jsx } from "../services/render.mjs";
@@ -9,8 +9,14 @@ export default function Login() {
   return jsx`<main classList="main-bubble">
   <h1>Gravitate</h1>
   <form onsubmit=${submit}>
-    ${TextInput({ label: "Email", id: "email", required: true })}
-    ${TextInput({ label: "Password", type: "password", id: "password", required: true, classList: "password" })}
+    ${Input({ label: "Email", id: "email", required: true })}
+    ${Input({
+      label: "Password",
+      type: "password",
+      id: "password",
+      required: true,
+      classList: "password",
+    })}
     <button classList="primary">
     Log in ${Spinner()}
     </button>
@@ -24,11 +30,13 @@ export default function Login() {
     e.preventDefault();
     try {
       e.submitter.classList.add("loading");
-      await signIn(document.querySelector("#email").value, document.querySelector("#password").value);
+      await signIn(
+        document.querySelector("#email").value,
+        document.querySelector("#password").value
+      );
       authStateChanged(() => page("view-attractions"));
     } catch (error) {
       e.submitter.classList.remove("loading");
     }
   }
-};
-
+}
