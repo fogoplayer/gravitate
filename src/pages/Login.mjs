@@ -6,7 +6,7 @@ import { jsx } from "../services/render.mjs";
 
 export default function Login() {
   let email, password;
-  return jsx`<main classList="login-page">
+  return jsx`<main classList="main-bubble">
   <h1>Gravitate</h1>
   <form onsubmit=${submit}>
     ${TextInput({ label: "Email", id: "email", required: true })}

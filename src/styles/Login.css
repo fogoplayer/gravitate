@@ -1,4 +1,4 @@
-.login-page,
+.main-bubble,
 .login-spinner {
   /* display */
   display: flex;
@@ -17,7 +17,7 @@
   color: var(--light-text);
 }
 
-.login-page {
+.main-bubble {
   /* box-model */
   background-color: var(--light-text);
   border-radius: 2em;
@@ -28,12 +28,12 @@
   /* misc */
 }
 
-.login-page h1 {
+.main-bubble h1 {
   font: inherit;
   font-size: 1.5em;
   color: var(--theme-primary-color);
 }
 
-.login-page form {
+.main-bubble form {
   display: contents;
 }
