@@ -24,7 +24,7 @@ export default function SignUp() {
     try {
       e.submitter.classList.add("loading");
       await createAccount(document.querySelector("#email").value, document.querySelector("#password").value);
-      authStateChanged(() => page("onboarding"));
+      page("onboarding/create-profile");
     } catch (error) {
       e.submitter.classList.remove("loading");
     }

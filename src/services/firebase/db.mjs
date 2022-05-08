@@ -35,6 +35,10 @@ export async function createUserData(userCredential) {
 }
 
 export async function loadUserData(user) {
+  if (!user) {
+    return false;
+  }
+
   const ref = doc(db, "users", user.uid);
   currUserData = await getDocData(ref);
   currUserData.ref = ref;
