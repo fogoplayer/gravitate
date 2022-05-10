@@ -18,7 +18,7 @@ export default function AddFriend() {
   You need to know a user's precise username to add them as a friend. If you
   don't know their username, ask them to send you a share code.
 </aside>
-<form classList="search-results empty">
+<form id="friend-search-results-container" classList="search-results empty">
 <ul id="friend-search-results" classList="search-results"></ul>
 <button classList="primary disabled" id="add-friends">Add friends</button>
 </form>`,
@@ -32,25 +32,32 @@ export default function AddFriend() {
     );
     console.log(users);
     let options = users.map((user) => {
-      return jsx`<label classList="contact-header-container">
-  <input
-    type="checkbox"
-    name="added-friends"
-    id="${user.name}"
-    value="${user.name}"
-    tabindex="0"
-  />
-  ${
-    (user.icon && user.icon[0]) === "/"
-      ? ""
-      : jsx`<span
-    classList="contact-icon"
-    >${user.icon || "🟣"}</span
-  >`
-  }<span classList="contact-name">${user.name}</span>
-</label>
-`;
+      return Template(user);
     });
     append(document.querySelector("#friend-search-results"), options);
+    document
+      .querySelector("#friend-search-results-container")
+      .classList.remove("empty");
+  }
+
+  function Template(user) {
+    return jsx`<label classList="contact-header-container">
+    <input
+      type="checkbox"
+      name="added-friends"
+      id="${user.name}"
+      value="${user.name}"
+      tabindex="0"
+    />
+    ${
+      (user.icon && user.icon[0]) === "/"
+        ? ""
+        : jsx`<span
+      classList="contact-icon"
+      >${user.icon || "🟣"}</span
+    >`
+    }<span classList="contact-name">${user.name}</span>
+  </label>
+  `;
   }
 }
