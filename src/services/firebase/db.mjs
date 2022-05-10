@@ -41,7 +41,14 @@ export async function loadUserData(user) {
 
   const ref = doc(db, "users", user.uid);
   currUserData = await getDocData(ref);
-  Object.assign(currUserData, { ref: ref, attractions: [], invitations: [] });
+  Object.assign(currUserData, {
+    ref: ref,
+    attractions: [],
+    invitations: [],
+    orbits: [],
+    friends: [],
+    systems: [],
+  });
 
   // Convert references to objects
 
@@ -49,7 +56,6 @@ export async function loadUserData(user) {
   let attractions = currUserData.attractions;
   attractions = await getDocs(collection(db, `users/${user.uid}/attractions`));
   currUserData.attractions = attractions.docs.map((doc) => doc.data());
-  debugger;
   // for (let attraction = 0; attraction < attractions.length; attraction++) {
   //   for (let member = 0; member < attractions[attraction].members.length; member++) {
   //     const ref = attractions[attraction].members[member];
@@ -116,6 +122,8 @@ export async function loadUserData(user) {
       systems[system].members[member].ref = memberRef;
     }
   }
+
+  console.log(currUserData);
 }
 
 enableIndexedDbPersistence(db).catch((err) => {
