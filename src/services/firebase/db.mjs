@@ -42,6 +42,10 @@ export async function loadUserData(user) {
   const ref = doc(db, "users", user.uid);
   currUserData = await getDocData(ref);
   Object.assign(currUserData, {
+    dataDocRef: doc(db, `users/${user.uid}/data`, "data"),
+    attractionsRef: collection(db, `users/${user.uid}/invitations`),
+    invitationsRef: collection(db, `users/${user.uid}/attractions`),
+    orbitsRef: collection(db, `users/${user.uid}/orbits`),
     ref: ref,
     attractions: [],
     invitations: [],
@@ -54,7 +58,7 @@ export async function loadUserData(user) {
 
   // Attractions
   let attractions = currUserData.attractions;
-  attractions = await getDocs(collection(db, `users/${user.uid}/attractions`));
+  attractions = await getDocs(currUserData.attractionsRef);
   currUserData.attractions = attractions.docs.map((doc) => doc.data());
   // for (let attraction = 0; attraction < attractions.length; attraction++) {
   //   for (let member = 0; member < attractions[attraction].members.length; member++) {
@@ -68,7 +72,7 @@ export async function loadUserData(user) {
 
   // Invitations
   let invitations = currUserData.invitations;
-  invitations = await getDocs(collection(db, `users/${user.uid}/invitations`));
+  invitations = await getDocs(currUserData.invitationsRef);
   invitations = invitations.docs.map((doc) => doc.data());
   // for (let invitation = 0; invitation < invitations.length; invitation++) {
   //   for (let member = 0; member < invitations[invitation].members.length; member++) {
@@ -82,7 +86,7 @@ export async function loadUserData(user) {
 
   // Orbits
   let orbits = currUserData.orbits;
-  orbits = await getDocs(collection(db, `users/${user.uid}/orbits`));
+  orbits = await getDocs(currUserData.orbitsRef);
   orbits = orbits.docs.map((doc) => doc.data());
   for (let orbit = 0; orbit < orbits.length; orbit++) {
     for (let member = 0; member < orbits[orbit].members.length; member++) {
@@ -95,7 +99,7 @@ export async function loadUserData(user) {
   }
 
   // Data
-  let userDataDoc = await getDocData(doc(db, `users/${user.uid}/data`, "data"));
+  let userDataDoc = await getDocData(currUserData.dataDocRef);
 
   // Friends
   let friends = currUserData.friends;
