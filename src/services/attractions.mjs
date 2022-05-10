@@ -20,17 +20,27 @@ async function prepAttractionForFirebase(attraction) {
   attraction.systems = Array.from(attraction.systems);
   attraction.friends = Array.from(attraction.friends);
 
-
   // Convert to references
   for (let orbit = 0; orbit < attraction.orbits.length; orbit++) {
-    for (let member = 0; member < attraction.orbits[orbit].members.length; member++) {
-      attraction.orbits[orbit].members[member] = attraction.orbits[orbit].members[member].ref;
+    for (
+      let member = 0;
+      member < attraction.orbits[orbit].members.length;
+      member++
+    ) {
+      attraction.orbits[orbit].members[member] =
+        attraction.orbits[orbit].members[member].ref;
     }
   }
 
   for (let system = 0; system < attraction.systems.length; system++) {
-    for (let member = 0; member < attraction.systems[system].members.length; member++) {
-      attraction.systems[system].members[member] = await attraction.systems[system].members[member].ref;
+    for (
+      let member = 0;
+      member < attraction.systems[system].members.length;
+      member++
+    ) {
+      attraction.systems[system].members[member] = await attraction.systems[
+        system
+      ].members[member].ref;
     }
   }
 
@@ -46,20 +56,18 @@ async function sendInvites(attraction) {
   let { ref } = getCurrUserData();
   invitation.organizer = ref;
 
-
-  orbits.forEach(orbit => {
+  orbits.forEach((orbit) => {
     orbit.members?.forEach((person) => {
       sendInvite(invitation, person);
     });
   });
 
-  friends.forEach(person => {
+  friends.forEach((person) => {
     sendInvite(invitation, person);
   });
 
-  systems.forEach(system => {
+  systems.forEach((system) => {
     system.members?.forEach((person) => {
-      console.log(system);
       invitation.origin = system.ref;
       sendInvite(invitation, person);
     });
@@ -67,6 +75,5 @@ async function sendInvites(attraction) {
 }
 
 export async function sendInvite(invitation, person) {
-  console.log(invitation);
   update(person.ref, { invitations: push(invitation) });
 }

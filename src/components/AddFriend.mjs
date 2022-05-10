@@ -35,10 +35,11 @@ export default function AddFriend() {
 
   async function searchForFriends(e) {
     e.preventDefault();
+
     let users = await usernameSearch(
       document.querySelector("#friend-search-value").value
     );
-    console.log(users);
+
     let options = users.map((user) => {
       return Template(user);
     });
@@ -64,13 +65,11 @@ export default function AddFriend() {
       id="${user.name}"
       value="${user.ref}"
       onchange="${function (e) {
-        console.log(e.target.checked);
         if (e.target.checked) {
           newFriends.add(user.ref);
         } else {
           newFriends.delete(user.ref);
         }
-        console.log(newFriends);
       }}"
       tabindex="0"
       required

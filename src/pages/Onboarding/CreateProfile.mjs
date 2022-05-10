@@ -18,7 +18,6 @@ async function onSubmit(e) {
   e.preventDefault();
   try {
     e.submitter.classList.add("loading");
-    console.log(getCurrUserData());
     await update(getCurrUserData().ref, {
       name: document.querySelector("#username").value,
     });

@@ -100,7 +100,6 @@ export async function loadUserData(user) {
 
   // Data
   let userDataDoc = await getDocData(currUserData.dataDocRef);
-  console.log(user);
   // Friends
   let friends = userDataDoc.friends;
   for (let friend = 0; friend < friends.length; friend++) {

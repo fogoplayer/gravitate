@@ -15,9 +15,6 @@ export default function CreateAttraction() {
     else friendInvites.push(invite);
   });
 
-  console.log("system invites", systemInvites);
-  console.log("friend invites", friendInvites);
-
   return jsx`<div classList="ignore view-attractions">
   <div id="map">Loading map...</div>
   <script>
