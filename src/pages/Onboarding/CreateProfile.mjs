@@ -20,10 +20,11 @@ async function onSubmit(e) {
     e.submitter.classList.add("loading");
     console.log(getCurrUserData());
     await update(getCurrUserData().ref, {
-      username: document.querySelector("#username").value,
+      name: document.querySelector("#username").value,
     });
     page("/view-attractions");
   } catch (error) {
+    console.error(error);
     e.submitter.classList.remove("loading");
   }
 }
