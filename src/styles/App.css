@@ -295,3 +295,15 @@ dialog.closing::backdrop {
 pwa-update::part(updateToast) {
   z-index: 101;
 }
+
+aside {
+  /* display */
+  /* positioning */
+  /* box-model */
+  /* typography */
+  font-size: 0.75em;
+  color: var(--theme-secondary-color);
+
+  /* manipulation */
+  /* misc */
+}

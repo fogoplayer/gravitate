@@ -154,3 +154,9 @@ export async function update(ref, data) {
 export function push(data) {
   return arrayUnion(data);
 }
+
+export async function usernameSearch(username) {
+  const q = query(users, where("name", "==", username));
+  let docs = await getDocs(q);
+  return docs.docs.map((doc) => doc.data());
+}
