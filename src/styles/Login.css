@@ -18,22 +18,6 @@
 }
 
 .main-bubble {
-  /* box-model */
-  background-color: var(--light-text);
-  border-radius: 2em;
-  border: 1px solid var(--theme-secondary-color);
   padding: 2em;
-
-  /* manipulation */
-  /* misc */
-}
-
-.main-bubble h1 {
-  font: inherit;
-  font-size: 1.5em;
-  color: var(--theme-primary-color);
-}
-
-.main-bubble form {
-  display: contents;
+  box-shadow: none;
 }

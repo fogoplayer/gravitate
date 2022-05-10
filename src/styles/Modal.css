@@ -5,3 +5,34 @@
 .modal.closing {
   animation: fade-out 0.25s ease-out forwards;
 }
+
+.modal {
+  /* display */
+  /* positioning */
+  /* box-model */
+  background-color: var(--light-text);
+  border-radius: 2em;
+  border: 1px solid var(--theme-secondary-color);
+  max-width: calc(100vw - 4rem);
+  max-height: calc(100vh - 4rem);
+  margin: auto;
+  inset: 0;
+
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
+.modal .modal-contents {
+  padding: 2rem;
+}
+
+.modal h1 {
+  font: inherit;
+  font-size: 1.5em;
+  color: var(--theme-primary-color);
+}
+
+.modal form {
+  display: contents;
+}
