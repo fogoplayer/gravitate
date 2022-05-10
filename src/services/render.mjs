@@ -13,13 +13,18 @@ export function render(type, props, ...children) {
   }
   if (children) {
     children.forEach((child) => {
-      newEl.append(child);
+      append(newEl, child);
     });
   }
   return newEl;
 }
 
 export function append(parent, element) {
+  console.log(parent.nodeName);
+  if (parent.nodeName === "SECTION") {
+    debugger;
+  }
+
   // if array of elements, recurse through array
   if (Array.isArray(element)) {
     for (const el in element) {
