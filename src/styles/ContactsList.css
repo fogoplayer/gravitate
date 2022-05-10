@@ -12,7 +12,7 @@
   list-style: none;
 }
 
-.contacts-list>li .header-icon {
+.contacts-list > li .header-icon {
   /* display */
   /* positioning */
   /* box-model */
@@ -25,11 +25,12 @@
   /* misc */
 }
 
-.contacts-list>li>h2 {
+.contacts-list > li > h2 {
   /* display */
   display: flex;
   flex-flow: row nowrap;
   border-top: 1px solid var(--theme-secondary-color);
+  align-items: center;
 
   /* positioning */
   /* box-model */
@@ -44,51 +45,56 @@
   /* misc */
 }
 
-.contacts-list>li>ul {
+.contacts-list > li > h2 > .header-btn {
+  display: flex;
+  margin-left: auto;
+}
+
+.contacts-list > li > ul {
   list-style: none;
 }
 
-.contacts-list>li>ul>li {
+.contacts-list > li > ul > li {
   border-top: 1px solid var(--theme-secondary-color);
   line-height: 1em;
 }
 
-.contacts-list>li>ul>li,
-.contacts-list>li>h2>.header-text {
+.contacts-list > li > ul > li,
+.contacts-list > li > h2 > .header-text,
+.contacts-list > li > h2 > .header-btn {
   padding: 0.5rem;
 }
 
-.contacts-list>li>ul>li .contact-header-container {
+.contacts-list > li > ul > li .contact-header-container {
   display: flex;
   align-items: center;
   margin: -0.5rem;
 }
 
-
-.contacts-list>li>ul>li .contact-header-container input[type="checkbox"] {
+.contacts-list > li > ul > li .contact-header-container input[type="checkbox"] {
   /* visibility: hidden; */
   transform: scale(0);
   max-width: 0;
   min-width: 0;
 }
 
-.contacts-list>li>ul>li .contact-header-container input:checked~* {
+.contacts-list > li > ul > li .contact-header-container input:checked ~ * {
   background-color: hsl(var(--theme-hue) 50% 90%);
   font-weight: 700;
 }
 
-.contacts-list>li>ul>li .contact-header-container input:focus~* {
+.contacts-list > li > ul > li .contact-header-container input:focus ~ * {
   background-color: var(--theme-tertiary-color);
 }
 
-.contacts-list>li>ul>li .contact-header-container .contact-icon {
+.contacts-list > li > ul > li .contact-header-container .contact-icon {
   font-family: "Noto Emoji";
   line-height: 1.3333em;
   font-size: 1.5em;
   padding-inline: 0.35rem;
 }
 
-.contacts-list>li>ul>li .contact-header-container .contact-name {
+.contacts-list > li > ul > li .contact-header-container .contact-name {
   padding: 0.5em;
   flex: 1 0 auto;
 }

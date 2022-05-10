@@ -31,10 +31,17 @@ export default function ContactsList(Template) {
         classList="header-icon"
       />
       <span classList="header-text">Friends</span>
+      <button classList="header-btn">
+        <span classList="material-symbols-sharp">add</span>
+      </button>
     </h2>
     ${Template(friends, "friends")}
   </li>
 </ul>
 `;
   return page;
+
+  function showAddFriend() {
+    document.getElementById("add-friend").showModal();
+  }
 }

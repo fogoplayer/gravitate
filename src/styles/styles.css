@@ -14,9 +14,15 @@ button {
   --theme-primary-lightness: 25%;
   --theme-secondary-lightness: 60%;
   --theme-tertiary-lightness: 80%;
-  --theme-primary-color: hsl(var(--theme-hue) var(--theme-sat) var(--theme-primary-lightness));
-  --theme-secondary-color: hsl(var(--theme-hue) 50% var(--theme-secondary-lightness));
-  --theme-tertiary-color: hsl(var(--theme-hue) 50% var(--theme-tertiary-lightness));
+  --theme-primary-color: hsl(
+    var(--theme-hue) var(--theme-sat) var(--theme-primary-lightness)
+  );
+  --theme-secondary-color: hsl(
+    var(--theme-hue) 50% var(--theme-secondary-lightness)
+  );
+  --theme-tertiary-color: hsl(
+    var(--theme-hue) 50% var(--theme-tertiary-lightness)
+  );
 
   --light-text: white;
   --dark-text: black;
@@ -27,6 +33,7 @@ button {
 
 .material-symbols-sharp {
   font-family: "Material Symbols Sharp" !important;
+  font-size: inherit;
 }
 
 @font-face {
