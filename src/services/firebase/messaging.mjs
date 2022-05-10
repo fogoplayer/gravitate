@@ -18,7 +18,7 @@ authStateChanged(() =>
   })
     .then((currentToken) => {
       if (currentToken) {
-        update(getCurrUserData().ref, { messagingToken: currentToken });
+        update(getCurrUserData().dataDocRef, { messagingToken: currentToken });
       } else {
         // Show permission request UI
         console.log(
