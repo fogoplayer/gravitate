@@ -106,5 +106,5 @@ a.button .spinner {
 
 button.loading .spinner,
 a.button.loading .spinner {
-  display: inline-block
+  display: inline-block;
 }
