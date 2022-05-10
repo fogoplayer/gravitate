@@ -20,7 +20,7 @@ export default function AddFriend() {
 </aside>
 <form id="friend-search-results-container" classList="search-results empty">
 <ul id="friend-search-results" classList="search-results"></ul>
-<button classList="primary disabled" id="add-friends">Add friends</button>
+<button disabled classList="primary" id="add-friends">Add friends</button>
 </form>`,
     id: "add-friend",
   });
@@ -41,23 +41,25 @@ export default function AddFriend() {
   }
 
   function Template(user) {
-    return jsx`<label classList="contact-header-container">
-    <input
-      type="checkbox"
-      name="added-friends"
-      id="${user.name}"
-      value="${user.name}"
-      tabindex="0"
-    />
-    ${
-      (user.icon && user.icon[0]) === "/"
-        ? ""
-        : jsx`<span
-      classList="contact-icon"
-      >${user.icon || "🟣"}</span
-    >`
-    }<span classList="contact-name">${user.name}</span>
-  </label>
-  `;
+    return jsx`<li>
+  <label classList="contact-header-container">
+      <input
+        type="checkbox"
+        name="added-friends"
+        id="${user.name}"
+        value="${user.name}"
+        tabindex="0"
+      />
+      ${
+        (user.icon && user.icon[0]) === "/"
+          ? ""
+          : jsx`<span
+        classList="contact-icon"
+        >${user.icon || "🟣"}</span
+      >`
+      }<span classList="contact-name">${user.name}</span>
+    </label>
+    
+</li>`;
   }
 }

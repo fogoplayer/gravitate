@@ -24,6 +24,8 @@ button {
     var(--theme-hue) 50% var(--theme-tertiary-lightness)
   );
 
+  --disabled-color: hsl(var(--theme-hue) 0% var(--theme-secondary-lightness));
+
   --light-text: white;
   --dark-text: black;
 
@@ -80,4 +82,25 @@ aside {
 
   /* manipulation */
   /* misc */
+}
+
+.search-results {
+  /* display */
+  /* positioning */
+  /* box-model */
+  border: 1px solid var(--theme-secondary-color);
+
+  /* typography */
+  /* manipulation */
+  /* misc */
+  list-style: none;
+}
+
+.search-results li {
+  padding: 0.5rem;
+}
+
+.search-results li + li {
+  padding: 0.5rem;
+  border: 1px solid var(--theme-secondary-color);
 }

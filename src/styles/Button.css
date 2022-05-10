@@ -57,8 +57,8 @@ a.button.flat {
   /* misc */
 }
 
-button.disabled,
-a.button.disabled {
+button:disabled,
+a.button:disabled {
   /* display */
   /* positioning */
   /* box-model */
