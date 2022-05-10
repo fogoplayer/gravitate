@@ -28,10 +28,6 @@ export function append(parent, element) {
     return;
   }
 
-  if (parent === document.body) {
-    debugger;
-  }
-
   // Otherwise just append
   parent.append(element);
 }
