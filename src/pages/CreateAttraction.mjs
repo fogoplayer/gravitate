@@ -83,9 +83,9 @@ export default function CreateAttraction() {
 }
 
 function ContactTemplate(contacts, name) {
-  const jsx = jsx`<ul></ul>`;
+  const html = jsx`<ul></ul>`;
   contacts.forEach(async (contact) => {
-    jsx.append(jsx`<li>
+    html.append(jsx`<li>
   <label classList="contact-header-container">
     <input type="checkbox" name="${name}" id="${contact.name}" value="${
       contact.name
@@ -100,7 +100,7 @@ function ContactTemplate(contacts, name) {
 </li>
 `);
   });
-  return jsx;
+  return html;
 }
 
 async function useMyLocation() {

@@ -7,9 +7,9 @@ export default function Contacts() {
 }
 
 function ContactsPageContact(contacts) {
-  const jsx = jsx`<ul></ul>`;
+  const html = jsx`<ul></ul>`;
   contacts.forEach(async (contact) => {
     jsx.append(jsx`<li>${contact.name}</li>`);
   });
-  return jsx;
+  return html;
 }
