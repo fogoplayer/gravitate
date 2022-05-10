@@ -35,8 +35,8 @@ export default function ContactsList(Template) {
       <button classList="header-btn" onclick=${showAddFriend}>
         <span classList="material-symbols-sharp">add</span>
       </button>
-      ${AddFriend()}
     </h2>
+    ${AddFriend()}
     ${Template(friends, "friends")}
   </li>
 </ul>

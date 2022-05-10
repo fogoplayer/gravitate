@@ -24,6 +24,11 @@
 }
 
 .modal .modal-contents {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 1em;
+
   padding: 2rem;
 }
 
