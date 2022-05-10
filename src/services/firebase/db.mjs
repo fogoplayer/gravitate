@@ -41,12 +41,42 @@ export async function loadUserData(user) {
 
   const ref = doc(db, "users", user.uid);
   currUserData = await getDocData(ref);
-  currUserData.ref = ref;
+  Object.assign(currUserData, { ref: ref, attractions: [], invitations: [] });
 
   // Convert references to objects
 
+  // Attractions
+  let attractions = currUserData.attractions;
+  attractions = await getDocs(collection(db, `users/${user.uid}/attractions`));
+  currUserData.attractions = attractions.docs.map((doc) => doc.data());
+  debugger;
+  // for (let attraction = 0; attraction < attractions.length; attraction++) {
+  //   for (let member = 0; member < attractions[attraction].members.length; member++) {
+  //     const ref = attractions[attraction].members[member];
+  //     attractions[attraction].members[member] = await getDocData(
+  //       attractions[attraction].members[member]
+  //     );
+  //     attractions[attraction].members[member].ref = ref;
+  //   }
+  // }
+
+  // Invitations
+  let invitations = currUserData.invitations;
+  invitations = await getDocs(collection(db, `users/${user.uid}/invitations`));
+  invitations = invitations.docs.map((doc) => doc.data());
+  // for (let invitation = 0; invitation < invitations.length; invitation++) {
+  //   for (let member = 0; member < invitations[invitation].members.length; member++) {
+  //     const ref = invitations[invitation].members[member];
+  //     invitations[invitation].members[member] = await getDocData(
+  //       invitations[invitation].members[member]
+  //     );
+  //     invitations[invitation].members[member].ref = ref;
+  //   }
+  // }
+
   // Orbits
-  let orbits = await getDocs(collection(db, `users/${user.uid}/orbits`));
+  let orbits = currUserData.orbits;
+  orbits = await getDocs(collection(db, `users/${user.uid}/orbits`));
   orbits = orbits.docs.map((doc) => doc.data());
   for (let orbit = 0; orbit < orbits.length; orbit++) {
     for (let member = 0; member < orbits[orbit].members.length; member++) {
@@ -59,10 +89,11 @@ export async function loadUserData(user) {
   }
 
   // Data
-  let userData = await getDocData(doc(db, `users/${user.uid}/data`, "data"));
+  let userDataDoc = await getDocData(doc(db, `users/${user.uid}/data`, "data"));
 
   // Friends
-  let friends = userData.friends;
+  let friends = currUserData.friends;
+  friends = userDataDoc.friends;
 
   for (let friend = 0; friend < friends.length; friend++) {
     const ref = friends[friend];
@@ -71,7 +102,8 @@ export async function loadUserData(user) {
   }
 
   // Systems
-  let systems = userData.systems;
+  let systems = currUserData.systems;
+  systems = userDataDoc.systems;
   for (let system = 0; system < systems.length; system++) {
     const systemRef = systems[system];
     systems[system] = await getDocData(systems[system]);
