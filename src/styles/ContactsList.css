@@ -78,7 +78,8 @@
   min-width: 0;
 }
 
-.contact-header-container input:checked ~ * {
+.contact-header-container input:checked ~ *,
+.contact-header-container li:has(input:checked) {
   background-color: hsl(var(--theme-hue) 50% 90%);
   font-weight: 700;
 }
