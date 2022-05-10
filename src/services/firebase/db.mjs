@@ -18,20 +18,20 @@ const db = getFirestore(app);
 const users = collection(db, "users");
 const systems = collection(db, "systems");
 
-let currUserData;
+let currUserData = {};
 
 export async function createUserData(userCredential) {
   const uid = userCredential.user.uid;
-  const newDoc = await setDoc(doc(db, "users", uid), {
+
+  const profile = await setDoc(doc(db, "users", uid), {
     name: "",
     icon: "",
-    orbits: [],
+  });
+
+  const data = await setDoc(doc(db, `users/${uid}/data`, "data"), {
     systems: [],
     friends: [],
-    invitations: [],
-    attractions: [],
   });
-  console.log(newDoc);
 }
 
 export async function loadUserData(user) {
@@ -44,7 +44,10 @@ export async function loadUserData(user) {
   currUserData.ref = ref;
 
   // Convert references to objects
-  const orbits = currUserData.orbits;
+
+  // Orbits
+  let orbits = await getDocs(collection(db, `users/${user.uid}/orbits`));
+  orbits = orbits.docs.map((doc) => doc.data());
   for (let orbit = 0; orbit < orbits.length; orbit++) {
     for (let member = 0; member < orbits[orbit].members.length; member++) {
       const ref = orbits[orbit].members[member];
@@ -55,7 +58,20 @@ export async function loadUserData(user) {
     }
   }
 
-  const systems = currUserData.systems;
+  // Data
+  let userData = await getDocData(doc(db, `users/${user.uid}/data`, "data"));
+
+  // Friends
+  let friends = userData.friends;
+
+  for (let friend = 0; friend < friends.length; friend++) {
+    const ref = friends[friend];
+    friends[friend] = await getDocData(ref);
+    friends[friend].ref = ref;
+  }
+
+  // Systems
+  let systems = userData.systems;
   for (let system = 0; system < systems.length; system++) {
     const systemRef = systems[system];
     systems[system] = await getDocData(systems[system]);
@@ -67,13 +83,6 @@ export async function loadUserData(user) {
       );
       systems[system].members[member].ref = memberRef;
     }
-  }
-
-  const friends = currUserData.friends;
-  for (let friend = 0; friend < friends.length; friend++) {
-    const ref = friends[friend];
-    friends[friend] = await getDocData(ref);
-    friends[friend].ref = ref;
   }
 }
 
