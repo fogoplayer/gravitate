@@ -100,16 +100,15 @@ export async function loadUserData(user) {
 
   // Data
   let userDataDoc = await getDocData(currUserData.dataDocRef);
-
+  console.log(user);
   // Friends
-  let friends = currUserData.friends;
-  friends = userDataDoc.friends;
-
+  let friends = userDataDoc.friends;
   for (let friend = 0; friend < friends.length; friend++) {
     const ref = friends[friend];
     friends[friend] = await getDocData(ref);
     friends[friend].ref = ref;
   }
+  currUserData.friends = friends;
 
   // Systems
   let systems = currUserData.systems;
