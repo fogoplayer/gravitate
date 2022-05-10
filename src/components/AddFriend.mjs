@@ -11,7 +11,7 @@ import Modal from "./Modal.mjs";
 export default function AddFriend() {
   let newFriends = new Set();
 
-  return Modal({
+  const modal = Modal({
     contents: jsx`<form>
   <h1>Add a Friend</h1>
   <div classList="inline-inputs">
@@ -32,6 +32,8 @@ export default function AddFriend() {
 `,
     id: "add-friend",
   });
+
+  return modal;
 
   async function searchForFriends(e) {
     e.preventDefault();
@@ -54,6 +56,7 @@ export default function AddFriend() {
     update(getCurrUserData().dataDocRef, {
       friends: push(...Array.from(newFriends)),
     });
+    modal.close();
   }
 
   function Template(user) {
