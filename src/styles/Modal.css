@@ -1,0 +1,7 @@
+.modal {
+  animation: fade-in 0.25s ease-out forwards;
+}
+
+.modal.closing {
+  animation: fade-out 0.25s ease-out forwards;
+}

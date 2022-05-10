@@ -1,6 +1,7 @@
 import { getCurrentUser } from "../services/firebase/auth.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { append, jsx } from "../services/render.mjs";
+import AddFriend from "./AddFriend.mjs";
 
 export default function ContactsList(Template) {
   let { orbits, systems, friends, ...rest } = getCurrUserData();
@@ -31,9 +32,10 @@ export default function ContactsList(Template) {
         classList="header-icon"
       />
       <span classList="header-text">Friends</span>
-      <button classList="header-btn">
+      <button classList="header-btn" onclick=${showAddFriend}>
         <span classList="material-symbols-sharp">add</span>
       </button>
+      ${AddFriend()}
     </h2>
     ${Template(friends, "friends")}
   </li>
@@ -42,6 +44,6 @@ export default function ContactsList(Template) {
   return page;
 
   function showAddFriend() {
-    document.getElementById("add-friend").showModal();
+    document.querySelector("#add-friend").showModal();
   }
 }
