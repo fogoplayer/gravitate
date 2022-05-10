@@ -12,7 +12,7 @@ export function render(type, props, ...children) {
     }
   }
   if (children) {
-    children.forEach(child => {
+    children.forEach((child) => {
       newEl.append(child);
     });
   }
@@ -21,13 +21,17 @@ export function render(type, props, ...children) {
 
 export function append(parent, element) {
   // if array of elements, recurse through array
-  if (element[0]) {
+  if (Array.isArray(element)) {
     for (const el in element) {
-      append(parent, element[el]);; // contains something other than whitespace
-    };
+      append(parent, element[el]); // contains something other than whitespace
+    }
     return;
+  }
+
+  if (parent === document.body) {
+    debugger;
   }
 
   // Otherwise just append
   parent.append(element);
-};
+}
