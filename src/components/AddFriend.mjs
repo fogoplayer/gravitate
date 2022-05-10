@@ -1,4 +1,9 @@
-import { usernameSearch } from "../services/firebase/db.mjs";
+import {
+  getCurrUserData,
+  push,
+  update,
+  usernameSearch,
+} from "../services/firebase/db.mjs";
 import { append, jsx } from "../services/render.mjs";
 import Input from "./Input.mjs";
 import Modal from "./Modal.mjs";
@@ -21,9 +26,10 @@ export default function AddFriend() {
   don't know their username, ask them to send you a share code.
 </aside>
 <form id="friend-search-results-container" classList="search-results empty">
-<ul id="friend-search-results" classList="search-results"></ul>
-<button classList="primary" id="add-friends">Add friends</button>
-</form>`,
+  <ul id="friend-search-results" classList="search-results"></ul>
+  <button classList="primary" id="add-friends" onclick=${addFriends}>Add friends</button>
+</form>
+`,
     id: "add-friend",
   });
 
@@ -42,7 +48,12 @@ export default function AddFriend() {
       .classList.remove("empty");
   }
 
-  async function addFriend(ref) {}
+  async function addFriends(e) {
+    e.preventDefault();
+    update(getCurrUserData().dataDocRef, {
+      friends: push(...Array.from(newFriends)),
+    });
+  }
 
   function Template(user) {
     return jsx`<li>
