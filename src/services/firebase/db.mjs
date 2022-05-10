@@ -158,5 +158,10 @@ export function push(data) {
 export async function usernameSearch(username) {
   const q = query(users, where("name", "==", username));
   let docs = await getDocs(q);
-  return docs.docs.map((doc) => doc.data());
+  let datas = [];
+  docs.forEach((doc) => {
+    let data = doc.data();
+    datas.push({ ...data, ref: doc.ref });
+  });
+  return datas;
 }

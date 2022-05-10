@@ -23,7 +23,26 @@ export default function AddFriend() {
       document.querySelector("#friend-search-value").value
     );
     console.log(users);
-    users = users.map((user) => jsx`<li>${user.name}</li>`);
-    append(document.querySelector("#friend-search-results"), users);
+    let options = users.map((user) => {
+      return jsx`<label classList="contact-header-container">
+  <input
+    type="checkbox"
+    name="added-friends"
+    id="${user.name}"
+    value="${user.name}"
+    tabindex="0"
+  />
+  ${
+    (user.icon && user.icon[0]) === "/"
+      ? ""
+      : jsx`<span
+    classList="contact-icon"
+    >${user.icon || "🟣"}</span
+  >`
+  }<span classList="contact-name">${user.name}</span>
+</label>
+`;
+    });
+    append(document.querySelector("#friend-search-results"), options);
   }
 }
