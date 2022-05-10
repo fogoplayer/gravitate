@@ -5,15 +5,23 @@ import Modal from "./Modal.mjs";
 
 export default function AddFriend() {
   return Modal({
-    contents: jsx`<h1>Add a Friend</h1>
-<div classList="inline-inputs">
-  ${Input({ label: "Username", id: "friend-search-value" })}
-  <button classList="flat inline" onclick="${searchForFriends}">
-    <span classList="material-symbols-sharp">search</span>
-  </button>
-</div>
-<aside>You need to know a user's precise username to add them as a friend. If you don't know their username, ask them to send you a share code.</aside>
-<ul id="friend-search-results" classList="search-results"></ul>`,
+    contents: jsx`<form>
+  <h1>Add a Friend</h1>
+  <div classList="inline-inputs">
+    ${Input({ label: "Username", id: "friend-search-value" })}
+    <button classList="flat inline" onclick="${searchForFriends}">
+      <span classList="material-symbols-sharp">search</span>
+    </button>
+  </div>
+</form>
+<aside>
+  You need to know a user's precise username to add them as a friend. If you
+  don't know their username, ask them to send you a share code.
+</aside>
+<form classList="search-results empty">
+<ul id="friend-search-results" classList="search-results"></ul>
+<button classList="primary disabled" id="add-friends">Add friends</button>
+</form>`,
     id: "add-friend",
   });
 

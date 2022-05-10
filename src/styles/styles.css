@@ -41,6 +41,15 @@ button {
   src: url(./NotoEmoji-VariableFont_wght.ttf);
 }
 
+dialog::backdrop {
+  background-color: hsla(281 50% 80% / 0.5);
+  animation: fade-in 0.25s ease-out forwards;
+}
+
+dialog.closing::backdrop {
+  animation: fade-out 0.25s ease-out forwards;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -59,4 +68,16 @@ button {
   100% {
     opacity: 0;
   }
+}
+
+aside {
+  /* display */
+  /* positioning */
+  /* box-model */
+  /* typography */
+  font-size: 0.75em;
+  color: var(--theme-secondary-color);
+
+  /* manipulation */
+  /* misc */
 }

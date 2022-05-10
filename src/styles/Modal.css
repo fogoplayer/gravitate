@@ -38,6 +38,10 @@
   color: var(--theme-primary-color);
 }
 
-.modal form {
+.modal .modal-contents .search-results.empty {
+  display: none;
+}
+
+.modal .modal-contents form {
   display: contents;
 }

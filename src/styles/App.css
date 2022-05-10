@@ -68,15 +68,6 @@ body {
   animation: close-drawer 0.25s ease-out forwards;
 }
 
-dialog::backdrop {
-  background-color: hsla(281 50% 80% / 0.5);
-  animation: fade-in 0.25s ease-out forwards;
-}
-
-dialog.closing::backdrop {
-  animation: fade-out 0.25s ease-out forwards;
-}
-
 @keyframes open-drawer {
   0% {
     transform: translateX(-100%);
@@ -294,16 +285,4 @@ dialog.closing::backdrop {
 
 pwa-update::part(updateToast) {
   z-index: 101;
-}
-
-aside {
-  /* display */
-  /* positioning */
-  /* box-model */
-  /* typography */
-  font-size: 0.75em;
-  color: var(--theme-secondary-color);
-
-  /* manipulation */
-  /* misc */
 }
