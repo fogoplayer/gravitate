@@ -5,7 +5,7 @@ import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 import ViewAttractions from "./pages/ViewAttractions.mjs";
 import { signIn, authStateChanged } from "./services/firebase/auth.mjs";
-import { loadUserData } from "./services/firebase/db.mjs";
+import { initDBWatchers, loadUserData } from "./services/firebase/db.mjs";
 import { getCurrUserData } from "./services/firebase/db.mjs";
 import { logOut } from "./services/firebase/auth.mjs";
 import Login from "./pages/Login.mjs";
@@ -25,6 +25,7 @@ append(
 
 authStateChanged(async (user) => {
   await loadUserData(user);
+  initDBWatchers();
   import("./services/firebase/messaging.mjs");
 
   page("/create-attraction", (context) =>

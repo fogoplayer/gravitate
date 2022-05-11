@@ -10,6 +10,7 @@ import {
   where,
   query,
   updateDoc,
+  onSnapshot,
   enableIndexedDbPersistence,
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
 import { authStateChanged } from "./auth.mjs";
@@ -35,18 +36,21 @@ export async function createUserData(userCredential) {
 }
 
 export async function loadUserData(user) {
-  if (!user) {
+  if (currUserData.uid) {
+    user.uid = currUserData.uid;
+  } else if (!user) {
     return false;
   }
-
   const ref = doc(db, "users", user.uid);
   currUserData = await getDocData(ref);
+
   Object.assign(currUserData, {
     dataDocRef: doc(db, `users/${user.uid}/data`, "data"),
     attractionsRef: collection(db, `users/${user.uid}/invitations`),
     invitationsRef: collection(db, `users/${user.uid}/attractions`),
     orbitsRef: collection(db, `users/${user.uid}/orbits`),
     ref: ref,
+    uid: user.uid,
     attractions: [],
     invitations: [],
     orbits: [],
@@ -55,7 +59,6 @@ export async function loadUserData(user) {
   });
 
   // Convert references to objects
-
   // Attractions
   let attractions = currUserData.attractions;
   attractions = await getDocs(currUserData.attractionsRef);
@@ -126,6 +129,16 @@ export async function loadUserData(user) {
   }
 
   console.log(currUserData);
+  return currUserData;
+}
+
+export function initDBWatchers() {
+  console.log(JSON.stringify(currUserData));
+  onSnapshot(currUserData.ref, loadUserData);
+  onSnapshot(currUserData.dataDocRef, loadUserData);
+  onSnapshot(query(currUserData.attractionsRef), loadUserData);
+  onSnapshot(query(currUserData.invitationsRef), loadUserData);
+  onSnapshot(query(currUserData.orbitsRef), loadUserData);
 }
 
 enableIndexedDbPersistence(db).catch((err) => {
