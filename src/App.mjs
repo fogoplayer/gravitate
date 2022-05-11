@@ -24,8 +24,8 @@ append(
 );
 
 authStateChanged(async (user) => {
-  await loadUserData(user);
-  initDBWatchers();
+  let currUserData = await loadUserData(user);
+  if (user) initDBWatchers();
   import("./services/firebase/messaging.mjs");
 
   page("/create-attraction", (context) =>
