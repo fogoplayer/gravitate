@@ -4,7 +4,7 @@ import {
   update,
   usernameSearch,
 } from "../services/firebase/db.mjs";
-import { append, jsx } from "../services/render.mjs";
+import { append, jsx, renderPage } from "../services/render.mjs";
 import Input from "./Input.mjs";
 import Modal from "./Modal.mjs";
 
@@ -53,9 +53,10 @@ export default function AddFriend() {
 
   async function addFriends(e) {
     e.preventDefault();
-    update(getCurrUserData().dataDocRef, {
+    await update(getCurrUserData().dataDocRef, {
       friends: push(...Array.from(newFriends)),
     });
+    renderPage(window.location.pathname);
     modal.close();
   }
 

@@ -19,6 +19,15 @@ export function render(type, props, ...children) {
   return newEl;
 }
 
+export function renderPage(url) {
+  let link = document.querySelector(`[href="${url}"]`);
+  if (link) {
+    link.click();
+  } else {
+    page(url);
+  }
+}
+
 export function append(parent, element) {
   // if array of elements, recurse through array
   if (Array.isArray(element)) {
