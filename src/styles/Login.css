@@ -21,3 +21,7 @@
   padding: 2em;
   box-shadow: none;
 }
+
+.main-bubble form {
+  display: contents;
+}
