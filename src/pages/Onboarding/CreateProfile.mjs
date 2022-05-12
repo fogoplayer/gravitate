@@ -1,6 +1,11 @@
 import Input from "../../components/Input.mjs";
 import { getCurrentUser } from "../../services/firebase/auth.mjs";
-import { getCurrUserData, update } from "../../services/firebase/db.mjs";
+import {
+  afterUpdate,
+  getCurrUserData,
+  update,
+} from "../../services/firebase/db.mjs";
+import { uploadPFP } from "../../services/firebase/storage.mjs";
 import { jsx } from "../../services/render.mjs";
 
 export default function CreateProfile() {
@@ -13,6 +18,13 @@ export default function CreateProfile() {
         label: "Profile Picture",
         id: "profile picture",
         type: "file",
+        oninput: (e) => {
+          uploadPFP(e.target.files[0]);
+          afterUpdate(() => {
+            document.querySelector(".image-picker img").src =
+              getCurrUserData().icon;
+          });
+        },
       })}
     </label>
     ${Input({ label: "Username", id: "username" })}
