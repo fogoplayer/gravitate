@@ -25,6 +25,8 @@ button {
   );
 
   --disabled-color: hsl(var(--theme-hue) 0% var(--theme-secondary-lightness));
+  --invalid-color: hsl(0, 100%, 35%);
+  --invalid-highlight: hsl(0, 100%, 95%);
 
   --light-text: white;
   --dark-text: black;

@@ -75,16 +75,22 @@
   text-overflow: ellipsis;
 
   /* manipulation */
-  transition: .25s linear max-height;
+  transition: 0.25s linear max-height;
 
   /* misc */
+}
+
+.text-input-component.not-empty .text-input:invalid {
+  color: var(--invalid-color);
+  border-color: var(--invalid-color);
+  background-color: var(--invalid-highlight);
 }
 
 .text-input-component .show-hide-password {
   display: none;
 }
 
-.text-input-component .password~.show-hide-password {
+.text-input-component .password ~ .show-hide-password {
   /* display */
   display: initial;
   flex: 0 0 auto;
@@ -105,17 +111,23 @@
   /* misc */
 }
 
-.text-input-component .password~.show-hide-password:focus {
+.text-input-component .password ~ .show-hide-password:focus {
   color: initial;
 }
 
-.text-input-component .password~.show-hide-password .show-password,
-.text-input-component .password~.show-hide-password .hide-password {
+.text-input-component .password ~ .show-hide-password .show-password,
+.text-input-component .password ~ .show-hide-password .hide-password {
   display: initial;
 }
 
-.text-input-component .password[type="password"]~.show-hide-password .hide-password,
-.text-input-component .password:not([type="password"])~.show-hide-password .show-password {
+.text-input-component
+  .password[type="password"]
+  ~ .show-hide-password
+  .hide-password,
+.text-input-component
+  .password:not([type="password"])
+  ~ .show-hide-password
+  .show-password {
   display: none;
 }
 
