@@ -106,3 +106,7 @@ aside {
   padding: 0.5rem;
   border: 1px solid var(--theme-secondary-color);
 }
+
+.noto {
+  font-family: "Noto Emoji", Roboto, sans-serif !important;
+}

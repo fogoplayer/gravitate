@@ -8,8 +8,8 @@ import { getIcon } from "../services/firebase/storage.mjs";
 const reactions = {
   "ON MY WAY": "🔜",
   "RUNNING LATE": "🕜",
-  "CANT COME": "😢",
-  "NEXT TIME": "🗓",
+  "CAN'T COME": "😢",
+  "I'LL BE THERE NEXT TIME": "🗓",
   "NOT INTERESTED": "❌",
 };
 
@@ -110,8 +110,9 @@ export default function CreateAttraction() {
     // Invitation
     if (attraction.organizer) {
       return jsx`<section classList="attraction-details">
+  <h4>RSVP</h4>
   <fieldset classList="react">
-    <legend>React</legend>
+    <legend>RSVP</legend>
     ${Object.keys(reactions).map(
       (reaction) => jsx`<label>
       <input type="radio" name="reactions" value="${reaction}" />
@@ -119,6 +120,39 @@ export default function CreateAttraction() {
     >`
     )}
   </fieldset>
+  <h4>Attraction Details</h4>
+  <table>
+    <tr>
+      <th>Organizer:</th>
+      <td>${attraction.organizer.name}</td>
+    </tr>
+    ${
+      attraction.origin
+        ? jsx`
+    <tr>
+      <th>System:</th>
+      <td>
+        <span classList="noto">${attraction.origin.icon}</span>
+        ${" " + attraction.origin.name}
+      </td>
+    </tr>
+    `
+        : ""
+    }
+    <tr>
+      <th>Location:</th>
+      <td>
+        ${attraction.location + " "}
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+            attraction.location
+          )}"
+          target="_blank"
+          >(Open in Google Maps)</a
+        >
+      </td>
+    </tr>
+  </table>
 </section>
 `;
       // Attraction
