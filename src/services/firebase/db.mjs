@@ -17,7 +17,7 @@ export { addDoc } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firest
 
 const db = getFirestore(app);
 const users = collection(db, "users");
-const systems = collection(db, "systems");
+export const systems = collection(db, "systems");
 
 let currUserData = {};
 let funcForAfterUpdate = () => {};

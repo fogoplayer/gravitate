@@ -3,6 +3,7 @@ import { getCurrUserData } from "../services/firebase/db.mjs";
 import { append, jsx } from "../services/render.mjs";
 import AddFriend from "./AddFriend.mjs";
 import AddOrbit from "./AddOrbit.mjs";
+import AddSystem from "./AddSystem.mjs";
 
 export default function ContactsList(Template) {
   let { orbits, systems, friends, ...rest } = getCurrUserData();
@@ -11,7 +12,7 @@ export default function ContactsList(Template) {
     <h2>
       <img src="./images/orbit.svg" alt="Orbit icon" classList="header-icon" />
       <span classList="header-text">Orbits</span>
-      <button classList="header-btn" onclick=${showAddOrbit}>
+      <button classList="header-btn" onclick="${showAddOrbit}">
         <span classList="material-symbols-sharp">add</span>
       </button>
     </h2>
@@ -26,7 +27,11 @@ export default function ContactsList(Template) {
         classList="header-icon"
       />
       <span classList="header-text">Systems</span>
+      <button classList="header-btn" onclick="${showAddSystem}">
+        <span classList="material-symbols-sharp">add</span>
+      </button>
     </h2>
+    ${AddSystem()}
     ${Template(systems, "systems")}
   </li>
   <li classList="friends-wrapper">
@@ -37,12 +42,11 @@ export default function ContactsList(Template) {
         classList="header-icon"
       />
       <span classList="header-text">Friends</span>
-      <button classList="header-btn" onclick=${showAddFriend}>
+      <button classList="header-btn" onclick="${showAddFriend}">
         <span classList="material-symbols-sharp">add</span>
       </button>
     </h2>
-    ${AddFriend()}
-    ${Template(friends, "friends")}
+    ${AddFriend()} ${Template(friends, "friends")}
   </li>
 </ul>
 `;
@@ -54,5 +58,9 @@ export default function ContactsList(Template) {
 
   function showAddOrbit() {
     document.querySelector("#add-orbit").showModal();
+  }
+
+  function showAddSystem() {
+    document.querySelector("#add-system").showModal();
   }
 }
