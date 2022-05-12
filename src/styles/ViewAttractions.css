@@ -72,6 +72,10 @@
   border-radius: 0.25em;
 }
 
+.attraction-details .react .reaction::after {
+  content: attr(data-value);
+}
+
 .attraction-details .react input:checked + .reaction {
   color: var(--theme-primary-color);
   background-color: var(--theme-tertiary-color);

@@ -116,7 +116,7 @@ export default function CreateAttraction() {
     ${Object.keys(reactions).map(
       (reaction) => jsx`<label>
       <input type="radio" name="reactions" value="${reaction}" />
-      <span classList="reaction">${reactions[reaction]}</span> </label
+      <span classList="reaction" data-value="${reaction}">${reactions[reaction]}</span> </label
     >`
     )}
   </fieldset>
