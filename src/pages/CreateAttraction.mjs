@@ -9,14 +9,15 @@ import { map } from "../services/mapbox.js";
 import { mapboxAPI } from "../services/mapbox.js";
 import { jsx, renderPage } from "../services/render.mjs";
 
-const newAttraction = {
-  orbits: new Set(),
-  systems: new Set(),
-  friends: new Set(),
-};
-let timer;
-
 export default function CreateAttraction() {
+  const newAttraction = {
+    orbits: new Set(),
+    systems: new Set(),
+    friends: new Set(),
+  };
+
+  let timer;
+
   return jsx`<div classList="ignore">
   <div id="map">Loading map...</div>
   <script>
@@ -79,16 +80,14 @@ export default function CreateAttraction() {
   </form>
 </div>
 `;
-}
-
-function ContactTemplate(contacts, name) {
-  const html = jsx`<ul></ul>`;
-  contacts.forEach(async (contact) => {
-    html.append(jsx`<li>
+  function ContactTemplate(contacts, name) {
+    const html = jsx`<ul></ul>`;
+    contacts.forEach(async (contact) => {
+      html.append(jsx`<li>
   <label classList="contact-header-container">
     <input type="checkbox" name="${name}" id="${contact.name}" value="${
-      contact.name
-    }" oninput=${onCheckboxInput} tabIndex=0/>
+        contact.name
+      }" oninput=${onCheckboxInput} tabIndex=0/>
     ${
       (contact.icon && contact.icon[0]) === "/"
         ? ""
@@ -98,64 +97,65 @@ function ContactTemplate(contacts, name) {
   </label>
 </li>
 `);
-  });
-  return html;
-}
-
-async function useMyLocation() {
-  await navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-    let [address] = await mapboxAPI(`${coords.longitude},${coords.latitude}`);
-    document.querySelector("#event-location").value = address.place_name;
-    document
-      .querySelector("#event-location")
-      .parentNode.parentNode.classList.add("not-empty");
-    map?.panTo([coords.longitude, coords.latitude]);
-
-    newAttraction.location = address.place_name;
-  });
-}
-
-async function locationSearch(searchTerm) {
-  const getAddress = async () => {
-    let addresses = await mapboxAPI(searchTerm, 5);
-    document.querySelector("#location-options").innerHTML = ``;
-    addresses.forEach((address) => {
-      document
-        .querySelector("#location-options")
-        .appendChild(
-          jsx`<option value=${address.place_name}>${address.place_name}</option>`
-        );
     });
-
-    map?.panTo(addresses[0]?.center);
-  };
-
-  clearTimeout(timer);
-  const newTimer = setTimeout(getAddress, 500);
-  timer = newTimer;
-}
-
-function onCheckboxInput(e) {
-  const currUserData = getCurrUserData();
-  if (e.target.checked) {
-    const index = currUserData[e.target.name].findIndex(
-      (el) => el.name === e.target.value
-    );
-    newAttraction[e.target.name].add(currUserData[e.target.name][index]);
-  } else {
-    const index = currUserData[e.target.name].findIndex(
-      (el) => el.name === e.target.value
-    );
-    newAttraction[e.target.name].delete(currUserData[e.target.name][index]);
+    return html;
   }
-}
 
-async function onSubmit(e) {
-  try {
-    e.preventDefault();
-    e.submitter.classList.add("loading");
-    console.log(newAttraction);
-    await createAttraction(newAttraction);
-    afterUpdate(() => renderPage("/view-attractions"));
-  } catch (error) {}
+  async function useMyLocation() {
+    await navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+      let [address] = await mapboxAPI(`${coords.longitude},${coords.latitude}`);
+      document.querySelector("#event-location").value = address.place_name;
+      document
+        .querySelector("#event-location")
+        .parentNode.parentNode.classList.add("not-empty");
+      map?.panTo([coords.longitude, coords.latitude]);
+
+      newAttraction.location = address.place_name;
+    });
+  }
+
+  async function locationSearch(searchTerm) {
+    const getAddress = async () => {
+      let addresses = await mapboxAPI(searchTerm, 5);
+      document.querySelector("#location-options").innerHTML = ``;
+      addresses.forEach((address) => {
+        document
+          .querySelector("#location-options")
+          .appendChild(
+            jsx`<option value=${address.place_name}>${address.place_name}</option>`
+          );
+      });
+
+      map?.panTo(addresses[0]?.center);
+    };
+
+    clearTimeout(timer);
+    const newTimer = setTimeout(getAddress, 500);
+    timer = newTimer;
+  }
+
+  function onCheckboxInput(e) {
+    const currUserData = getCurrUserData();
+    if (e.target.checked) {
+      const index = currUserData[e.target.name].findIndex(
+        (el) => el.name === e.target.value
+      );
+      newAttraction[e.target.name].add(currUserData[e.target.name][index]);
+    } else {
+      const index = currUserData[e.target.name].findIndex(
+        (el) => el.name === e.target.value
+      );
+      newAttraction[e.target.name].delete(currUserData[e.target.name][index]);
+    }
+  }
+
+  async function onSubmit(e) {
+    try {
+      e.preventDefault();
+      e.submitter.classList.add("loading");
+      console.log(newAttraction);
+      await createAttraction(newAttraction);
+      afterUpdate(() => renderPage("/view-attractions"));
+    } catch (error) {}
+  }
 }
