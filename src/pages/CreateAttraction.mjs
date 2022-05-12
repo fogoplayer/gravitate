@@ -4,10 +4,10 @@ import Spinner from "../components/Spinner.mjs";
 import createAttraction from "../services/attractions.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
-import { getDocData } from "../services/firebase/db.mjs";
+import { afterUpdate } from "../services/firebase/db.mjs";
 import { map } from "../services/mapbox.js";
 import { mapboxAPI } from "../services/mapbox.js";
-import { jsx } from "../services/render.mjs";
+import { jsx, renderPage } from "../services/render.mjs";
 
 const newAttraction = {
   orbits: new Set(),
@@ -156,6 +156,6 @@ async function onSubmit(e) {
     e.submitter.classList.add("loading");
     console.log(newAttraction);
     await createAttraction(newAttraction);
-    // page("view-attractions");
+    afterUpdate(() => renderPage("/view-attractions"));
   } catch (error) {}
 }
