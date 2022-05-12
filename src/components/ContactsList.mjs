@@ -12,7 +12,7 @@ export default function ContactsList(Template) {
     <h2>
       <img src="./images/orbit.svg" alt="Orbit icon" classList="header-icon" />
       <span classList="header-text">Orbits</span>
-      <button classList="header-btn" onclick="${showAddOrbit}">
+      <button type="button" classList="header-btn" onclick="${showAddOrbit}">
         <span classList="material-symbols-sharp">add</span>
       </button>
     </h2>
@@ -27,7 +27,7 @@ export default function ContactsList(Template) {
         classList="header-icon"
       />
       <span classList="header-text">Systems</span>
-      <button classList="header-btn" onclick="${showAddSystem}">
+      <button type="button" classList="header-btn" onclick="${showAddSystem}">
         <span classList="material-symbols-sharp">add</span>
       </button>
     </h2>
@@ -42,7 +42,7 @@ export default function ContactsList(Template) {
         classList="header-icon"
       />
       <span classList="header-text">Friends</span>
-      <button classList="header-btn" onclick="${showAddFriend}">
+      <button type="button" classList="header-btn" onclick="${showAddFriend}">
         <span classList="material-symbols-sharp">add</span>
       </button>
     </h2>
