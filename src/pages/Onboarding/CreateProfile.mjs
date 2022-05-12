@@ -4,9 +4,17 @@ import { getCurrUserData, update } from "../../services/firebase/db.mjs";
 import { jsx } from "../../services/render.mjs";
 
 export default function CreateProfile() {
-  return jsx`<main classList="main-bubble">
-  <form onsubmit=${onSubmit}>
+  return jsx`<main classList="main-bubble modal">
+  <form onsubmit="${onSubmit}">
     <h1>Create your profile</h1>
+    <label classList="image-picker">
+      <img src="" alt="Choose a profile picture" />
+      ${Input({
+        label: "Profile Picture",
+        id: "profile picture",
+        type: "file",
+      })}
+    </label>
     ${Input({ label: "Username", id: "username" })}
     <button classList="primary">Save</button>
   </form>

@@ -1,0 +1,43 @@
+.image-picker {
+  /* display */
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  /* positioning */
+  /* box-model */
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
+.image-picker img {
+  /* display */
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+
+  /* positioning */
+  /* box-model */
+  border-radius: 50%;
+  border: 1px solid var(--theme-secondary-color);
+  padding: 4em 1em;
+  width: 10em;
+  max-height: 10em;
+  aspect-ratio: 1/1;
+
+  /* typography */
+  color: var(--dark-text);
+  font-size: 0.5em;
+  line-height: 100%;
+  text-align: center;
+
+  /* manipulation */
+  /* misc */
+}
+
+.image-picker .text-input-component {
+  display: none;
+}
