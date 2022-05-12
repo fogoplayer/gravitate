@@ -9,3 +9,10 @@
 .view-attractions .contacts-list .contact-header-container {
   font: inherit;
 }
+
+.view-attractions .contacts-list .contact-header-container .contact-name {
+  font-weight: 700;
+}
+.view-attractions .contacts-list .contact-header-container .organizer {
+  font-weight: 500;
+}

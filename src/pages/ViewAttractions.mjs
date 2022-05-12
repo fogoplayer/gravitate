@@ -72,11 +72,13 @@ export default function CreateAttraction() {
   function Template(attractions) {
     const html = jsx`<ul>
   ${attractions.map((attraction) => {
+    console.log(attraction);
     return jsx`
   <li>
     <h3 classList="contact-header-container">
       ${getIcon(attraction.icon)}
       <span classList="contact-name">${attraction.name}</span>
+      ${AttractionOrganizer(attraction)}
     </h3>
   </li>
   `;
@@ -84,5 +86,16 @@ export default function CreateAttraction() {
 </ul>
 `;
     return html;
+  }
+
+  function AttractionOrganizer(attraction) {
+    if (!attraction.organizer) return "";
+    console.log(attraction);
+
+    return jsx`<span classList="attraction-details">${
+      attraction.origin
+        ? jsx`by <span classList="organizer">${attraction.organizer.name}</span> in <span classList="organizer">${attraction.origin.name}</span>`
+        : jsx`by <span classList="organizer">${attraction.organizer.name}</span>`
+    }</span>`;
   }
 }

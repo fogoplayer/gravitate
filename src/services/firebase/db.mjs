@@ -120,9 +120,8 @@ export async function loadUserData(user) {
 
   // Convert references to objects
   // Attractions
-  let attractions = currUserData.attractions;
-  attractions = await getDocs(currUserData.attractionsRef);
-  currUserData.attractions = attractions.docs.map((doc) => doc.data());
+  let attractions = await getDocs(currUserData.attractionsRef);
+  attractions = attractions.docs.map((doc) => doc.data());
   // for (let attraction = 0; attraction < attractions.length; attraction++) {
   //   for (let member = 0; member < attractions[attraction].members.length; member++) {
   //     attractions[attraction].members[member] = await getDocData(
@@ -130,21 +129,15 @@ export async function loadUserData(user) {
   //     );
   //   }
   // }
+  currUserData.attractions = attractions;
 
   // Invitations
   let invitations = await getDocs(currUserData.invitationsRef);
   invitations = invitations.docs.map((doc) => doc.data());
-  // for (let invitation = 0; invitation < invitations.length; invitation++) {
-  //   for (
-  //     let member = 0;
-  //     member < invitations[invitation]?.members.length;
-  //     member++
-  //   ) {
-  //     invitations[invitation].members[member] = await getDocData(
-  //       invitations[invitation].members[member]
-  //     );
-  //   }
-  // }
+  for (let invitation of invitations) {
+    invitation.organizer = await getDocData(invitation.organizer);
+    invitation.origin = await getDocData(invitation?.origin);
+  }
   currUserData.invitations = invitations;
 
   // Orbits
