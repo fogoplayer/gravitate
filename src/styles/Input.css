@@ -107,6 +107,7 @@
 
   /* manipulation */
   transition: 0.25s linear max-height;
+  overflow-y: hidden;
 
   /* misc */
 }
