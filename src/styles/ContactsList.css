@@ -56,7 +56,6 @@
 
 .contacts-list > li > ul > li {
   border-top: 1px solid var(--theme-secondary-color);
-  line-height: 1em;
 }
 
 .contacts-list > li > ul > li,

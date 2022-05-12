@@ -5,6 +5,14 @@ import { getCurrUserData } from "../services/firebase/db.mjs";
 import { jsx } from "../services/render.mjs";
 import { getIcon } from "../services/firebase/storage.mjs";
 
+const reactions = {
+  "ON MY WAY": "🔜",
+  "RUNNING LATE": "🕜",
+  "CANT COME": "😢",
+  "NEXT TIME": "🗓",
+  "NOT INTERESTED": "❌",
+};
+
 export default function CreateAttraction() {
   let { attractions, systems, friends, invitations, ...rest } =
     getCurrUserData();
@@ -74,12 +82,13 @@ export default function CreateAttraction() {
   ${attractions.map((attraction) => {
     console.log(attraction);
     return jsx`
-  <li>
+  <li classList="attraction">
     <h3 classList="contact-header-container">
       ${getIcon(attraction.icon)}
       <span classList="contact-name">${attraction.name}</span>
-      ${AttractionDetails(attraction)}
+      ${AttractionInfo(attraction)}
     </h3>
+    ${AttractionDetails(attraction)}
   </li>
   `;
   })}
@@ -88,12 +97,33 @@ export default function CreateAttraction() {
     return html;
   }
 
-  function AttractionDetails(attraction) {
+  function AttractionInfo(attraction) {
     // Show expiration time if an invite
     if (attraction.organizer) {
-      return jsx`<span classList="attraction-details">until <span classList="expiration">${attraction.expiration}</span></span>`;
+      return jsx`<span classList="attraction-info">until <span classList="expiration">${attraction.expiration}</span></span>`;
     } else {
-      return jsx`<span classList="attraction-details"></span>`;
+      return jsx`<span classList="attraction-info"></span>`;
+    }
+  }
+
+  function AttractionDetails(attraction) {
+    // Invitation
+    if (attraction.organizer) {
+      return jsx`<section classList="attraction-details">
+  <fieldset classList="react">
+    <legend>React</legend>
+    ${Object.keys(reactions).map(
+      (reaction) => jsx`<label>
+      <input type="radio" name="reactions" value="${reaction}" />
+      <span classList="reaction">${reactions[reaction]}</span> </label
+    >`
+    )}
+  </fieldset>
+</section>
+`;
+      // Attraction
+    } else {
+      return "";
     }
   }
 }

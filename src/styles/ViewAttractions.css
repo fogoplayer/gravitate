@@ -16,3 +16,44 @@
 .view-attractions .contacts-list .contact-header-container .expiration {
   font-weight: 500;
 }
+
+.attraction {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1em;
+}
+
+.attraction-details .react {
+  all: unset;
+
+  /* display */
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  /* positioning */
+  /* box-model */
+  /* typography */
+  font-size: 2em;
+  color: var(--theme-secondary-color);
+
+  /* manipulation */
+  /* misc */
+}
+
+.attraction-details .react legend {
+  visibility: hidden;
+  max-height: 0;
+  max-width: 0;
+}
+
+.attraction-details .react .reaction {
+  font-family: "Noto Emoji";
+  padding: 0.125em;
+  border-radius: 0.25em;
+}
+
+.attraction-details .react input:checked + .reaction {
+  color: var(--theme-primary-color);
+  background-color: var(--theme-tertiary-color);
+}
