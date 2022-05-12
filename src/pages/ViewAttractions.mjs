@@ -78,7 +78,7 @@ export default function CreateAttraction() {
     <h3 classList="contact-header-container">
       ${getIcon(attraction.icon)}
       <span classList="contact-name">${attraction.name}</span>
-      ${AttractionOrganizer(attraction)}
+      ${AttractionDetails(attraction)}
     </h3>
   </li>
   `;
@@ -88,14 +88,12 @@ export default function CreateAttraction() {
     return html;
   }
 
-  function AttractionOrganizer(attraction) {
-    if (!attraction.organizer) return "";
-    console.log(attraction);
-
-    return jsx`<span classList="attraction-details">${
-      attraction.origin
-        ? jsx`by <span classList="organizer">${attraction.organizer.name}</span> in <span classList="organizer">${attraction.origin.name}</span>`
-        : jsx`by <span classList="organizer">${attraction.organizer.name}</span>`
-    }</span>`;
+  function AttractionDetails(attraction) {
+    // Show expiration time if an invite
+    if (attraction.organizer) {
+      return jsx`<span classList="attraction-details">until <span classList="expiration">${attraction.expiration}</span></span>`;
+    } else {
+      return jsx`<span classList="attraction-details"></span>`;
+    }
   }
 }
