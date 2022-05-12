@@ -3,6 +3,7 @@ import Input from "../components/Input.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { jsx } from "../services/render.mjs";
+import { getIcon } from "../services/firebase/storage.mjs";
 
 export default function CreateAttraction() {
   let { attractions, systems, friends, invitations, ...rest } =
@@ -69,21 +70,19 @@ export default function CreateAttraction() {
 `;
 
   function Template(attractions) {
-    const html = jsx`<ul></ul>`;
-    attractions.forEach(async (attraction) => {
-      html.append(jsx`<li>
+    const html = jsx`<ul>
+  ${attractions.map((attraction) => {
+    return jsx`
+  <li>
     <h3 classList="contact-header-container">
-      ${
-        (attraction.icon && attraction.icon[0]) === "/"
-          ? ""
-          : jsx`<span classList="contact-icon">${
-              attraction.icon || "🟣"
-            }</span>`
-      }
+      ${getIcon(attraction.icon)}
       <span classList="contact-name">${attraction.name}</span>
     </h3>
-  </li>`);
-    });
+  </li>
+  `;
+  })}
+</ul>
+`;
     return html;
   }
 }

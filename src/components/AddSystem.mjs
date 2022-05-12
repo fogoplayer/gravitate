@@ -6,6 +6,7 @@ import {
   systems,
   update,
 } from "../services/firebase/db.mjs";
+import { getIcon } from "../services/firebase/storage.mjs";
 import { append, jsx, renderPage } from "../services/render.mjs";
 import Input from "./Input.mjs";
 import Modal from "./Modal.mjs";
@@ -80,14 +81,8 @@ export default function AddSystem() {
       tabindex="0"
       required
     />
-    ${
-      (user.icon && user.icon[0]) === "/"
-        ? ""
-        : jsx`<span
-      classList="contact-icon"
-      >${user.icon || "🟣"}</span
-    >`
-    }<span classList="contact-name">${user.name}</span>
+    ${getIcon(user.icon)}
+    <span classList="contact-name">${user.name}</span>
   </label>
 </li>`;
   }

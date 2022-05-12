@@ -5,6 +5,7 @@ import createAttraction from "../services/attractions.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { afterUpdate } from "../services/firebase/db.mjs";
+import { getIcon } from "../services/firebase/storage.mjs";
 import { map } from "../services/mapbox.js";
 import { mapboxAPI } from "../services/mapbox.js";
 import { jsx, renderPage } from "../services/render.mjs";
@@ -88,11 +89,7 @@ export default function CreateAttraction() {
     <input type="checkbox" name="${name}" id="${contact.name}" value="${
         contact.name
       }" oninput=${onCheckboxInput} tabIndex=0/>
-    ${
-      (contact.icon && contact.icon[0]) === "/"
-        ? ""
-        : jsx`<span classList="contact-icon">${contact.icon || "🟣"}</span>`
-    }
+    ${getIcon(contact.icon)}
     <span classList="contact-name">${contact.name}</span>
   </label>
 </li>

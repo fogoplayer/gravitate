@@ -4,6 +4,7 @@ import {
   ref,
   uploadBytes,
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-storage.js";
+import { jsx } from "../render.mjs";
 import { app } from "./app.mjs";
 import { getCurrUserData, update } from "./db.mjs";
 
@@ -20,4 +21,16 @@ export async function uploadPFP(file) {
   );
   await uploadBytes(fileRef, file);
   update(getCurrUserData().ref, { icon: await getDownloadURL(fileRef) });
+}
+
+export function getIcon(icon) {
+  const HTTPS = "https://";
+
+  if (icon?.length) {
+    return jsx`<span classList="contact-icon">${icon}</span>`;
+  } else if (icon?.substring(0, HTTPS.length) === HTTPS) {
+    return jsx`<img src="${icon}" alt="User icon" />`;
+  } else {
+    return jsx`<span classList="contact-icon">🟣</span>`;
+  }
 }
