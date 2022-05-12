@@ -172,7 +172,6 @@ export async function loadUserData(user) {
     const systemRef = systems[system];
     systems[system] = await getDocData(systems[system]);
     systems[system].ref = systemRef;
-    console.log(systems[system]);
     for (let member = 0; member < systems[system].members.length; member++) {
       const memberRef = systems[system].members[member];
       systems[system].members[member] = await getDocData(
