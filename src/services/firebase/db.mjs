@@ -166,7 +166,7 @@ export async function loadUserData(user) {
   // Friends
   let friends = userDataDoc.friends;
   for (let friend = 0; friend < friends.length; friend++) {
-    friends[friend] = await getDocData(ref);
+    friends[friend] = await getDocData(friends[friend]);
   }
   currUserData.friends = friends;
 
