@@ -62,7 +62,7 @@ export function getCurrUserData() {
 
 export async function getDocData(ref) {
   const snap = await getDoc(ref);
-  return snap.data();
+  return Object.assign(snap.data(), { ref: ref });
 }
 
 export async function update(ref, data) {
@@ -118,11 +118,9 @@ export async function loadUserData(user) {
   currUserData.attractions = attractions.docs.map((doc) => doc.data());
   // for (let attraction = 0; attraction < attractions.length; attraction++) {
   //   for (let member = 0; member < attractions[attraction].members.length; member++) {
-  //     const ref = attractions[attraction].members[member];
   //     attractions[attraction].members[member] = await getDocData(
   //       attractions[attraction].members[member]
   //     );
-  //     attractions[attraction].members[member].ref = ref;
   //   }
   // }
 
@@ -132,11 +130,9 @@ export async function loadUserData(user) {
   invitations = invitations.docs.map((doc) => doc.data());
   // for (let invitation = 0; invitation < invitations.length; invitation++) {
   //   for (let member = 0; member < invitations[invitation].members.length; member++) {
-  //     const ref = invitations[invitation].members[member];
   //     invitations[invitation].members[member] = await getDocData(
   //       invitations[invitation].members[member]
   //     );
-  //     invitations[invitation].members[member].ref = ref;
   //   }
   // }
 
@@ -145,11 +141,9 @@ export async function loadUserData(user) {
   orbits = orbits.docs.map((doc) => doc.data());
   for (let orbit = 0; orbit < orbits.length; orbit++) {
     for (let member = 0; member < orbits[orbit].members.length; member++) {
-      const ref = orbits[orbit].members[member];
       orbits[orbit].members[member] = await getDocData(
         orbits[orbit].members[member]
       );
-      orbits[orbit].members[member].ref = ref;
     }
   }
   currUserData.orbits = orbits;
@@ -160,30 +154,26 @@ export async function loadUserData(user) {
   // Friends
   let friends = userDataDoc.friends;
   for (let friend = 0; friend < friends.length; friend++) {
-    const ref = friends[friend];
     friends[friend] = await getDocData(ref);
-    friends[friend].ref = ref;
   }
   currUserData.friends = friends;
 
   // Systems
   let systems = userDataDoc.systems;
   for (let system = 0; system < systems.length; system++) {
-    const systemRef = systems[system];
     systems[system] = await getDocData(systems[system]);
-    systems[system].ref = systemRef;
     for (let member = 0; member < systems[system].members.length; member++) {
-      const memberRef = systems[system].members[member];
       systems[system].members[member] = await getDocData(
         systems[system].members[member]
       );
-      systems[system].members[member].ref = memberRef;
     }
     currUserData.systems = systems;
   }
 
   funcForAfterUpdate();
   funcForAfterUpdate = () => {};
+
+  console.log(currUserData);
 
   return currUserData;
 }
