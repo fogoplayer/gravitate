@@ -88,8 +88,7 @@ export async function loadUserData(user) {
   // }
 
   // Orbits
-  let orbits = currUserData.orbits;
-  orbits = await getDocs(currUserData.orbitsRef);
+  let orbits = await getDocs(currUserData.orbitsRef);
   orbits = orbits.docs.map((doc) => doc.data());
   for (let orbit = 0; orbit < orbits.length; orbit++) {
     for (let member = 0; member < orbits[orbit].members.length; member++) {
@@ -100,6 +99,7 @@ export async function loadUserData(user) {
       orbits[orbit].members[member].ref = ref;
     }
   }
+  currUserData.orbits = orbits;
 
   // Data
   let userDataDoc = await getDocData(currUserData.dataDocRef);
@@ -133,7 +133,6 @@ export async function loadUserData(user) {
 }
 
 export function initDBWatchers() {
-  console.log(JSON.stringify(currUserData));
   onSnapshot(currUserData.ref, loadUserData);
   onSnapshot(currUserData.dataDocRef, loadUserData);
   onSnapshot(query(currUserData.attractionsRef), loadUserData);
