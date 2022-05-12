@@ -19,7 +19,7 @@ export default function CreateAttraction() {
 
   let timer;
 
-  return jsx`<div classList="ignore">
+  return jsx`<div class="ignore">
   <div id="map">Loading map...</div>
   <script>
     try{
@@ -50,7 +50,7 @@ export default function CreateAttraction() {
         newAttraction.name = e.target.value;
       },
     })}
-    <div classList="inline-inputs">
+    <div class="inline-inputs">
   ${Input({
     label: "Event Location",
     id: "event-location",
@@ -63,7 +63,7 @@ export default function CreateAttraction() {
     },
   })}
       <datalist id="location-options"></datalist>
-      <button classList="flat inline small" onclick=${useMyLocation} type="button">Use my location</button>
+      <button class="flat inline small" onclick=${useMyLocation} type="button">Use my location</button>
     </div>
     ${Input({
       label: "Expiration Time",
@@ -74,7 +74,7 @@ export default function CreateAttraction() {
       oninput: (e) => (newAttraction.expiration = e.target.value),
     })}
   ${ContactsList(ContactTemplate)}
-    <button id="submit-button" classList="primary">
+    <button id="submit-button" class="primary">
       Create attraction
       ${Spinner()}
     </button>
@@ -85,12 +85,12 @@ export default function CreateAttraction() {
     const html = jsx`<ul></ul>`;
     contacts.forEach(async (contact) => {
       html.append(jsx`<li>
-  <label classList="contact-header-container">
+  <label class="contact-header-container">
     <input type="checkbox" name="${name}" id="${contact.name}" value="${
         contact.name
       }" oninput=${onCheckboxInput} tabIndex=0/>
     ${getIcon(contact.icon)}
-    <span classList="contact-name">${contact.name}</span>
+    <span class="contact-name">${contact.name}</span>
   </label>
 </li>
 `);

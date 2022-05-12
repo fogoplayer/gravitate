@@ -36,10 +36,10 @@ export default function AddOrbit() {
     not be supported.
   </aside>
   <h2>Select members</h2>
-  <ul id="orbit-user-list" classList="user-list">${getCurrUserData().friends.map(
+  <ul id="orbit-user-list" class="user-list">${getCurrUserData().friends.map(
     (friend) => Template(friend)
   )}</ul>
-  <button classList="primary" id="add-orbit-button" onclick="${addOrbit}">
+  <button class="primary" id="add-orbit-button" onclick="${addOrbit}">
     Add orbits
   </button>
 </form>
@@ -62,7 +62,7 @@ export default function AddOrbit() {
 
   function Template(user) {
     return jsx`<li>
-  <label classList="contact-header-container">
+  <label class="contact-header-container">
     <input
       type="checkbox"
       name="added-orbits"
@@ -78,7 +78,7 @@ export default function AddOrbit() {
       tabindex="0"
       required
     />
-    ${getIcon(user.icon)}<span classList="contact-name">${user.name}</span>
+    ${getIcon(user.icon)}<span class="contact-name">${user.name}</span>
   </label>
 </li>`;
   }

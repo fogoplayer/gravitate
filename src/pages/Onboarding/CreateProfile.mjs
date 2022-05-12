@@ -9,10 +9,10 @@ import { uploadPFP } from "../../services/firebase/storage.mjs";
 import { jsx } from "../../services/render.mjs";
 
 export default function CreateProfile() {
-  return jsx`<main classList="main-bubble modal">
+  return jsx`<main class="main-bubble modal">
   <form onsubmit="${onSubmit}">
     <h1>Create your profile</h1>
-    <label classList="image-picker">
+    <label class="image-picker">
       <img src="${personImage()}" alt="Choose a profile picture" />
       ${Input({
         label: "Profile Picture",
@@ -31,7 +31,7 @@ export default function CreateProfile() {
       })}
     </label>
     ${Input({ label: "Username", id: "username" })}
-    <button classList="primary">Save</button>
+    <button class="primary">Save</button>
   </form>
 </main>
 `;

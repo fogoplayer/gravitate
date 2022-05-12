@@ -16,14 +16,14 @@ export default function AddFriend() {
   const modal = Modal({
     contents: jsx`<form>
   <h1>Add a Friend</h1>
-  <div classList="inline-inputs">
+  <div class="inline-inputs">
     ${Input({
       label: "Username",
       oninput: (e) => (searchValue = e.target.value),
       required: true,
     })}
-    <button classList="flat inline" onclick="${searchForFriends}">
-      <span classList="material-symbols-sharp">search</span>
+    <button class="flat inline" onclick="${searchForFriends}">
+      <span class="material-symbols-sharp">search</span>
     </button>
   </div>
 </form>
@@ -31,9 +31,9 @@ export default function AddFriend() {
   You need to know a user's precise username to add them as a friend. If you
   don't know their username, ask them to send you a share code.
 </aside>
-<form id="friend-user-list-container" classList="user-list empty">
-  <ul id="friend-user-list" classList="user-list"></ul>
-  <button classList="primary" id="add-friends" onclick=${addFriends}>Add friends</button>
+<form id="friend-user-list-container" class="user-list empty">
+  <ul id="friend-user-list" class="user-list"></ul>
+  <button class="primary" id="add-friends" onclick=${addFriends}>Add friends</button>
 </form>
 `,
     id: "add-friend",
@@ -66,7 +66,7 @@ export default function AddFriend() {
 
   function Template(user) {
     return jsx`<li>
-  <label classList="contact-header-container">
+  <label class="contact-header-container">
     <input
       type="checkbox"
       name="added-friends"
@@ -83,7 +83,7 @@ export default function AddFriend() {
       required
     />
     ${getIcon(user.icon)}
-    <span classList="contact-name">${user.name}</span>
+    <span class="contact-name">${user.name}</span>
   </label>
 </li>`;
   }

@@ -36,10 +36,10 @@ export default function AddSystem() {
     Icons are single characters, such as an emoji or a letter. Some emoji may not be supported.
   </aside>
   <h2>Select members</h2>
-  <ul classList="user-list">${getCurrUserData().friends.map((friend) =>
+  <ul class="user-list">${getCurrUserData().friends.map((friend) =>
     Template(friend)
   )}</ul>
-  <button classList="primary" onclick="${addSystem}">
+  <button class="primary" onclick="${addSystem}">
     Add system
   </button>
 </form>
@@ -65,7 +65,7 @@ export default function AddSystem() {
 
   function Template(user) {
     return jsx`<li>
-  <label classList="contact-header-container">
+  <label class="contact-header-container">
     <input
       type="checkbox"
       name="added-systems"
@@ -82,7 +82,7 @@ export default function AddSystem() {
       required
     />
     ${getIcon(user.icon)}
-    <span classList="contact-name">${user.name}</span>
+    <span class="contact-name">${user.name}</span>
   </label>
 </li>`;
   }

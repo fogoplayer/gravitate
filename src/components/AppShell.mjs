@@ -3,7 +3,7 @@ import { jsx } from "../services/render.mjs";
 export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
   return jsx`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
-<dialog classList="side-nav" onclick=${(e) => {
+<dialog class="side-nav" onclick=${(e) => {
     if (e.target === document.querySelector(".side-nav")) {
       e.preventDefault();
       hideAppDrawer();
@@ -12,64 +12,64 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
     <nav>
       <ol>
         <li>
-          <a href="/view-attractions" classList="nav-link" tabindex=0>
-            <span classList="material-symbols-sharp nav-icon">view_list</span>
-            <span classList="nav-title">Attractions</span>
+          <a href="/view-attractions" class="nav-link" tabindex=0>
+            <span class="material-symbols-sharp nav-icon">view_list</span>
+            <span class="nav-title">Attractions</span>
           </a>
         </li>
         <li>
-          <a href="/create-attraction" classList="nav-link" tabindex=0>
-            <span classList="material-symbols-sharp nav-icon">add</span>
-            <span classList="nav-title">Create Attraction</span>
+          <a href="/create-attraction" class="nav-link" tabindex=0>
+            <span class="material-symbols-sharp nav-icon">add</span>
+            <span class="nav-title">Create Attraction</span>
           </a>
         </li>
         <li>
-          <a href="/contacts" id="view-contacts" classList="nav-link" tabindex=0>
-            <span classList="material-symbols-sharp nav-icon">person</span>
-            <span classList="nav-title">Contacts</span>
+          <a href="/contacts" id="view-contacts" class="nav-link" tabindex=0>
+            <span class="material-symbols-sharp nav-icon">person</span>
+            <span class="nav-title">Contacts</span>
           </a>
         </li>
       </ol>
       <ol>
         <li>
-          <a href="/settings" classList="nav-link" tabindex=0>
-            <span classList="material-symbols-sharp nav-icon">settings</span>
-            <span classList="nav-title">Settings</span>
+          <a href="/settings" class="nav-link" tabindex=0>
+            <span class="material-symbols-sharp nav-icon">settings</span>
+            <span class="nav-title">Settings</span>
           </a>
         </li>
         <li>
-          <a href="" classList="nav-link" tabindex=0 onclick=${logOut}>
-            <span classList="material-symbols-sharp nav-icon">logout</span>
-            <span classList="nav-title">Log out</span>
+          <a href="" class="nav-link" tabindex=0 onclick=${logOut}>
+            <span class="material-symbols-sharp nav-icon">logout</span>
+            <span class="nav-title">Log out</span>
           </a>
         </li>
       </ol>
     </nav>
   </dialog>
-<header classList="app-header">
-  <button classList="menu-button" tabIndex=2 onclick=${showAppDrawer} }>
-    <div classList="material-symbols-sharp"> menu </div>
+<header class="app-header">
+  <button class="menu-button" tabIndex=2 onclick=${showAppDrawer} }>
+    <div class="material-symbols-sharp"> menu </div>
   </button>
-  <h1 classList="page-title">Gravitate</h1>
+  <h1 class="page-title">Gravitate</h1>
 </header>
-<main id="app-main" classList="app-main"></main>
-<footer classList="app-footer">
+<main id="app-main" class="app-main"></main>
+<footer class="app-footer">
   <nav>
-    <a href="/view-attractions" id="view-invites" classList="footer-link" tabIndex=3>
-      <span classList="material-symbols-sharp footer-icon">view_list</span>
-      <span classList="footer-title">Attractions</span>
+    <a href="/view-attractions" id="view-invites" class="footer-link" tabIndex=3>
+      <span class="material-symbols-sharp footer-icon">view_list</span>
+      <span class="footer-title">Attractions</span>
     </a>
     <a
       href="/create-attraction"
       id="view-create-event"
-      classList="footer-link fab"
+      class="footer-link fab"
       tabIndex=4
     >
-      <span classList="material-symbols-sharp footer-icon">add</span>
+      <span class="material-symbols-sharp footer-icon">add</span>
     </a>
-    <a href="/contacts" id="view-contacts" classList="footer-link"  tabIndex=5>
-      <span classList="material-symbols-sharp footer-icon">person</span>
-      <span classList="footer-title">Contacts</span>
+    <a href="/contacts" id="view-contacts" class="footer-link"  tabIndex=5>
+      <span class="material-symbols-sharp footer-icon">person</span>
+      <span class="footer-title">Contacts</span>
     </a>
   </nav>
 </footer>

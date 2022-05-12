@@ -5,9 +5,10 @@ export function render(type, props, ...children) {
   this[0] = 3;
   const newEl = document.createElement(type);
   for (const prop in props) {
-    try {
+    if (prop.substring(0, 2) === "on") {
+      console.log("use assign");
       Object.assign(newEl, { [prop]: props[prop] });
-    } catch {
+    } else {
       newEl.setAttribute(prop, props[prop]);
     }
   }

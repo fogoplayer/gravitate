@@ -12,9 +12,9 @@ function ContactsPageContact(contacts) {
   ${contacts.map(
     (contact) => jsx`
   <li>
-    <div classList="contact-header-container">
+    <div class="contact-header-container">
       ${getIcon(contact.icon)}
-      <span classList="contact-name">${contact.name}</span>
+      <span class="contact-name">${contact.name}</span>
     </div>
   </li>
   `

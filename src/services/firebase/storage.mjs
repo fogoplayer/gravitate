@@ -27,10 +27,10 @@ export function getIcon(icon) {
   const HTTPS = "https://";
 
   if (icon?.length) {
-    return jsx`<span classList="contact-icon">${icon}</span>`;
+    return jsx`<span class="contact-icon">${icon}</span>`;
   } else if (icon?.substring(0, HTTPS.length) === HTTPS) {
     return jsx`<img src="${icon}" alt="User icon" />`;
   } else {
-    return jsx`<span classList="contact-icon">🟣</span>`;
+    return jsx`<span class="contact-icon">🟣</span>`;
   }
 }

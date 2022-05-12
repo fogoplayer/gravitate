@@ -1,8 +1,8 @@
 import { jsx } from "../services/render.mjs";
 
 export default function Modal({ contents, ...props }) {
-  return jsx`<dialog classList="modal" onclick=${onClick} ...${props}>
-  <section classList="modal-contents">${contents}</section>
+  return jsx`<dialog class="modal" onclick=${onClick} ...${props}>
+  <section class="modal-contents">${contents}</section>
 </dialog>
 `;
 

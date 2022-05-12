@@ -3,19 +3,20 @@ import { jsx } from "../services/render.mjs";
 export default function Input({
   label,
   ref,
-  classList = "",
+  className = "",
   oninput = () => {},
   ...props
 }) {
-  classList = classList.concat(" text-input");
+  className = className.concat(" text-input");
+  console.log(oninput, onInput);
 
-  const input = jsx`<label classList="text-input-component">
-    <span classList="text-input-label">${label}</span>
-    <div classList="text-input-wrapper">
-      <input oninput=${onInput} classList=${classList} type="text" ...${props}/>
-      <button classList="show-hide-password" type="button" onclick=${showHidePassword}>
-        <span classList="material-symbols-sharp show-password">visibility</span>
-        <span classList="material-symbols-sharp hide-password">visibility_off</span>
+  const input = jsx`<label class="text-input-component">
+    <span class="text-input-label">${label}</span>
+    <div class="text-input-wrapper">
+      <input oninput="${onInput}" class=${className} type="text" ...${props}/>
+      <button class="show-hide-password" type="button" onclick=${showHidePassword}>
+        <span class="material-symbols-sharp show-password">visibility</span>
+        <span class="material-symbols-sharp hide-password">visibility_off</span>
       </button>
     </div>
   </label>
@@ -26,6 +27,7 @@ export default function Input({
   return input;
 
   function onInput(e) {
+    console.log("oninput");
     const target = e.target;
     if (target.value) target.parentNode.parentNode.classList.add("not-empty");
     else target.parentNode.parentNode.classList.remove("not-empty");

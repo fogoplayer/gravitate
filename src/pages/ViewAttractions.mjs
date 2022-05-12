@@ -24,7 +24,7 @@ export default function CreateAttraction() {
     else friendInvites.push(invite);
   });
 
-  return jsx`<div classList="ignore view-attractions">
+  return jsx`<div class="ignore view-attractions">
   <div id="map">Loading map...</div>
   <script>
     try{
@@ -43,33 +43,33 @@ export default function CreateAttraction() {
       });
     }catch{}
   </script>
-  <ul classList="contacts-list contacts-list">
-    <li classList="orbits-wrapper">
+  <ul class="contacts-list contacts-list">
+    <li class="orbits-wrapper">
       <h2>
-        <img src="./images/your-attractions.svg" alt="Your attractions icon" classList="header-icon" />
-        <span classList="header-text">Your Attractions</span>
+        <img src="./images/your-attractions.svg" alt="Your attractions icon" class="header-icon" />
+        <span class="header-text">Your Attractions</span>
       </h2>
       ${Template(attractions)}
     </li>
-    <li classList="systems-wrapper">
+    <li class="systems-wrapper">
       <h2>
         <img
           src="./images/system.svg"
           alt="Systems icon"
-          classList="header-icon"
+          class="header-icon"
         />
-        <span classList="header-text">Systems</span>
+        <span class="header-text">Systems</span>
       </h2>
       ${Template(systemInvites)}
     </li>
-    <li classList="friends-wrapper">
+    <li class="friends-wrapper">
       <h2>
         <img
           src="./images/friend.svg"
           alt="Friends icon"
-          classList="header-icon"
+          class="header-icon"
         />
-        <span classList="header-text">Friends</span>
+        <span class="header-text">Friends</span>
       </h2>
       ${Template(friendInvites)}
     </li>
@@ -82,10 +82,10 @@ export default function CreateAttraction() {
   ${attractions.map((attraction) => {
     console.log(attraction);
     return jsx`
-  <li classList="attraction">
-    <h3 classList="contact-header-container">
+  <li class="attraction">
+    <h3 class="contact-header-container">
       ${getIcon(attraction.icon)}
-      <span classList="contact-name">${attraction.name}</span>
+      <span class="contact-name">${attraction.name}</span>
       ${AttractionInfo(attraction)}
     </h3>
     ${AttractionDetails(attraction)}
@@ -100,23 +100,23 @@ export default function CreateAttraction() {
   function AttractionInfo(attraction) {
     // Show expiration time if an invite
     if (attraction.organizer) {
-      return jsx`<span classList="attraction-info">until <span classList="expiration">${attraction.expiration}</span></span>`;
+      return jsx`<span class="attraction-info">until <span class="expiration">${attraction.expiration}</span></span>`;
     } else {
-      return jsx`<span classList="attraction-info"></span>`;
+      return jsx`<span class="attraction-info"></span>`;
     }
   }
 
   function AttractionDetails(attraction) {
     // Invitation
     if (attraction.organizer) {
-      return jsx`<section classList="attraction-details">
+      return jsx`<section class="attraction-details">
   <h4>RSVP</h4>
-  <fieldset classList="react">
+  <fieldset class="react">
     <legend>RSVP</legend>
     ${Object.keys(reactions).map(
       (reaction) => jsx`<label>
       <input type="radio" name="reactions" value="${reaction}" />
-      <span classList="reaction" data-value="${reaction}">${reactions[reaction]}</span> </label
+      <span class="reaction" data-value="${reaction}">${reactions[reaction]}</span> </label
     >`
     )}
   </fieldset>
@@ -132,7 +132,7 @@ export default function CreateAttraction() {
     <tr>
       <th>System:</th>
       <td>
-        <span classList="noto">${attraction.origin.icon}</span>
+        <span class="noto">${attraction.origin.icon}</span>
         ${" " + attraction.origin.name}
       </td>
     </tr>

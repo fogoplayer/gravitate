@@ -6,7 +6,7 @@ import { jsx } from "../services/render.mjs";
 
 export default function SignUp() {
   let email, password;
-  return jsx`<main classList="main-bubble modal">
+  return jsx`<main class="main-bubble modal">
   <h1>Gravitate</h1>
   <form onsubmit=${submit}>
     ${Input({ label: "Email", id: "email", required: true })}
@@ -17,12 +17,12 @@ export default function SignUp() {
       required: true,
       classList: "password",
     })}
-    <button classList="primary">
+    <button class="primary">
       Sign up ${Spinner()}
     </button>
   </form>
   <div>
-    <a href="login" classList="button flat small">Log in</button>
+    <a href="login" class="button flat small">Log in</button>
   </div>
 </main>`;
   async function submit(e) {

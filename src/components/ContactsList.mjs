@@ -7,43 +7,43 @@ import AddSystem from "./AddSystem.mjs";
 
 export default function ContactsList(Template) {
   let { orbits, systems, friends, ...rest } = getCurrUserData();
-  let page = jsx`<ul classList="contacts-list contacts-list">
-  <li classList="orbits-wrapper">
+  let page = jsx`<ul class="contacts-list contacts-list">
+  <li class="orbits-wrapper">
     <h2>
-      <img src="./images/orbit.svg" alt="Orbit icon" classList="header-icon" />
-      <span classList="header-text">Orbits</span>
-      <button type="button" classList="header-btn" onclick="${showAddOrbit}">
-        <span classList="material-symbols-sharp">add</span>
+      <img src="./images/orbit.svg" alt="Orbit icon" class="header-icon" />
+      <span class="header-text">Orbits</span>
+      <button type="button" class="header-btn" onclick="${showAddOrbit}">
+        <span class="material-symbols-sharp">add</span>
       </button>
     </h2>
     ${Template(orbits, "orbits")}
   </li>
   ${AddOrbit()}
-  <li classList="systems-wrapper">
+  <li class="systems-wrapper">
     <h2>
       <img
         src="./images/system.svg"
         alt="Systems icon"
-        classList="header-icon"
+        class="header-icon"
       />
-      <span classList="header-text">Systems</span>
-      <button type="button" classList="header-btn" onclick="${showAddSystem}">
-        <span classList="material-symbols-sharp">add</span>
+      <span class="header-text">Systems</span>
+      <button type="button" class="header-btn" onclick="${showAddSystem}">
+        <span class="material-symbols-sharp">add</span>
       </button>
     </h2>
     ${AddSystem()}
     ${Template(systems, "systems")}
   </li>
-  <li classList="friends-wrapper">
+  <li class="friends-wrapper">
     <h2>
       <img
         src="./images/friend.svg"
         alt="Friends icon"
-        classList="header-icon"
+        class="header-icon"
       />
-      <span classList="header-text">Friends</span>
-      <button type="button" classList="header-btn" onclick="${showAddFriend}">
-        <span classList="material-symbols-sharp">add</span>
+      <span class="header-text">Friends</span>
+      <button type="button" class="header-btn" onclick="${showAddFriend}">
+        <span class="material-symbols-sharp">add</span>
       </button>
     </h2>
     ${AddFriend()} ${Template(friends, "friends")}

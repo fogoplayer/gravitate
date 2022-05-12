@@ -17,7 +17,7 @@ import Onboarding from "./pages/Onboarding/index.js";
 // immediately show loading spinner
 append(
   document.body,
-  jsx`<div classList="login-spinner">
+  jsx`<div class="login-spinner">
     ${Spinner()}
     <div>Checking login status...</div>
   </div>`
