@@ -7,8 +7,25 @@ export default function Contacts() {
 }
 
 function ContactsPageContact(contacts) {
-  const html = jsx`<ul>${contacts.map(
-    (contact) => jsx`<li>${contact.name}</li>`
-  )}</ul>`;
+  const html = jsx`<ul>
+  ${contacts.map(
+    (contact) => jsx`
+  <li>
+    <div classList="contact-header-container">
+      ${
+        (contact.icon && contact.icon[0]) === "/"
+          ? ""
+          : jsx`<span
+        classList="contact-icon"
+        >${contact.icon || "🟣"}</span
+      >`
+      }
+      <span classList="contact-name">${contact.name}</span>
+    </div>
+  </li>
+  `
+  )}
+</ul>
+`;
   return html;
 }

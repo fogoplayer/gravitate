@@ -93,6 +93,7 @@
   line-height: 1.3333em;
   font-size: 1.5em;
   padding-inline: 0.35rem;
+  min-width: 1.73em;
 }
 
 .contact-header-container .contact-name {
