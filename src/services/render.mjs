@@ -6,7 +6,6 @@ export function render(type, props, ...children) {
   const newEl = document.createElement(type);
   for (const prop in props) {
     if (prop.substring(0, 2) === "on") {
-      console.log("use assign");
       Object.assign(newEl, { [prop]: props[prop] });
     } else {
       newEl.setAttribute(prop, props[prop]);

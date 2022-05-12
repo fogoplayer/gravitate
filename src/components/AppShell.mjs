@@ -8,7 +8,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
       e.preventDefault();
       hideAppDrawer();
     }
-  }} tabindex = -1>
+  }} tabindex=-1>
     <nav>
       <ol>
         <li>
@@ -47,7 +47,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
     </nav>
   </dialog>
 <header class="app-header">
-  <button class="menu-button" tabIndex=2 onclick=${showAppDrawer} }>
+  <button class="menu-button" tabIndex=2 onclick=${showAppDrawer}>
     <div class="material-symbols-sharp"> menu </div>
   </button>
   <h1 class="page-title">Gravitate</h1>
