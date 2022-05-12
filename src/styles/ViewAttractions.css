@@ -67,18 +67,45 @@
 }
 
 .attraction-details .react .reaction {
+  display: inline-block;
   font-family: "Noto Emoji";
   padding: 0.125em;
+  margin-bottom: 0.75em;
   border-radius: 0.25em;
+  position: relative;
 }
 
 .attraction-details .react .reaction::after {
   content: attr(data-value);
+
+  /* display */
+  display: none;
+
+  /* positioning */
+  position: absolute;
+  left: 50%;
+  top: 3.25em;
+  transform: translateX(-50%);
+
+  /* box-model */
+  width: max-content;
+
+  /* typography */
+  font-family: var(--font-family);
+  font-size: 0.5em;
+  text-transform: capitalize;
+
+  /* manipulation */
+  /* misc */
 }
 
 .attraction-details .react input:checked + .reaction {
   color: var(--theme-primary-color);
   background-color: var(--theme-tertiary-color);
+}
+
+.attraction-details .react input:checked + .reaction::after {
+  display: block;
 }
 
 .attraction-details table {

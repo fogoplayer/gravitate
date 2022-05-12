@@ -9,7 +9,7 @@ const reactions = {
   "ON MY WAY": "🔜",
   "RUNNING LATE": "🕜",
   "CAN'T COME": "😢",
-  "I'LL BE THERE NEXT TIME": "🗓",
+  "BE THERE NEXT TIME": "🗓",
   "NOT INTERESTED": "❌",
 };
 
