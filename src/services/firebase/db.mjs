@@ -1,6 +1,7 @@
 import { app } from "./app.mjs";
 import {
   arrayUnion,
+  addDoc as addDocToDB,
   setDoc,
   getFirestore,
   collection,
@@ -13,7 +14,6 @@ import {
   onSnapshot,
   enableIndexedDbPersistence,
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
-export { addDoc } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
 
 const db = getFirestore(app);
 const users = collection(db, "users");
@@ -63,6 +63,13 @@ export function getCurrUserData() {
 export async function getDocData(ref) {
   const snap = await getDoc(ref);
   return Object.assign(snap.data(), { ref: ref });
+}
+
+export async function addDoc(path, data) {
+  if (typeof path === "string") {
+    path = collection(db, path);
+  }
+  addDocToDB(path, data);
 }
 
 export async function update(ref, data) {

@@ -8,7 +8,6 @@ import { getDocData } from "../services/firebase/db.mjs";
 import { map } from "../services/mapbox.js";
 import { mapboxAPI } from "../services/mapbox.js";
 import { jsx } from "../services/render.mjs";
-import { Attraction } from "../services/structures.mjs";
 
 const newAttraction = {
   orbits: new Set(),
@@ -111,6 +110,8 @@ async function useMyLocation() {
       .querySelector("#event-location")
       .parentNode.parentNode.classList.add("not-empty");
     map?.panTo([coords.longitude, coords.latitude]);
+
+    newAttraction.location = address.place_name;
   });
 }
 
@@ -153,7 +154,8 @@ async function onSubmit(e) {
   try {
     e.preventDefault();
     e.submitter.classList.add("loading");
+    console.log(newAttraction);
     await createAttraction(newAttraction);
-    page("view-attractions");
+    // page("view-attractions");
   } catch (error) {}
 }

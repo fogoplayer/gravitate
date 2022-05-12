@@ -1,4 +1,4 @@
-import { push } from "./firebase/db.mjs";
+import { addDoc, push } from "./firebase/db.mjs";
 import { getDocData } from "./firebase/db.mjs";
 import { getCurrUserData } from "./firebase/db.mjs";
 import { update } from "./firebase/db.mjs";
@@ -11,7 +11,7 @@ async function saveAttraction(attraction) {
   attraction = await prepAttractionForFirebase(attraction);
 
   const { ref } = getCurrUserData();
-  await update(ref, { attractions: push(attraction) });
+  addDoc(ref.path + "/attractions", attraction);
 }
 
 async function prepAttractionForFirebase(attraction) {
@@ -75,5 +75,6 @@ async function sendInvites(attraction) {
 }
 
 export async function sendInvite(invitation, person) {
-  update(person.ref, { invitations: push(invitation) });
+  console.log(person.ref.path + "/invitations", invitation);
+  addDoc(person.ref.path + "/invitations", invitation);
 }
