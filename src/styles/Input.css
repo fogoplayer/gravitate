@@ -112,8 +112,8 @@
   /* misc */
 }
 
-.text-input-component .password ~ .show-hide-password:focus {
-  color: initial;
+.text-input-component .password ~ .show-hide-password:focus span {
+  color: var(--theme-secondary-color);
 }
 
 .text-input-component .password ~ .show-hide-password .show-password,
