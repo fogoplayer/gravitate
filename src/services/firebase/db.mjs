@@ -106,8 +106,8 @@ export async function loadUserData(user) {
 
   Object.assign(currUserData, {
     dataDocRef: doc(db, `users/${user.uid}/data`, "data"),
-    attractionsRef: collection(db, `users/${user.uid}/invitations`),
-    invitationsRef: collection(db, `users/${user.uid}/attractions`),
+    attractionsRef: collection(db, `users/${user.uid}/attractions`),
+    invitationsRef: collection(db, `users/${user.uid}/invitations`),
     orbitsRef: collection(db, `users/${user.uid}/orbits`),
     ref: ref,
     uid: user.uid,
