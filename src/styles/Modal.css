@@ -38,6 +38,12 @@
   color: var(--theme-primary-color);
 }
 
+.modal h2 {
+  font: inherit;
+  font-size: 1.4em;
+  color: var(--theme-primary-color);
+}
+
 .modal .modal-contents .search-results.empty {
   display: none;
 }

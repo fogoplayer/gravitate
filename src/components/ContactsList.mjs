@@ -2,6 +2,7 @@ import { getCurrentUser } from "../services/firebase/auth.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { append, jsx } from "../services/render.mjs";
 import AddFriend from "./AddFriend.mjs";
+import AddOrbit from "./AddOrbit.mjs";
 
 export default function ContactsList(Template) {
   let { orbits, systems, friends, ...rest } = getCurrUserData();
@@ -10,9 +11,13 @@ export default function ContactsList(Template) {
     <h2>
       <img src="./images/orbit.svg" alt="Orbit icon" classList="header-icon" />
       <span classList="header-text">Orbits</span>
+      <button classList="header-btn" onclick=${showAddOrbit}>
+        <span classList="material-symbols-sharp">add</span>
+      </button>
     </h2>
     ${Template(orbits, "orbits")}
   </li>
+  ${AddOrbit()}
   <li classList="systems-wrapper">
     <h2>
       <img
@@ -45,5 +50,9 @@ export default function ContactsList(Template) {
 
   function showAddFriend() {
     document.querySelector("#add-friend").showModal();
+  }
+
+  function showAddOrbit() {
+    document.querySelector("#add-orbit").showModal();
   }
 }
