@@ -1,6 +1,6 @@
 .image-picker {
   /* display */
-  display: flex;
+  display: contents;
   flex-flow: column nowrap;
   align-items: center;
 
@@ -17,29 +17,18 @@
   /* box-model */
   border-radius: 50%;
   border: 1px solid var(--theme-secondary-color);
-  width: 10em;
-  max-height: 10em;
+  width: 5em;
+  max-height: 5em;
   aspect-ratio: 1/1;
 
   /* typography */
-  color: var(--dark-text);
-  font-size: 0.5em;
-  line-height: 100%;
-  text-align: center;
-
   /* manipulation */
+  object-fit: cover;
+
   /* misc */
 }
 
 .image-picker:focus-within img {
   border-color: var(--theme-primary-color);
   box-shadow: 0 0 0 0.25em var(--theme-primary-color);
-}
-
-.image-picker .text-input-component {
-  visibility: hidden;
-  max-width: 0;
-  min-width: 0;
-  max-height: 0;
-  min-height: 0;
 }

@@ -13,9 +13,7 @@ export default function CreateProfile() {
   <form onsubmit="${onSubmit}">
     <h1>Create your profile</h1>
     <label classList="image-picker">
-      <img src="${
-        getCurrUserData.icon || personImage()
-      }" alt="Choose a profile picture" />
+      <img src="${personImage()}" alt="Choose a profile picture" />
       ${Input({
         label: "Profile Picture",
         id: "profile picture",

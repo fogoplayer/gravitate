@@ -20,6 +20,7 @@
 .main-bubble {
   padding: 2em;
   box-shadow: none;
+  color: var(--dark-text);
 }
 
 .main-bubble form {
