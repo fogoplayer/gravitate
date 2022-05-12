@@ -17,18 +17,30 @@
   font-weight: 500;
 }
 
-.attraction,
-.attraction-details {
+.attraction {
   display: flex;
   flex-flow: column nowrap;
   gap: 0.5em;
 }
 
 .attraction-details {
-  display: flex;
+  display: none;
   flex-flow: column nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 0.5em;
+  overflow: hidden;
+  transition: 0.25s max-height;
+}
+
+.attraction-details.transitioning {
+  display: flex;
+  max-height: 0;
+}
+
+.attraction-details.open {
+  display: flex;
+  max-height: 14em;
 }
 
 .attraction-details h4 {

@@ -83,7 +83,7 @@ export default function CreateAttraction() {
     console.log(attraction);
     return jsx`
   <li class="attraction">
-    <h3 class="contact-header-container">
+    <h3 class="contact-header-container" onclick=${toggleDetails}>
       ${getIcon(attraction.icon)}
       <span class="contact-name">${attraction.name}</span>
       ${AttractionInfo(attraction)}
@@ -158,6 +158,17 @@ export default function CreateAttraction() {
       // Attraction
     } else {
       return "";
+    }
+  }
+
+  function toggleDetails(e) {
+    let sibling = e.currentTarget.nextSibling;
+    if (sibling.classList.contains("open")) {
+      sibling.classList.replace("open", "transitioning");
+      setTimeout(() => sibling.classList.remove("transitioning"), 250);
+    } else {
+      sibling.classList.add("transitioning");
+      setTimeout(() => sibling.classList.replace("transitioning", "open"), 1);
     }
   }
 }
