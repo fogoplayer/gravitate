@@ -132,16 +132,21 @@ export async function loadUserData(user) {
   // }
 
   // Invitations
-  let invitations = currUserData.invitations;
-  invitations = await getDocs(currUserData.invitationsRef);
+  let invitations = await getDocs(currUserData.invitationsRef);
   invitations = invitations.docs.map((doc) => doc.data());
+  console.log(invitations);
   // for (let invitation = 0; invitation < invitations.length; invitation++) {
-  //   for (let member = 0; member < invitations[invitation].members.length; member++) {
+  //   for (
+  //     let member = 0;
+  //     member < invitations[invitation]?.members.length;
+  //     member++
+  //   ) {
   //     invitations[invitation].members[member] = await getDocData(
   //       invitations[invitation].members[member]
   //     );
   //   }
   // }
+  currUserData.invitations = invitations;
 
   // Orbits
   let orbits = await getDocs(currUserData.orbitsRef);
