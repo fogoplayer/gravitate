@@ -156,6 +156,7 @@ export async function loadUserData(user) {
 
   // Data
   let userDataDoc = await getDocData(currUserData.dataDocRef);
+
   // Friends
   let friends = userDataDoc.friends;
   for (let friend = 0; friend < friends.length; friend++) {
@@ -166,12 +167,12 @@ export async function loadUserData(user) {
   currUserData.friends = friends;
 
   // Systems
-  let systems = currUserData.systems;
-  systems = userDataDoc.systems;
+  let systems = userDataDoc.systems;
   for (let system = 0; system < systems.length; system++) {
     const systemRef = systems[system];
     systems[system] = await getDocData(systems[system]);
     systems[system].ref = systemRef;
+    console.log(systems[system]);
     for (let member = 0; member < systems[system].members.length; member++) {
       const memberRef = systems[system].members[member];
       systems[system].members[member] = await getDocData(
@@ -179,6 +180,7 @@ export async function loadUserData(user) {
       );
       systems[system].members[member].ref = memberRef;
     }
+    currUserData.systems = systems;
   }
 
   funcForAfterUpdate();
