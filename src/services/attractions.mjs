@@ -54,27 +54,36 @@ async function prepAttractionForFirebase(attraction) {
 async function sendInvites(attraction) {
   let { orbits, systems, friends, ...invitation } = attraction;
   let { ref } = getCurrUserData();
+  const namesInvited = new Set();
   invitation.organizer = ref;
-
-  orbits.forEach((orbit) => {
-    orbit.members?.forEach((person) => {
-      sendInvite(invitation, person);
-    });
-  });
-
-  friends.forEach((person) => {
-    sendInvite(invitation, person);
-  });
 
   systems.forEach((system) => {
     system.members?.forEach((person) => {
       invitation.origin = system.ref;
-      sendInvite(invitation, person);
+      if (!namesInvited.has(person.name)) {
+        sendInvite(invitation, person);
+        namesInvited.add(person.name);
+      }
     });
+  });
+
+  orbits.forEach((orbit) => {
+    orbit.members?.forEach((person) => {
+      if (!namesInvited.has(person.name)) {
+        sendInvite(invitation, person);
+        namesInvited.add(person.name);
+      }
+    });
+  });
+
+  friends.forEach((person) => {
+    if (!namesInvited.has(person.name)) {
+      sendInvite(invitation, person);
+      namesInvited.add(person.name);
+    }
   });
 }
 
 export async function sendInvite(invitation, person) {
-  console.log(person.ref.path + "/invitations", invitation);
   addDoc(person.ref.path + "/invitations", invitation);
 }
