@@ -13,7 +13,7 @@ import {
   onSnapshot,
   enableIndexedDbPersistence,
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
-import { authStateChanged } from "./auth.mjs";
+export { addDoc } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
 
 const db = getFirestore(app);
 const users = collection(db, "users");

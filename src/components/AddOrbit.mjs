@@ -1,4 +1,5 @@
 import {
+  addDoc,
   getCurrUserData,
   push,
   update,
@@ -48,12 +49,11 @@ export default function AddOrbit() {
 
   async function addOrbit(e) {
     e.preventDefault();
-    console.log({ name, icon, members: Array.from(members) });
-    // await update(getCurrUserData().dataDocRef, {
-    //   orbits: push(...Array.from(neworbits)),
-    // });
-    // renderPage(window.location.pathname);
-    // modal.close();
+    await addDoc(getCurrUserData().orbitsRef, {
+      name,
+      icon,
+      members: Array.from(members),
+    });
   }
 
   function Template(user) {
