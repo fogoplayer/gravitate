@@ -13,7 +13,6 @@ export async function uploadPFP(file) {
   if (!file) {
     return false;
   }
-  console.log(file);
   const extension = file.name.split(".").at(-1);
   const fileRef = ref(
     storage,

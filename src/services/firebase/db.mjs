@@ -134,7 +134,6 @@ export async function loadUserData(user) {
   // Invitations
   let invitations = await getDocs(currUserData.invitationsRef);
   invitations = invitations.docs.map((doc) => doc.data());
-  console.log(invitations);
   // for (let invitation = 0; invitation < invitations.length; invitation++) {
   //   for (
   //     let member = 0;
@@ -184,8 +183,6 @@ export async function loadUserData(user) {
 
   funcForAfterUpdate();
   funcForAfterUpdate = () => {};
-
-  console.log(currUserData);
 
   return currUserData;
 }
