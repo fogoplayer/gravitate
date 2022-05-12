@@ -20,6 +20,7 @@ const users = collection(db, "users");
 const systems = collection(db, "systems");
 
 let currUserData = {};
+let funcForAfterUpdate = () => {};
 
 export async function createUserData(userCredential) {
   const uid = userCredential.user.uid;
@@ -33,6 +34,58 @@ export async function createUserData(userCredential) {
     systems: [],
     friends: [],
   });
+}
+
+export function initDBWatchers() {
+  onSnapshot(currUserData.ref, loadUserData);
+  onSnapshot(currUserData.dataDocRef, loadUserData);
+  onSnapshot(query(currUserData.attractionsRef), loadUserData);
+  onSnapshot(query(currUserData.invitationsRef), loadUserData);
+  onSnapshot(query(currUserData.orbitsRef), loadUserData);
+}
+
+enableIndexedDbPersistence(db).catch((err) => {
+  if (err.code == "failed-precondition") {
+    // Multiple tabs open, persistence can only be enabled
+    // in one tab at a a time.
+    // ...
+  } else if (err.code == "unimplemented") {
+    // The current browser does not support all of the
+    // features required to enable persistence
+    // ...
+  }
+});
+
+export function getCurrUserData() {
+  return currUserData;
+}
+
+export async function getDocData(ref) {
+  const snap = await getDoc(ref);
+  return snap.data();
+}
+
+export async function update(ref, data) {
+  return await updateDoc(ref, data);
+}
+
+export function push(data) {
+  return arrayUnion(data);
+}
+
+export function afterUpdate(func) {
+  funcForAfterUpdate = func;
+}
+
+export async function usernameSearch(username) {
+  const q = query(users, where("name", "==", username));
+  let docs = await getDocs(q);
+  let datas = [];
+  docs.forEach((doc) => {
+    let data = doc.data();
+    datas.push({ ...data, ref: doc.ref });
+  });
+  return datas;
 }
 
 export async function loadUserData(user) {
@@ -128,54 +181,8 @@ export async function loadUserData(user) {
     }
   }
 
-  console.log(currUserData);
+  funcForAfterUpdate();
+  funcForAfterUpdate = () => {};
+
   return currUserData;
-}
-
-export function initDBWatchers() {
-  onSnapshot(currUserData.ref, loadUserData);
-  onSnapshot(currUserData.dataDocRef, loadUserData);
-  onSnapshot(query(currUserData.attractionsRef), loadUserData);
-  onSnapshot(query(currUserData.invitationsRef), loadUserData);
-  onSnapshot(query(currUserData.orbitsRef), loadUserData);
-}
-
-enableIndexedDbPersistence(db).catch((err) => {
-  if (err.code == "failed-precondition") {
-    // Multiple tabs open, persistence can only be enabled
-    // in one tab at a a time.
-    // ...
-  } else if (err.code == "unimplemented") {
-    // The current browser does not support all of the
-    // features required to enable persistence
-    // ...
-  }
-});
-
-export function getCurrUserData() {
-  return currUserData;
-}
-
-export async function getDocData(ref) {
-  const snap = await getDoc(ref);
-  return snap.data();
-}
-
-export async function update(ref, data) {
-  return await updateDoc(ref, data);
-}
-
-export function push(data) {
-  return arrayUnion(data);
-}
-
-export async function usernameSearch(username) {
-  const q = query(users, where("name", "==", username));
-  let docs = await getDocs(q);
-  let datas = [];
-  docs.forEach((doc) => {
-    let data = doc.data();
-    datas.push({ ...data, ref: doc.ref });
-  });
-  return datas;
 }

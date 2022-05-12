@@ -1,5 +1,6 @@
 import {
   addDoc,
+  afterUpdate,
   getCurrUserData,
   push,
   update,
@@ -54,6 +55,8 @@ export default function AddOrbit() {
       icon,
       members: Array.from(members),
     });
+    afterUpdate(() => renderPage(window.location.pathname));
+    modal.close();
   }
 
   function Template(user) {
