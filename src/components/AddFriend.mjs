@@ -9,13 +9,18 @@ import Input from "./Input.mjs";
 import Modal from "./Modal.mjs";
 
 export default function AddFriend() {
+  let searchValue;
   let newFriends = new Set();
 
   const modal = Modal({
     contents: jsx`<form>
   <h1>Add a Friend</h1>
   <div classList="inline-inputs">
-    ${Input({ label: "Username", id: "friend-search-value", required: true })}
+    ${Input({
+      label: "Username",
+      oninput: (e) => (searchValue = e.target.value),
+      required: true,
+    })}
     <button classList="flat inline" onclick="${searchForFriends}">
       <span classList="material-symbols-sharp">search</span>
     </button>
@@ -38,9 +43,7 @@ export default function AddFriend() {
   async function searchForFriends(e) {
     e.preventDefault();
 
-    let users = await usernameSearch(
-      document.querySelector("#friend-search-value").value
-    );
+    let users = await usernameSearch(searchValue);
 
     let options = users.map((user) => {
       return Template(user);
