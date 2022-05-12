@@ -30,8 +30,8 @@ export default function AddFriend() {
   You need to know a user's precise username to add them as a friend. If you
   don't know their username, ask them to send you a share code.
 </aside>
-<form id="friend-search-results-container" classList="search-results empty">
-  <ul id="friend-search-results" classList="search-results"></ul>
+<form id="friend-user-list-container" classList="user-list empty">
+  <ul id="friend-user-list" classList="user-list"></ul>
   <button classList="primary" id="add-friends" onclick=${addFriends}>Add friends</button>
 </form>
 `,
@@ -48,9 +48,9 @@ export default function AddFriend() {
     let options = users.map((user) => {
       return Template(user);
     });
-    append(document.querySelector("#friend-search-results"), options);
+    append(document.querySelector("#friend-user-list"), options);
     document
-      .querySelector("#friend-search-results-container")
+      .querySelector("#friend-user-list-container")
       .classList.remove("empty");
   }
 

@@ -86,7 +86,7 @@ aside {
   /* misc */
 }
 
-.search-results {
+.user-list {
   /* display */
   /* positioning */
   /* box-model */
@@ -98,11 +98,11 @@ aside {
   list-style: none;
 }
 
-.search-results li {
+.user-list li {
   padding: 0.5rem;
 }
 
-.search-results li + li {
+.user-list li + li {
   padding: 0.5rem;
   border: 1px solid var(--theme-secondary-color);
 }

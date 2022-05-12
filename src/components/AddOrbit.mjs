@@ -35,7 +35,7 @@ export default function AddOrbit() {
     not be supported.
   </aside>
   <h2>Select members</h2>
-  <ul id="orbit-search-results" classList="search-results">${getCurrUserData().friends.map(
+  <ul id="orbit-user-list" classList="user-list">${getCurrUserData().friends.map(
     (friend) => Template(friend)
   )}</ul>
   <button classList="primary" id="add-orbit-button" onclick="${addOrbit}">
