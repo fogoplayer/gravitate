@@ -15,27 +15,51 @@ async function saveAttraction(attraction) {
 }
 
 async function prepAttractionForFirebase(attraction) {
+  const guestNames = new Set();
+
   // Convert sets to arrays
   attraction.orbits = Array.from(attraction.orbits);
   attraction.systems = Array.from(attraction.systems);
   attraction.friends = Array.from(attraction.friends);
+  attraction.guestList = [];
+
+  console.log("start prep");
 
   // Convert to references
   for (let orbit of attraction.orbits) {
     for (let member of orbit.members) {
+      if (!guestNames.has(member.name)) {
+        guestNames.add(member.name);
+        attraction.guestList.push(member.ref);
+      }
       member = member.ref;
     }
+    console.log("got all members");
   }
+
+  console.log("Orbits complete");
 
   for (let system of attraction.systems) {
     for (let member of system.members) {
+      if (!guestNames.has(member.name)) {
+        guestNames.add(member.name);
+        attraction.guestList.push(member.ref);
+      }
       member = member.ref;
     }
   }
 
+  console.log("systems complete");
+
   for (let friend of attraction.friends) {
+    if (!guestNames.has(friend.name)) {
+      guestNames.add(friend.name);
+      attraction.guestList.push(friend.ref);
+    }
     friend = friend.ref;
   }
+
+  console.log("friends complete");
 
   return attraction;
 }
@@ -46,9 +70,9 @@ async function sendInvites(attraction) {
   const namesInvited = new Set();
   invitation.organizer = ref;
 
-  for (const system of systems) {
+  for (let system of systems) {
     invitation.origin = system.ref;
-    for (const member of system.members) {
+    for (let member of system.members) {
       if (!namesInvited.has(member.name)) {
         sendInvite(invitation, member);
         namesInvited.add(member.name);
@@ -56,8 +80,10 @@ async function sendInvites(attraction) {
     }
   }
 
-  for (const orbit of orbits) {
-    for (const person of orbit.members) {
+  console.log("systems invited");
+
+  for (let orbit of orbits) {
+    for (let person of orbit.members) {
       if (!namesInvited.has(person.name)) {
         sendInvite(invitation, person);
         namesInvited.add(person.name);
@@ -65,12 +91,16 @@ async function sendInvites(attraction) {
     }
   }
 
-  for (const person of friends) {
+  console.log("orbits invited");
+
+  for (let person of friends) {
     if (!namesInvited.has(person.name)) {
       sendInvite(invitation, person);
       namesInvited.add(person.name);
     }
   }
+
+  console.log("friends invited");
 }
 
 export async function sendInvite(invitation, person) {
