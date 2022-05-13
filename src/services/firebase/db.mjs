@@ -14,6 +14,7 @@ import {
   onSnapshot,
   enableIndexedDbPersistence,
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
+import { parseGroups, parseIndividuals } from "./db-loadData.mjs";
 
 const db = getFirestore(app);
 const users = collection(db, "users");
@@ -152,37 +153,18 @@ export async function loadUserData(user) {
 
   // Orbits
   let orbits = await getDocs(currUserData.orbitsRef);
-  orbits = orbits.docs.map((doc) => doc.data());
-  for (let orbit = 0; orbit < orbits.length; orbit++) {
-    for (let member = 0; member < orbits[orbit].members.length; member++) {
-      orbits[orbit].members[member] = await getDocData(
-        orbits[orbit].members[member]
-      );
-    }
-  }
-  currUserData.orbits = orbits;
+  currUserData.orbits = await parseGroups(orbits.docs);
 
   // Data
   let userDataDoc = await getDocData(currUserData.dataDocRef);
 
   // Friends
   let friends = userDataDoc.friends;
-  for (let friend = 0; friend < friends.length; friend++) {
-    friends[friend] = await getDocData(friends[friend]);
-  }
-  currUserData.friends = friends;
+  currUserData.friends = await parseIndividuals(friends);
 
   // Systems
   let systems = userDataDoc.systems;
-  for (let system = 0; system < systems.length; system++) {
-    systems[system] = await getDocData(systems[system]);
-    for (let member = 0; member < systems[system].members.length; member++) {
-      systems[system].members[member] = await getDocData(
-        systems[system].members[member]
-      );
-    }
-    currUserData.systems = systems;
-  }
+  currUserData.systems = await parseGroups(systems);
 
   funcForAfterUpdate();
   funcForAfterUpdate = () => {};
