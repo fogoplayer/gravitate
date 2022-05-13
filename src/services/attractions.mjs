@@ -23,8 +23,6 @@ async function prepAttractionForFirebase(attraction) {
   attraction.friends = Array.from(attraction.friends);
   attraction.guestList = [];
 
-  console.log("start prep");
-
   // Convert to references
   for (let orbit of attraction.orbits) {
     for (let member of orbit.members) {
@@ -34,10 +32,7 @@ async function prepAttractionForFirebase(attraction) {
       }
       member = member.ref;
     }
-    console.log("got all members");
   }
-
-  console.log("Orbits complete");
 
   for (let system of attraction.systems) {
     for (let member of system.members) {
@@ -49,8 +44,6 @@ async function prepAttractionForFirebase(attraction) {
     }
   }
 
-  console.log("systems complete");
-
   for (let friend of attraction.friends) {
     if (!guestNames.has(friend.name)) {
       guestNames.add(friend.name);
@@ -58,8 +51,6 @@ async function prepAttractionForFirebase(attraction) {
     }
     friend = friend.ref;
   }
-
-  console.log("friends complete");
 
   return attraction;
 }
@@ -80,8 +71,6 @@ async function sendInvites(attraction) {
     }
   }
 
-  console.log("systems invited");
-
   for (let orbit of orbits) {
     for (let person of orbit.members) {
       if (!namesInvited.has(person.name)) {
@@ -91,16 +80,12 @@ async function sendInvites(attraction) {
     }
   }
 
-  console.log("orbits invited");
-
   for (let person of friends) {
     if (!namesInvited.has(person.name)) {
       sendInvite(invitation, person);
       namesInvited.add(person.name);
     }
   }
-
-  console.log("friends invited");
 }
 
 export async function sendInvite(invitation, person) {

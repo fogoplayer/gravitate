@@ -8,7 +8,6 @@ export default function Input({
   ...props
 }) {
   className = className.concat(" text-input");
-  console.log(oninput, onInput);
 
   const input = jsx`<label class="text-input-component">
     <span class="text-input-label">${label}</span>
@@ -27,7 +26,6 @@ export default function Input({
   return input;
 
   function onInput(e) {
-    console.log("oninput");
     const target = e.target;
     if (target.value) target.parentNode.parentNode.classList.add("not-empty");
     else target.parentNode.parentNode.classList.remove("not-empty");

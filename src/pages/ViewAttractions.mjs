@@ -80,7 +80,6 @@ export default function CreateAttraction() {
   function Template(attractions) {
     const html = jsx`<ul>
   ${attractions.map((attraction) => {
-    console.log(attraction);
     return jsx`
   <li class="attraction">
     <h3 class="contact-header-container" onclick=${toggleDetails}>
