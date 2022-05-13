@@ -17,6 +17,31 @@
   font-weight: 500;
 }
 
+.view-attractions .contacts-list .contact-header-container .header-reactions {
+  flex: 1 0 auto;
+
+  /* display */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  /* positioning */
+  /* box-model */
+  margin-left: auto;
+  max-width: 20em;
+
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
+.view-attractions
+  .contacts-list
+  .contact-header-container
+  .header-reactions
+  .reaction::after {
+  content: "0";
+}
+
 .attraction {
   display: flex;
   flex-flow: column nowrap;

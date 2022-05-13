@@ -14,7 +14,16 @@ export function AttractionInfo(attraction) {
   if (attraction.organizer) {
     return jsx`<span class="attraction-info">until <span class="expiration">${attraction.expiration}</span></span>`;
   } else {
-    return jsx`<span class="attraction-info"></span>`;
+    return jsx`<span class="attraction-info header-reactions">
+  ${Object.keys(reactions).map(
+    (reaction) =>
+      jsx`<span
+    class="reaction noto"
+    data-value="${reaction}">
+      ${reactions[reaction]} 
+    </span>`
+  )}
+</span>`;
   }
 }
 
@@ -26,11 +35,6 @@ export function AttractionDetails(attraction) {
 <fieldset class="react">
   <legend>RSVP</legend>
   ${Object.keys(reactions).map((reaction) => {
-    console.log(
-      reaction,
-      attraction.reaction,
-      reaction === attraction.reaction
-    );
     return jsx`<label>
     <input type="radio" name="reactions" value="${reaction}" 
       oninput=${() => react(attraction.ref, reaction)}
