@@ -97,10 +97,14 @@ async function sendInvites(attraction) {
 
 export async function sendInvite(invitation, person) {
   console.log(invitation);
-  addDoc(person.ref.path + "/invitations", invitation);
+  const docID = invitation.ref.path.split("/").at(-1);
+  setDoc(person.ref.path + "/invitations/" + docID, invitation);
 }
 
 export async function react(attractionRef, reaction) {
-  let { uid, name, ref } = getCurrUserData();
+  let { uid, name, ref, invitationsRef } = getCurrUserData();
+  const docID = attractionRef.path.split("/").at(-1);
+
   setDoc(attractionRef.path + "/reactions/" + uid, { reaction, name, ref });
+  update(invitationsRef.path + "/" + docID, { reaction });
 }

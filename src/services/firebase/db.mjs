@@ -187,5 +187,7 @@ export async function loadUserData(user) {
   funcForAfterUpdate();
   funcForAfterUpdate = () => {};
 
+  console.log(currUserData);
+
   return currUserData;
 }
