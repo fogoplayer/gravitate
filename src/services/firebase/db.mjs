@@ -2,7 +2,7 @@ import { app } from "./app.mjs";
 import {
   arrayUnion,
   addDoc as addDocToDB,
-  setDoc,
+  setDoc as setDocInDB,
   getFirestore,
   collection,
   getDoc,
@@ -65,6 +65,13 @@ export async function getDocData(ref) {
   return Object.assign(snap.data(), { ref: ref });
 }
 
+export function setDoc(ref, data) {
+  if (typeof ref === "string") {
+    ref = doc(db, ref);
+  }
+  return setDocInDB(ref, data);
+}
+
 export function addDoc(path, data) {
   if (typeof path === "string") {
     path = collection(db, path);
@@ -73,6 +80,9 @@ export function addDoc(path, data) {
 }
 
 export async function update(ref, data) {
+  if (typeof ref === "string") {
+    ref = doc(db, ref);
+  }
   return await updateDoc(ref, data);
 }
 

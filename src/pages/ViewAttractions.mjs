@@ -4,6 +4,7 @@ import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { jsx } from "../services/render.mjs";
 import { getIcon } from "../services/firebase/storage.mjs";
+import { react } from "../services/attractions.mjs";
 
 const reactions = {
   "ON MY WAY": "🔜",
@@ -114,8 +115,11 @@ export default function CreateAttraction() {
     <legend>RSVP</legend>
     ${Object.keys(reactions).map(
       (reaction) => jsx`<label>
-      <input type="radio" name="reactions" value="${reaction}" />
-      <span class="reaction" data-value="${reaction}">${reactions[reaction]}</span> </label
+      <input type="radio" name="reactions" value="${reaction}" oninput=${() =>
+        react(attraction.ref, reaction)}/>
+      <span class="reaction" data-value="${reaction}">${
+        reactions[reaction]
+      }</span> </label
     >`
     )}
   </fieldset>

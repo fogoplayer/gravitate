@@ -1,7 +1,10 @@
-import { addDoc, push } from "./firebase/db.mjs";
-import { getDocData } from "./firebase/db.mjs";
-import { getCurrUserData } from "./firebase/db.mjs";
-import { update } from "./firebase/db.mjs";
+import {
+  addDoc,
+  push,
+  getCurrUserData,
+  update,
+  setDoc,
+} from "./firebase/db.mjs";
 
 export default async function createAttraction(attraction) {
   const { ref } = getCurrUserData();
@@ -95,4 +98,9 @@ async function sendInvites(attraction) {
 export async function sendInvite(invitation, person) {
   console.log(invitation);
   addDoc(person.ref.path + "/invitations", invitation);
+}
+
+export async function react(attractionRef, reaction) {
+  let { uid, name, ref } = getCurrUserData();
+  setDoc(attractionRef.path + "/reactions/" + uid, { reaction, name, ref });
 }
