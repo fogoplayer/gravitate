@@ -21,31 +21,20 @@ async function prepAttractionForFirebase(attraction) {
   attraction.friends = Array.from(attraction.friends);
 
   // Convert to references
-  for (let orbit = 0; orbit < attraction.orbits.length; orbit++) {
-    for (
-      let member = 0;
-      member < attraction.orbits[orbit].members.length;
-      member++
-    ) {
-      attraction.orbits[orbit].members[member] =
-        attraction.orbits[orbit].members[member].ref;
+  for (let orbit of attraction.orbits) {
+    for (let member of orbit.members) {
+      member = member.ref;
     }
   }
 
-  for (let system = 0; system < attraction.systems.length; system++) {
-    for (
-      let member = 0;
-      member < attraction.systems[system].members.length;
-      member++
-    ) {
-      attraction.systems[system].members[member] = await attraction.systems[
-        system
-      ].members[member].ref;
+  for (let system of attraction.systems) {
+    for (let member of system.members) {
+      member = member.ref;
     }
   }
 
-  for (let member = 0; member < attraction.friends.length; member++) {
-    attraction.friends[member] = attraction.friends[member].ref;
+  for (let friend of attraction.friends) {
+    friend = friend.ref;
   }
 
   return attraction;
@@ -57,31 +46,31 @@ async function sendInvites(attraction) {
   const namesInvited = new Set();
   invitation.organizer = ref;
 
-  systems.forEach((system) => {
-    system.members?.forEach((person) => {
-      invitation.origin = system.ref;
+  for (const system of systems) {
+    invitation.origin = system.ref;
+    for (const member of system.members) {
+      if (!namesInvited.has(member.name)) {
+        sendInvite(invitation, member);
+        namesInvited.add(member.name);
+      }
+    }
+  }
+
+  for (const orbit of orbits) {
+    for (const person of orbit.members) {
       if (!namesInvited.has(person.name)) {
         sendInvite(invitation, person);
         namesInvited.add(person.name);
       }
-    });
-  });
+    }
+  }
 
-  orbits.forEach((orbit) => {
-    orbit.members?.forEach((person) => {
-      if (!namesInvited.has(person.name)) {
-        sendInvite(invitation, person);
-        namesInvited.add(person.name);
-      }
-    });
-  });
-
-  friends.forEach((person) => {
+  for (const person of friends) {
     if (!namesInvited.has(person.name)) {
       sendInvite(invitation, person);
       namesInvited.add(person.name);
     }
-  });
+  }
 }
 
 export async function sendInvite(invitation, person) {
