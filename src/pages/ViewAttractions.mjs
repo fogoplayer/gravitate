@@ -113,15 +113,22 @@ export default function CreateAttraction() {
   <h4>RSVP</h4>
   <fieldset class="react">
     <legend>RSVP</legend>
-    ${Object.keys(reactions).map(
-      (reaction) => jsx`<label>
-      <input type="radio" name="reactions" value="${reaction}" oninput=${() =>
-        react(attraction.ref, reaction)}/>
-      <span class="reaction" data-value="${reaction}">${
-        reactions[reaction]
-      }</span> </label
-    >`
-    )}
+    ${Object.keys(reactions).map((reaction) => {
+      console.log(
+        reaction,
+        attraction.reaction,
+        reaction === attraction.reaction
+      );
+      return jsx`<label>
+      <input type="radio" name="reactions" value="${reaction}" 
+        oninput=${() => react(attraction.ref, reaction)}
+        ...${reaction === attraction.reaction ? { checked: true } : ""}
+      />
+      <span class="reaction" data-value="${reaction}"
+        >${reactions[reaction]}</span
+      > </label
+    >`;
+    })}
   </fieldset>
   <h4>Attraction Details</h4>
   <table>
