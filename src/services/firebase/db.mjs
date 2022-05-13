@@ -65,11 +65,11 @@ export async function getDocData(ref) {
   return Object.assign(snap.data(), { ref: ref });
 }
 
-export async function addDoc(path, data) {
+export function addDoc(path, data) {
   if (typeof path === "string") {
     path = collection(db, path);
   }
-  addDocToDB(path, data);
+  return addDocToDB(path, data);
 }
 
 export async function update(ref, data) {
