@@ -3,9 +3,6 @@ export const jsx = htm.bind(render);
 
 export function render(type, props, ...children) {
   this[0] = 3;
-  if (type === "input") {
-    console.log(type, props, children);
-  }
   const newEl = document.createElement(type);
   for (const prop in props) {
     if (prop.substring(0, 2) === "on") {
