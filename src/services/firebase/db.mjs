@@ -14,7 +14,7 @@ import {
   onSnapshot,
   enableIndexedDbPersistence,
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
-import { parseGroups, parseIndividuals } from "./db-loadData.mjs";
+import { parseEvents, parseGroups, parseIndividuals } from "./db-loadData.mjs";
 
 const db = getFirestore(app);
 const users = collection(db, "users");
@@ -62,8 +62,19 @@ export function getCurrUserData() {
 }
 
 export async function getDocData(ref) {
+  if (typeof ref === "string") {
+    ref = doc(db, ref);
+  }
   const snap = await getDoc(ref);
   return Object.assign(snap.data(), { ref: ref });
+}
+
+export async function getDocsData(ref) {
+  if (typeof ref === "string") {
+    ref = collection(db, ref);
+  }
+  const snaps = await getDocs(ref);
+  return snaps.docs.map((doc) => Object.assign(doc.data(), { ref: doc.ref }));
 }
 
 export function setDoc(ref, data) {
@@ -131,20 +142,14 @@ export async function loadUserData(user) {
 
   // Convert references to objects
   // Attractions
-  let attractions = await getDocs(currUserData.attractionsRef);
-  attractions = attractions.docs.map((doc) => doc.data());
-  // for (let attraction = 0; attraction < attractions.length; attraction++) {
-  //   for (let member = 0; member < attractions[attraction].members.length; member++) {
-  //     attractions[attraction].members[member] = await getDocData(
-  //       attractions[attraction].members[member]
-  //     );
-  //   }
-  // }
-  currUserData.attractions = attractions;
+  let attractions = await getDocsData(currUserData.attractionsRef);
+  // attractions.guestList = parseIndividuals(attractions.guestList);
+  currUserData.attractions = await parseEvents(attractions);
 
   // Invitations
-  let invitations = await getDocs(currUserData.invitationsRef);
-  invitations = invitations.docs.map((doc) => doc.data());
+  let invitations = await getDocsData(currUserData.invitationsRef);
+  invitations = await parseEvents(invitations);
+  console.log(invitations);
   for (let invitation of invitations) {
     invitation.organizer = await getDocData(invitation.organizer);
     invitation.origin = await getDocData(invitation?.origin);
@@ -152,8 +157,8 @@ export async function loadUserData(user) {
   currUserData.invitations = invitations;
 
   // Orbits
-  let orbits = await getDocs(currUserData.orbitsRef);
-  currUserData.orbits = await parseGroups(orbits.docs);
+  let orbits = await getDocsData(currUserData.orbitsRef);
+  currUserData.orbits = await parseGroups(orbits);
 
   // Data
   let userDataDoc = await getDocData(currUserData.dataDocRef);
