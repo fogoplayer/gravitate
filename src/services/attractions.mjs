@@ -11,7 +11,6 @@ export default async function createAttraction(attraction) {
   let docRef = await addDoc(ref.path + "/attractions", {});
   attraction.ref = docRef;
 
-  console.log(attraction);
   await Promise.all([sendInvites(attraction), saveAttraction(attraction)]);
 }
 
@@ -96,7 +95,6 @@ async function sendInvites(attraction) {
 }
 
 export async function sendInvite(invitation, person) {
-  console.log(invitation);
   const docID = invitation.ref.path.split("/").at(-1);
   setDoc(person.ref.path + "/invitations/" + docID, invitation);
 }
