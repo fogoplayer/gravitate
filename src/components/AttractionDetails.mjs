@@ -19,7 +19,7 @@ export function AttractionInfo(attraction) {
     (reaction) =>
       jsx`<span
     class="reaction noto"
-    data-value="${reaction}">
+    data-value="${attraction.reactions[reaction]?.length || 0}">
       ${reactions[reaction]} 
     </span>`
   )}

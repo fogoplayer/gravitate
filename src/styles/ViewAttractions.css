@@ -39,7 +39,7 @@
   .contact-header-container
   .header-reactions
   .reaction::after {
-  content: "0";
+  content: attr(data-value);
 }
 
 .attraction {
