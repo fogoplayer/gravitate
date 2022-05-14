@@ -23,7 +23,7 @@ export const systems = collection(db, "systems");
 
 let currUserData = {};
 let watched = new Set();
-let initializingDB = false;
+let initingWatchers = false;
 let funcForAfterUpdate = () => {};
 
 export function watch(ref) {
@@ -66,7 +66,7 @@ export async function createUserData(userCredential) {
 }
 
 export async function initDBWatchers() {
-  initializingDB = true;
+  initingWatchers = true;
   const promises = Array.from(watched).map((ref) => {
     const segments = ref.split("/").length;
     const isCollection = segments % 2;
@@ -77,7 +77,7 @@ export async function initDBWatchers() {
     }
   });
   await Promise.all(promises);
-  initializingDB = false;
+  initingWatchers = false;
 }
 
 enableIndexedDbPersistence(db).catch((err) => {
@@ -153,7 +153,7 @@ export async function usernameSearch(username) {
 }
 
 export async function loadUserData(user = {}) {
-  if (initializingDB) {
+  if (initingWatchers) {
     return false;
   } else if (currUserData.uid) {
     user.uid = currUserData.uid;
