@@ -25,6 +25,7 @@ let watched = new Set();
 let funcForAfterUpdate = () => {};
 
 export function watch(ref) {
+  console.log(ref);
   watched.add(ref.path);
 }
 
@@ -134,7 +135,6 @@ export async function loadUserData(user) {
   }
   const ref = doc(db, "users", user.uid);
   currUserData = await getDocData(ref);
-  watch(currUserData.ref);
 
   Object.assign(currUserData, {
     dataDocRef: doc(db, `users/${user.uid}/data`, "data"),
@@ -153,13 +153,11 @@ export async function loadUserData(user) {
   // Convert references to objects
   // Attractions
   let attractions = await getDocsData(currUserData.attractionsRef);
-  watch(currUserData.attractionsRef);
   // attractions.guestList = parseIndividuals(attractions.guestList);
   currUserData.attractions = await parseEvents(attractions);
 
   // Invitations
   let invitations = await getDocsData(currUserData.invitationsRef);
-  watch(currUserData.invitationsRef);
   invitations = await parseEvents(invitations);
   for (let invitation of invitations) {
     invitation.organizer = await getDocData(invitation.organizer);
@@ -169,12 +167,10 @@ export async function loadUserData(user) {
 
   // Orbits
   let orbits = await getDocsData(currUserData.orbitsRef);
-  watch(currUserData.orbitsRef);
   currUserData.orbits = await parseGroups(orbits);
 
   // Data
   let userDataDoc = await getDocData(currUserData.dataDocRef);
-  watch(currUserData.dataDocRef);
 
   // Friends
   let friends = userDataDoc.friends;

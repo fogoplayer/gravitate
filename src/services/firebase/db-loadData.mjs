@@ -1,10 +1,11 @@
-import { getDocData, getDocsData } from "./db.mjs";
+import { getDocData, getDocsData, watch } from "./db.mjs";
 
 const DOCUMENT_SNAPSHOT = "Ph";
 const DOCUMENT_REFERENCE = "wc";
 
 export async function parseGroups(groups) {
   for (let group in groups) {
+    watch(groups[group].ref || groups[group]);
     if (groups[group].constructor.name == DOCUMENT_REFERENCE) {
       groups[group] = await getDocData(groups[group]);
     }
@@ -15,6 +16,7 @@ export async function parseGroups(groups) {
 
 export async function parseIndividuals(group) {
   for (let member in group) {
+    watch(group[member].ref || group[member]);
     group[member] = await getDocData(group[member]);
   }
   return group;
