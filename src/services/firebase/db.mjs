@@ -11,7 +11,7 @@ import {
   where,
   query,
   updateDoc,
-  onSnapshot,
+  onSnapshot as onSnapshotDB,
   enableIndexedDbPersistence,
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
 import { parseEvents, parseGroups, parseIndividuals } from "./db-loadData.mjs";
@@ -33,6 +33,22 @@ export function watch(ref) {
   }
 }
 
+export function onSnapshot(ref, func) {
+  return new Promise((resolve, reject) => {
+    var resolveOnce = (doc) => {
+      resolveOnce = () => {};
+      resolve(doc);
+    };
+    onSnapshotDB(
+      ref,
+      (snap) => {
+        resolveOnce(func(snap));
+      },
+      reject
+    );
+  });
+}
+
 export async function createUserData(userCredential) {
   const uid = userCredential.user.uid;
 
@@ -47,14 +63,14 @@ export async function createUserData(userCredential) {
   });
 }
 
-export function initDBWatchers() {
+export async function initDBWatchers() {
   for (const ref of watched) {
     const segments = ref.split("/").length;
     const isCollection = segments % 2;
     if (isCollection) {
-      onSnapshot(query(collection(db, ref)), loadUserData);
+      await onSnapshot(query(collection(db, ref)), loadUserData);
     } else {
-      onSnapshot(doc(db, ref), loadUserData);
+      await onSnapshot(doc(db, ref), loadUserData);
     }
   }
 }
