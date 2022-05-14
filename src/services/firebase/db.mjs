@@ -15,6 +15,7 @@ import {
   enableIndexedDbPersistence,
 } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
 import { parseEvents, parseGroups, parseIndividuals } from "./db-loadData.mjs";
+import { hideRefreshPage, showRefreshPage } from "../../App.mjs";
 
 const db = getFirestore(app);
 const users = collection(db, "users");
@@ -64,15 +65,17 @@ export async function createUserData(userCredential) {
 }
 
 export async function initDBWatchers() {
-  for (const ref of watched) {
+  const promises = Array.from(watched).map((ref) => {
     const segments = ref.split("/").length;
     const isCollection = segments % 2;
     if (isCollection) {
-      await onSnapshot(query(collection(db, ref)), loadUserData);
+      return onSnapshot(query(collection(db, ref)), loadUserData);
     } else {
-      await onSnapshot(doc(db, ref), loadUserData);
+      return onSnapshot(doc(db, ref), loadUserData);
     }
-  }
+  });
+  await Promise.all(promises);
+  hideRefreshPage();
 }
 
 enableIndexedDbPersistence(db).catch((err) => {
@@ -203,6 +206,7 @@ export async function loadUserData(user) {
   funcForAfterUpdate();
   funcForAfterUpdate = () => {};
 
+  showRefreshPage();
   console.log(currUserData);
 
   return currUserData;
