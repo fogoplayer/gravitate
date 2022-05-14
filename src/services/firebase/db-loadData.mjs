@@ -29,10 +29,14 @@ export async function parseEvents(events) {
 
     // Reactions
     const reactions = await getDocsData(events[event].ref.path + "/reactions");
-    events[event].reactions = reactions.reduce(
-      (object, reaction) => (object[reaction.name] = reaction),
-      {}
-    );
+    events[event].reactions = reactions.reduce((object, reaction) => {
+      if (object[reaction.reaction]) {
+        object[reaction.reaction].push(reaction);
+      } else {
+        object[reaction.reaction] = [reaction];
+      }
+      return object;
+    }, {});
   }
 
   return events;
