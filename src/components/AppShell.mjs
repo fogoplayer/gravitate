@@ -1,4 +1,4 @@
-import { jsx } from "../services/render.mjs";
+import { jsx, renderPage } from "../services/render.mjs";
 
 export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
   return jsx`
@@ -51,7 +51,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
     <div class="material-symbols-sharp"> menu </div>
   </button>
   <h1 class="page-title">Gravitate</h1>
-  <button tabIndex=3 onclick=${showAppDrawer}>
+  <button tabIndex=3 onclick=${() => renderPage(window.location.pathname)}>
     <div class="material-symbols-sharp"> sync </div>
   </button>
 </header>
