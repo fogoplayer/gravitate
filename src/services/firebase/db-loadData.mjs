@@ -30,6 +30,7 @@ export async function parseEvents(events) {
     }
 
     // Reactions
+    watch(events[event].ref.path + "/reactions");
     const reactions = await getDocsData(events[event].ref.path + "/reactions");
     events[event].reactions = reactions.reduce((object, reaction) => {
       if (object[reaction.reaction]) {
