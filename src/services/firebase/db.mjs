@@ -25,7 +25,6 @@ let watched = new Set();
 let funcForAfterUpdate = () => {};
 
 export function watch(ref) {
-  console.log(ref);
   watched.add(ref.path);
 }
 
