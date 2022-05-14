@@ -25,7 +25,12 @@ let watched = new Set();
 let funcForAfterUpdate = () => {};
 
 export function watch(ref) {
-  watched.add(ref.path || ref);
+  // Might be a ref, might be a string
+  if (ref.path) {
+    watched.add(ref.path);
+  } else {
+    watched.add(ref);
+  }
 }
 
 export async function createUserData(userCredential) {
