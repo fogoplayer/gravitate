@@ -51,11 +51,14 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
     <div class="material-symbols-sharp"> menu </div>
   </button>
   <h1 class="page-title">Gravitate</h1>
+  <button tabIndex=3 onclick=${showAppDrawer}>
+    <div class="material-symbols-sharp"> sync </div>
+  </button>
 </header>
 <main id="app-main" class="app-main"></main>
 <footer class="app-footer">
   <nav>
-    <a href="/view-attractions" id="view-invites" class="footer-link" tabIndex=3>
+    <a href="/view-attractions" id="view-invites" class="footer-link" tabIndex=4>
       <span class="material-symbols-sharp footer-icon">view_list</span>
       <span class="footer-title">Attractions</span>
     </a>
@@ -63,11 +66,11 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
       href="/create-attraction"
       id="view-create-event"
       class="footer-link fab"
-      tabIndex=4
+      tabIndex=5
     >
       <span class="material-symbols-sharp footer-icon">add</span>
     </a>
-    <a href="/contacts" id="view-contacts" class="footer-link"  tabIndex=5>
+    <a href="/contacts" id="view-contacts" class="footer-link"  tabIndex=6>
       <span class="material-symbols-sharp footer-icon">person</span>
       <span class="footer-title">Contacts</span>
     </a>
