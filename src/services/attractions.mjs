@@ -100,9 +100,14 @@ export async function sendInvite(invitation, person) {
 }
 
 export async function react(attractionRef, reaction) {
-  let { uid, name, ref, invitationsRef } = getCurrUserData();
+  let { uid, name, icon, ref, invitationsRef } = getCurrUserData();
   const docID = attractionRef.path.split("/").at(-1);
 
-  setDoc(attractionRef.path + "/reactions/" + uid, { reaction, name, ref });
+  setDoc(attractionRef.path + "/reactions/" + uid, {
+    reaction,
+    name,
+    ref,
+    icon,
+  });
   update(invitationsRef.path + "/" + docID, { reaction });
 }
