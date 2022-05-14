@@ -1,3 +1,4 @@
+import { hideRefreshPage } from "../App.mjs";
 import { jsx, renderPage } from "../services/render.mjs";
 
 export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
@@ -51,7 +52,11 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
     <div class="material-symbols-sharp"> menu </div>
   </button>
   <h1 class="page-title">Gravitate</h1>
-  <button tabIndex=3 onclick=${() => renderPage(window.location.pathname)}>
+  <button id="refresh-page" tabIndex=3 onclick=${(e) => {
+    renderPage(window.location.pathname);
+    console.log(e.currentTarget);
+    hideRefreshPage();
+  }}>
     <div class="material-symbols-sharp"> sync </div>
   </button>
 </header>

@@ -108,3 +108,10 @@ function hideAppDrawer(e) {
     document.querySelector(".side-nav").classList.remove("closing");
   }, 250);
 }
+
+export function showRefreshPage() {
+  document.querySelector("#refresh-page")?.classList.add("show");
+}
+export function hideRefreshPage() {
+  document.querySelector("#refresh-page")?.classList.remove("show");
+}

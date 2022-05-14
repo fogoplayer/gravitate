@@ -179,6 +179,14 @@ body {
   margin-left: auto;
 }
 
+.app-header #refresh-page {
+  transform: scaleX(0);
+}
+
+.app-header #refresh-page.show {
+  transform: scaleX(1);
+}
+
 /* Footer */
 .app-main {
   flex: 1 1 auto;
