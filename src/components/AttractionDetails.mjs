@@ -37,7 +37,7 @@ export function AttractionDetails(attraction) {
   ${Object.keys(reactions).map((reaction) => {
     return jsx`<label>
     <input type="radio" name="reactions" value="${reaction}" 
-      oninput=${() => react(attraction.ref, reaction)}
+      oninput=${() => react(attraction.attractionRef, reaction)}
       ...${reaction === attraction.reaction ? { checked: true } : ""}
     />
     <span class="reaction" data-value="${reaction}"
