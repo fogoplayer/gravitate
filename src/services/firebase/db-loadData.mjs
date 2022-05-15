@@ -22,6 +22,8 @@ export async function parseIndividuals(group) {
 
 export async function parseEvents(events) {
   for (let event in events) {
+    watch(events[event].ref);
+
     // Guest list
     if (events[event].guestList) {
       events[event].guestList = await parseIndividuals(events[event].guestList);
