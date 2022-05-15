@@ -9,15 +9,15 @@ import {
 export default async function createAttraction(attraction) {
   const { ref } = getCurrUserData();
   let docRef = await addDoc(ref.path + "/attractions", {});
-  attraction.ref = docRef;
+  attraction.attractionRef = docRef;
 
   await Promise.all([sendInvites(attraction), saveAttraction(attraction)]);
 }
 
 async function saveAttraction(attraction) {
-  let { ref, ...rest } = await prepAttractionForFirebase(attraction);
-
-  update(ref, rest);
+  let { attractionRef, ...rest } = await prepAttractionForFirebase(attraction);
+  console.log(attractionRef);
+  update(attractionRef, rest);
 }
 
 async function prepAttractionForFirebase(attraction) {
@@ -95,7 +95,7 @@ async function sendInvites(attraction) {
 }
 
 export async function sendInvite(invitation, person) {
-  const docID = invitation.ref.path.split("/").at(-1);
+  const docID = invitation.attractionRef.path.split("/").at(-1);
   setDoc(person.ref.path + "/invitations/" + docID, invitation);
 }
 
