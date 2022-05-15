@@ -150,9 +150,8 @@ export default function CreateAttraction() {
     try {
       e.preventDefault();
       e.submitter.classList.add("loading");
-      await createAttraction(newAttraction);
-      debugger;
       afterUpdate(() => renderPage("/view-attractions"));
+      await createAttraction(newAttraction);
     } catch (error) {}
   }
 }

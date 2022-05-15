@@ -16,7 +16,6 @@ export default async function createAttraction(attraction) {
 
 async function saveAttraction(attraction) {
   let { attractionRef, ...rest } = await prepAttractionForFirebase(attraction);
-  console.log(attractionRef);
   update(attractionRef, rest);
 }
 

@@ -54,7 +54,6 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
   <h1 class="page-title">Gravitate</h1>
   <button id="refresh-page" tabIndex=3 onclick=${(e) => {
     renderPage(window.location.pathname);
-    console.log(e.currentTarget);
     hideRefreshPage();
   }}>
     <div class="material-symbols-sharp"> sync </div>
