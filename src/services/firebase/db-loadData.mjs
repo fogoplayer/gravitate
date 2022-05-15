@@ -5,12 +5,6 @@ const DOCUMENT_REFERENCE = "wc";
 
 export async function parseGroups(groups) {
   for (let group in groups) {
-    // Might be a ref, might be a string
-    if (groups[group].ref) {
-      watch(groups[group].ref);
-    } else {
-      watch(groups[group]);
-    }
     if (groups[group].constructor.name == DOCUMENT_REFERENCE) {
       groups[group] = await getDocData(groups[group]);
     }
@@ -21,12 +15,6 @@ export async function parseGroups(groups) {
 
 export async function parseIndividuals(group) {
   for (let member in group) {
-    // Might be a ref, might be a string
-    if (group[member].ref) {
-      watch(group[member].ref);
-    } else {
-      watch(group[member]);
-    }
     group[member] = await getDocData(group[member]);
   }
   return group;

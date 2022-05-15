@@ -161,6 +161,7 @@ export async function loadUserData(user = {}) {
     return false;
   }
   const ref = doc(db, "users", user.uid);
+  watch(ref);
   currUserData = await getDocData(ref);
 
   Object.assign(currUserData, {
@@ -179,11 +180,13 @@ export async function loadUserData(user = {}) {
 
   // Convert references to objects
   // Attractions
+  watch(currUserData.attractionsRef);
   let attractions = await getDocsData(currUserData.attractionsRef);
   // attractions.guestList = parseIndividuals(attractions.guestList);
   currUserData.attractions = await parseEvents(attractions);
 
   // Invitations
+  watch(currUserData.invitationsRef);
   let invitations = await getDocsData(currUserData.invitationsRef);
   invitations = await parseEvents(invitations);
   for (let invitation of invitations) {
@@ -193,10 +196,12 @@ export async function loadUserData(user = {}) {
   currUserData.invitations = invitations;
 
   // Orbits
+  watch(currUserData.orbitsRef);
   let orbits = await getDocsData(currUserData.orbitsRef);
   currUserData.orbits = await parseGroups(orbits);
 
   // Data
+  watch(currUserData.dataDocRef);
   let userDataDoc = await getDocData(currUserData.dataDocRef);
 
   // Friends
@@ -207,10 +212,11 @@ export async function loadUserData(user = {}) {
   let systems = userDataDoc.systems;
   currUserData.systems = await parseGroups(systems);
 
+  showRefreshPage();
+
   funcForAfterUpdate();
   funcForAfterUpdate = () => {};
 
-  showRefreshPage();
   console.log(currUserData);
 
   return currUserData;
