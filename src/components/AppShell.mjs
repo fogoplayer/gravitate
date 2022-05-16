@@ -1,4 +1,5 @@
 import { hideRefreshPage } from "../App.mjs";
+import { getCurrUserData } from "../services/firebase/db.mjs";
 import { jsx, renderPage } from "../services/render.mjs";
 
 export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
@@ -58,11 +59,16 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
   }}>
     <div class="material-symbols-sharp"> sync </div>
   </button>
+  <button id="pfp" tabIndex=4 onclick=${(e) => {}}>
+   <img class="pfp" src="${
+     getCurrUserData().icon
+   }" alt="User Profile Picture" /> 
+  </button>
 </header>
 <main id="app-main" class="app-main"></main>
 <footer class="app-footer">
   <nav>
-    <a href="/view-attractions" id="view-invites" class="footer-link" tabIndex=4>
+    <a href="/view-attractions" id="view-invites" class="footer-link" tabIndex=5>
       <span class="material-symbols-sharp footer-icon">view_list</span>
       <span class="footer-title">Attractions</span>
     </a>
@@ -70,11 +76,11 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
       href="/create-attraction"
       id="view-create-event"
       class="footer-link fab"
-      tabIndex=5
+      tabIndex=6
     >
       <span class="material-symbols-sharp footer-icon">add</span>
     </a>
-    <a href="/contacts" id="view-contacts" class="footer-link"  tabIndex=6>
+    <a href="/contacts" id="view-contacts" class="footer-link"  tabIndex=7>
       <span class="material-symbols-sharp footer-icon">person</span>
       <span class="footer-title">Contacts</span>
     </a>

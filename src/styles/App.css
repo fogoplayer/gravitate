@@ -187,6 +187,10 @@ body {
   transform: scaleX(1);
 }
 
+.app-header .pfp {
+  width: 1em;
+}
+
 /* Footer */
 .app-main {
   flex: 1 1 auto;

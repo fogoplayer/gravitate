@@ -111,3 +111,20 @@ aside {
 .noto {
   font-family: "Noto Emoji", Roboto, sans-serif;
 }
+
+.pfp {
+  /* display */
+  /* positioning */
+  /* box-model */
+  border-radius: 50%;
+  border: 1px solid var(--theme-secondary-color);
+  width: 5em;
+  max-height: 5em;
+  aspect-ratio: 1/1;
+
+  /* typography */
+  /* manipulation */
+  object-fit: cover;
+
+  /* misc */
+}
