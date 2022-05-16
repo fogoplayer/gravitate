@@ -83,6 +83,45 @@ export function AttractionDetails(attraction) {
 `;
     // Attraction
   } else {
-    return "";
+    return jsx`<section class="attraction-details">
+  <h4>Attraction Details</h4>
+  <table>
+    <tr>
+      <th>Location:</th>
+      <td>
+        ${attraction.location + " "}
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+            attraction.location
+          )}"
+          target="_blank"
+          >(Open in Google Maps)</a
+        >
+      </td>
+    </tr>
+    <tr>
+      <th>Expiration:</th>
+      <td>${attraction.expiration}</td>
+    </tr>
+  </table>
+  <h4>Responses</h4>
+  <table>
+    ${Object.keys(reactions).map((reaction) => {
+      return (
+        (attraction.reactions[reaction] &&
+          jsx`<tr>
+        <th><span class="reaction">
+          ${reactions[reaction]}
+        </span></th>
+        <td>${attraction.reactions[reaction]?.map(
+          (reactee, index) => (index > 0 ? ", " : "") + reactee.name
+        )}</td>
+      </tr>`) ||
+        ""
+      );
+    })}
+  </table>
+</section>
+`;
   }
 }
