@@ -1,6 +1,6 @@
 import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
 
-import { append, jsx } from "./services/render.mjs";
+import { append, jsx, renderPage } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 import ViewAttractions from "./pages/ViewAttractions.mjs";
@@ -31,15 +31,13 @@ authStateChanged(async (user) => {
   }
 
   page("/create-attraction", (context) =>
-    showAppPage(CreateAttraction(), context)
+    showAppPage(CreateAttraction, context)
   );
-  page("/view-attractions", (context) =>
-    showAppPage(ViewAttractions(), context)
-  );
-  page("/contacts", (context) => showAppPage(Contacts(), context));
-  page("/login", () => showExternalPage(Login()));
-  page("/signup", () => showExternalPage(SignUp()));
-  page("/onboarding/:page", (context) => showExternalPage(Onboarding(context)));
+  page("/view-attractions", (context) => showAppPage(ViewAttractions, context));
+  page("/contacts", (context) => showAppPage(Contacts, context));
+  page("/login", () => showExternalPage(Login));
+  page("/signup", () => showExternalPage(SignUp));
+  page("/onboarding/:page", (context) => showExternalPage(Onboarding));
   page("/*", () => {
     if (user) page.redirect("view-attractions");
     else page.redirect("login");
@@ -51,14 +49,15 @@ authStateChanged(async (user) => {
 });
 
 function showAppPage(contents, context) {
+  console.log(getCurrUserData());
   if (!getCurrUserData()) {
-    showExternalPage(Login());
+    renderPage("/login");
     return;
   }
   showAppShell();
   const main = document.querySelector(".app-main");
   main.innerHTML = ``;
-  append(main, jsx`${contents}`);
+  append(main, jsx`${contents(context)}`);
 
   // Functions for after render
   setActiveLinks(context);
@@ -94,7 +93,7 @@ function setActiveLinks(context) {
 
 function showExternalPage(contents) {
   document.body.innerHTML = "";
-  append(document.body, contents);
+  append(document.body, contents());
 }
 
 function showAppDrawer() {

@@ -93,6 +93,7 @@ enableIndexedDbPersistence(db).catch((err) => {
 });
 
 export function getCurrUserData() {
+  if (Object.keys(currUserData).length === 0) return false;
   return currUserData;
 }
 
