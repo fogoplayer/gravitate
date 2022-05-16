@@ -66,6 +66,7 @@
 .attraction-details.open {
   display: flex;
   max-height: 14em;
+  max-height: unset;
 }
 
 .attraction-details h4 {
