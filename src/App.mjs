@@ -37,7 +37,7 @@ authStateChanged(async (user) => {
   page("/contacts", (context) => showAppPage(Contacts, context));
   page("/login", () => showExternalPage(Login));
   page("/signup", () => showExternalPage(SignUp));
-  page("/onboarding/:page", (context) => showExternalPage(Onboarding));
+  page("/onboarding/:page", (context) => showExternalPage(Onboarding, context));
   page("/*", () => {
     if (user) page.redirect("view-attractions");
     else page.redirect("login");
@@ -91,9 +91,9 @@ function setActiveLinks(context) {
   });
 }
 
-function showExternalPage(contents) {
+function showExternalPage(contents, context) {
   document.body.innerHTML = "";
-  append(document.body, contents());
+  append(document.body, contents(context));
 }
 
 function showAppDrawer() {
