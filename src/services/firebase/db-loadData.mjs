@@ -1,4 +1,4 @@
-import { getDocData, getDocsData, watch } from "./db.mjs";
+import { deleteDoc, getDocData, getDocsData, watch } from "./db.mjs";
 
 const DOCUMENT_SNAPSHOT = "Ph";
 const DOCUMENT_REFERENCE = "wc";
@@ -27,6 +27,9 @@ export async function parseEvents(events) {
     // Expiration Date
     if (events[event].expiration?.toDate) {
       events[event].expiration = events[event].expiration.toDate();
+      if (events[event].expiration < new Date()) {
+        deleteDoc(events[event].ref);
+      }
     }
 
     // Guest list
