@@ -12,7 +12,10 @@ export const reactions = {
 export function AttractionInfo(attraction) {
   // Show expiration time if an invite
   if (attraction.organizer) {
-    return jsx`<span class="attraction-info">until <span class="expiration">${attraction.expiration.toLocaleTimeString()}</span></span>`;
+    return jsx`<span class="attraction-info">until <span class="expiration">${attraction.expiration.toLocaleTimeString(
+      [],
+      { hour: "2-digit", minute: "2-digit" }
+    )}</span></span>`;
   } else {
     return jsx`<span class="attraction-info header-reactions">
   ${Object.keys(reactions).map(
@@ -101,7 +104,10 @@ export function AttractionDetails(attraction) {
     </tr>
     <tr>
       <th>Expiration:</th>
-      <td>${attraction.expiration.toLocaleTimeString()}</td>
+      <td>${attraction.expiration.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })}</td>
     </tr>
   </table>
   <h4>Invited</h4>
@@ -152,7 +158,10 @@ export function AttractionDetails(attraction) {
     </tr>
     <tr>
       <th>Expiration:</th>
-      <td>${attraction.expiration.toLocaleTimeString()}</td>
+      <td>${attraction.expiration.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })}</td>
     </tr>
   </table>
   <h4>Responses</h4>
