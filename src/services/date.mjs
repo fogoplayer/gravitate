@@ -25,5 +25,5 @@ export function getExpirationDate(time) {
   if (expirationDate < NOW()) {
     expirationDate.setDate(expirationDate.getDate() + 1);
   }
-  console.log(time, expirationDate.toString());
+  return expirationDate;
 }
