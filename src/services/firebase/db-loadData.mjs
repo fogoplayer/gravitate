@@ -24,6 +24,13 @@ export async function parseEvents(events) {
   for (let event in events) {
     watch(events[event].ref);
 
+    debugger;
+    // Expiration Date
+    if (events[event].expiration?.toDate) {
+      events[event].expiration = events[event].expiration.toDate();
+    }
+    console.log(events[event].expiration);
+
     // Guest list
     if (events[event].guestList) {
       events[event].guestList = await parseIndividuals(events[event].guestList);
