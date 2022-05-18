@@ -3,6 +3,7 @@ import Input from "../components/Input.mjs";
 import Spinner from "../components/Spinner.mjs";
 import createAttraction from "../services/attractions.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
+import { getExpirationDate } from "../services/date.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { afterUpdate } from "../services/firebase/db.mjs";
 import { getIcon } from "../services/firebase/storage.mjs";
@@ -71,7 +72,8 @@ export default function CreateAttraction() {
       name: "expiration-time",
       type: "time",
       required: true,
-      oninput: (e) => (newAttraction.expiration = e.target.value),
+      oninput: (e) =>
+        (newAttraction.expiration = getExpirationDate(e.target.value)),
     })}
   ${ContactsList(ContactTemplate)}
     <button id="submit-button" class="primary">

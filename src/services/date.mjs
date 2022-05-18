@@ -1,26 +1,29 @@
-export const NOW = new Date();
+export function NOW() {
+  return new Date();
+}
 
-export const TODAY = new Date(
-  NOW.getUTCFullYear(),
-  NOW.getUTCMonth(),
-  NOW.getUTCDay()
-);
+export function TODAY() {
+  return new Date(NOW().getFullYear(), NOW().getMonth(), NOW().getDate());
+}
+
+console.log(NOW().toString());
 
 export function dateFromTime(startDate, time) {
   let [hours, mins, secs] = time.split(":");
   return new Date(
-    startDate.getYear(),
+    startDate.getFullYear(),
     startDate.getMonth(),
-    startDate.getDay(),
+    startDate.getDate(),
     hours,
-    mins,
-    secs
+    mins
+    // secs
   );
 }
 
 export function getExpirationDate(time) {
-  let expirationDate = dateFromTime(startDate, time);
-  if (expirationDate < new Date()) {
-    expirationDate.setDate(date.getDate() + 1);
+  let expirationDate = dateFromTime(TODAY(), time);
+  if (expirationDate < NOW()) {
+    expirationDate.setDate(expirationDate.getDate() + 1);
   }
+  console.log(time, expirationDate.toString());
 }
