@@ -7,7 +7,7 @@ import {
   usernameSearch,
 } from "../../services/firebase/db.mjs";
 import { uploadPFP } from "../../services/firebase/storage.mjs";
-import { jsx } from "../../services/render.mjs";
+import { jsx, renderPage } from "../../services/render.mjs";
 
 export default function CreateProfile() {
   return jsx`<main class="main-bubble modal">
@@ -56,7 +56,7 @@ async function onSubmit(e) {
     await update(getCurrUserData().ref, {
       name: username,
     });
-    page("/view-attractions");
+    renderPage("/onboarding/tour-offer");
   } catch (error) {
     console.error(error);
     e.submitter.classList.remove("loading");

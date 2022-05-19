@@ -8,8 +8,9 @@ export function Welcome() {
     Hi! My name's Cosmo, and I'd like to personally welcome you to Gravitate!
   </p>
   <p>
-    My job is to help you get started, and to show you the ropes around here. It
-    might feel like a lot, but I promise--you'll get the hang of it before too
+    My job is to help you get started, and to show you the ropes around here.</p>
+  <p>
+    It might feel like a lot, but I promise--you'll get the hang of it before too
     long!
   </p>
   <p>
