@@ -12,12 +12,30 @@ exports.sendInviteNotif = functions.firestore
     const uid = context.params.uid;
     const invitation = context.params.invitation;
 
-    const userDoc = await functions.firestore.document("users/" + uid).get();
-    const userToken = userDoc.messagingToken;
+    let userDataDoc = await db.doc("users/" + uid + "/data/data").get();
+    userDataDoc = userDataDoc.data();
+    const userToken = userDataDoc.messagingToken;
+    functions.logger.log("userdoc", userDataDoc);
+    functions.logger.log("token", userToken);
 
-    const message = { data: userDoc, token: userToken };
+    let inviteDoc = await db
+      .doc("users/" + uid + "/invitations/" + invitation)
+      .get();
+    inviteDoc = inviteDoc.data();
 
-    getMessaging()
+    const message = {
+      notification: {
+        title: "You have a new invitation!",
+        body: "You have a new invitation!",
+      },
+      // data: inviteDoc,
+      token: userToken,
+    };
+
+    functions.logger.log(message);
+
+    admin
+      .messaging()
       .send(message)
       .then((response) => {
         // Response is a message ID string.
