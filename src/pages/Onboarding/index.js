@@ -1,5 +1,6 @@
 import { jsx } from "../../services/render.mjs";
 import CreateProfile from "./CreateProfile.mjs";
+import Tour from "./Tour.mjs";
 import TourOffer from "./TourOffer.mjs";
 import Welcome from "./Welcome.mjs";
 
@@ -17,7 +18,12 @@ export default function Onboarding(context) {
       return TourOffer();
       break;
 
+    case "tour":
+      return Tour();
+      break;
+
     default:
+      return "";
       break;
   }
 }

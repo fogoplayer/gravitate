@@ -48,7 +48,7 @@ authStateChanged(async (user) => {
   page.start();
 });
 
-function showAppPage(contents, context) {
+export function showAppPage(contents, context) {
   console.log(getCurrUserData());
   if (!getCurrUserData()) {
     renderPage("/login");
@@ -64,7 +64,7 @@ function showAppPage(contents, context) {
   hideAppDrawer();
 }
 
-function showAppShell() {
+export function showAppShell() {
   if (!document.querySelector(".app-header")) {
     document.body.innerHTML = ``;
     append(document.body, AppShell(hideAppDrawer, showAppDrawer, logOut));

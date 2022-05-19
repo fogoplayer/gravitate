@@ -10,7 +10,7 @@ export default function ContactsList(Template) {
   let page = jsx`<ul class="contacts-list contacts-list">
   <li class="orbits-wrapper">
     <h2>
-      <img src="./images/orbit.svg" alt="Orbit icon" class="header-icon" />
+      <img src="/images/orbit.svg" alt="Orbit icon" class="header-icon" />
       <span class="header-text">Orbits</span>
       <button type="button" class="header-btn" onclick="${showAddOrbit}">
         <span class="material-symbols-sharp">add</span>
@@ -22,7 +22,7 @@ export default function ContactsList(Template) {
   <li class="systems-wrapper">
     <h2>
       <img
-        src="./images/system.svg"
+        src="/images/system.svg"
         alt="Systems icon"
         class="header-icon"
       />
@@ -37,7 +37,7 @@ export default function ContactsList(Template) {
   <li class="friends-wrapper">
     <h2>
       <img
-        src="./images/friend.svg"
+        src="/images/friend.svg"
         alt="Friends icon"
         class="header-icon"
       />
