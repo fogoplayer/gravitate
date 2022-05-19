@@ -193,7 +193,9 @@ export async function loadUserData(user = {}) {
   invitations = await parseEvents(invitations);
   for (let invitation of invitations) {
     invitation.organizer = await getDocData(invitation.organizer);
-    invitation.origin = await getDocData(invitation?.origin);
+    if (invitation.origin) {
+      invitation.origin = await getDocData(invitation?.origin);
+    }
   }
   currUserData.invitations = invitations;
 
