@@ -1,12 +1,22 @@
 import { jsx, renderPage } from "../services/render.mjs";
 
-export default function Tip({ target, contents, prev, next }) {
+export default function Tip({
+  target,
+  contents = "",
+  prev,
+  prevLabel = "",
+  next,
+  nextLabel = "",
+}) {
   return jsx`<dialog class="tip modal ${target ? "targeted" : ""}">
   <section>
   ${
     prev
       ? jsx`<button class="flat" onclick=${prev}>
-    <span class="material-symbols-sharp"> arrow_back</span>
+    <span>
+      <span class="material-symbols-sharp"> arrow_back</span>
+      ${prevLabel}
+    </span>
   </button>`
       : ""
   }
@@ -20,7 +30,10 @@ export default function Tip({ target, contents, prev, next }) {
       ? { onclick: next }
       : { onclick: () => renderPage("/view-attractions") }
   }>
-    <span class="material-symbols-sharp"> arrow_forward</span>
+    <span>
+      <span class="material-symbols-sharp"> arrow_forward</span> 
+      ${nextLabel} 
+    </span>
   </button>
   </section>
 </dialog>

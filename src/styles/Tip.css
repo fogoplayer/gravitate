@@ -18,7 +18,11 @@
   /* misc */
 }
 
-.tip section > button {
+.tip section > button > span {
+  text-align: center;
+}
+
+.tip section > button .material-symbols-sharp {
   font-size: 2em;
 }
 
