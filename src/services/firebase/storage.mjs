@@ -27,7 +27,7 @@ export function getIcon(icon) {
   const HTTPS = "https://";
 
   if (icon?.substring(0, HTTPS.length) === HTTPS) {
-    return jsx`<img src="${icon}" alt="User icon" />`;
+    return jsx`<img class="contact-icon pfp" src="${icon}" alt="User icon" />`;
   } else if (icon?.length) {
     return jsx`<span class="contact-icon">${icon}</span>`;
   } else {
