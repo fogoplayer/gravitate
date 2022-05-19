@@ -69,6 +69,7 @@ function orbits() {
   <li>are karaoke divas</li>
 </ul>
 `,
+    targetSelector: ".orbit-wrapper .header-icon",
     prev: prevTip,
     prevLabel: "Overview",
     next: nextTip,

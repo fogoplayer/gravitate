@@ -1,14 +1,14 @@
 import { jsx, renderPage } from "../services/render.mjs";
 
 export default function Tip({
-  target,
+  targetSelector,
   contents = "",
   prev,
   prevLabel = "",
   next,
   nextLabel = "",
 }) {
-  return jsx`<dialog class="tip modal ${target ? "targeted" : ""}">
+  return jsx`<dialog class="tip modal ${targetSelector ? "targeted" : ""}">
   <section>
   ${
     prev
