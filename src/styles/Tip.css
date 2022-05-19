@@ -1,0 +1,17 @@
+.tip {
+  /* display */
+  display: flex;
+  flex-direction: row nowrap;
+
+  /* positioning */
+  position: fixed;
+  /* box-model */
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
+.tip.no-target {
+  inset: 0;
+  margin: auto;
+}

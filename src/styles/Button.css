@@ -6,6 +6,8 @@ button.flat,
 a.button.flat {
   /* display */
   display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
   /* positioning */
   /* box-model */
