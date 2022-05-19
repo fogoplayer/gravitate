@@ -24,7 +24,10 @@ function closeAll() {
 }
 
 function contactsOverview() {
-  let modal = Tip({ contents: "Hello world" });
+  let modal = Tip({
+    contents: jsx`<p>Gravitate exists to help you organize spur-of-the-moment events with your friends and family members.</p>
+<p>Let's start with how those friends and family members are organized!</p>`,
+  });
   modal._showModal = modal.showModal;
   modal.showModal = () => {
     showAppPage(Contacts, { pathname: "/contacts" });

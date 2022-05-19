@@ -1,7 +1,7 @@
 import { jsx, renderPage } from "../services/render.mjs";
 
 export default function Tip({ target, contents, prev, next }) {
-  return jsx`<dialog class="tip modal">
+  return jsx`<dialog class="tip modal ${target ? "targeted" : ""}">
   <section>
   ${
     prev
@@ -10,8 +10,9 @@ export default function Tip({ target, contents, prev, next }) {
   </button>`
       : ""
   }
+  <img class="float" src="../../images/cosmo.svg" alt="Cosmo" />
   <main>
-    <img class="float" src="../../images/cosmo.svg" alt="Cosmo" />
+    
     ${contents}
   </main>
   <button class="flat" ...${

@@ -2,6 +2,10 @@
   position: fixed;
 }
 
+.tip.targeted::backdrop {
+  background-color: transparent;
+}
+
 .tip section {
   /* display */
   display: flex;
@@ -19,13 +23,23 @@
 }
 
 .tip main {
+  /* display */
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1em;
+
+  /* positioning */
+  /* box-model */
   padding: 1em;
+
+  /* typography */
+  /* manipulation */
+  /* misc */
 }
 
-.tip main:first-child {
-  margin-left: 2em;
-}
-.tip main .float {
-  float: left;
+.tip img {
   max-width: 3em;
+}
+.tip img:first-child {
+  margin-left: 2em;
 }
