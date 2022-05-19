@@ -2,3 +2,4 @@ config.mjs
 node_modules
 firebase-debug-log
 *.cache
+gravitate-key.json
