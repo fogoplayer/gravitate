@@ -26,10 +26,10 @@ export async function uploadPFP(file) {
 export function getIcon(icon) {
   const HTTPS = "https://";
 
-  if (icon?.length) {
-    return jsx`<span class="contact-icon">${icon}</span>`;
-  } else if (icon?.substring(0, HTTPS.length) === HTTPS) {
+  if (icon?.substring(0, HTTPS.length) === HTTPS) {
     return jsx`<img src="${icon}" alt="User icon" />`;
+  } else if (icon?.length) {
+    return jsx`<span class="contact-icon">${icon}</span>`;
   } else {
     return jsx`<span class="contact-icon">🟣</span>`;
   }
