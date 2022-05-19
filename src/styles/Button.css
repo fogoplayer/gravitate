@@ -5,6 +5,8 @@ a.button.outline,
 button.flat,
 a.button.flat {
   /* display */
+  display: inline-flex;
+
   /* positioning */
   /* box-model */
   border-radius: 0.5em;
