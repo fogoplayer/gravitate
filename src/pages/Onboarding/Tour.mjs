@@ -8,10 +8,12 @@ export default function Tour() {
 
   const tour = [contactsOverview()];
   append(document.body, tour);
-  console.log(tour[0]);
+
+  showTourTip(tour[0]);
+  return "";
 }
 
-function showTourPage(tip) {
+function showTourTip(tip) {
   closeAll();
   tip.showModal();
 }
