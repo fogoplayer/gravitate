@@ -26,6 +26,13 @@
   font-size: 2em;
 }
 
+.tip img {
+  max-width: 3em;
+}
+.tip img:first-child {
+  margin-left: 2em;
+}
+
 .tip main {
   /* display */
   display: flex;
@@ -41,9 +48,11 @@
   /* misc */
 }
 
-.tip img {
-  max-width: 3em;
+.tip main ul,
+.tip main ol {
+  margin: auto;
 }
-.tip img:first-child {
-  margin-left: 2em;
+
+.tip main ul li {
+  margin: initial;
 }
