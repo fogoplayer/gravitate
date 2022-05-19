@@ -2,7 +2,7 @@ import Spinner from "../components/Spinner.mjs";
 import Input from "../components/Input.mjs";
 import { authStateChanged } from "../services/firebase/auth.mjs";
 import { createAccount } from "../services/firebase/auth.mjs";
-import { jsx } from "../services/render.mjs";
+import { jsx, renderPage } from "../services/render.mjs";
 
 export default function SignUp() {
   let email, password;
@@ -33,7 +33,7 @@ export default function SignUp() {
         document.querySelector("#email").value,
         document.querySelector("#password").value
       );
-      page("onboarding/create-profile");
+      renderPage("onboarding/create-profile");
     } catch (error) {
       e.submitter.classList.remove("loading");
     }
