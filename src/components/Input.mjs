@@ -32,8 +32,11 @@ export default function Input({
 
   function onInput(e) {
     const target = e.target;
-    if (target.value) target.parentNode.parentNode.classList.add("not-empty");
-    else target.parentNode.parentNode.classList.remove("not-empty");
+    const component = target.parentNode.parentNode;
+    if (target.value) {
+      component.classList.add("not-empty");
+      component.classList.remove("invalid");
+    } else target.parentNode.parentNode.classList.remove("not-empty");
     oninput(e);
   }
 
