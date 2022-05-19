@@ -4,6 +4,7 @@ import {
   afterUpdate,
   getCurrUserData,
   update,
+  usernameSearch,
 } from "../../services/firebase/db.mjs";
 import { uploadPFP } from "../../services/firebase/storage.mjs";
 import { jsx } from "../../services/render.mjs";
@@ -46,19 +47,23 @@ async function onSubmit(e) {
   try {
     e.submitter.classList.add("loading");
 
-    usersWithUsername = await usernameSearch(username);
+    let username = document.querySelector("#username").value;
+    let usersWithUsername = await usernameSearch(username);
     if (usersWithUsername.length > 0) {
       throw new Error("username-exists");
     }
 
     await update(getCurrUserData().ref, {
-      name: document.querySelector("#username").value,
+      name: username,
     });
     page("/view-attractions");
   } catch (error) {
     console.error(error);
     e.submitter.classList.remove("loading");
-    if (error === "username-exists") {
+    if (error.message === "username-exists") {
+      document
+        .getElementById("username")
+        .parentNode.parentNode.classList.add("invalid");
     }
   }
 }
