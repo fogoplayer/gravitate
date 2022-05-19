@@ -3,7 +3,7 @@ import {
   getStorage,
   ref,
   uploadBytes,
-} from "https://www.gstatic.com/firebasejs/9.7.0/firebase-storage.js";
+} from "../../lib/firebase/9.7.0/firebase-storage.js";
 import { jsx } from "../render.mjs";
 import { app } from "./app.mjs";
 import { getCurrUserData, update } from "./db.mjs";

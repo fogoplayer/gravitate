@@ -1,4 +1,4 @@
-import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
+import "./lib/pwaupdate.js";
 
 import { append, jsx, renderPage } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";

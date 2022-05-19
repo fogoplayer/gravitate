@@ -1,7 +1,7 @@
 import {
   getMessaging,
   getToken,
-} from "https://www.gstatic.com/firebasejs/9.7.0/firebase-messaging.js";
+} from "../../lib/firebase/9.7.0/firebase-messaging.js";
 import { app } from "./app.mjs";
 import { authStateChanged } from "./auth.mjs";
 import { update } from "./db.mjs";

@@ -13,8 +13,8 @@ import {
   updateDoc,
   onSnapshot as onSnapshotDB,
   enableIndexedDbPersistence,
-} from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
-export { deleteDoc } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js";
+} from "../../lib/firebase/9.7.0/firebase-firestore.js";
+export { deleteDoc } from "../../lib/firebase/9.7.0/firebase-firestore.js";
 import { parseEvents, parseGroups, parseIndividuals } from "./db-loadData.mjs";
 import { hideRefreshPage, showRefreshPage } from "../../App.mjs";
 

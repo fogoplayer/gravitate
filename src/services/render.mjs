@@ -1,4 +1,4 @@
-import htm from "https://unpkg.com/htm?module";
+import htm from "../lib/htm.mjs";
 export const jsx = htm.bind(render);
 
 export function render(type, props, ...children) {

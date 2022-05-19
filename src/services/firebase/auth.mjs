@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-} from "https://www.gstatic.com/firebasejs/9.7.0/firebase-auth.js";
+} from "../../lib/firebase/9.7.0/firebase-auth.js";
 import { createUserData } from "./db.mjs";
 
 const auth = getAuth();
