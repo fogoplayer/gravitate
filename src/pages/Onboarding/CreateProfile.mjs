@@ -30,7 +30,11 @@ export default function CreateProfile() {
         },
       })}
     </label>
-    ${Input({ label: "Username", id: "username" })}
+    ${Input({
+      label: "Username",
+      id: "username",
+      errorMessage: "That username is taken. Please try again.",
+    })}
     <button class="primary">Save</button>
   </form>
 </main>
@@ -41,6 +45,12 @@ async function onSubmit(e) {
   e.preventDefault();
   try {
     e.submitter.classList.add("loading");
+
+    usersWithUsername = await usernameSearch(username);
+    if (usersWithUsername.length > 0) {
+      throw new Error("username-exists");
+    }
+
     await update(getCurrUserData().ref, {
       name: document.querySelector("#username").value,
     });
@@ -48,6 +58,8 @@ async function onSubmit(e) {
   } catch (error) {
     console.error(error);
     e.submitter.classList.remove("loading");
+    if (error === "username-exists") {
+    }
   }
 }
 

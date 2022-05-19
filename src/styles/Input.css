@@ -80,12 +80,6 @@
   /* misc */
 }
 
-.text-input-component.not-empty .text-input:invalid {
-  color: var(--invalid-color);
-  border-color: var(--invalid-color);
-  background-color: var(--invalid-highlight);
-}
-
 .text-input-component .show-hide-password {
   display: none;
 }
@@ -110,6 +104,20 @@
   overflow-y: hidden;
 
   /* misc */
+}
+
+.text-input-component .error-message {
+  font-size: 0.5em;
+  visibility: hidden;
+}
+
+.text-input-component.invalid {
+  color: var(--invalid-color);
+  --current-color: var(--invalid-color);
+}
+
+.text-input-component.invalid .error-message {
+  visibility: visible;
 }
 
 .text-input-component .password ~ .show-hide-password:focus span {

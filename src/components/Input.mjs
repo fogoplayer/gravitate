@@ -5,6 +5,7 @@ export default function Input({
   ref,
   className = "",
   oninput = () => {},
+  errorMessage = "",
   ...props
 }) {
   className = className.concat(" text-input");
@@ -18,11 +19,15 @@ export default function Input({
         <span class="material-symbols-sharp hide-password">visibility_off</span>
       </button>
     </div>
+    ${
+      errorMessage
+        ? jsx`<span class="error-message">${errorMessage}</span>`
+        : ""
+    }
   </label>
 `;
+
   onInput({ target: input.querySelector("input") });
-  // Pass reference to object up to calling func
-  ref = input;
   return input;
 
   function onInput(e) {
