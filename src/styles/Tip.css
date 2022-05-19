@@ -1,17 +1,31 @@
 .tip {
+  position: fixed;
+}
+
+.tip section {
   /* display */
   display: flex;
   flex-direction: row nowrap;
 
   /* positioning */
-  position: fixed;
   /* box-model */
   /* typography */
   /* manipulation */
   /* misc */
 }
 
-.tip.no-target {
-  inset: 0;
-  margin: auto;
+.tip section > button {
+  font-size: 2em;
+}
+
+.tip main {
+  padding: 1em;
+}
+
+.tip main:first-child {
+  margin-left: 2em;
+}
+.tip main .float {
+  float: left;
+  max-width: 3em;
 }
