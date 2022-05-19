@@ -1,6 +1,6 @@
 import { jsx } from "../../services/render.mjs";
 
-export function Welcome() {
+export default function Welcome() {
   return jsx`<main class="main-bubble modal">
   <img src="../../images/cosmo.svg" class="cosmo-img" alt="Cosmo waving" />
   <h1>Welcome to Gravitate!</h1>

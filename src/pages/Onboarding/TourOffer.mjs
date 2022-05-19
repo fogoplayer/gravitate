@@ -1,6 +1,6 @@
 import { jsx } from "../../services/render.mjs";
 
-export function TourOffer() {
+export default function TourOffer() {
   return jsx`<main class="main-bubble modal">
   <img src="../../images/cosmo.svg" class="cosmo-img" alt="Cosmo waving" />
   <h1>Would you like a tour?</h1>
