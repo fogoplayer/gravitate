@@ -3,7 +3,7 @@ import Tip from "../../components/Tip.mjs";
 import { append, jsx } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
 
-const tour = [contactsOverview, orbits, systems, friends, attractions()];
+const tour = [contactsOverview, orbits, systems, friends, attractions];
 let currTip = 0;
 
 export default function Tour() {
@@ -86,17 +86,67 @@ function systems() {
   Systems function like a group text: it's a bunch of people who can all send
   invites to each other.
 </p>
-<p>We call it a "system" because it's like a solar system, with everyone revolving around a shared interest.</p>
+<p>
+  We call it a "system" because it's like a solar system, with everyone
+  revolving around a shared interest.
+</p>
 <p>For example, you might want to have an system for:</p>
 <ul>
   <li>a book group that meets sporadically</li>
   <li>an intramural ultimate frisbee team</li>
   <li>extended family members who live near each other</li>
 </ul>
-<p>To join a system, a system member will need to send you an invite link.</p>`,
+<p>To join a system, a system member will need to send you an invite link.</p>
+<aside>
+  Not sure about the difference between orbits and systems? Learn more
+  <a
+    onclick="${() => {
+      closeAll();
+      const el = orbitSystemExamples();
+      append(document.body, el);
+      el.showModal();
+    }}"
+    >here</a
+  >
+</aside>
+`,
     target: document.querySelector(".systems-wrapper .header-icon"),
     prev: prevTip,
     prevLabel: "Orbits",
+    next: nextTip,
+    nextLabel: "Friends",
+  });
+  return modal;
+}
+
+function orbitSystemExamples() {
+  let modal = Tip({
+    contents: jsx`<h2>Orbits vs Systems</h2>
+<table>
+  <tr>
+    <th></th>
+    <th>Orbit</th>
+    <th>System</th>
+  </tr>
+  <tr>
+    <th>Group invitations</th>
+    <td>Members all recieve an invitation</td>
+    <td>Members all recieve an invitation</td>
+  </tr>
+  <tr>
+    <th>Invitation appearance</th>
+    <td>An individual invitation from a friend</td>
+    <td>A group invitation to the entire system</td>
+  </tr>
+  <tr>
+    <th>Attraction Creation</th>
+    <td>Only the orbit creator can create an attraction</td>
+    <td>Any member can create an attraction</td>
+  </tr>
+</table>
+`,
+    prev: () => showTourTip(currTip),
+    prevLabel: "Systems",
     next: nextTip,
     nextLabel: "Friends",
   });
