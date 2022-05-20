@@ -12,6 +12,10 @@
     "url": "https://github.com/fogoplayer/gravitate/issues"
   },
   "homepage": "https://github.com/fogoplayer/gravitate#readme",
+  "scripts": {
+    "start": "firebase serve",
+    "test": "jest"
+  },
   "devDependencies": {
     "jest": "^28.1.0",
     "jest-puppeteer": "^6.1.0",
