@@ -2,6 +2,7 @@ import { showAppPage, showAppShell } from "../../App.mjs";
 import Tip from "../../components/Tip.mjs";
 import { append, jsx } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
+import CreateAttraction from "../CreateAttraction.mjs";
 
 const tour = [contactsOverview, orbits, systems, friends, attractions];
 let currTip = 0;
@@ -171,6 +172,8 @@ function friends() {
 }
 
 function attractions() {
+  showAppPage(CreateAttraction, { pathname: "/create-attraction" });
+  debugger;
   let modal = Tip({
     contents: jsx`<h2>Attractions</h2>
 <p>
@@ -178,7 +181,7 @@ function attractions() {
 </p>
 <p>After putting in a title, location, and end time for the attraction, you can send it to any combination of your orbits, attractions, and friends.</p>
 <p>They'll recieve a notification with the attraction details</p>`,
-    target: document.querySelector(".friends-wrapper .header-icon"),
+    target: document.querySelector(".menu-button"),
     prev: prevTip,
     prevLabel: "Friends",
     next: nextTip,
@@ -186,7 +189,6 @@ function attractions() {
   });
   modal._showModal = modal.showModal;
   modal.showModal = () => {
-    showAppPage(Contacts, { pathname: "/create-attraction" });
     modal._showModal();
   };
   return modal;
