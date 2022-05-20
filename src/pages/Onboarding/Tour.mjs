@@ -3,7 +3,7 @@ import Tip from "../../components/Tip.mjs";
 import { append, jsx } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
 
-const tour = [contactsOverview, orbits];
+const tour = [contactsOverview, orbits, systems, friends, attractions()];
 let currTip = 0;
 
 export default function Tour() {
@@ -16,7 +16,6 @@ function showTourTip(tip) {
   closeAll();
   const el = tour[tip]();
   append(document.body, el);
-
   el.showModal();
 }
 
@@ -62,7 +61,7 @@ function orbits() {
   <li>A common interest</li>
   <li><b>You!</b></li>
 </ol>
-
+<p>That's why we call it an "orbit": they're all "orbiting" around you.</p>
 <p>For example, you might want to have an orbit for friends who:</p>
 <ul>
   <li>are Planet Fitness members</li>
@@ -75,7 +74,70 @@ function orbits() {
     prev: prevTip,
     prevLabel: "Overview",
     next: nextTip,
-    nextLabel: "Orbits",
+    nextLabel: "Systems",
   });
+  return modal;
+}
+
+function systems() {
+  let modal = Tip({
+    contents: jsx`<h2>Systems</h2>
+<p>
+  Systems function like a group text: it's a bunch of people who can all send
+  invites to each other.
+</p>
+<p>We call it a "system" because it's like a solar system, with everyone revolving around a shared interest.</p>
+<p>For example, you might want to have an system for:</p>
+<ul>
+  <li>a book group that meets sporadically</li>
+  <li>an intramural ultimate frisbee team</li>
+  <li>extended family members who live near each other</li>
+</ul>
+<p>To join a system, a system member will need to send you an invite link.</p>`,
+    target: document.querySelector(".systems-wrapper .header-icon"),
+    prev: prevTip,
+    prevLabel: "Orbits",
+    next: nextTip,
+    nextLabel: "Friends",
+  });
+  return modal;
+}
+
+function friends() {
+  let modal = Tip({
+    contents: jsx`<h2>Friends</h2>
+<p>
+  Friends can send invitations to each other individually.
+</p>
+<p><b>You will only recieve invitations from people you have friended.</b></p>
+<p>To add someone as a friend, you will need to know their username or have them send you an add link.</p>`,
+    target: document.querySelector(".friends-wrapper .header-icon"),
+    prev: prevTip,
+    prevLabel: "Systems",
+    next: nextTip,
+    nextLabel: "Attractions",
+  });
+  return modal;
+}
+
+function attractions() {
+  let modal = Tip({
+    contents: jsx`<h2>Attractions</h2>
+<p>
+  In Gravitate, an event is called an "Attraction."
+</p>
+<p>After putting in a title, location, and end time for the attraction, you can send it to any combination of your orbits, attractions, and friends.</p>
+<p>They'll recieve a notification with the attraction details</p>`,
+    target: document.querySelector(".friends-wrapper .header-icon"),
+    prev: prevTip,
+    prevLabel: "Friends",
+    next: nextTip,
+    nextLabel: "Invitations",
+  });
+  modal._showModal = modal.showModal;
+  modal.showModal = () => {
+    showAppPage(Contacts, { pathname: "/create-attraction" });
+    modal._showModal();
+  };
   return modal;
 }
