@@ -23,6 +23,10 @@
   /* misc */
 }
 
+.tip section > button {
+  width: min-width;
+}
+
 .tip section > button > span {
   text-align: center;
 }
