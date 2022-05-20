@@ -24,7 +24,7 @@
 }
 
 .tip section > button {
-  width: min-width;
+  width: min-content;
 }
 
 .tip section > button > span {
