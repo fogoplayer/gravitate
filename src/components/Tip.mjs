@@ -40,6 +40,10 @@ export default function Tip({
 </dialog>
 `;
   positionToTarget();
+  modal.addEventListener("cancel", (e) => {
+    e.preventDefault();
+  });
+
   return modal;
 
   function positionToTarget() {
