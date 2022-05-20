@@ -48,10 +48,32 @@ export default function Tip({
     const VW = document.documentElement.clientWidth;
     const TARGET_CENTER_H = target.offsetLeft + target.offsetWidth / 2;
     const TARGET_CENTER_V = target.offsetTop + target.offsetHeight / 2;
+    const TARGET_LEFT = target.offsetLeft;
+    const TARGET_RIGHT = target.offsetLeft + target.offsetWidth;
+
+    console.log(
+      "TARGET_CENTER_H",
+      target.offsetLeft + target.offsetWidth / 2,
+      "TARGET_LEFT",
+      target.offsetLeft,
+      "TARGET_RIGHT",
+      target.offsetLeft + target.offsetWidth,
+      "TARGET_CENTER_V",
+      target.offsetTop + target.offsetHeight / 2
+    );
+
+    let x, y, maxWidth;
+
+    if (TARGET_CENTER_H < VW / 2) {
+      x = TARGET_RIGHT + "px";
+      y = TARGET_CENTER_V + "px";
+      maxWidth = VW - TARGET_RIGHT - 32 + "px";
+    }
     Object.assign(modal.style, {
       inset: "unset",
-      top: TARGET_CENTER_V + "px",
-      left: TARGET_CENTER_H + "px",
+      top: y,
+      left: x,
+      maxWidth: maxWidth,
     });
   }
 }

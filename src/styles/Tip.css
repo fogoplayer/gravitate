@@ -1,9 +1,33 @@
 .tip {
   position: fixed;
+  border-radius: 1em;
+  overflow: visible;
 }
 
 .tip.targeted::backdrop {
   background-color: transparent;
+}
+
+.tip.targeted::before {
+  content: "";
+
+  /* display */
+  display: block;
+
+  /* positioning */
+  position: absolute;
+
+  /* box-model */
+  width: 0;
+  height: 0;
+  border: 2em solid transparent;
+  border-right: 2em solid var(--theme-secondary-color);
+
+  /* typography */
+  /* manipulation */
+  transform: translate(-100%, 2em);
+
+  /* misc */
 }
 
 .tip section {
@@ -30,7 +54,7 @@
   max-width: 3em;
 }
 .tip img:first-child {
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
 .tip main {
