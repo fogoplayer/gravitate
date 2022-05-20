@@ -11,5 +11,8 @@
   "bugs": {
     "url": "https://github.com/fogoplayer/gravitate/issues"
   },
-  "homepage": "https://github.com/fogoplayer/gravitate#readme"
+  "homepage": "https://github.com/fogoplayer/gravitate#readme",
+  "dependencies": {
+    "puppeteer": "^14.1.1"
+  }
 }
