@@ -1,5 +1,5 @@
 config.mjs
 node_modules
-firebase-debug-log
+*.log
 *.cache
 gravitate-key.json
