@@ -1,3 +1,5 @@
+const VERSION = "1.0.2";
+
 // This is the "Offline copy of assets" service worker
 
 const CACHE = "pwabuilder-offline";
