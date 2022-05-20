@@ -1,10 +1,19 @@
 import { showAppPage, showAppShell } from "../../App.mjs";
+import { reactions } from "../../components/AttractionDetails.mjs";
 import Tip from "../../components/Tip.mjs";
-import { append, jsx } from "../../services/render.mjs";
+import { append, jsx, renderPage } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
 import CreateAttraction from "../CreateAttraction.mjs";
+import ViewAttractions from "../ViewAttractions.mjs";
 
-const tour = [contactsOverview, orbits, systems, friends, attractions];
+const tour = [
+  contactsOverview,
+  orbits,
+  systems,
+  friends,
+  attractions,
+  invitations,
+];
 let currTip = 0;
 
 export default function Tour() {
@@ -173,13 +182,12 @@ function friends() {
 
 function attractions() {
   showAppPage(CreateAttraction, { pathname: "/create-attraction" });
-  debugger;
   let modal = Tip({
     contents: jsx`<h2>Attractions</h2>
 <p>
-  In Gravitate, an event is called an "Attraction."
+  This page is for creating an event, which we call an "Attraction."
 </p>
-<p>After putting in a title, location, and end time for the attraction, you can send it to any combination of your orbits, attractions, and friends.</p>
+<p>After putting in a title, location, and end time for the attraction, you can send it to any combination of your orbits, attractions, and friends by clicking on their name.</p>
 <p>They'll recieve a notification with the attraction details.</p>`,
     target: document.querySelector(".menu-button"),
     prev: prevTip,
@@ -187,9 +195,35 @@ function attractions() {
     next: nextTip,
     nextLabel: "Invitations",
   });
-  modal._showModal = modal.showModal;
-  modal.showModal = () => {
-    modal._showModal();
-  };
+  return modal;
+}
+
+function invitations() {
+  showAppPage(ViewAttractions, { pathname: "/view-attractions" });
+  let modal = Tip({
+    contents: jsx`<h2>Invitations</h2>
+<p>This page allows you to view your invitations and attractions.</p>
+<p>
+  Clicking on an attraction or invitation lets you see additional details and
+  RSVP
+</p>
+<p>There are five responses you can send:</p>
+<ul>
+  ${Object.keys(reactions).map((reaction) => {
+    return jsx`<li><span class="noto">${
+      reactions[reaction]
+    }</span>: ${reaction.toLowerCase()}</li>`;
+  })}
+</ul>
+`,
+    prev: prevTip,
+    prevLabel: "Attractions",
+    next: () => {
+      closeAll();
+      renderPage("/contacts");
+    },
+    nextLabel: "Let's go!",
+  });
+
   return modal;
 }
