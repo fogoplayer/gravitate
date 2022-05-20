@@ -17,8 +17,10 @@ const tour = [
 let currTip = 0;
 
 export default function Tour() {
+  currTip = 0;
+
   showAppShell();
-  showTourTip(0);
+  showTourTip(currTip);
   return "";
 }
 

@@ -42,7 +42,7 @@ export default function CreateAttraction() {
   <ul class="contacts-list contacts-list">
     <li class="orbits-wrapper">
       <h2>
-        <img src="./images/your-attractions.svg" alt="Your attractions icon" class="header-icon" />
+        <img src="/images/your-attractions.svg" alt="Your attractions icon" class="header-icon" />
         <span class="header-text">Your Attractions</span>
       </h2>
       ${Template(attractions)}
@@ -50,7 +50,7 @@ export default function CreateAttraction() {
     <li class="systems-wrapper">
       <h2>
         <img
-          src="./images/system.svg"
+          src="/images/system.svg"
           alt="Systems icon"
           class="header-icon"
         />
@@ -61,7 +61,7 @@ export default function CreateAttraction() {
     <li class="friends-wrapper">
       <h2>
         <img
-          src="./images/friend.svg"
+          src="/images/friend.svg"
           alt="Friends icon"
           class="header-icon"
         />
