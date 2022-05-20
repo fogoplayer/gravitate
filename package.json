@@ -13,6 +13,8 @@
   },
   "homepage": "https://github.com/fogoplayer/gravitate#readme",
   "dependencies": {
+    "jest": "^28.1.0",
+    "jest-puppeteer": "^6.1.0",
     "puppeteer": "^14.1.1"
   }
 }
