@@ -1,0 +1,33 @@
+.changelog {
+  /* display */
+  /* positioning */
+  /* box-model */
+  padding: 1.5em;
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
+.changelog section {
+  width: fit-content;
+  margin: auto;
+}
+
+.changelog section h3 {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.changelog section h4:not(:first-of-type) {
+  /* display */
+  /* positioning */
+  /* box-model */
+  /* typography */
+  margin-top: 1em;
+  /* manipulation */
+  /* misc */
+}
+
+.changelog li {
+  margin-left: 1.5em;
+}

@@ -34,6 +34,13 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
       </ol>
       <ol>
         <li>
+          <a href="/changelog" class="nav-link" tabindex=0>
+            <span class="material-symbols-sharp">
+              list_alt</span>
+            <span class="nav-title">Changelog </span>
+          </a>
+        </li>
+        <li>
           <a href="/settings" class="nav-link" tabindex=0>
             <span class="material-symbols-sharp nav-icon">settings</span>
             <span class="nav-title">Settings</span>
