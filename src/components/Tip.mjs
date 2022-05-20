@@ -1,14 +1,15 @@
 import { jsx, renderPage } from "../services/render.mjs";
 
 export default function Tip({
-  targetSelector,
+  target,
   contents = "",
   prev,
   prevLabel = "",
   next,
   nextLabel = "",
 }) {
-  return jsx`<dialog class="tip modal ${targetSelector ? "targeted" : ""}">
+  console.log(target);
+  let modal = jsx`<dialog class="tip modal ${target ? "targeted" : ""}">
   <section>
   ${
     prev
@@ -38,4 +39,19 @@ export default function Tip({
   </section>
 </dialog>
 `;
+  positionToTarget();
+  return modal;
+
+  function positionToTarget() {
+    if (!target) return;
+
+    const VW = document.documentElement.clientWidth;
+    const TARGET_CENTER_H = target.offsetLeft + target.offsetWidth / 2;
+    const TARGET_CENTER_V = target.offsetTop + target.offsetHeight / 2;
+    Object.assign(modal.style, {
+      inset: "unset",
+      top: TARGET_CENTER_V + "px",
+      left: TARGET_CENTER_H + "px",
+    });
+  }
 }

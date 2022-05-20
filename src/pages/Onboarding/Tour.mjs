@@ -3,19 +3,21 @@ import Tip from "../../components/Tip.mjs";
 import { append, jsx } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
 
-const tour = [contactsOverview(), orbits()];
+const tour = [contactsOverview, orbits];
 let currTip = 0;
 
 export default function Tour() {
   showAppShell();
-  append(document.body, tour);
   showTourTip(0);
   return "";
 }
 
 function showTourTip(tip) {
   closeAll();
-  tour[tip].showModal();
+  const el = tour[tip]();
+  append(document.body, el);
+
+  el.showModal();
 }
 
 function nextTip() {
@@ -69,7 +71,7 @@ function orbits() {
   <li>are karaoke divas</li>
 </ul>
 `,
-    targetSelector: ".orbit-wrapper .header-icon",
+    target: document.querySelector(".orbits-wrapper .header-icon"),
     prev: prevTip,
     prevLabel: "Overview",
     next: nextTip,
