@@ -1,16 +1,30 @@
-const { Builder, By } = require("selenium-webdriver");
+const { By, until } = require("selenium-webdriver");
 
-exports.loginTest = async function (driver) {
-  await driver.get("http://localhost:5000/login");
+function loginTest(driver) {
+  describe("Login tests", () => {
+    driver.get("http://localhost:5000/login");
 
-  test("login loads", async () => {
-    let h1 = await driver.findElement(By.css("h1"));
-    expect(h1.innerText).toContain("Gravitate");
+    test("login loads", async () => {
+      await driver.get("http://localhost:5000/login");
+      let h1 = await querySelectorWait("h1");
+      expect(await h1.getText()).toContain("Gravitate");
+    });
+    // let submit = await driver.findElement(By.css("submit-button"));
+    // await code.sendKeys("kron4");
+    // await submit.click();
+
+    async function querySelectorWait(selector) {
+      const el = await driver.wait(
+        until.elementLocated(By.css(selector)),
+        5000
+      );
+      await driver.wait(until.elementIsVisible(el), 5000);
+      return el;
+    }
   });
-  // let submit = await driver.findElement(By.css("submit-button"));
-  // await code.sendKeys("kron4");
-  // await submit.click();
-};
+}
+
+exports.loginTest = loginTest;
 /*
 /////////////////////////
   // Miscellaneous pages //
