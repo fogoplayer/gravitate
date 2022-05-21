@@ -9,23 +9,6 @@ test("Driver starts", () => {
 
 loginTest();
 
-// describe("test block", () => {
-//   test("jest is running", () => {
-//     expect(1 + 1).toEqual(2);
-//   });
-
-//   ////////////////////
-//   // External Pages //
-//   ////////////////////
-
-//   const tests = driver
-//     .then(() => driver.get("https://google.com"))
-//     .then(() => loginTest(driver));
-
 test("Driver stops", () => {
   return driver.quit();
 });
-
-/////////////////
-// Global Vars //
-/////////////////
