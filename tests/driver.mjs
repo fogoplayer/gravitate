@@ -6,7 +6,7 @@ const IPHONE_WIDTH = 414;
 const IPHONE_DIMENSIONS = `--window-size=${IPHONE_WIDTH},${3 * IPHONE_WIDTH}`;
 
 let options = new chrome.Options();
-options.addArguments("--headless");
+// options.addArguments("--headless");
 options.addArguments(IPHONE_DIMENSIONS);
 driver = new Builder().forBrowser("chrome").setChromeOptions(options).build();
 

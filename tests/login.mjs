@@ -2,8 +2,6 @@ const { querySelectorWait, driver } = require("./driver.mjs");
 
 function loginTest() {
   describe("Login tests", () => {
-    driver.get("http://localhost:5000/login");
-
     test("/login loads", async () => {
       await driver.get("http://localhost:5000/login");
       let h1 = await querySelectorWait("h1");
