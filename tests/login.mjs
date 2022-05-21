@@ -1,6 +1,8 @@
-import { Builder, By } from "selenium-webdriver";
+const { Builder, By } = require("selenium-webdriver");
 
-export default async function loginTest(driver) {
+exports.loginTest = async function (driver) {
+  await driver.get("http://localhost:5000/login");
+
   test("login loads", async () => {
     let h1 = await driver.findElement(By.css("h1"));
     expect(h1.innerText).toContain("Gravitate");
@@ -8,7 +10,7 @@ export default async function loginTest(driver) {
   // let submit = await driver.findElement(By.css("submit-button"));
   // await code.sendKeys("kron4");
   // await submit.click();
-}
+};
 /*
 /////////////////////////
   // Miscellaneous pages //
