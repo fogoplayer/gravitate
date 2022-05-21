@@ -1,6 +1,6 @@
-const { By, until } = require("selenium-webdriver");
+const { querySelectorWait, driver } = require("./driver.mjs");
 
-function loginTest(driver) {
+function loginTest() {
   describe("Login tests", () => {
     driver.get("http://localhost:5000/login");
 
@@ -12,15 +12,6 @@ function loginTest(driver) {
     // let submit = await driver.findElement(By.css("submit-button"));
     // await code.sendKeys("kron4");
     // await submit.click();
-
-    async function querySelectorWait(selector) {
-      const el = await driver.wait(
-        until.elementLocated(By.css(selector)),
-        5000
-      );
-      await driver.wait(until.elementIsVisible(el), 5000);
-      return el;
-    }
   });
 }
 
