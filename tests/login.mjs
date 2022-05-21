@@ -4,14 +4,23 @@ function loginTest() {
   describe("Login tests", () => {
     driver.get("http://localhost:5000/login");
 
-    test("login loads", async () => {
+    test("/login loads", async () => {
       await driver.get("http://localhost:5000/login");
       let h1 = await querySelectorWait("h1");
       expect(await h1.getText()).toContain("Gravitate");
     });
-    // let submit = await driver.findElement(By.css("submit-button"));
-    // await code.sendKeys("kron4");
-    // await submit.click();
+
+    test("Logs in successfully", async () => {
+      let email = await querySelectorWait("#email");
+      let password = await querySelectorWait("#password");
+      let submit = await querySelectorWait(".primary");
+
+      await email.sendKeys("zarinloosli+testing@gmail.com");
+      await password.sendKeys("Testing123!");
+      await submit.click();
+
+      await querySelectorWait("#map");
+    });
   });
 }
 
