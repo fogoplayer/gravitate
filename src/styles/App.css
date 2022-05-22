@@ -51,9 +51,7 @@ body {
   /* box-model */
   background-color: var(--light-text);
   border: none;
-  height: 100vh;
-  max-height: 100vh;
-  width: min(16em, calc(100vw - 3.5em));
+  max-width: min(16em, calc(100vw - 3.5em));
 
   /* typography */
   /* manipulation */
@@ -98,12 +96,17 @@ body {
   /* box-model */
   height: 100%;
   border-right: 1px solid var(--theme-primary-color);
+  padding: 0.5em 1em;
   /* typography */
   /* manipulation */
   /* misc */
 }
 
-.side-nav nav ol + ol {
+.side-nav ul {
+  list-style: none;
+}
+
+.side-nav nav ul + ul {
   border-top: 1px solid var(--theme-primary-color);
 }
 
@@ -119,8 +122,6 @@ body {
   justify-content: start;
 
   /* box-model */
-  padding-inline: 0.5em;
-  margin-inline: 0.5em;
   border-radius: 0.5em;
 
   /* typography */

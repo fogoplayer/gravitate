@@ -12,7 +12,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
     }
   }} tabindex=-1>
     <nav>
-      <ol>
+      <ul>
         <li>
           <a href="/changelog" class="nav-link" tabindex=0>
             <span class="material-symbols-sharp">
@@ -32,7 +32,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
             <span class="nav-title">Log out</span>
           </a>
         </li>
-      </ol>
+      </ul>
     </nav>
   </dialog>
 <header class="app-header">
