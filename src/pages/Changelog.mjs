@@ -5,15 +5,21 @@ export default function Changelog() {
   <h2>Changelog</h2>
   <section>
     <h3>Alpha Release</h3>
+    <h4>1.1.1</h4>
+    <ul>
+      <li>Create an end-to-end testing suite to validate future releases</li>
+      <li>Run tests when pull requests are opened</li>
+    </ul>
     <h4>1.1.0</h4>
     <ul>
       <li>Add changelog</li>
     </ul>
-    
+
     <h4>1.0.0</h4>
     <ul>
       <li>Alpha release</li>
     </ul>
   </section>
-</div>`;
+</div>
+`;
 }
