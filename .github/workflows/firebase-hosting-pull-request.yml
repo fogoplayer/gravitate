@@ -14,3 +14,6 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GRAVITATE_43A9A }}'
           projectId: gravitate-43a9a
+        with:
+          node-version: 16.x
+      - run: npm test
