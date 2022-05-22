@@ -103,7 +103,7 @@ function showExternalPage(contents, context) {
 }
 
 function showAppDrawer() {
-  document.querySelector(".drop-nav").showModal();
+  document.querySelector(".drop-nav").show();
 }
 
 function hideAppDrawer(e) {

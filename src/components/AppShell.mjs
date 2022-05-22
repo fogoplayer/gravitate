@@ -5,12 +5,27 @@ import { jsx, renderPage } from "../services/render.mjs";
 export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
   return jsx`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
-<dialog class="drop-nav" onclick=${(e) => {
-    if (e.target === document.querySelector(".drop-nav")) {
-      e.preventDefault();
-      hideAppDrawer();
-    }
-  }} tabindex=-1>
+<header class="app-header">
+  <button class="menu-button" tabIndex=2 onclick=${showAppDrawer}>
+    <div class="material-symbols-sharp"> menu </div>
+  </button>
+  <h1 class="page-title">Gravitate</h1>
+  <button id="refresh-page" tabIndex=3 onclick=${(e) => {
+    renderPage(window.location.pathname);
+    hideRefreshPage();
+  }}>
+    <div class="material-symbols-sharp"> sync </div>
+  </button>
+  <button id="pfp" tabIndex=4 onclick=${(e) => {}}>
+   <img class="pfp" src="${
+     getCurrUserData().icon
+   }" alt="User Profile Picture" /> 
+   <dialog class="drop-nav" onclick=${(e) => {
+     if (e.target === document.querySelector(".drop-nav")) {
+       e.preventDefault();
+       hideAppDrawer();
+     }
+   }} tabindex=-1>
     <nav>
       <ul>
         <li>
@@ -35,21 +50,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
       </ul>
     </nav>
   </dialog>
-<header class="app-header">
-  <button class="menu-button" tabIndex=2 onclick=${showAppDrawer}>
-    <div class="material-symbols-sharp"> menu </div>
-  </button>
-  <h1 class="page-title">Gravitate</h1>
-  <button id="refresh-page" tabIndex=3 onclick=${(e) => {
-    renderPage(window.location.pathname);
-    hideRefreshPage();
-  }}>
-    <div class="material-symbols-sharp"> sync </div>
-  </button>
-  <button id="pfp" tabIndex=4 onclick=${(e) => {}}>
-   <img class="pfp" src="${
-     getCurrUserData().icon
-   }" alt="User Profile Picture" /> 
+
   </button>
 </header>
 <main id="app-main" class="app-main"></main>
