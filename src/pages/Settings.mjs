@@ -10,36 +10,37 @@ import { uploadPFP } from "../../services/firebase/storage.mjs";
 import { jsx, renderPage } from "../../services/render.mjs";
 
 export default function Settings() {
-  return jsx`
-  <form onsubmit="${onSubmit}">
-    <h1>Create your profile</h1>
-    <label class="image-picker">
-      <img class="pfp" src="${
-        getCurrUserData().icon
-      }" alt="Choose a profile picture" />
+  return jsx`<div class="settings">
+    <h1>Settings</h1>
+    <form onsubmit="${onSubmit}">
+      <label class="image-picker">
+        <img class="pfp" src="${
+          getCurrUserData().icon
+        }" alt="Choose a profile picture" />
+        ${Input({
+          label: "Profile Picture",
+          id: "profile picture",
+          type: "file",
+          oninput: (e) => {
+            if (!e.target.files[0]) {
+              return;
+            }
+            uploadPFP(e.target.files[0]);
+            afterUpdate(() => {
+              document.querySelector(".image-picker img").src =
+                getCurrUserData().icon;
+            });
+          },
+        })}
+      </label>
       ${Input({
-        label: "Profile Picture",
-        id: "profile picture",
-        type: "file",
-        oninput: (e) => {
-          if (!e.target.files[0]) {
-            return;
-          }
-          uploadPFP(e.target.files[0]);
-          afterUpdate(() => {
-            document.querySelector(".image-picker img").src =
-              getCurrUserData().icon;
-          });
-        },
+        label: "Username",
+        id: "username",
+        errorMessage: "That username is taken. Please try again.",
       })}
-    </label>
-    ${Input({
-      label: "Username",
-      id: "username",
-      errorMessage: "That username is taken. Please try again.",
-    })}
-    <button class="primary">Save</button>
-  </form>
+      <button class="primary">Save</button>
+    </form>
+</div class="ignore settings"> 
 `;
 }
 
