@@ -10,10 +10,11 @@ import { getCurrUserData } from "./services/firebase/db.mjs";
 import { logOut } from "./services/firebase/auth.mjs";
 import Login from "./pages/Login.mjs";
 import SignUp from "./pages/SignUp.mjs";
-import AppShell from "./components/AppShell.mjs";
+import AppShell, { setPageTitle } from "./components/AppShell.mjs";
 import Spinner from "./components/Spinner.mjs";
 import Onboarding from "./pages/Onboarding/index.js";
 import Changelog from "./pages/Changelog.mjs";
+import Settings from "./pages/Settings.mjs";
 
 // immediately show loading spinner
 append(
@@ -37,6 +38,7 @@ authStateChanged(async (user) => {
   page("/view-attractions", (context) => showAppPage(ViewAttractions, context));
   page("/contacts", (context) => showAppPage(Contacts, context));
   page("/changelog", (context) => showAppPage(Changelog, context));
+  page("/settings", (context) => showAppPage(Settings, context));
   page("/login", () => showExternalPage(Login));
   page("/signup", () => showExternalPage(SignUp));
   page("/onboarding/:page", (context) => showExternalPage(Onboarding, context));
@@ -57,6 +59,7 @@ export function showAppPage(contents, context) {
     return;
   }
   showAppShell();
+  setPageTitle("Gravitate");
   const main = document.querySelector(".app-main");
   main.innerHTML = ``;
   append(main, jsx`${contents(context)}`);
@@ -94,6 +97,7 @@ function setActiveLinks(context) {
 }
 
 function showExternalPage(contents, context) {
+  setPageTitle("Gravitate");
   document.body.innerHTML = "";
   append(document.body, contents(context));
 }
