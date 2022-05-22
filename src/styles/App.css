@@ -45,14 +45,15 @@ body {
 
   /* positioning */
   position: absolute;
-  top: 100%;
-  left: -100%;
+  top: 1em;
+  right: 1em;
   z-index: 1000;
 
   /* box-model */
   background-color: var(--light-text);
   border: none;
   max-width: min(16em, calc(100vw - 3.5em));
+  margin-left: auto;
 
   /* typography */
   font-size: initial;
@@ -98,7 +99,6 @@ body {
   /* positioning */
   /* box-model */
   height: 100%;
-  border-right: 1px solid var(--theme-primary-color);
   padding: 0.5em 1em;
   /* typography */
   /* manipulation */

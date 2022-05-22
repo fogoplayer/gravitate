@@ -6,9 +6,6 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
   return jsx`
 <div id="skip-to-content"><a href="#app-main" tabIndex=1>Skip to content</a></div>
 <header class="app-header">
-  <button class="menu-button" tabIndex=2 onclick=${showAppDrawer}>
-    <div class="material-symbols-sharp"> menu </div>
-  </button>
   <h1 class="page-title">Gravitate</h1>
   <button id="refresh-page" tabIndex=3 onclick=${(e) => {
     renderPage(window.location.pathname);
@@ -16,7 +13,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
   }}>
     <div class="material-symbols-sharp"> sync </div>
   </button>
-  <button id="pfp" tabIndex=4 onclick=${(e) => {}}>
+  <button id="pfp" tabIndex=4 onclick=${showAppDrawer}>
    <img class="pfp" src="${
      getCurrUserData().icon
    }" alt="User Profile Picture" /> 
