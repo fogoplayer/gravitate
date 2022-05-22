@@ -10,17 +10,18 @@ import { uploadPFP } from "../../services/firebase/storage.mjs";
 import { jsx, renderPage } from "../../services/render.mjs";
 
 export default function Settings() {
+  let { icon, name } = getCurrUserData();
   return jsx`<div class="settings">
     <h1>Settings</h1>
     <form onsubmit="${onSubmit}">
       <label class="image-picker">
-        <img class="pfp" src="${
-          getCurrUserData().icon
-        }" alt="Choose a profile picture" />
+        <img class="pfp" src="${icon}" alt="Choose a profile picture" />
         ${Input({
           label: "Profile Picture",
-          id: "profile picture",
+          id: "profile-picture",
+          className: "hidden",
           type: "file",
+          value: icon,
           oninput: (e) => {
             if (!e.target.files[0]) {
               return;
@@ -36,6 +37,7 @@ export default function Settings() {
       ${Input({
         label: "Username",
         id: "username",
+        value: name,
         errorMessage: "That username is taken. Please try again.",
       })}
       <button class="primary">Save</button>

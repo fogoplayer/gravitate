@@ -128,3 +128,7 @@ aside {
 
   /* misc */
 }
+
+.hidden {
+  display: none !important;
+}

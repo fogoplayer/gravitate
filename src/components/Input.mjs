@@ -8,12 +8,10 @@ export default function Input({
   errorMessage = "",
   ...props
 }) {
-  className = className.concat(" text-input");
-
-  const input = jsx`<label class="text-input-component">
+  const input = jsx`<label class="text-input-component ${className}">
     <span class="text-input-label">${label}</span>
     <div class="text-input-wrapper">
-      <input oninput="${onInput}" class=${className} type="text" ...${props}/>
+      <input oninput="${onInput}" class="text-input" type="text" ...${props}/>
       <button class="show-hide-password" type="button" onclick=${showHidePassword}>
         <span class="material-symbols-sharp show-password">visibility</span>
         <span class="material-symbols-sharp hide-password">visibility_off</span>
