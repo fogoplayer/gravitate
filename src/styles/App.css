@@ -59,34 +59,40 @@ body {
   font-size: initial;
 
   /* manipulation */
+  transform-origin: top left;
+
   /* misc */
 }
 
+.drop-nav::backdrop {
+  background: transparent;
+}
+
 .drop-nav[open] {
-  /* animation: open-drawer 0.25s ease-out forwards; */
+  animation: open-drawer 0.25s ease-out forwards;
 }
 
 .drop-nav.closing {
-  /* animation: close-drawer 0.25s ease-out forwards; */
+  animation: close-drawer 0.25s ease-out forwards;
 }
 
 @keyframes open-drawer {
   0% {
-    transform: translateX(-100%);
+    transform: scaleY(0);
   }
 
   100% {
-    transform: translateX(0);
+    transform: scaleY(100%);
   }
 }
 
 @keyframes close-drawer {
   0% {
-    transform: translateX(0);
+    transform: scaleY(100%);
   }
 
   100% {
-    transform: translateX(-100%);
+    transform: scaleY(0);
   }
 }
 
