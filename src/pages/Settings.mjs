@@ -34,14 +34,17 @@ export default function Settings() {
           },
         })}
       </label>
-      ${Input({
-        label: "Username",
-        id: "username",
-        value: name,
-        errorMessage: "That username is taken. Please try again.",
-      })}
-      <button class="primary">Save</button>
+      <div class="inline-inputs">
+        ${Input({
+          label: "Username",
+          id: "username",
+          value: name,
+          errorMessage: "That username is taken. Please try again.",
+        })}
+        <button class="primary small">Save</button>
+      </div>
     </form>
+   <a href="/onboarding/tour" class="button flat inline">Retake tour</a> 
 </div class="ignore settings"> 
 `;
 }
