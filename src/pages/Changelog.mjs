@@ -5,6 +5,10 @@ export default function Changelog() {
   <h2>Changelog</h2>
   <section>
     <h3>Alpha Release</h3>
+    <h4>1.2.0</h4>
+    <ul>
+      <li>Added settings page</li>
+    </ul>
     <h4>1.1.1</h4>
     <ul>
       <li>Create an end-to-end testing suite to validate future releases</li>
