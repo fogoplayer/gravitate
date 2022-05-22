@@ -1,7 +1,7 @@
 const { driver, querySelectorWait, hardTimer } = require("../driver.mjs");
 
 function tourTest() {
-  describe("Tour tests", () => {
+  describe("Tour", () => {
     test("/onboarding/tour-offer loads", async () => {
       await driver.get("http://localhost:5000/onboarding/tour-offer");
       let h1 = await querySelectorWait("h1");

@@ -4,7 +4,7 @@ const { querySelectorWait, driver, hardTimer } = require("./driver.mjs");
 let currTime;
 
 function createAttractionTest() {
-  describe("Create Attractions tests", () => {
+  describe("Create Attractions", () => {
     test("/create-attraction loads", async () => {
       await driver.get("http://localhost:5000/create-attraction");
       let map = await querySelectorWait("#map");
