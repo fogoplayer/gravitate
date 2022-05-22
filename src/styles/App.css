@@ -144,11 +144,6 @@ body {
   color: var(--dark-text);
 }
 
-.drop-nav a.active {
-  background-color: var(--theme-tertiary-color);
-  color: var(--theme-primary-color);
-}
-
 .drop-nav a:focus-visible {
   outline-color: var(--theme-primary-color);
 }
