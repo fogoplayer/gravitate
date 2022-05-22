@@ -42,12 +42,12 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
     hideRefreshPage();
   }}>
     <div class="material-symbols-sharp"> sync </div>
-  </button>
+  </button>  
   <button id="pfp" tabIndex=4 onclick=${showAppDrawer}>
-   <img class="pfp" src="${
-     getCurrUserData().icon
-   }" alt="User Profile Picture" /> 
-   </button>
+    <img class="pfp" src="${
+      getCurrUserData().icon
+    }" alt="User Profile Picture" /> 
+  </button>
 </header>
 <main id="app-main" class="app-main"></main>
 <footer class="app-footer">

@@ -154,6 +154,7 @@ body {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+  justify-content: space-between;
 
   /* positioning */
   /* box-model */
@@ -188,7 +189,7 @@ body {
   font-size: inherit;
 }
 
-.app-header button:nth-of-type(2) {
+.app-header button:first-of-type {
   margin-left: auto;
 }
 
