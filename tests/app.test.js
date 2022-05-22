@@ -1,3 +1,4 @@
+const { createAttractionTest } = require("./create-attractions.mjs");
 const { driver } = require("./driver.mjs");
 const { loginTest } = require("./login.mjs");
 const { viewAttractionsTest } = require("./view-attractions.mjs");
@@ -10,6 +11,7 @@ test("Driver starts", () => {
 
 loginTest();
 viewAttractionsTest();
+createAttractionTest();
 
 test("Driver stops", () => {
   return driver.quit();

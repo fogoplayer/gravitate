@@ -17,5 +17,11 @@ async function querySelectorWait(selector) {
   return el;
 }
 
+// hardTimer
+async function hardTimer(ms) {
+  return await new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 exports.driver = driver;
 exports.querySelectorWait = querySelectorWait;
+exports.hardTimer = hardTimer;

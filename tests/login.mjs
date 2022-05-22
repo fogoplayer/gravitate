@@ -18,7 +18,7 @@ function loginTest() {
       await submit.click();
 
       await querySelectorWait("#map");
-    });
+    }, 10000);
   });
 }
 
