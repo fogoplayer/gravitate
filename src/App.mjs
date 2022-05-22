@@ -97,6 +97,7 @@ function setActiveLinks(context) {
 }
 
 function showExternalPage(contents, context) {
+  setPageTitle("Gravitate");
   document.body.innerHTML = "";
   append(document.body, contents(context));
 }
