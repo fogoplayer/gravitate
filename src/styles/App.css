@@ -105,7 +105,7 @@ body {
   /* positioning */
   /* box-model */
   height: 100%;
-  padding: 0.5em 1em;
+  padding: 0.5em;
   /* typography */
   /* manipulation */
   /* misc */
@@ -117,6 +117,10 @@ body {
 
 .drop-nav nav ul + ul {
   border-top: 1px solid var(--theme-primary-color);
+}
+
+.drop-nav .pfp {
+  width: 1.5em;
 }
 
 .drop-nav nav a,
@@ -132,6 +136,7 @@ body {
 
   /* box-model */
   border-radius: 0.5em;
+  padding-inline: 0.5em;
 
   /* typography */
   text-decoration: none;

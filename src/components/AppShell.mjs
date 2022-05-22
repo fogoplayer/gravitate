@@ -11,29 +11,37 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
       hideAppDrawer();
     }
   }} tabindex=-1>
- <nav>
-   <ul>
-     <li>
-       <a href="/changelog" class="nav-link" tabindex=0>
-         <span class="material-symbols-sharp">
-           list_alt</span>
-         <span class="nav-title">Changelog </span>
-       </a>
-     </li>
-     <li>
-       <a href="/settings" class="nav-link" tabindex=0>
-         <span class="material-symbols-sharp nav-icon">settings</span>
-         <span class="nav-title">Settings</span>
-       </a>
-     </li>
-     <li>
-       <a href="" class="nav-link" tabindex=0 onclick=${logOut}>
-         <span class="material-symbols-sharp nav-icon">logout</span>
-         <span class="nav-title">Log out</span>
-       </a>
-     </li>
-   </ul>
- </nav>
+  <nav>
+    <ul>
+      <li>
+        <a href="/settings" class="nav-link">
+          <img class="pfp" src="${
+            getCurrUserData().icon
+          }" alt="User Profile Picture" />
+          ${getCurrUserData().name}
+        </a>
+      </li>
+      <li>
+        <a href="/changelog" class="nav-link" tabindex=0>
+          <span class="material-symbols-sharp">
+            list_alt</span>
+          <span class="nav-title">Changelog </span>
+        </a>
+      </li>
+      <li>
+        <a href="/settings" class="nav-link" tabindex=0>
+          <span class="material-symbols-sharp nav-icon">settings</span>
+          <span class="nav-title">Settings</span>
+        </a>
+      </li>
+      <li>
+        <a href="" class="nav-link" tabindex=0 onclick=${logOut}>
+          <span class="material-symbols-sharp nav-icon">logout</span>
+          <span class="nav-title">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </dialog>
 <header class="app-header">
   <h1 class="page-title">Gravitate</h1>
@@ -70,8 +78,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
     </a>
   </nav>
 </footer>
-<pwa-update/>
-      `;
+<pwa-update/>`;
 }
 
 export function setPageTitle(title) {
