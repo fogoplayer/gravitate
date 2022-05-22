@@ -1,4 +1,4 @@
-const VERSION = "1.2.0";
+const VERSION = "1.3.0";
 
 // This is the "Offline copy of assets" service worker
 
