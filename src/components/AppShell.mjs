@@ -14,26 +14,6 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
     <nav>
       <ol>
         <li>
-          <a href="/view-attractions" class="nav-link" tabindex=0>
-            <span class="material-symbols-sharp nav-icon">view_list</span>
-            <span class="nav-title">Attractions</span>
-          </a>
-        </li>
-        <li>
-          <a href="/create-attraction" class="nav-link" tabindex=0>
-            <span class="material-symbols-sharp nav-icon">add</span>
-            <span class="nav-title">Create Attraction</span>
-          </a>
-        </li>
-        <li>
-          <a href="/contacts" id="view-contacts" class="nav-link" tabindex=0>
-            <span class="material-symbols-sharp nav-icon">person</span>
-            <span class="nav-title">Contacts</span>
-          </a>
-        </li>
-      </ol>
-      <ol>
-        <li>
           <a href="/changelog" class="nav-link" tabindex=0>
             <span class="material-symbols-sharp">
               list_alt</span>
