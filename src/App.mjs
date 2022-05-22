@@ -10,7 +10,7 @@ import { getCurrUserData } from "./services/firebase/db.mjs";
 import { logOut } from "./services/firebase/auth.mjs";
 import Login from "./pages/Login.mjs";
 import SignUp from "./pages/SignUp.mjs";
-import AppShell from "./components/AppShell.mjs";
+import AppShell, { setPageTitle } from "./components/AppShell.mjs";
 import Spinner from "./components/Spinner.mjs";
 import Onboarding from "./pages/Onboarding/index.js";
 import Changelog from "./pages/Changelog.mjs";
@@ -59,6 +59,7 @@ export function showAppPage(contents, context) {
     return;
   }
   showAppShell();
+  setPageTitle("Gravitate");
   const main = document.querySelector(".app-main");
   main.innerHTML = ``;
   append(main, jsx`${contents(context)}`);
