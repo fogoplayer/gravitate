@@ -8,11 +8,12 @@ import {
 } from "../../services/firebase/db.mjs";
 import { uploadPFP } from "../../services/firebase/storage.mjs";
 import { jsx, renderPage } from "../../services/render.mjs";
+import { setPageTitle } from "../components/AppShell.mjs";
 
 export default function Settings() {
   let { icon, name } = getCurrUserData();
+  setPageTitle("Settings");
   return jsx`<div class="settings">
-    <h1>Settings</h1>
     <form onsubmit="${onSubmit}">
       <label class="image-picker">
         <img class="pfp" src="${icon}" alt="Choose a profile picture" />
