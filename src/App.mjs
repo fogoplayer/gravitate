@@ -103,14 +103,14 @@ function showExternalPage(contents, context) {
 }
 
 function showAppDrawer() {
-  document.querySelector(".side-nav").showModal();
+  document.querySelector(".drop-nav").showModal();
 }
 
 function hideAppDrawer(e) {
-  document.querySelector(".side-nav").classList.add("closing");
+  document.querySelector(".drop-nav").classList.add("closing");
   setTimeout(() => {
-    document.querySelector(".side-nav").close();
-    document.querySelector(".side-nav").classList.remove("closing");
+    document.querySelector(".drop-nav").close();
+    document.querySelector(".drop-nav").classList.remove("closing");
   }, 250);
 }
 

@@ -40,7 +40,7 @@ body {
   transform: none;
 }
 
-.side-nav {
+.drop-nav {
   /* display */
 
   /* positioning */
@@ -58,11 +58,11 @@ body {
   /* misc */
 }
 
-.side-nav[open] {
+.drop-nav[open] {
   animation: open-drawer 0.25s ease-out forwards;
 }
 
-.side-nav.closing {
+.drop-nav.closing {
   animation: close-drawer 0.25s ease-out forwards;
 }
 
@@ -86,7 +86,7 @@ body {
   }
 }
 
-.side-nav nav {
+.drop-nav nav {
   /* display */
   display: flex;
   flex-flow: column nowrap;
@@ -102,17 +102,17 @@ body {
   /* misc */
 }
 
-.side-nav ul {
+.drop-nav ul {
   list-style: none;
 }
 
-.side-nav nav ul + ul {
+.drop-nav nav ul + ul {
   border-top: 1px solid var(--theme-primary-color);
 }
 
-.side-nav nav a,
-.side-nav nav a:visited,
-.side-nav nav a:link {
+.drop-nav nav a,
+.drop-nav nav a:visited,
+.drop-nav nav a:link {
   /* display */
   display: grid;
   grid-template-columns: auto auto;
@@ -130,12 +130,12 @@ body {
   color: var(--dark-text);
 }
 
-.side-nav a.active {
+.drop-nav a.active {
   background-color: var(--theme-tertiary-color);
   color: var(--theme-primary-color);
 }
 
-.side-nav a:focus-visible {
+.drop-nav a:focus-visible {
   outline-color: var(--theme-primary-color);
 }
 
