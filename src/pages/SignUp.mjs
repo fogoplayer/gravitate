@@ -6,7 +6,7 @@ import { jsx, renderPage } from "../services/render.mjs";
 
 export default function SignUp() {
   let email, password;
-  return jsx`<main class="main-bubble modal">
+  return jsx`<main class="main-bubble modal login">
   <h1>Gravitate</h1>
   <form onsubmit=${submit}>
     ${Input({ label: "Email", id: "email", required: true })}

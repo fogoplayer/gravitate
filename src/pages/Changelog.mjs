@@ -5,9 +5,14 @@ export default function Changelog() {
   <h2>Changelog</h2>
   <section>
     <h3>Alpha Release</h3>
+    <h4>1.3.0</h4>
+    <ul>
+      <li>Move navigation into button on profile picture.</li>
+      <li>Fix tour on smaller screens</li> 
+    </ul>
     <h4>1.2.0</h4>
     <ul>
-      <li>Added settings page</li>
+      <li>Add settings page</li>
     </ul>
     <h4>1.1.1</h4>
     <ul>

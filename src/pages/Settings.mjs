@@ -64,7 +64,6 @@ async function onSubmit(e) {
     await update(getCurrUserData().ref, {
       name: username,
     });
-    renderPage("/onboarding/tour-offer");
   } catch (error) {
     console.error(error);
     e.submitter.classList.remove("loading");

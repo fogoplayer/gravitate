@@ -1,9 +1,11 @@
+const { changelogTest } = require("./changelog.mjs");
 const { contactsTest } = require("./contacts.mjs");
 const { createAttractionTest } = require("./create-attractions.mjs");
 const { driver } = require("./driver.mjs");
 const { loginTest } = require("./login.mjs");
 const { createProfileTest } = require("./onboarding/createProfile.mjs");
 const { tourTest } = require("./onboarding/tour.mjs");
+const { settingsTest } = require("./settings.mjs");
 const { signupTest } = require("./signup.mjs");
 const { viewAttractionsTest } = require("./view-attractions.mjs");
 
@@ -20,6 +22,8 @@ tourTest();
 viewAttractionsTest();
 createAttractionTest();
 contactsTest();
+settingsTest();
+changelogTest();
 
 test("Driver stops", () => {
   return driver.quit();
