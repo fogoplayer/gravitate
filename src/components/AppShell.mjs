@@ -82,6 +82,8 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
 }
 
 export function setPageTitle(title) {
-  document.querySelector("h1.page-title").innerText = title;
+  if (document.querySelector("h1.page-title")) {
+    document.querySelector("h1.page-title").innerText = title;
+  }
   document.title = title + " | Gravitate";
 }

@@ -1,3 +1,4 @@
+import { setPageTitle } from "../../components/AppShell.mjs";
 import Input from "../../components/Input.mjs";
 import { getCurrentUser } from "../../services/firebase/auth.mjs";
 import {
@@ -10,6 +11,8 @@ import { uploadPFP } from "../../services/firebase/storage.mjs";
 import { jsx, renderPage } from "../../services/render.mjs";
 
 export default function CreateProfile() {
+  setPageTitle("Create Profile");
+
   return jsx`<main class="main-bubble modal">
   <form onsubmit="${onSubmit}">
     <h1>Create your profile</h1>

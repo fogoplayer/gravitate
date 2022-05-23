@@ -1,3 +1,4 @@
+import { setPageTitle } from "../components/AppShell.mjs";
 import ContactsList from "../components/ContactsList.mjs";
 import { getDocData } from "../services/firebase/db.mjs";
 import { getIcon } from "../services/firebase/storage.mjs";
@@ -8,6 +9,7 @@ export default function Contacts() {
 }
 
 function ContactsPageContact(contacts) {
+  setPageTitle("Contacts");
   const html = jsx`<ul>
   ${contacts.map(
     (contact) => jsx`

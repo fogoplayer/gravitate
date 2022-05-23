@@ -1,6 +1,8 @@
+import { setPageTitle } from "../components/AppShell.mjs";
 import { jsx } from "../services/render.mjs";
 
 export default function Changelog() {
+  setPageTitle("Changelog");
   return jsx`<div class="changelog">
   <h2>Changelog</h2>
   <section>

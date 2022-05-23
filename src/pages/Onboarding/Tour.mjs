@@ -1,4 +1,5 @@
 import { showAppPage, showAppShell, showRefreshPage } from "../../App.mjs";
+import { setPageTitle } from "../../components/AppShell.mjs";
 import { reactions } from "../../components/AttractionDetails.mjs";
 import Tip from "../../components/Tip.mjs";
 import { append, jsx, renderPage } from "../../services/render.mjs";
@@ -19,6 +20,8 @@ const tour = [
 let currTip = 0;
 
 export default function Tour() {
+  setPageTitle("Tour");
+
   currTip = 0;
 
   showAppShell();

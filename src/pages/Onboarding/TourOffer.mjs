@@ -1,6 +1,8 @@
+import { setPageTitle } from "../../components/AppShell.mjs";
 import { jsx } from "../../services/render.mjs";
 
 export default function TourOffer() {
+  setPageTitle("Tour");
   return jsx`<main class="main-bubble modal">
   <img src="../../images/cosmo.svg" class="cosmo-img" alt="Cosmo waving" />
   <h1>Would you like a tour?</h1>

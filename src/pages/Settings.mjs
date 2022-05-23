@@ -11,8 +11,9 @@ import { jsx, renderPage } from "../../services/render.mjs";
 import { setPageTitle } from "../components/AppShell.mjs";
 
 export default function Settings() {
-  let { icon, name } = getCurrUserData();
   setPageTitle("Settings");
+
+  let { icon, name } = getCurrUserData();
   return jsx`<div class="settings">
     <form onsubmit="${onSubmit}">
       <label class="image-picker">
