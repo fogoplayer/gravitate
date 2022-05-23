@@ -72,6 +72,10 @@ export default function Tip({
       x = TARGET_RIGHT + "px";
       y = TARGET_CENTER_V + "px";
       maxWidth = VW - TARGET_RIGHT - 32 + "px";
+    } else {
+      x = VW - TARGET_LEFT - 32 + "px";
+      y = TARGET_CENTER_V + "px";
+      maxWidth = TARGET_LEFT - 32 + "px";
     }
 
     maxHeight = VH - parseInt(y) - 32 + "px";

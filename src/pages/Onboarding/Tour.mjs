@@ -1,4 +1,4 @@
-import { showAppPage, showAppShell } from "../../App.mjs";
+import { showAppPage, showAppShell, showRefreshPage } from "../../App.mjs";
 import { reactions } from "../../components/AttractionDetails.mjs";
 import Tip from "../../components/Tip.mjs";
 import { append, jsx, renderPage } from "../../services/render.mjs";
@@ -13,6 +13,7 @@ const tour = [
   friends,
   attractions,
   invitations,
+  navigation,
 ];
 let currTip = 0;
 
@@ -220,6 +221,26 @@ function invitations() {
 `,
     prev: prevTip,
     prevLabel: "Attractions",
+    next: nextTip,
+    nextLabel: "Navigation",
+  });
+
+  return modal;
+}
+
+function navigation() {
+  showRefreshPage();
+  let modal = Tip({
+    contents: jsx`<h2>Navigation</h2>
+<p>Use the bar at the bottom of the screen to access the main pages of the app.</p>
+<p>
+  Click your profile picture for additional pages, such as settings.
+</p>
+<p>When the refresh button appears, that means there are updates that aren't being displayed. Click on it to reload the page.</p>
+`,
+    target: document.querySelector(".app-header #pfp"),
+    prev: prevTip,
+    prevLabel: "Invitations",
     next: () => {
       closeAll();
       renderPage("/contacts");
