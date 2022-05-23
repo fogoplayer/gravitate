@@ -66,3 +66,46 @@
 .tip main ul li {
   margin: initial;
 }
+
+@media screen and (max-width: 500px) {
+  .tip section {
+    /* display */
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+
+    /* positioning */
+    /* box-model */
+    /* typography */
+    /* manipulation */
+    /* misc */
+  }
+
+  .tip section > button {
+    margin: auto;
+  }
+
+  .tip section > button:first-child {
+    grid-column: 1/2;
+    /* grid-row: 1/2; */
+    grid-row: 2/3;
+  }
+  .tip section > button:last-child {
+    grid-column: 3/4;
+    /* grid-row: 1/2; */
+    grid-row: 2/3;
+  }
+
+  .tip section > img,
+  .tip section > img:first-child {
+    grid-column: 2/3;
+    /* grid-row: 1/2; */
+    grid-row: 2/3;
+    margin: auto;
+  }
+
+  .tip section > main {
+    grid-column: 1/4;
+    /* grid-row: 2/3; */
+    grid-row: 1/2;
+  }
+}
