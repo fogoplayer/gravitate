@@ -181,7 +181,7 @@ body {
   position: relative;
 
   /* typography */
-  font: inherit;
+  font-size: inherit;
   line-height: 1;
 }
 
