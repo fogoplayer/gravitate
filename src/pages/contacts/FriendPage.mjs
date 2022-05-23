@@ -56,7 +56,7 @@ export default function FriendPage(id) {
     ${GroupTemplate(systems, "systems")}
   </li>
 </ul>
-`;
+<button class="flat danger">Unfriend</button>`;
 }
 
 function AttractionsTemplate(attractions) {
