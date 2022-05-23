@@ -8,16 +8,18 @@ export default function Contacts() {
   return ContactsList(ContactsPageContact);
 }
 
-function ContactsPageContact(contacts) {
+function ContactsPageContact(contacts, type) {
   setPageTitle("Contacts");
   const html = jsx`<ul>
   ${contacts.map(
     (contact) => jsx`
   <li>
-    <div class="contact-header-container">
-      ${getIcon(contact.icon)}
-      <span class="contact-name">${contact.name}</span>
-    </div>
+    <a href="/contacts/${type}/${contact.name}">
+      <div class="contact-header-container">
+        ${getIcon(contact.icon)}
+        <span class="contact-name">${contact.name}</span>
+      </div>
+    </a>
   </li>
   `
   )}

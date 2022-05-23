@@ -1,9 +1,11 @@
 import { jsx } from "../../services/render.mjs";
+import FriendPage from "./FriendPage.mjs";
 
 export default function ContactDetails(context) {
   const { type, id } = context.params;
+
   switch (type) {
-    case "friend":
+    case "friends":
       return FriendPage(id);
       break;
 
