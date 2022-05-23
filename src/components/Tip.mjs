@@ -8,8 +8,17 @@ export default function Tip({
   next,
   nextLabel = "",
 }) {
-  console.log(target);
-  let modal = jsx`<dialog class="tip modal ${target ? "targeted" : ""}">
+  let direction;
+
+  if (target) {
+    const VW = document.documentElement.clientWidth;
+    const TARGET_CENTER_H = target.offsetLeft + target.offsetWidth / 2;
+    direction = TARGET_CENTER_H < VW / 2 ? "left" : "right";
+  }
+
+  let modal = jsx`<dialog class="tip modal ${target ? "targeted" : ""} ${
+    direction ? direction : ""
+  }">
   <section>
   ${
     prev
@@ -73,9 +82,9 @@ export default function Tip({
       y = TARGET_CENTER_V + "px";
       maxWidth = VW - TARGET_RIGHT - 32 + "px";
     } else {
-      x = VW - TARGET_LEFT - 32 + "px";
+      x = "32px";
       y = TARGET_CENTER_V + "px";
-      maxWidth = TARGET_LEFT - 32 + "px";
+      maxWidth = TARGET_LEFT + "px";
     }
 
     maxHeight = VH - parseInt(y) - 32 + "px";

@@ -3,8 +3,12 @@
   border-radius: 1em;
 }
 
-.tip.targeted {
+.tip.targeted.left {
   border-top-left-radius: 0;
+}
+
+.tip.targeted.right {
+  border-top-right-radius: 0;
 }
 
 .tip.targeted[open] {
