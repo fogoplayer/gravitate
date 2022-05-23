@@ -4,7 +4,7 @@ function tourTest() {
   describe("Tour", () => {
     test("/onboarding/tour-offer loads", async () => {
       await driver.get("http://localhost:5000/onboarding/tour-offer");
-      let h1 = await querySelectorWait("h1");
+      let h1 = await querySelectorWait(".main-bubble h1");
       expect(await h1.getText()).toBe("Would you like a tour?");
     });
 

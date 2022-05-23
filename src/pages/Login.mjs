@@ -3,9 +3,10 @@ import Input from "../components/Input.mjs";
 import { authStateChanged } from "../services/firebase/auth.mjs";
 import { signIn } from "../services/firebase/auth.mjs";
 import { jsx } from "../services/render.mjs";
+import { setPageTitle } from "../components/AppShell.mjs";
 
 export default function Login() {
-  let email, password;
+  setPageTitle("Login");
   return jsx`<main class="modal main-bubble login">
   <h1>Gravitate</h1>
   <form onsubmit=${submit}>

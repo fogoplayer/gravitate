@@ -1,6 +1,9 @@
+import { setPageTitle } from "../../components/AppShell.mjs";
 import { jsx } from "../../services/render.mjs";
 
 export default function Welcome() {
+  setPageTitle(Welcome);
+
   return jsx`<main class="main-bubble modal">
   <img src="../../images/cosmo.svg" class="cosmo-img" alt="Cosmo waving" />
   <h1>Welcome to Gravitate!</h1>

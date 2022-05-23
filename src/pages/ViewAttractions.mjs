@@ -8,8 +8,10 @@ import {
   AttractionDetails,
   AttractionInfo,
 } from "../components/AttractionDetails.mjs";
+import { setPageTitle } from "../components/AppShell.mjs";
 
-export default function CreateAttraction() {
+export default function ViewAttractions() {
+  setPageTitle("Attractions");
   let { attractions, systems, friends, invitations, ...rest } =
     getCurrUserData();
   let friendInvites = [];

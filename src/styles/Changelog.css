@@ -2,7 +2,7 @@
   /* display */
   /* positioning */
   /* box-model */
-  padding: 1.5em;
+  padding: 1rem;
   /* typography */
   /* manipulation */
   /* misc */
@@ -13,12 +13,12 @@
   margin: auto;
 }
 
-.changelog section h3 {
+.changelog section h2 {
   margin-top: 1em;
   text-align: center;
 }
 
-.changelog section h4:not(:first-of-type) {
+.changelog section h3:not(:first-of-type) {
   /* display */
   /* positioning */
   /* box-model */

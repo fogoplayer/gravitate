@@ -1,3 +1,4 @@
+import { setPageTitle } from "../components/AppShell.mjs";
 import ContactsList from "../components/ContactsList.mjs";
 import Input from "../components/Input.mjs";
 import Spinner from "../components/Spinner.mjs";
@@ -12,6 +13,7 @@ import { mapboxAPI } from "../services/mapbox.js";
 import { jsx, renderPage } from "../services/render.mjs";
 
 export default function CreateAttraction() {
+  setPageTitle("Create");
   const newAttraction = {
     orbits: new Set(),
     systems: new Set(),

@@ -20,9 +20,11 @@ import Settings from "./pages/Settings.mjs";
 append(
   document.body,
   jsx`<div class="login-spinner">
-    ${Spinner()}
-    <div>Checking login status...</div>
-  </div>`
+  <h1>Gravitate</h1>
+  ${Spinner()}
+  <div>Checking login status...</div>
+</div>
+`
 );
 
 authStateChanged(async (user) => {
@@ -96,7 +98,6 @@ function setActiveLinks(context) {
 }
 
 function showExternalPage(contents, context) {
-  document.title = "Gravitate";
   document.body.innerHTML = "";
   append(document.body, contents(context));
 }

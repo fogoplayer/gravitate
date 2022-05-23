@@ -44,7 +44,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
   </nav>
 </dialog>
 <header class="app-header">
-  <h1 class="page-title">Gravitate</h1>
+<h1 class="page-title">Gravitate</h1>
   <button id="refresh-page" tabIndex=3 onclick=${(e) => {
     renderPage(window.location.pathname);
     hideRefreshPage();
@@ -82,6 +82,8 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
 }
 
 export function setPageTitle(title) {
-  document.querySelector("h1.page-title").innerText = title;
+  if (document.querySelector("h1.page-title")) {
+    document.querySelector("h1.page-title").innerText = title;
+  }
   document.title = title + " | Gravitate";
 }

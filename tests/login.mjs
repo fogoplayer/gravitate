@@ -4,7 +4,7 @@ function loginTest() {
   describe("Login", () => {
     test("/login loads", async () => {
       await driver.get("http://localhost:5000/login");
-      let h1 = await querySelectorWait("h1");
+      let h1 = await querySelectorWait(".main-bubble h1");
       expect(await h1.getText()).toContain("Gravitate");
     });
 
