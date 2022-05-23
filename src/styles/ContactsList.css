@@ -73,6 +73,7 @@
   display: flex;
   align-items: center;
   margin: -0.5rem;
+  font: inherit;
 }
 
 .contact-header-container input[type="checkbox"] {
