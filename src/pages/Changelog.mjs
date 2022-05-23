@@ -12,7 +12,7 @@ export default function Changelog() {
     </ul>
     <h4>1.2.0</h4>
     <ul>
-      <li>Added settings page</li>
+      <li>Add settings page</li>
     </ul>
     <h4>1.1.1</h4>
     <ul>
