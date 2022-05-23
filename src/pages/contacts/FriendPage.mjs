@@ -66,7 +66,7 @@ function AttractionsTemplate(attractions) {
       return jsx`
     <li class="attraction">
       <h3 class="contact-header-container" onclick=${toggleDetails}>
-        ${getIcon(attraction.icon)}
+        ${getIcon()}
         <span class="contact-name">${attraction.name}</span>
         ${AttractionInfo(attraction)}
       </h3>
