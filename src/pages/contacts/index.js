@@ -6,7 +6,7 @@ export default function ContactPage(context) {
   setPageTitle("Contacts");
   const { type, id } = context.params;
 
-  return jsx`<div class="contacts-page">${(() => {
+  return jsx`<div class="contact-page">${(() => {
     switch (type) {
       case "friends":
         return FriendPage(id);

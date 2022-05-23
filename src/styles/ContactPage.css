@@ -1,11 +1,12 @@
-.settings {
+.contact-page {
   display: flex;
   flex-flow: column nowrap;
   gap: 1em;
+  align-items: center;
   padding: 1rem;
 }
 
-.settings form {
+.contact-page form {
   padding: 0;
   align-items: center;
 }
