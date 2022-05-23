@@ -9,6 +9,7 @@ export default function Changelog() {
     <h3>1.3.1</h3>
     <ul>
       <li>Add Roboto Slab theme font</li>
+      <li>Add page titles</li>
     </ul>
     <h3>1.3.0</h3>
     <ul>
