@@ -4,8 +4,7 @@ function settingsTest() {
   describe("Settings", () => {
     test("/settings loads", async () => {
       await driver.get("http://localhost:5000/settings");
-      let h1 = await querySelectorWait("h1");
-      expect(await h1.getText()).toContain("Settings");
+      await querySelectorWait(".settings");
     });
   });
 

@@ -14,7 +14,7 @@
   "homepage": "https://github.com/fogoplayer/gravitate#readme",
   "scripts": {
     "start": "firebase serve",
-    "test": "clear && jest tests/app.test.js --watch"
+    "test": "clear && jest tests/app.test.js --verbose"
   },
   "devDependencies": {
     "jest": "^28.1.0",
