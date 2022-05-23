@@ -261,7 +261,10 @@ body {
   flex: 1 1 100px;
 
   /* typography */
+  font-family: var(--header-font-family);
+  font-weight: 300;
   color: var(--theme-tertiary-color);
+
   /* manipulation */
   /* misc */
 }
@@ -292,7 +295,7 @@ body {
   /* background-color: var(--theme-tertiary-color); */
   /* color: var(--dark-text); */
   color: var(--light-text);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .app-footer .footer-link.fab.active {
