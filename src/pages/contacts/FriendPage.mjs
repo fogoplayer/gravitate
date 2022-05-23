@@ -8,9 +8,20 @@ import { jsx } from "../../services/render.mjs";
 
 export default function FriendPage(id) {
   let { friends, invitations, orbits, systems } = getCurrUserData();
+
+  // Filter imports
   let [friend] = friends.filter(
     (friend) => encodeURIComponent(friend.name) === id
   );
+  invitations = invitations.filter(
+    (invitation) => invitation.organizer.name === friend.name
+  );
+  orbits = orbits.filter((orbit) => {
+    return orbit.members.find((member) => member.name === friend.name);
+  });
+  systems = systems.filter((system) => {
+    return system.members.find((member) => member.name === friend.name);
+  });
 
   return jsx`<img src="${friend.icon}" alt="${
     friend.name
@@ -30,7 +41,7 @@ export default function FriendPage(id) {
   </li>
 </ul>
 <ul class="contacts-list contacts-list">
-  <li class="Orbits-wrapper">
+  <li class="orbits-wrapper">
     <h2>
       <img src="/images/friend.svg" alt="Orbits icon" class="header-icon" />
       <span class="header-text">Orbits</span>
@@ -40,30 +51,33 @@ export default function FriendPage(id) {
   <li class="systems-wrapper">
     <h2>
       <img src="/images/system.svg" alt="Systems icon" class="header-icon" />
-      <span class="header-text">Systems</span>
+      <span class="header-text">Mutual Systems</span>
     </h2>
-    ${GroupTemplate(systems, "system")}
+    ${GroupTemplate(systems, "systems")}
   </li>
 </ul>
 `;
 }
 
 function AttractionsTemplate(attractions) {
-  return jsx`<ul>
-${attractions.map((attraction) => {
-  return jsx`
-<li class="attraction">
-  <h3 class="contact-header-container" onclick=${toggleDetails}>
-    ${getIcon(attraction.icon)}
-    <span class="contact-name">${attraction.name}</span>
-    ${AttractionInfo(attraction)}
-  </h3>
-  ${AttractionDetails(attraction)}
-</li>
-`;
-})}
-</ul>
-`;
+  if (attractions.length > 0) {
+    return jsx`<ul>
+    ${attractions.map((attraction) => {
+      return jsx`
+    <li class="attraction">
+      <h3 class="contact-header-container" onclick=${toggleDetails}>
+        ${getIcon(attraction.icon)}
+        <span class="contact-name">${attraction.name}</span>
+        ${AttractionInfo(attraction)}
+      </h3>
+      ${AttractionDetails(attraction)}
+    </li>
+    `;
+    })}
+    </ul>`;
+  } else {
+    return "None";
+  }
 }
 
 function toggleDetails(e) {
@@ -78,7 +92,8 @@ function toggleDetails(e) {
 }
 
 function GroupTemplate(contacts, type) {
-  return jsx`<ul>
+  if (contacts.length > 0) {
+    return jsx`<ul>
   ${contacts.map(
     (contact) => jsx`
   <li>
@@ -91,6 +106,8 @@ function GroupTemplate(contacts, type) {
   </li>
   `
   )}
-</ul>
-`;
+</ul>`;
+  } else {
+    return jsx`<div class="empty-message">Not in any of your ${type}</div>`;
+  }
 }

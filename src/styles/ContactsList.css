@@ -45,6 +45,12 @@
   /* misc */
 }
 
+.contacts-list .empty-message {
+  margin: auto;
+  width: fit-content;
+  padding: 0.5em;
+}
+
 .contacts-list > li > h2 > .header-btn {
   display: flex;
   margin-left: auto;
