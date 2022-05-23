@@ -2,6 +2,7 @@ import {
   AttractionDetails,
   AttractionInfo,
 } from "../../components/AttractionDetails.mjs";
+import Modal from "../../components/Modal.mjs";
 import { getCurrUserData } from "../../services/firebase/db.mjs";
 import { getIcon } from "../../services/firebase/storage.mjs";
 import { jsx } from "../../services/render.mjs";
@@ -56,7 +57,14 @@ export default function FriendPage(id) {
     ${GroupTemplate(systems, "systems")}
   </li>
 </ul>
-<button class="flat danger">Unfriend</button>`;
+<button class="flat danger" onclick=${() =>
+    document.querySelector("#unfriend-confirm").showModal()}>Unfriend</button>
+${Modal({
+  contents: jsx`Are you sure you want to unfriend ${friend.name}?
+  <button class="primary danger">Yes, unfriend</button>
+`,
+  id: "unfriend-confirm",
+})}`;
 }
 
 function AttractionsTemplate(attractions) {
