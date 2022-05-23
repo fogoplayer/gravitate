@@ -29,6 +29,7 @@
 
   /* typography */
   color: var(--current-color);
+  font-family: var(--header-font-family);
   font-size: 0.5em;
   line-height: 1;
 
