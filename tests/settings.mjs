@@ -13,9 +13,7 @@ function settingsTest() {
     const save = await querySelectorWait("button.primary.small");
     let input = await querySelectorWait("#username");
     const value = await input.getAttribute("value");
-    console.log(JSON.stringify(value));
     const newName = value !== "User1" ? "User1" : "User3";
-    console.log(newName);
     await input.clear();
     await input.sendKeys(newName);
     await save.click();

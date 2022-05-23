@@ -6,8 +6,6 @@ export function TODAY() {
   return new Date(NOW().getFullYear(), NOW().getMonth(), NOW().getDate());
 }
 
-console.log(NOW().toString());
-
 export function dateFromTime(startDate, time) {
   let [hours, mins, secs] = time.split(":");
   return new Date(

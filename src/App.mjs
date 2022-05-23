@@ -53,7 +53,6 @@ authStateChanged(async (user) => {
 });
 
 export function showAppPage(contents, context) {
-  console.log(getCurrUserData());
   if (!getCurrUserData()) {
     renderPage("/login");
     return;

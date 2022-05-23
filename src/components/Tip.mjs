@@ -64,17 +64,6 @@ export default function Tip({
     const TARGET_LEFT = target.offsetLeft;
     const TARGET_RIGHT = target.offsetLeft + target.offsetWidth;
 
-    console.log(
-      "TARGET_CENTER_H",
-      target.offsetLeft + target.offsetWidth / 2,
-      "TARGET_LEFT",
-      target.offsetLeft,
-      "TARGET_RIGHT",
-      target.offsetLeft + target.offsetWidth,
-      "TARGET_CENTER_V",
-      target.offsetTop + target.offsetHeight / 2
-    );
-
     let x, y, maxHeight, maxWidth;
 
     if (TARGET_CENTER_H < VW / 2) {
