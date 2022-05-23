@@ -5,11 +5,11 @@ import { getIcon } from "../services/firebase/storage.mjs";
 import { jsx } from "../services/render.mjs";
 
 export default function Contacts() {
+  setPageTitle("Contacts");
   return ContactsList(ContactsPageContact);
 }
 
 function ContactsPageContact(contacts, type) {
-  setPageTitle("Contacts");
   const html = jsx`<ul>
   ${contacts.map(
     (contact) => jsx`
