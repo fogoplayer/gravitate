@@ -248,6 +248,10 @@ body {
   all: unset;
 }
 
+.app-footer a:active {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .app-footer .footer-link:not(.fab) {
   /* display */
   display: flex;
