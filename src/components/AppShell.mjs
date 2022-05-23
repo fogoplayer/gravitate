@@ -44,7 +44,11 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
   </nav>
 </dialog>
 <header class="app-header">
-  <h1 class="page-title">Gravitate</h1>
+<h1 class="page-title">Gravitate</h1>
+<h1 class="page-title" style="font-family: 'Playfair Display';font-weight: 700;">Gravitate</h1>
+<h1 class="page-title" style="font-family: 'Roboto Slab'; font-weight: 100;">Gravitate</h1>
+<h1 class="page-title" style="font-family: 'Roboto Slab'; font-weight: 400;">Gravitate</h1>
+<h1 class="page-title" style="font-family: 'Roboto Slab'; font-weight: 700;">Gravitate</h1>
   <button id="refresh-page" tabIndex=3 onclick=${(e) => {
     renderPage(window.location.pathname);
     hideRefreshPage();
