@@ -12,9 +12,10 @@ import Login from "./pages/Login.mjs";
 import SignUp from "./pages/SignUp.mjs";
 import AppShell, { setPageTitle } from "./components/AppShell.mjs";
 import Spinner from "./components/Spinner.mjs";
-import Onboarding from "./pages/Onboarding/index.js";
+import Onboarding from "./pages/onboarding/index.js";
 import Changelog from "./pages/Changelog.mjs";
 import Settings from "./pages/Settings.mjs";
+import ContactDetails from "./pages/contacts/index.js";
 
 // immediately show loading spinner
 append(
@@ -39,6 +40,9 @@ authStateChanged(async (user) => {
   );
   page("/view-attractions", (context) => showAppPage(ViewAttractions, context));
   page("/contacts", (context) => showAppPage(Contacts, context));
+  page("/contacts/:type/:id", (context) =>
+    showAppPage(ContactDetails, context)
+  );
   page("/changelog", (context) => showAppPage(Changelog, context));
   page("/settings", (context) => showAppPage(Settings, context));
   page("/login", () => showExternalPage(Login));
