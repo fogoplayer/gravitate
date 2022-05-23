@@ -8,6 +8,7 @@ export default function Changelog() {
     <h4>1.3.0</h4>
     <ul>
       <li>Move navigation into button on profile picture.</li>
+      <li>Fix tour on smaller screens</li> 
     </ul>
     <h4>1.2.0</h4>
     <ul>
