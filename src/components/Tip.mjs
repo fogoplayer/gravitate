@@ -23,7 +23,6 @@ export default function Tip({
   }
   <img class="float" src="../../images/cosmo.svg" alt="Cosmo" />
   <main>
-    
     ${contents}
   </main>
   <button class="flat" ...${
@@ -49,6 +48,7 @@ export default function Tip({
   function positionToTarget() {
     if (!target) return;
 
+    const VH = document.documentElement.clientHeight;
     const VW = document.documentElement.clientWidth;
     const TARGET_CENTER_H = target.offsetLeft + target.offsetWidth / 2;
     const TARGET_CENTER_V = target.offsetTop + target.offsetHeight / 2;
@@ -66,18 +66,22 @@ export default function Tip({
       target.offsetTop + target.offsetHeight / 2
     );
 
-    let x, y, maxWidth;
+    let x, y, maxHeight, maxWidth;
 
     if (TARGET_CENTER_H < VW / 2) {
       x = TARGET_RIGHT + "px";
       y = TARGET_CENTER_V + "px";
       maxWidth = VW - TARGET_RIGHT - 32 + "px";
     }
+
+    maxHeight = VH - parseInt(y) - 32 + "px";
+
     Object.assign(modal.style, {
       inset: "unset",
       top: y,
       left: x,
       maxWidth: maxWidth,
+      maxHeight: maxHeight,
     });
   }
 }
