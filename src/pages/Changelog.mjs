@@ -6,6 +6,10 @@ export default function Changelog() {
   return jsx`<div class="changelog">
   <section>
     <h2>Alpha Release</h2>
+    <h3>1.4.0</h3>
+    <ul>
+      <li>Update footer link active state</li>
+    </ul>
     <h3>1.3.1</h3>
     <ul>
       <li>Add Roboto Slab theme font</li>
@@ -15,7 +19,7 @@ export default function Changelog() {
     <h3>1.3.0</h3>
     <ul>
       <li>Move navigation into button on profile picture.</li>
-      <li>Fix tour on smaller screens</li> 
+      <li>Fix tour on smaller screens</li>
     </ul>
     <h3>1.2.0</h3>
     <ul>
