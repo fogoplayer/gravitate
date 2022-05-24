@@ -6,6 +6,7 @@ import Modal from "../../components/Modal.mjs";
 import { AttractionsTemplate } from "../../components/templates/AttractionsTemplate.mjs";
 import {
   afterUpdate,
+  deleteDoc,
   getCurrUserData,
   pop,
   update,
@@ -44,26 +45,24 @@ export default function OrbitPage(id) {
       <img src="/images/orbit.svg" alt="Orbits icon" class="header-icon" />
       <span class="header-text">Members</span>
     </h2>
-    ${GroupTemplate(orbit.members, "orbits")}
+    ${GroupTemplate(orbit.members, "friends")}
   </li>
 </ul>
 <button class="flat danger" onclick=${showUnfriendModal}>Delete Orbit</button>
 ${Modal({
-  contents: jsx`Are you sure you want to unfriend ${orbit.name}?
-  <button class="primary danger" onclick=${unfriend}>Yes, unfriend</button>
+  contents: jsx`Are you sure you want to delete ${orbit.name}?
+  <button class="primary danger" onclick=${deleteOrbit}>Yes, delete</button>
 `,
-  id: "unfriend-confirm",
+  id: "delete-confirm",
 })}`;
 
   // Helpers
   function showUnfriendModal() {
-    document.querySelector("#unfriend-confirm").showModal();
+    document.querySelector("#delete-confirm").showModal();
   }
 
-  function unfriend() {
-    update(dataDocRef, {
-      friends: pop(orbit.ref),
-    });
+  function deleteOrbit() {
+    deleteDoc(orbit.ref);
     afterUpdate(() => renderPage("/contacts"));
   }
 
