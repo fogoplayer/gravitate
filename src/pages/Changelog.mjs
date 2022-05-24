@@ -6,13 +6,16 @@ export default function Changelog() {
   return jsx`<div class="changelog">
   <section>
     <h2>Alpha Release</h2>
+    <h3>1.4.1</h3>
+    <ul>
+      <li>PFP full screen popup</li>
+      <li>Button to add system members as friends</li>
+      <li>Make icon inputs noto</li>
+      <li>Remove member picker from system creator</li>
+    </ul>
     <h3>1.4.0</h3>
     <ul>
-      <li>PFP popup</li>
-      Add friend in system
-      Make icon inputs noto
-      Change name
-      Remove member picker from system creator
+      <li>Create pages where orbits, systems, and friens can be edited</li>
       <li>Update footer link active state</li>
     </ul>
     <h3>1.3.1</h3>
