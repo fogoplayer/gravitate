@@ -9,6 +9,9 @@ export default function Changelog() {
     <h3>1.4.0</h3>
     <ul>
       <li>PFP popup</li>
+      Add friend in system
+      Make icon inputs noto
+      Change name
       <li>Update footer link active state</li>
     </ul>
     <h3>1.3.1</h3>

@@ -62,14 +62,16 @@ ${Modal({
   <button class="primary">Save icon ${Spinner()}</button>
 </form>
 `,
-})} ${Modal({
-    id: "delete-modal",
-    contents: jsx`Are you sure you want to
+})} 
+${Modal({
+  id: "delete-modal",
+  contents: jsx`Are you sure you want to
 delete ${orbit.name}?
 <button class="primary danger" onclick="${deleteOrbit}">Yes, delete ${Spinner()}</button>`,
-  })} ${Modal({
-    id: "add-members",
-    contents: jsx`
+})}
+${Modal({
+  id: "add-members",
+  contents: jsx`
 <form onsubmit="${addMembers}">
   Select friends to add:
   <ul class="user-list">
@@ -91,7 +93,7 @@ delete ${orbit.name}?
   <button class="primary">Add members ${Spinner()}</button>
 </form>
 `,
-  })}
+})}
 `;
 
   // Modals

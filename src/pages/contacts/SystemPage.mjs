@@ -19,7 +19,7 @@ import { getIcon } from "../../services/firebase/storage.mjs";
 import { jsx, renderPage } from "../../services/render.mjs";
 
 export default function SystemPage(id) {
-  let { friends, systems } = getCurrUserData();
+  let { friends, systems, dataDocRef, ref } = getCurrUserData();
   let members = new Set();
   let icon;
 
@@ -40,6 +40,7 @@ export default function SystemPage(id) {
     ${GroupTemplate(system.members, "friends")}
   </li>
 </ul>
+<button class="flat danger" onclick="${showLeaveModal}">Leave system</button>
 ${Modal({
   id: "change-icon",
   contents: jsx`
@@ -59,6 +60,12 @@ ${Modal({
 </form>
 `,
 })}
+${Modal({
+  id: "leave-modal",
+  contents: jsx`Are you sure you want to
+leave ${system.name}?
+<button class="primary danger" onclick="${leaveSystem}">Yes, delete ${Spinner()}</button>`,
+})}
 `;
 
   // Modals
@@ -69,6 +76,10 @@ ${Modal({
   function showRemoveMemberModal(e) {
     e.preventDefault();
     e.currentTarget.parentNode.parentNode.nextSibling.showModal();
+  }
+
+  function showLeaveModal() {
+    document.querySelector("#leave-modal").showModal();
   }
 
   // Database
@@ -86,6 +97,14 @@ ${Modal({
       members: pop(member),
     });
     afterUpdate(() => renderPage(window.location.pathname));
+  }
+
+  function leaveSystem(e) {
+    e.target.classList.add("loading");
+
+    update(dataDocRef, { systems: pop(system.ref) });
+    removeMember(e, ref);
+    afterUpdate(() => renderPage("/contacts"));
   }
 
   // Templates
