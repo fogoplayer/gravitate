@@ -35,9 +35,7 @@ export default function OrbitPage(id) {
 
   // Helpers
 
-  return jsx`<img src="${orbit.icon}" alt="${
-    orbit.name
-  }'s profile picture" class="pfp" />
+  return jsx`<button class="pfp noto">${orbit.icon}</button>
 <h2>${orbit.name}</h2>
 <ul class="contacts-list contacts-list">
   <li class="members-wrapper">
