@@ -38,32 +38,16 @@ export default function OrbitPage(id) {
     orbit.name
   }'s profile picture" class="pfp" />
 <h2>${orbit.name}</h2>
-<ul class="contacts-list">
-  <li class="attractions-wrapper">
-    <h2>
-      ${orbit.icon}
-      <span class="header-text">Attractions</span>
-    </h2>
-    ${AttractionsTemplate(invitations, "None")}
-  </li>
-</ul>
 <ul class="contacts-list contacts-list">
-  <li class="orbits-wrapper">
+  <li class="members-wrapper">
     <h2>
       <img src="/images/orbit.svg" alt="Orbits icon" class="header-icon" />
-      <span class="header-text">Orbits</span>
+      <span class="header-text">Members</span>
     </h2>
-    ${GroupTemplate(orbits, "orbits")}
-  </li>
-  <li class="systems-wrapper">
-    <h2>
-      <img src="/images/system.svg" alt="Systems icon" class="header-icon" />
-      <span class="header-text">Mutual Systems</span>
-    </h2>
-    ${GroupTemplate(systems, "systems")}
+    ${GroupTemplate(orbit.members, "orbits")}
   </li>
 </ul>
-<button class="flat danger" onclick=${showUnfriendModal}>Unfriend</button>
+<button class="flat danger" onclick=${showUnfriendModal}>Delete Orbit</button>
 ${Modal({
   contents: jsx`Are you sure you want to unfriend ${orbit.name}?
   <button class="primary danger" onclick=${unfriend}>Yes, unfriend</button>
