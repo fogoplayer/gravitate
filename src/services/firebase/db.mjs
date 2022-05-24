@@ -70,12 +70,16 @@ export async function createUserData(userCredential) {
 export async function initDBWatchers() {
   initingWatchers = true;
   const promises = Array.from(watched).map((ref) => {
-    const segments = ref.split("/").length;
-    const isCollection = segments % 2;
-    if (isCollection) {
-      return onSnapshot(query(collection(db, ref)), loadUserData);
+    if (ref.type === "query") {
+      return onSnapshot(ref, loadUserData);
     } else {
-      return onSnapshot(doc(db, ref), loadUserData);
+      const segments = ref.split("/").length;
+      const isCollection = segments % 2;
+      if (isCollection) {
+        return onSnapshot(query(collection(db, ref)), loadUserData);
+      } else {
+        return onSnapshot(doc(db, ref), loadUserData);
+      }
     }
   });
   await Promise.all(promises);
@@ -219,6 +223,7 @@ export async function loadUserData(user = {}) {
 
   // Systems
   let systems = userDataDoc.systems;
+  for (const system of systems) watch(system);
   currUserData.systems = await parseGroups(systems);
 
   showRefreshPage();
