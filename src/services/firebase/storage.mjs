@@ -29,7 +29,7 @@ export function getIcon(icon) {
   if (icon?.substring(0, HTTPS.length) === HTTPS) {
     return jsx`<img class="contact-icon pfp" src="${icon}" alt="User icon" />`;
   } else if (icon?.length) {
-    return jsx`<span class="contact-icon">${icon}</span>`;
+    return jsx`<span class="contact-icon noto">${icon}</span>`;
   } else {
     return jsx`<span class="contact-icon">🟣</span>`;
   }
