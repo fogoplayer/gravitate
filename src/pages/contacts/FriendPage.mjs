@@ -3,6 +3,7 @@ import {
   AttractionInfo,
 } from "../../components/AttractionDetails.mjs";
 import Modal from "../../components/Modal.mjs";
+import Spinner from "../../components/Spinner.mjs";
 import { AttractionsTemplate } from "../../components/templates/AttractionsTemplate.mjs";
 import {
   afterUpdate,
@@ -66,7 +67,7 @@ export default function FriendPage(id) {
 <button class="flat danger" onclick=${showUnfriendModal}>Unfriend</button>
 ${Modal({
   contents: jsx`Are you sure you want to unfriend ${friend.name}?
-  <button class="primary danger" onclick=${unfriend}>Yes, unfriend</button>
+  <button class="primary danger" onclick=${unfriend}>Yes, unfriend ${Spinner()}</button>
 `,
   id: "unfriend-confirm",
 })}`;
@@ -76,7 +77,8 @@ ${Modal({
     document.querySelector("#unfriend-confirm").showModal();
   }
 
-  function unfriend() {
+  function unfriend(e) {
+    e.target.classList.add("loading");
     update(dataDocRef, {
       friends: pop(friend.ref),
     });
