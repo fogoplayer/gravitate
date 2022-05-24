@@ -8,6 +8,7 @@ export default function Changelog() {
     <h2>Alpha Release</h2>
     <h3>1.4.0</h3>
     <ul>
+      <li>MAKE TEMPLATES COMPONENTS</li>
       <li>Update footer link active state</li>
     </ul>
     <h3>1.3.1</h3>

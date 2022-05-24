@@ -3,12 +3,17 @@ import {
   AttractionInfo,
 } from "../../components/AttractionDetails.mjs";
 import Modal from "../../components/Modal.mjs";
-import { getCurrUserData } from "../../services/firebase/db.mjs";
+import {
+  afterUpdate,
+  getCurrUserData,
+  pop,
+  update,
+} from "../../services/firebase/db.mjs";
 import { getIcon } from "../../services/firebase/storage.mjs";
-import { jsx } from "../../services/render.mjs";
+import { jsx, renderPage } from "../../services/render.mjs";
 
 export default function FriendPage(id) {
-  let { friends, invitations, orbits, systems } = getCurrUserData();
+  let { friends, invitations, orbits, systems, dataDocRef } = getCurrUserData();
 
   // Filter imports
   let [friend] = friends.filter(
@@ -23,6 +28,8 @@ export default function FriendPage(id) {
   systems = systems.filter((system) => {
     return system.members.find((member) => member.name === friend.name);
   });
+
+  // Helpers
 
   return jsx`<img src="${friend.icon}" alt="${
     friend.name
@@ -57,19 +64,30 @@ export default function FriendPage(id) {
     ${GroupTemplate(systems, "systems")}
   </li>
 </ul>
-<button class="flat danger" onclick=${() =>
-    document.querySelector("#unfriend-confirm").showModal()}>Unfriend</button>
+<button class="flat danger" onclick=${showUnfriendModal}>Unfriend</button>
 ${Modal({
   contents: jsx`Are you sure you want to unfriend ${friend.name}?
-  <button class="primary danger">Yes, unfriend</button>
+  <button class="primary danger" onclick=${unfriend}>Yes, unfriend</button>
 `,
   id: "unfriend-confirm",
 })}`;
-}
 
-function AttractionsTemplate(attractions) {
-  if (attractions.length > 0) {
-    return jsx`<ul>
+  // Helpers
+  function showUnfriendModal() {
+    document.querySelector("#unfriend-confirm").showModal();
+  }
+
+  function unfriend() {
+    update(dataDocRef, {
+      friends: pop(friend.ref),
+    });
+    afterUpdate(() => renderPage("/contacts"));
+  }
+
+  // Templates
+  function AttractionsTemplate(attractions) {
+    if (attractions.length > 0) {
+      return jsx`<ul>
     ${attractions.map((attraction) => {
       return jsx`
     <li class="attraction">
@@ -83,25 +101,25 @@ function AttractionsTemplate(attractions) {
     `;
     })}
     </ul>`;
-  } else {
-    return "None";
+    } else {
+      return "None";
+    }
   }
-}
 
-function toggleDetails(e) {
-  let sibling = e.currentTarget.nextSibling;
-  if (sibling.classList.contains("open")) {
-    sibling.classList.replace("open", "transitioning");
-    setTimeout(() => sibling.classList.remove("transitioning"), 250);
-  } else {
-    sibling.classList.add("transitioning");
-    setTimeout(() => sibling.classList.replace("transitioning", "open"), 1);
+  function toggleDetails(e) {
+    let sibling = e.currentTarget.nextSibling;
+    if (sibling.classList.contains("open")) {
+      sibling.classList.replace("open", "transitioning");
+      setTimeout(() => sibling.classList.remove("transitioning"), 250);
+    } else {
+      sibling.classList.add("transitioning");
+      setTimeout(() => sibling.classList.replace("transitioning", "open"), 1);
+    }
   }
-}
 
-function GroupTemplate(contacts, type) {
-  if (contacts.length > 0) {
-    return jsx`<ul>
+  function GroupTemplate(contacts, type) {
+    if (contacts.length > 0) {
+      return jsx`<ul>
   ${contacts.map(
     (contact) => jsx`
   <li>
@@ -115,7 +133,8 @@ function GroupTemplate(contacts, type) {
   `
   )}
 </ul>`;
-  } else {
-    return jsx`<div class="empty-message">Not in any of your ${type}</div>`;
+    } else {
+      return jsx`<div class="empty-message">Not in any of your ${type}</div>`;
+    }
   }
 }

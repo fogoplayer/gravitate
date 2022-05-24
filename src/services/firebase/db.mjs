@@ -13,6 +13,7 @@ import {
   updateDoc,
   onSnapshot as onSnapshotDB,
   enableIndexedDbPersistence,
+  arrayRemove,
 } from "../../lib/firebase/9.7.0/firebase-firestore.js";
 export { deleteDoc } from "../../lib/firebase/9.7.0/firebase-firestore.js";
 import { parseEvents, parseGroups, parseIndividuals } from "./db-loadData.mjs";
@@ -137,6 +138,10 @@ export async function update(ref, data) {
 
 export function push(data) {
   return arrayUnion(data);
+}
+
+export function pop(data) {
+  return arrayRemove(data);
 }
 
 export function afterUpdate(func) {
