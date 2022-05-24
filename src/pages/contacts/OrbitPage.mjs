@@ -48,8 +48,10 @@ ${Modal({
   id: "add-member",
   contents: jsx`<form>
     Choose a friend to add:
-    <ul>${friends.map((friend) => FriendSelectTemplate(friend))}</ul>
-    <button>"primary danger" onclick=>Yes, delete</button>
+    <ul class="user-list">${friends.map((friend) =>
+      FriendSelectTemplate(friend)
+    )}</ul>
+    <button class="primary danger">Yes, delete</button>
   </form>`,
 })}`;
 
