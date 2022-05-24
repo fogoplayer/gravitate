@@ -3,6 +3,7 @@ import {
   AttractionInfo,
 } from "../../components/AttractionDetails.mjs";
 import Modal from "../../components/Modal.mjs";
+import { AttractionsTemplate } from "../../components/templates/AttractionsTemplate.mjs";
 import {
   afterUpdate,
   getCurrUserData,
@@ -45,7 +46,7 @@ export default function FriendPage(id) {
       />
       <span class="header-text">Attractions</span>
     </h2>
-    ${AttractionsTemplate(invitations)}
+    ${AttractionsTemplate(invitations, "None")}
   </li>
 </ul>
 <ul class="contacts-list contacts-list">
@@ -85,38 +86,6 @@ ${Modal({
   }
 
   // Templates
-  function AttractionsTemplate(attractions) {
-    if (attractions.length > 0) {
-      return jsx`<ul>
-    ${attractions.map((attraction) => {
-      return jsx`
-    <li class="attraction">
-      <h3 class="contact-header-container" onclick=${toggleDetails}>
-        ${getIcon()}
-        <span class="contact-name">${attraction.name}</span>
-        ${AttractionInfo(attraction)}
-      </h3>
-      ${AttractionDetails(attraction)}
-    </li>
-    `;
-    })}
-    </ul>`;
-    } else {
-      return "None";
-    }
-  }
-
-  function toggleDetails(e) {
-    let sibling = e.currentTarget.nextSibling;
-    if (sibling.classList.contains("open")) {
-      sibling.classList.replace("open", "transitioning");
-      setTimeout(() => sibling.classList.remove("transitioning"), 250);
-    } else {
-      sibling.classList.add("transitioning");
-      setTimeout(() => sibling.classList.replace("transitioning", "open"), 1);
-    }
-  }
-
   function GroupTemplate(contacts, type) {
     if (contacts.length > 0) {
       return jsx`<ul>
