@@ -30,7 +30,9 @@ export default function OrbitPage(id) {
   ${orbit.icon}
   <div class="pfp-edit material-symbols-sharp">edit</div>
 </button>
-<h2>${orbit.name}</h2>
+<button onclick="${showChangeNameModal}">
+  <h2>${orbit.name}</h2>
+</button>
 <ul class="contacts-list contacts-list">
   <li class="members-wrapper">
     <h2>
@@ -53,16 +55,26 @@ ${Modal({
     id: "new-icon",
     required: true,
     pattern: ".",
-    oninput: (e) => (icon = e.target.value),
   })}
   <aside>
     Icons are single characters, such as an emoji or a letter. Some emoji may
     not be supported.
   </aside>
   <button class="primary">Save icon ${Spinner()}</button>
-</form>
-`,
+</form>`,
 })} 
+${Modal({
+  id: "change-name",
+  contents: jsx`
+<form onsubmit="${updateName}">
+  ${Input({
+    label: "New Name",
+    id: "new-name",
+    required: true,
+  })}
+  <button class="primary">Save name ${Spinner()}</button>
+</form>`,
+})}
 ${Modal({
   id: "delete-modal",
   contents: jsx`Are you sure you want to
@@ -101,6 +113,10 @@ ${Modal({
     document.querySelector("#change-icon").showModal();
   }
 
+  function showChangeNameModal() {
+    document.querySelector("#change-name").showModal();
+  }
+
   function showDeleteModal() {
     document.querySelector("#delete-modal").showModal();
   }
@@ -121,6 +137,14 @@ ${Modal({
     const newIcon = document.querySelector("#new-icon").value;
     update(orbit.ref, { icon: newIcon });
     afterUpdate(() => renderPage(window.location.pathname));
+  }
+
+  function updateName(e) {
+    e.preventDefault();
+    e.submitter.classList.add("loading");
+    const newName = document.querySelector("#new-name").value.trim();
+    update(orbit.ref, { name: newName });
+    afterUpdate(() => renderPage("/contacts/orbits/" + newName));
   }
 
   function addMembers(e) {
