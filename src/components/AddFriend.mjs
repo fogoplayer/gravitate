@@ -21,7 +21,6 @@ export default function AddFriend() {
     ${Input({
       label: "Username",
       oninput: (e) => (searchValue = e.target.value),
-      required: true,
     })}
     <button class="flat inline" onclick="${searchForFriends}">
       <span class="material-symbols-sharp">search</span>

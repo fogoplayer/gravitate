@@ -9,7 +9,6 @@ export function FriendSelectTemplate(user, props = {}) {
       id="${user.name}"
       value="${user.ref}"
       tabindex="0"
-      required
       ...${props}
     />
     ${getIcon(user.icon)}

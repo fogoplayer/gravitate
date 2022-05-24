@@ -22,9 +22,6 @@ export default function OrbitPage(id) {
   let members = new Set();
 
   // Filter imports
-  orbits.forEach((orbit) =>
-    console.log(id, encodeURIComponent(orbit.name), id === orbit.name)
-  );
   let [orbit] = orbits.filter((orbit) => orbit.name === id);
 
   return jsx`<button class="pfp noto">${orbit.icon}</button>
@@ -61,7 +58,6 @@ ${Modal({
             members.delete(friend.ref);
           }
         },
-        required: true,
       })
     )}</ul>
     <button class="primary">Add members ${Spinner()}
@@ -80,15 +76,22 @@ ${Modal({
 
   function showRemoveMemberModal(e) {
     e.preventDefault();
-    console.log(e.currentTarget.parentNode);
     e.currentTarget.parentNode.parentNode.nextSibling.showModal();
   }
 
   function addMembers(e) {
     e.preventDefault();
     e.submitter.classList.add("loading");
+    console.log(members);
     update(orbit.ref, {
       members: push(...Array.from(members)),
+    });
+    afterUpdate(() => renderPage(window.location.pathname));
+  }
+
+  function removeMember(member) {
+    update(orbit.ref, {
+      members: pop(member),
     });
     afterUpdate(() => renderPage(window.location.pathname));
   }
@@ -120,14 +123,14 @@ ${Modal({
       }</b> from <b>${orbit.name}</b>?
     </center>
       <button class="primary danger" onclick=${() =>
-        removeMember(contact)}>Yes, delete</button>`,
+        removeMember(contact.ref)}>Yes, delete</button>`,
     })}
   </li>
   `
   )}
 </ul>`;
     } else {
-      return jsx`<div class="empty-message">Not in any of your ${type}</div>`;
+      return jsx`<div class="empty-message">No members added</div>`;
     }
   }
 }
