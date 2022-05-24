@@ -10,6 +10,7 @@ import { getIcon } from "../services/firebase/storage.mjs";
 import { append, jsx, renderPage } from "../services/render.mjs";
 import Input from "./Input.mjs";
 import Modal from "./Modal.mjs";
+import { FriendSelectTemplate } from "./templates/FriendSelectTemplate.mjs";
 
 export default function AddSystem() {
   let { ref, dataDocRef } = getCurrUserData();
@@ -37,7 +38,16 @@ export default function AddSystem() {
   </aside>
   <h2>Select members</h2>
   <ul class="user-list">${getCurrUserData().friends.map((friend) =>
-    Template(friend)
+    FriendSelectTemplate(friend, {
+      name: "added-systems",
+      onchange: function (e) {
+        if (e.target.checked) {
+          members.add(user.ref);
+        } else {
+          members.delete(user.ref);
+        }
+      },
+    })
   )}</ul>
   <button class="primary" onclick="${addSystem}">
     Add system
@@ -61,29 +71,5 @@ export default function AddSystem() {
     });
     afterUpdate(() => renderPage(window.location.pathname));
     modal.close();
-  }
-
-  function Template(user) {
-    return jsx`<li>
-  <label class="contact-header-container">
-    <input
-      type="checkbox"
-      name="added-systems"
-      id="${user.name}"
-      value="${user.ref}"
-      onchange="${function (e) {
-        if (e.target.checked) {
-          members.add(user.ref);
-        } else {
-          members.delete(user.ref);
-        }
-      }}"
-      tabindex="0"
-      required
-    />
-    ${getIcon(user.icon)}
-    <span class="contact-name">${user.name}</span>
-  </label>
-</li>`;
   }
 }
