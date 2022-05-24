@@ -43,7 +43,7 @@ export default function OrbitPage(id) {
     ${GroupTemplate(orbit.members, "friends")}
   </li>
 </ul>
-<button class="flat danger" onclick="${showUnfriendModal}">Delete Orbit</button>
+<button class="flat danger" onclick="${showDeleteModal}">Delete Orbit</button>
 ${Modal({
   id: "change-icon",
   contents: jsx`
@@ -63,7 +63,7 @@ ${Modal({
 </form>
 `,
 })} ${Modal({
-    id: "unfriend-modal",
+    id: "delete-modal",
     contents: jsx`Are you sure you want to
 delete ${orbit.name}?
 <button class="primary danger" onclick="${deleteOrbit}">Yes, delete ${Spinner()}</button>`,
@@ -99,8 +99,8 @@ delete ${orbit.name}?
     document.querySelector("#change-icon").showModal();
   }
 
-  function showUnfriendModal() {
-    document.querySelector("#unfriend-modal").showModal();
+  function showDeleteModal() {
+    document.querySelector("#delete-modal").showModal();
   }
 
   function showAddMemberModal() {
