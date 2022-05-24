@@ -17,9 +17,7 @@ export default function FriendPage(id) {
   let { friends, invitations, orbits, systems, dataDocRef } = getCurrUserData();
 
   // Filter imports
-  let [friend] = friends.filter(
-    (friend) => encodeURIComponent(friend.name) === id
-  );
+  let [friend] = friends.filter((friend) => friend.name === id);
   invitations = invitations.filter(
     (invitation) => invitation.organizer.name === friend.name
   );
