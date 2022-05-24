@@ -51,14 +51,16 @@
   padding: 0.5em;
 }
 
-.contacts-list button {
+.contacts-list h2 button,
+.contacts-list .contact-header-container button {
   align-self: stretch;
   display: flex;
   padding: 0.5em;
   width: 1.5rem;
 }
 
-.contacts-list button:first-of-type {
+.contacts-list h2 button:first-of-type,
+.contacts-list .contact-header-container button:first-of-type {
   margin-left: auto;
 }
 
