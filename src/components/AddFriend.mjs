@@ -8,6 +8,7 @@ import { getIcon } from "../services/firebase/storage.mjs";
 import { append, jsx, renderPage } from "../services/render.mjs";
 import Input from "./Input.mjs";
 import Modal from "./Modal.mjs";
+import { FriendSelectTemplate } from "./templates/FriendSelectTemplate.mjs";
 
 export default function AddFriend() {
   let searchValue;
@@ -47,7 +48,15 @@ export default function AddFriend() {
     let users = await usernameSearch(searchValue);
 
     let options = users.map((user) => {
-      return Template(user);
+      return FriendSelectTemplate(user, {
+        onchange: function (e) {
+          if (e.target.checked) {
+            newFriends.add(user.ref);
+          } else {
+            newFriends.delete(user.ref);
+          }
+        },
+      });
     });
     append(document.querySelector("#friend-user-list"), options);
     document
@@ -62,29 +71,5 @@ export default function AddFriend() {
     });
     renderPage(window.location.pathname);
     modal.close();
-  }
-
-  function Template(user) {
-    return jsx`<li>
-  <label class="contact-header-container">
-    <input
-      type="checkbox"
-      name="added-friends"
-      id="${user.name}"
-      value="${user.ref}"
-      onchange="${function (e) {
-        if (e.target.checked) {
-          newFriends.add(user.ref);
-        } else {
-          newFriends.delete(user.ref);
-        }
-      }}"
-      tabindex="0"
-      required
-    />
-    ${getIcon(user.icon)}
-    <span class="contact-name">${user.name}</span>
-  </label>
-</li>`;
   }
 }

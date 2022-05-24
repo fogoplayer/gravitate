@@ -4,6 +4,7 @@ import {
 } from "../../components/AttractionDetails.mjs";
 import Modal from "../../components/Modal.mjs";
 import { AttractionsTemplate } from "../../components/templates/AttractionsTemplate.mjs";
+import { FriendSelectTemplate } from "../../components/templates/FriendSelectTemplate.mjs";
 import {
   afterUpdate,
   deleteDoc,
@@ -22,18 +23,6 @@ export default function OrbitPage(id) {
     console.log(id, encodeURIComponent(orbit.name), id === orbit.name)
   );
   let [orbit] = orbits.filter((orbit) => orbit.name === id);
-  orbit = orbit || {};
-  // invitations = invitations.filter(
-  //   (invitation) => invitation.organizer.name === orbit.name
-  // );
-  // orbits = orbits.filter((orbit) => {
-  //   return orbit.members.find((member) => member.name === orbit.name);
-  // });
-  // systems = systems.filter((system) => {
-  //   return system.members.find((member) => member.name === orbit.name);
-  // });
-
-  // Helpers
 
   return jsx`<button class="pfp noto">${orbit.icon}</button>
 <h2>${orbit.name}</h2>
@@ -42,21 +31,40 @@ export default function OrbitPage(id) {
     <h2>
       <img src="/images/orbit.svg" alt="Orbits icon" class="header-icon" />
       <span class="header-text">Members</span>
+      <button type="button" class="header-btn" onclick="${showAddMemberModal}">
+        <span class="material-symbols-sharp">add</span>
+      </button>
     </h2>
     ${GroupTemplate(orbit.members, "friends")}
   </li>
 </ul>
 <button class="flat danger" onclick=${showUnfriendModal}>Delete Orbit</button>
 ${Modal({
+  id: "unfriend-modal",
   contents: jsx`Are you sure you want to delete ${orbit.name}?
-  <button class="primary danger" onclick=${deleteOrbit}>Yes, delete</button>
-`,
-  id: "delete-confirm",
+  <button class="primary danger" onclick=${deleteOrbit}>Yes, delete</button>`,
+})}
+${Modal({
+  id: "add-member",
+  contents: jsx`<form>
+    Choose a friend to add:
+    <ul>${friends.map((friend) => FriendSelectTemplate(friend))}</ul>
+    <button>"primary danger" onclick=>Yes, delete</button>
+  </form>`,
 })}`;
 
   // Helpers
   function showUnfriendModal() {
-    document.querySelector("#delete-confirm").showModal();
+    document.querySelector("#unfriend-modal").showModal();
+  }
+
+  function showAddMemberModal() {
+    document.querySelector("#add-member").showModal();
+  }
+
+  function showRemoveMemberModal(e) {
+    e.preventDefault();
+    document.querySelector("#remove-member").showModal();
   }
 
   function deleteOrbit() {
@@ -75,6 +83,9 @@ ${Modal({
       <div class="contact-header-container">
         ${getIcon(contact.icon)}
         <span class="contact-name">${contact.name}</span>
+        <button type="button" class="flat" onclick="${showRemoveMemberModal}">
+          <span class="material-symbols-sharp">remove</span>
+        </button>
       </div>
     </a>
   </li>

@@ -51,8 +51,14 @@
   padding: 0.5em;
 }
 
-.contacts-list > li > h2 > .header-btn {
+.contacts-list button {
+  align-self: stretch;
   display: flex;
+  padding: 0.5em;
+  width: 1.5rem;
+}
+
+.contacts-list button:first-of-type {
   margin-left: auto;
 }
 
