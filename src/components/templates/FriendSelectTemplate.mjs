@@ -5,7 +5,7 @@ export function FriendSelectTemplate(user, props = {}) {
   return jsx`<li>
   <label class="contact-header-container">
     <input
-      type="checkbox"
+      type="radio"
       id="${user.name}"
       value="${user.ref}"
       tabindex="0"
