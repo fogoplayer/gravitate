@@ -49,6 +49,7 @@ export default function AddFriend() {
 
     let options = users.map((user) => {
       return FriendSelectTemplate(user, {
+        name: "added-friends",
         onchange: function (e) {
           if (e.target.checked) {
             newFriends.add(user.ref);

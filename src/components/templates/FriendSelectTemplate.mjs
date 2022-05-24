@@ -6,7 +6,6 @@ export function FriendSelectTemplate(user, props = {}) {
   <label class="contact-header-container">
     <input
       type="checkbox"
-      name="added-friends"
       id="${user.name}"
       value="${user.ref}"
       tabindex="0"
