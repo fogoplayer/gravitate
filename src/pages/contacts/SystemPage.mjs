@@ -30,7 +30,9 @@ export default function SystemPage(id) {
   ${system.icon}
   <div class="pfp-edit material-symbols-sharp">edit</div>
 </button>
-<h2>${system.name}</h2>
+<button onclick="${showChangeNameModal}">
+  <h2>${system.name}</h2>
+</button>
 <ul class="contacts-list contacts-list">
   <li class="members-wrapper">
     <h2>
@@ -50,15 +52,25 @@ ${Modal({
     id: "new-icon",
     required: true,
     pattern: ".",
-    oninput: (e) => (icon = e.target.value),
   })}
   <aside>
     Icons are single characters, such as an emoji or a letter. Some emoji may
     not be supported.
   </aside>
   <button class="primary">Save icon ${Spinner()}</button>
-</form>
-`,
+  </form>`,
+})} 
+${Modal({
+  id: "change-name",
+  contents: jsx`
+<form onsubmit="${updateName}">
+  ${Input({
+    label: "New Name",
+    id: "new-name",
+    required: true,
+  })}
+  <button class="primary">Save name ${Spinner()}</button>
+</form>`,
 })}
 ${Modal({
   id: "leave-modal",
@@ -71,6 +83,10 @@ leave ${system.name}?
   // Modals
   function showChangeIconModal() {
     document.querySelector("#change-icon").showModal();
+  }
+
+  function showChangeNameModal() {
+    document.querySelector("#change-name").showModal();
   }
 
   function showRemoveMemberModal(e) {
@@ -90,6 +106,14 @@ leave ${system.name}?
     const newIcon = document.querySelector("#new-icon").value;
     update(system.ref, { icon: newIcon });
     afterUpdate(() => renderPage(window.location.pathname));
+  }
+
+  function updateName(e) {
+    e.preventDefault();
+    e.submitter.classList.add("loading");
+    const newName = document.querySelector("#new-name").value.trim();
+    update(system.ref, { name: newName });
+    afterUpdate(() => renderPage("/contacts/systems/" + newName));
   }
 
   function removeMember(e, member) {
