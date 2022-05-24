@@ -12,6 +12,7 @@ export default function Changelog() {
       Add friend in system
       Make icon inputs noto
       Change name
+      Remove member picker from system creator
       <li>Update footer link active state</li>
     </ul>
     <h3>1.3.1</h3>

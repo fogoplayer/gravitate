@@ -78,7 +78,8 @@ leave ${system.name}?
     e.currentTarget.parentNode.parentNode.nextSibling.showModal();
   }
 
-  function showLeaveModal() {
+  function showLeaveModal(e) {
+    e.preventDefault();
     document.querySelector("#leave-modal").showModal();
   }
 
@@ -118,7 +119,9 @@ leave ${system.name}?
       <div class="contact-header-container">
         ${getIcon(contact.icon)}
         <span class="contact-name">${contact.name}</span>
-        <button type="button" class="flat" onclick="${showRemoveMemberModal}">
+        <button type="button" class="flat" onclick="${
+          contact.ref.path === ref.path ? showLeaveModal : showRemoveMemberModal
+        }">
           <span class="material-symbols-sharp">remove</span>
         </button>
       </div>
