@@ -106,7 +106,7 @@ aside {
 
 .user-list li + li {
   padding: 0.5rem;
-  border: 1px solid var(--theme-secondary-color);
+  border-top: 1px solid var(--theme-secondary-color);
 }
 
 .noto {

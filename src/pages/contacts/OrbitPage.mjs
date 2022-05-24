@@ -3,6 +3,7 @@ import {
   AttractionInfo,
 } from "../../components/AttractionDetails.mjs";
 import Modal from "../../components/Modal.mjs";
+import Spinner from "../../components/Spinner.mjs";
 import { AttractionsTemplate } from "../../components/templates/AttractionsTemplate.mjs";
 import { FriendSelectTemplate } from "../../components/templates/FriendSelectTemplate.mjs";
 import {
@@ -10,13 +11,15 @@ import {
   deleteDoc,
   getCurrUserData,
   pop,
+  push,
   update,
 } from "../../services/firebase/db.mjs";
 import { getIcon } from "../../services/firebase/storage.mjs";
 import { jsx, renderPage } from "../../services/render.mjs";
 
 export default function OrbitPage(id) {
-  let { friends, invitations, orbits, systems, dataDocRef } = getCurrUserData();
+  let { friends, orbits } = getCurrUserData();
+  let members = new Set();
 
   // Filter imports
   orbits.forEach((orbit) =>
@@ -45,13 +48,24 @@ ${Modal({
   <button class="primary danger" onclick=${deleteOrbit}>Yes, delete</button>`,
 })}
 ${Modal({
-  id: "add-member",
-  contents: jsx`<form>
-    Choose a friend to add:
+  id: "add-members",
+  contents: jsx`<form onsubmit="${addMembers}">
+    Select friends to add:
     <ul class="user-list">${friends.map((friend) =>
-      FriendSelectTemplate(friend)
+      FriendSelectTemplate(friend, {
+        name: "added-members",
+        onchange: function (e) {
+          if (e.target.checked) {
+            members.add(friend.ref);
+          } else {
+            members.delete(friend.ref);
+          }
+        },
+        required: true,
+      })
     )}</ul>
-    <button class="primary danger">Yes, delete</button>
+    <button class="primary">Add members ${Spinner()}
+    </button>
   </form>`,
 })}`;
 
@@ -61,12 +75,21 @@ ${Modal({
   }
 
   function showAddMemberModal() {
-    document.querySelector("#add-member").showModal();
+    document.querySelector("#add-members").showModal();
   }
 
   function showRemoveMemberModal(e) {
     e.preventDefault();
     document.querySelector("#remove-member").showModal();
+  }
+
+  function addMembers(e) {
+    e.preventDefault();
+    e.submitter.classList.add("loading");
+    update(orbit.ref, {
+      members: push(...Array.from(members)),
+    });
+    afterUpdate(() => renderPage(window.location.pathname));
   }
 
   function deleteOrbit() {
