@@ -2,6 +2,7 @@ import {
   AttractionDetails,
   AttractionInfo,
 } from "../../components/AttractionDetails.mjs";
+import Input from "../../components/Input.mjs";
 import Modal from "../../components/Modal.mjs";
 import Spinner from "../../components/Spinner.mjs";
 import { AttractionsTemplate } from "../../components/templates/AttractionsTemplate.mjs";
@@ -20,11 +21,15 @@ import { jsx, renderPage } from "../../services/render.mjs";
 export default function OrbitPage(id) {
   let { friends, orbits } = getCurrUserData();
   let members = new Set();
+  let icon;
 
   // Filter imports
   let [orbit] = orbits.filter((orbit) => orbit.name === id);
 
-  return jsx`<button class="pfp noto">${orbit.icon}</button>
+  return jsx`<button class="pfp noto" onclick="${showChangeIconModal}">
+  ${orbit.icon}
+  <div class="pfp-edit material-symbols-sharp">edit</div>
+</button>
 <h2>${orbit.name}</h2>
 <ul class="contacts-list contacts-list">
   <li class="members-wrapper">
@@ -38,17 +43,37 @@ export default function OrbitPage(id) {
     ${GroupTemplate(orbit.members, "friends")}
   </li>
 </ul>
-<button class="flat danger" onclick=${showUnfriendModal}>Delete Orbit</button>
+<button class="flat danger" onclick="${showUnfriendModal}">Delete Orbit</button>
 ${Modal({
-  id: "unfriend-modal",
-  contents: jsx`Are you sure you want to delete ${orbit.name}?
-  <button class="primary danger" onclick=${deleteOrbit}>Yes, delete</button>`,
-})}
-${Modal({
-  id: "add-members",
-  contents: jsx`<form onsubmit="${addMembers}">
-    Select friends to add:
-    <ul class="user-list">${friends
+  id: "change-icon",
+  contents: jsx`
+<form onsubmit="${updateIcon}">
+  ${Input({
+    label: "New Icon",
+    id: "new-icon",
+    required: true,
+    pattern: ".",
+    oninput: (e) => (icon = e.target.value),
+  })}
+  <aside>
+    Icons are single characters, such as an emoji or a letter. Some emoji may
+    not be supported.
+  </aside>
+  <button class="primary">Save icon</button>
+</form>
+`,
+})} ${Modal({
+    id: "unfriend-modal",
+    contents: jsx`Are you sure you want to
+delete ${orbit.name}?
+<button class="primary danger" onclick="${deleteOrbit}">Yes, delete</button>`,
+  })} ${Modal({
+    id: "add-members",
+    contents: jsx`
+<form onsubmit="${addMembers}">
+  Select friends to add:
+  <ul class="user-list">
+    ${friends
       .filter((friend) => !orbit.members.find((el) => el.name === friend.name))
       .map((friend) =>
         FriendSelectTemplate(friend, {
@@ -61,13 +86,19 @@ ${Modal({
             }
           },
         })
-      )}</ul>
-    <button class="primary">Add members ${Spinner()}
-    </button>
-  </form>`,
-})}`;
+      )}
+  </ul>
+  <button class="primary">Add members ${Spinner()}</button>
+</form>
+`,
+  })}
+`;
 
-  // Helpers
+  // Modals
+  function showChangeIconModal() {
+    document.querySelector("#change-icon").showModal();
+  }
+
   function showUnfriendModal() {
     document.querySelector("#unfriend-modal").showModal();
   }
@@ -79,6 +110,14 @@ ${Modal({
   function showRemoveMemberModal(e) {
     e.preventDefault();
     e.currentTarget.parentNode.parentNode.nextSibling.showModal();
+  }
+
+  // Database
+  function updateIcon(e) {
+    e.preventDefault();
+    const newIcon = document.querySelector("#new-icon").value;
+    update(orbit.ref, { icon: newIcon });
+    afterUpdate(() => renderPage(window.location.pathname));
   }
 
   function addMembers(e) {
