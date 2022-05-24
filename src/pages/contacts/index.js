@@ -1,6 +1,7 @@
 import { setPageTitle } from "../../components/AppShell.mjs";
 import { jsx } from "../../services/render.mjs";
 import FriendPage from "./FriendPage.mjs";
+import OrbitPage from "./OrbitPage.mjs";
 
 export default function ContactPage(context) {
   setPageTitle("Contacts");
@@ -10,7 +11,9 @@ export default function ContactPage(context) {
     switch (type) {
       case "friends":
         return FriendPage(id);
-        break;
+
+      case "orbits":
+        return OrbitPage(id);
 
       default:
         return "";
