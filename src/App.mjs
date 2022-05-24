@@ -47,8 +47,8 @@ authStateChanged(async (user) => {
   page("/signup", () => showExternalPage(SignUp));
   page("/onboarding/:page", (context) => showExternalPage(Onboarding, context));
   page("/*", () => {
-    if (user) page.redirect("view-attractions");
-    else page.redirect("login");
+    if (user) page.redirect("/view-attractions");
+    else page.redirect("/login");
   });
 
   if (window.location.hostname === "fogoplayer.github.io")
