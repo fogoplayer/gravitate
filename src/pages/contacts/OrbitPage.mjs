@@ -80,7 +80,8 @@ ${Modal({
 
   function showRemoveMemberModal(e) {
     e.preventDefault();
-    document.querySelector("#remove-member").showModal();
+    console.log(e.currentTarget.parentNode);
+    e.currentTarget.parentNode.parentNode.nextSibling.showModal();
   }
 
   function addMembers(e) {
@@ -113,6 +114,14 @@ ${Modal({
         </button>
       </div>
     </a>
+    ${Modal({
+      contents: jsx`<center>Are you sure you want to remove <b>${
+        contact.name
+      }</b> from <b>${orbit.name}</b>?
+    </center>
+      <button class="primary danger" onclick=${() =>
+        removeMember(contact)}>Yes, delete</button>`,
+    })}
   </li>
   `
   )}
