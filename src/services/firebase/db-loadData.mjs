@@ -1,16 +1,36 @@
-import { deleteDoc, getDocData, getDocsData, watch } from "./db.mjs";
+import {
+  deleteDoc,
+  getCurrUserData,
+  getDocData,
+  getDocsData,
+  pop,
+  update,
+  watch,
+} from "./db.mjs";
 
 const DOCUMENT_SNAPSHOT = "Ph";
 const DOCUMENT_REFERENCE = "wc";
 
 export async function parseGroups(groups) {
-  for (let group in groups) {
-    if (groups[group].constructor.name == DOCUMENT_REFERENCE) {
-      groups[group] = await getDocData(groups[group]);
+  let newGroups = new Set();
+  for (let group of groups) {
+    try {
+      if (group.constructor.name == DOCUMENT_REFERENCE) {
+        group = await getDocData(group);
+      }
+      group.members = await parseIndividuals(group.members);
+      newGroups.add(group);
+    } catch (error) {
+      if (error.code === "permission-denied" && group.path.match(/systems/)) {
+        console.log(group);
+        console.error("You've been removed from one of your systems");
+        update(getCurrUserData().dataDocRef, {
+          systems: pop(group),
+        });
+      }
     }
-    groups[group].members = await parseIndividuals(groups[group].members);
   }
-  return groups;
+  return Array.from(newGroups);
 }
 
 export async function parseIndividuals(group) {
