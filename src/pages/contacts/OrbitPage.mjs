@@ -48,18 +48,20 @@ ${Modal({
   id: "add-members",
   contents: jsx`<form onsubmit="${addMembers}">
     Select friends to add:
-    <ul class="user-list">${friends.map((friend) =>
-      FriendSelectTemplate(friend, {
-        name: "added-members",
-        onchange: function (e) {
-          if (e.target.checked) {
-            members.add(friend.ref);
-          } else {
-            members.delete(friend.ref);
-          }
-        },
-      })
-    )}</ul>
+    <ul class="user-list">${friends
+      .filter((friend) => !orbit.members.find((el) => el.name === friend.name))
+      .map((friend) =>
+        FriendSelectTemplate(friend, {
+          name: "added-members",
+          onchange: function (e) {
+            if (e.target.checked) {
+              members.add(friend.ref);
+            } else {
+              members.delete(friend.ref);
+            }
+          },
+        })
+      )}</ul>
     <button class="primary">Add members ${Spinner()}
     </button>
   </form>`,
