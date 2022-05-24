@@ -59,14 +59,14 @@ ${Modal({
     Icons are single characters, such as an emoji or a letter. Some emoji may
     not be supported.
   </aside>
-  <button class="primary">Save icon</button>
+  <button class="primary">Save icon ${Spinner()}</button>
 </form>
 `,
 })} ${Modal({
     id: "unfriend-modal",
     contents: jsx`Are you sure you want to
 delete ${orbit.name}?
-<button class="primary danger" onclick="${deleteOrbit}">Yes, delete</button>`,
+<button class="primary danger" onclick="${deleteOrbit}">Yes, delete ${Spinner()}</button>`,
   })} ${Modal({
     id: "add-members",
     contents: jsx`
@@ -115,6 +115,7 @@ delete ${orbit.name}?
   // Database
   function updateIcon(e) {
     e.preventDefault();
+    e.submitter.classList.add("loading");
     const newIcon = document.querySelector("#new-icon").value;
     update(orbit.ref, { icon: newIcon });
     afterUpdate(() => renderPage(window.location.pathname));
@@ -130,14 +131,16 @@ delete ${orbit.name}?
     afterUpdate(() => renderPage(window.location.pathname));
   }
 
-  function removeMember(member) {
+  function removeMember(e, member) {
+    e.target.classList.add("loading");
     update(orbit.ref, {
       members: pop(member),
     });
     afterUpdate(() => renderPage(window.location.pathname));
   }
 
-  function deleteOrbit() {
+  function deleteOrbit(e) {
+    e.target.classList.add("loading");
     deleteDoc(orbit.ref);
     afterUpdate(() => renderPage("/contacts"));
   }
@@ -163,8 +166,8 @@ delete ${orbit.name}?
         contact.name
       }</b> from <b>${orbit.name}</b>?
     </center>
-      <button class="primary danger" onclick=${() =>
-        removeMember(contact.ref)}>Yes, delete</button>`,
+      <button class="primary danger" onclick=${(e) =>
+        removeMember(e, contact.ref)}>Yes, delete ${Spinner()}</button>`,
     })}
   </li>
   `
