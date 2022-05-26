@@ -14,10 +14,7 @@ import { FriendSelectTemplate } from "./templates/FriendSelectTemplate.mjs";
 
 export default function AddSystem() {
   let { ref, dataDocRef } = getCurrUserData();
-  let members = new Set();
   let name, icon;
-
-  members.add(ref);
 
   const modal = Modal({
     contents: jsx`<form>
@@ -36,19 +33,6 @@ export default function AddSystem() {
   <aside>
     Icons are single characters, such as an emoji or a letter. Some emoji may not be supported.
   </aside>
-  <h2>Select members</h2>
-  <ul class="user-list">${getCurrUserData().friends.map((friend) =>
-    FriendSelectTemplate(friend, {
-      name: "added-systems",
-      onchange: function (e) {
-        if (e.target.checked) {
-          members.add(user.ref);
-        } else {
-          members.delete(user.ref);
-        }
-      },
-    })
-  )}</ul>
   <button class="primary" onclick="${addSystem}">
     Add system
   </button>
@@ -64,7 +48,7 @@ export default function AddSystem() {
     let docRef = await addDoc(systems, {
       name,
       icon,
-      members: Array.from(members),
+      members: [ref],
     });
     await update(dataDocRef, {
       systems: push(docRef),
