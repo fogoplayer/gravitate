@@ -25,7 +25,7 @@ export default function SystemPage(id) {
   let icon;
 
   // Filter imports
-  let [system] = systems.filter((system) => system.name === id);
+  let [system] = systems.filter((system) => system.ref.id === id);
 
   setPageTitle("Contacts", system.name);
 
@@ -157,7 +157,7 @@ leave ${system.name}?
   <li>
     <a href="${
       friends.find((friend) => contact.ref.path === friend.ref.path)
-        ? `/contacts/${type}/${contact.name}`
+        ? `/contacts/${type}/${contact.ref.id}`
         : ""
     }">
       <div class="contact-header-container">
