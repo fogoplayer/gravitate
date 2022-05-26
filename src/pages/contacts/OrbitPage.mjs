@@ -24,7 +24,7 @@ export default function OrbitPage(id) {
   let members = new Set();
 
   // Filter imports
-  let [orbit] = orbits.filter((orbit) => orbit.name === id);
+  let [orbit] = orbits.filter((orbit) => orbit.ref.id === id);
 
   setPageTitle("Contacts", orbit.name);
 
@@ -90,7 +90,9 @@ ${Modal({
   Select friends to add:
   <ul class="user-list">
     ${friends
-      .filter((friend) => !orbit.members.find((el) => el.name === friend.name))
+      .filter(
+        (friend) => !orbit.members.find((el) => el.ref.id === friend.ref.id)
+      )
       .map((friend) =>
         FriendSelectTemplate(friend, {
           name: "added-members",
@@ -146,7 +148,7 @@ ${Modal({
     e.submitter.classList.add("loading");
     const newName = document.querySelector("#new-name").value.trim();
     update(orbit.ref, { name: newName });
-    afterUpdate(() => renderPage("/contacts/orbits/" + newName));
+    afterUpdate(() => renderPage(window.location.pathname));
   }
 
   function addMembers(e) {
@@ -180,7 +182,7 @@ ${Modal({
   ${contacts.map(
     (contact) => jsx`
   <li>
-    <a href="/contacts/${type}/${contact.name}">
+    <a href="/contacts/${type}/${contact.ref.id}">
       <div class="contact-header-container">
         ${getIcon(contact.icon)}
         <span class="contact-name">${contact.name}</span>

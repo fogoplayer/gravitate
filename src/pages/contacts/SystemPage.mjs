@@ -121,7 +121,7 @@ leave ${system.name}?
     e.submitter.classList.add("loading");
     const newName = document.querySelector("#new-name").value.trim();
     update(system.ref, { name: newName });
-    afterUpdate(() => renderPage("/contacts/systems/" + newName));
+    afterUpdate(() => renderPage(window.location.pathname));
   }
 
   function addFriend(e, friend) {
