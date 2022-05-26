@@ -19,15 +19,15 @@ export default function FriendPage(id) {
   let { friends, invitations, orbits, systems, dataDocRef } = getCurrUserData();
 
   // Filter imports
-  let [friend] = friends.filter((friend) => friend.name === id);
+  let [friend] = friends.filter((friend) => friend.ref.id === id);
   invitations = invitations.filter(
-    (invitation) => invitation.organizer.name === friend.name
+    (invitation) => invitation.organizer.ref.id === friend.ref.id
   );
   orbits = orbits.filter((orbit) => {
-    return orbit.members.find((member) => member.name === friend.name);
+    return orbit.members.find((member) => member.ref.id === friend.ref.id);
   });
   systems = systems.filter((system) => {
-    return system.members.find((member) => member.name === friend.name);
+    return system.members.find((member) => member.ref.id === friend.ref.id);
   });
 
   setPageTitle("Contacts", friend.name);
@@ -102,7 +102,7 @@ ${Modal({
   ${contacts.map(
     (contact) => jsx`
   <li>
-    <a href="/contacts/${type}/${contact.name}">
+    <a href="/contacts/${type}/${contact.ref.id}">
       <div class="contact-header-container">
         ${getIcon(contact.icon)}
         <span class="contact-name">${contact.name}</span>

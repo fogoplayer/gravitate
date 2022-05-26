@@ -23,9 +23,6 @@ export default function Changelog() {
       <li>Fix tabindexes</li>
       <li>Multiple titles</li>
         <li>Add tour for user pages</li>
-        <li>
-          Does the app crash if you're removed from a system while logged in?
-        </li>
         Use IDs instead of names for routing
     </ul>
     <h3>1.4.0</h3>

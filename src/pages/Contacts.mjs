@@ -14,7 +14,7 @@ function ContactsPageContact(contacts, type) {
   ${contacts.map(
     (contact) => jsx`
   <li>
-    <a href="/contacts/${type}/${contact.name}">
+    <a href="/contacts/${type}/${contact.ref.id}">
       <div class="contact-header-container">
         ${getIcon(contact.icon)}
         <span class="contact-name">${contact.name}</span>
