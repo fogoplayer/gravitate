@@ -44,7 +44,13 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
   </nav>
 </dialog>
 <header class="app-header">
-<h1 class="page-title">Gravitate</h1>
+  <button id="back-button" tabIndex=3 onclick=${(e) => {
+    renderPage(window.location.pathname);
+    hideRefreshPage();
+  }}>
+    <div class="material-symbols-sharp"> arrow_back </div>
+  </button>
+  <h1 class="page-title">Gravitate</h1>
   <button id="refresh-page" tabIndex=3 onclick=${(e) => {
     renderPage(window.location.pathname);
     hideRefreshPage();
