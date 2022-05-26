@@ -12,6 +12,10 @@ export default function Changelog() {
       <li>Button to add system members as friends</li>
       <li>Make icon inputs noto</li>
       <li>Remove member picker from system creator</li>
+      <li>Add back button to non-root routes</li>
+     <li>Add tour for user pages</li>
+    <li>Does the app crash if you're removed from a system while logged in?</li> 
+    Use IDs instead of names for routing
     </ul>
     <h3>1.4.0</h3>
     <ul>

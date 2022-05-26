@@ -121,8 +121,8 @@ aside {
   /* box-model */
   border-radius: 50%;
   border: 1px solid var(--theme-secondary-color);
-  width: 5em;
-  max-height: 5em;
+  width: 7em;
+  max-height: 7em;
   aspect-ratio: 1/1;
 
   /* typography */
@@ -133,12 +133,18 @@ aside {
   /* misc */
 }
 
-.pfp-edit {
+.pfp:fullscreen {
+  border-radius: 0;
+}
+
+.pfp-icon {
   font-size: 1rem;
   position: absolute;
   inset: auto 0 0 0;
   background: var(--theme-primary-color);
   padding: 0.25em;
+  text-align: center;
+  color: var(--light-text);
 }
 
 .hidden {

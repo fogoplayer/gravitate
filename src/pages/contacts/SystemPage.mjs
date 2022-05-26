@@ -28,7 +28,7 @@ export default function SystemPage(id) {
 
   return jsx`<button class="pfp noto" onclick="${showChangeIconModal}">
   ${system.icon}
-  <div class="pfp-edit material-symbols-sharp">edit</div>
+  <div class="pfp-icon material-symbols-sharp">edit</div>
 </button>
 <button onclick="${showChangeNameModal}">
   <h2>${system.name}</h2>

@@ -28,7 +28,7 @@ export default function OrbitPage(id) {
 
   return jsx`<button class="pfp noto" onclick="${showChangeIconModal}">
   ${orbit.icon}
-  <div class="pfp-edit material-symbols-sharp">edit</div>
+  <div class="pfp-icon material-symbols-sharp">edit</div>
 </button>
 <button onclick="${showChangeNameModal}">
   <h2>${orbit.name}</h2>

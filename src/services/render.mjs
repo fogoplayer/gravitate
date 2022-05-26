@@ -40,3 +40,11 @@ export function append(parent, element) {
   // Otherwise just append
   parent.append(element);
 }
+
+export function toggleFullscreen(e) {
+  if (!document.fullscreenElement) {
+    e.target.requestFullscreen({ navigationUI: "show" });
+  } else {
+    document.exitFullscreen();
+  }
+}
