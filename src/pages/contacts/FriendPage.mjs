@@ -1,3 +1,4 @@
+import { setPageTitle } from "../../components/AppShell.mjs";
 import {
   AttractionDetails,
   AttractionInfo,
@@ -29,7 +30,7 @@ export default function FriendPage(id) {
     return system.members.find((member) => member.name === friend.name);
   });
 
-  // Helpers
+  setPageTitle("Contacts", friend.name);
 
   return jsx`<div class="pfp">
   <img

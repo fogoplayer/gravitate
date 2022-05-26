@@ -1,3 +1,4 @@
+import { setPageTitle } from "../../components/AppShell.mjs";
 import {
   AttractionDetails,
   AttractionInfo,
@@ -21,10 +22,11 @@ import { jsx, renderPage } from "../../services/render.mjs";
 export default function OrbitPage(id) {
   let { friends, orbits } = getCurrUserData();
   let members = new Set();
-  let icon;
 
   // Filter imports
   let [orbit] = orbits.filter((orbit) => orbit.name === id);
+
+  setPageTitle("Contacts", orbit.name);
 
   return jsx`<button class="pfp noto" onclick="${showChangeIconModal}">
   ${orbit.icon}

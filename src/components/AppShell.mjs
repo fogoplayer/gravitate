@@ -44,7 +44,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
   </nav>
 </dialog>
 <header class="app-header">
-  <button id="back-button" tabIndex=3 onclick=${(e) => {
+  <button id="back-button" tabIndex=2 onclick=${(e) => {
     renderPage(window.location.pathname);
     hideRefreshPage();
   }}>
@@ -87,9 +87,9 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
 <pwa-update/>`;
 }
 
-export function setPageTitle(title) {
+export function setPageTitle(pageTitle, windowTitle = pageTitle) {
   if (document.querySelector("h1.page-title")) {
-    document.querySelector("h1.page-title").innerText = title;
+    document.querySelector("h1.page-title").innerText = pageTitle;
   }
-  document.title = title + " | Gravitate";
+  document.title = windowTitle + " | Gravitate";
 }

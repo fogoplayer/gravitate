@@ -5,7 +5,6 @@ import OrbitPage from "./OrbitPage.mjs";
 import SystemPage from "./SystemPage.mjs";
 
 export default function ContactPage(context) {
-  setPageTitle("Contacts");
   const { type, id } = context.params;
 
   return jsx`<div class="contact-page">${(() => {

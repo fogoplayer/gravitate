@@ -1,3 +1,4 @@
+import { setPageTitle } from "../../components/AppShell.mjs";
 import {
   AttractionDetails,
   AttractionInfo,
@@ -25,6 +26,8 @@ export default function SystemPage(id) {
 
   // Filter imports
   let [system] = systems.filter((system) => system.name === id);
+
+  setPageTitle("Contacts", system.name);
 
   return jsx`<button class="pfp noto" onclick="${showChangeIconModal}">
   ${system.icon}
