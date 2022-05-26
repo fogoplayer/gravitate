@@ -45,8 +45,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
 </dialog>
 <header class="app-header">
   <button id="back-button" tabIndex=2 onclick=${(e) => {
-    renderPage(window.location.pathname);
-    hideRefreshPage();
+    renderPage("/" + window.location.pathname.split("/")[1]);
   }}>
     <div class="material-symbols-sharp"> arrow_back </div>
   </button>
