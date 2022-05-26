@@ -8,9 +8,8 @@ export default function Changelog() {
     <h2>Alpha Release</h2>
     <h3>1.4.1</h3>
     <ul>
-      <li>PFP full screen popup</li>
+      <li>Clicking on a friend's pfp opens it in full screen. Clicking again closes it.</li>
       <li>Button to add system members as friends</li>
-      <li>Make icon inputs noto</li>
       <li>Remove member picker from system creator</li>
       <li>Add back button to non-root routes</li>
      <li>Add tour for user pages</li>

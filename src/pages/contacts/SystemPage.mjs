@@ -116,6 +116,13 @@ leave ${system.name}?
     afterUpdate(() => renderPage("/contacts/systems/" + newName));
   }
 
+  function addFriend(friend) {
+    update(dataDocRef, {
+      friends: push(friend.ref),
+    });
+    afterUpdate(() => renderPage(window.location.pathname));
+  }
+
   function removeMember(e, member) {
     e.target.classList.add("loading");
     update(system.ref, {
@@ -143,6 +150,17 @@ leave ${system.name}?
       <div class="contact-header-container">
         ${getIcon(contact.icon)}
         <span class="contact-name">${contact.name}</span>
+        ${
+          !(
+            contact.ref.path === ref.path ||
+            friends.find((friend) => contact.ref.path === friend.ref.path)
+          )
+            ? jsx`<button type="button" class="flat" onclick="${(e) =>
+                addFriend(contact)}">
+                <span class="material-symbols-sharp">person_add</span>
+              </button>`
+            : ""
+        }
         <button type="button" class="flat" onclick="${
           contact.ref.path === ref.path ? showLeaveModal : showRemoveMemberModal
         }">

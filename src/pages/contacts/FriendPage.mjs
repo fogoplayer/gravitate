@@ -36,7 +36,7 @@ export default function FriendPage(id) {
     src="${friend.icon}"
     alt="${friend.name}'s profile picture"
     class="pfp"
-    onclick="${toggleFullscreen}
+    onclick="${toggleFullscreen}"
   />
   <span class="pfp-icon material-symbols-sharp"> open_in_full </span>
 </div>
