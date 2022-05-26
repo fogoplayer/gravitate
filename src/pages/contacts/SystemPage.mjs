@@ -146,7 +146,11 @@ leave ${system.name}?
   ${contacts.map(
     (contact) => jsx`
   <li>
-    <a href="/contacts/${type}/${contact.name}">
+    <a href="${
+      friends.find((friend) => contact.ref.path === friend.ref.path)
+        ? `/contacts/${type}/${contact.name}`
+        : "" //window.location.pathname
+    }">
       <div class="contact-header-container">
         ${getIcon(contact.icon)}
         <span class="contact-name">${contact.name}</span>
