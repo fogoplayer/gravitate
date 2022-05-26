@@ -9,10 +9,11 @@ export default function Changelog() {
     <h3>1.4.1</h3>
     <ul>
       <li>Clicking on a friend's pfp opens it in full screen. Clicking again closes it.</li>
-      <li>Button to add system members as friends</li>
+      <li>System members that aren't your friends now have a button to add them.</li>
       <li>Remove member picker from system creator</li>
       <li>Add back button to non-root routes</li>
-     <li>Add tour for user pages</li>
+      <li>Add tour for user pages</li>
+      Multiple titles
     <li>Does the app crash if you're removed from a system while logged in?</li> 
     Use IDs instead of names for routing
     </ul>

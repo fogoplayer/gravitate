@@ -89,9 +89,14 @@ leave ${system.name}?
     document.querySelector("#change-name").showModal();
   }
 
-  function showRemoveMemberModal(e) {
+  function showAddFriendModal(e) {
     e.preventDefault();
     e.currentTarget.parentNode.parentNode.nextSibling.showModal();
+  }
+
+  function showRemoveMemberModal(e) {
+    e.preventDefault();
+    e.currentTarget.parentNode.parentNode.nextSibling.nextSibling.showModal();
   }
 
   function showLeaveModal(e) {
@@ -116,9 +121,10 @@ leave ${system.name}?
     afterUpdate(() => renderPage("/contacts/systems/" + newName));
   }
 
-  function addFriend(friend) {
+  function addFriend(e, friend) {
+    e.target.classList.add("loading");
     update(dataDocRef, {
-      friends: push(friend.ref),
+      friends: push(friend),
     });
     afterUpdate(() => renderPage(window.location.pathname));
   }
@@ -149,7 +155,7 @@ leave ${system.name}?
     <a href="${
       friends.find((friend) => contact.ref.path === friend.ref.path)
         ? `/contacts/${type}/${contact.name}`
-        : "" //window.location.pathname
+        : ""
     }">
       <div class="contact-header-container">
         ${getIcon(contact.icon)}
@@ -159,8 +165,7 @@ leave ${system.name}?
             contact.ref.path === ref.path ||
             friends.find((friend) => contact.ref.path === friend.ref.path)
           )
-            ? jsx`<button type="button" class="flat" onclick="${(e) =>
-                addFriend(contact)}">
+            ? jsx`<button type="button" class="flat" onclick="${showAddFriendModal}">
                 <span class="material-symbols-sharp">person_add</span>
               </button>`
             : ""
@@ -172,6 +177,11 @@ leave ${system.name}?
         </button>
       </div>
     </a>
+    ${Modal({
+      contents: jsx`<center>Add <b>${contact.name}</b> as a friend?</center>
+      <button class="primary" onclick=${(e) =>
+        addFriend(e, contact.ref)}>Yes, add ${Spinner()}</button>`,
+    })}
     ${Modal({
       contents: jsx`<center>Are you sure you want to remove <b>${
         contact.name
