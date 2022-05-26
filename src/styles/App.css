@@ -186,6 +186,18 @@ body {
   font-weight: 200;
 }
 
+.app-header #back-button {
+  display: none;
+}
+
+.app-header #back-button.show {
+  display: flex;
+}
+
+.app-header #back-button.show + .page-title {
+  padding-left: 0;
+}
+
 .app-header button .material-symbols-sharp {
   font-size: inherit;
 }

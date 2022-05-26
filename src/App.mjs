@@ -61,7 +61,15 @@ export function showAppPage(contents, context) {
     renderPage("/login");
     return;
   }
+
   showAppShell();
+  console.log(context.pathname.split("/"));
+  if (context.pathname.split("/").length > 2 /* ["", base] */) {
+    document.querySelector("#back-button").classList.add("show");
+  } else {
+    document.querySelector("#back-button").classList.remove("show");
+  }
+
   setPageTitle("Gravitate");
   const main = document.querySelector(".app-main");
   main.innerHTML = ``;
