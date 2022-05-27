@@ -156,7 +156,7 @@ leave ${system.name}?
     (contact) => jsx`
   <li>
     <a href="${
-      friends.find((friend) => contact.ref.path === friend.ref.path)
+      friends.find((friend) => contact.ref.id === friend.ref.id)
         ? `/contacts/${type}/${contact.ref.id}`
         : ""
     }">
@@ -165,8 +165,8 @@ leave ${system.name}?
         <span class="contact-name">${contact.name}</span>
         ${
           !(
-            contact.ref.path === ref.path ||
-            friends.find((friend) => contact.ref.path === friend.ref.path)
+            contact.ref.id === ref.id ||
+            friends.find((friend) => contact.ref.id === friend.ref.id)
           )
             ? jsx`<button type="button" class="flat" onclick="${showAddFriendModal}">
                 <span class="material-symbols-sharp">person_add</span>
@@ -174,7 +174,7 @@ leave ${system.name}?
             : ""
         }
         <button type="button" class="flat" onclick="${
-          contact.ref.path === ref.path ? showLeaveModal : showRemoveMemberModal
+          contact.ref.id === ref.id ? showLeaveModal : showRemoveMemberModal
         }">
           <span class="material-symbols-sharp">remove</span>
         </button>

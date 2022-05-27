@@ -10,15 +10,18 @@ import {
 import { append, jsx, renderPage } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
 import OrbitPage from "../contacts/OrbitPage.mjs";
+import SystemPage from "../contacts/SystemPage.mjs";
 import CreateAttraction from "../CreateAttraction.mjs";
 import ViewAttractions from "../ViewAttractions.mjs";
 
 const tour = [
   contactsOverview,
   orbits,
-  orbitDetails1,
-  orbitDetails2,
+  orbitDetails,
+  orbitMembers,
   systems,
+  systemDetails,
+  systemMembers,
   friends,
   attractions,
   invitations,
@@ -70,26 +73,31 @@ function setTourUserData() {
       {
         icon: cachedUserData.icon,
         name: cachedUserData.name,
-        ref: "",
+        ref: { id: 0 },
       },
     ],
     systems: [
       {
         members: [
           {
+            icon: window.location.origin + "/images/cosmo.svg",
+            name: "Cosmette",
+            ref: { id: 1 },
+          },
+          {
             icon: cachedUserData.icon,
             name: cachedUserData.name,
             ref: "",
           },
           {
-            icon: "/images/cosmo.svg",
+            icon: window.location.origin + "/images/cosmo.svg",
             name: "Cosmo",
             ref: "",
           },
         ],
         icon: "☀",
         name: "Cosmo's System",
-        ref: "",
+        ref: { id: 0 },
       },
     ],
   });
@@ -158,16 +166,16 @@ function orbits() {
     prev: prevTip,
     prevLabel: "Overview",
     next: nextTip,
-    nextLabel: "Orbit Details",
+    nextLabel: "Orbit Details Page",
   });
 }
 
-function orbitDetails1() {
+function orbitDetails() {
   showAppPage(() => jsx`<div class="contact-page">${OrbitPage(0)}</div>`, {
     pathname: "/contacts/orbits/0",
   });
   return Tip({
-    contents: jsx`<h2>Orbit Details, pt. 1</h2>
+    contents: jsx`<h2>Orbit Details Page</h2>
 <p>The orbit details page lets you see the name, icon, and members of the orbit.</p> 
 <p>Click on the orbit name or icon to change it.</p>`,
     prev: prevTip,
@@ -177,16 +185,16 @@ function orbitDetails1() {
   });
 }
 
-function orbitDetails2() {
+function orbitMembers() {
   showAppPage(() => jsx`<div class="contact-page">${OrbitPage(0)}</div>`, {
     pathname: "/contacts/orbits/0",
   });
   return Tip({
     contents: jsx`<h2>Orbit Members</h2>
-<p>Use the + to add friends to the orbit or the - to remove them.</p>`,
+<p>Use the + to add friends to the orbit or the - to remove them. Click on a friend to be taken to their details page. (I'll show you those later)</p>`,
     target: document.querySelector(".contact-header-container button.flat"),
     prev: prevTip,
-    prevLabel: "Orbit Details",
+    prevLabel: "Orbit Details Page",
     next: nextTip,
     nextLabel: "Systems",
   });
@@ -226,7 +234,42 @@ function systems() {
 `,
     target: document.querySelector(".systems-wrapper .header-icon"),
     prev: prevTip,
-    prevLabel: "Orbits",
+    prevLabel: "Orbit Members",
+    next: nextTip,
+    nextLabel: "System Details Page",
+  });
+}
+
+function systemDetails() {
+  showAppPage(() => jsx`<div class="contact-page">${SystemPage(0)}</div>`, {
+    pathname: "/contacts/orbits/0",
+  });
+  return Tip({
+    contents: jsx`<h2>System Details Page</h2>
+<p>The system details page lets you see the name, icon, and members of the system.</p> 
+<p>Click on the system name or icon to change it.</p>`,
+    prev: prevTip,
+    prevLabel: "Systems",
+    next: nextTip,
+    nextLabel: "System Members",
+  });
+}
+
+function systemMembers() {
+  showAppPage(() => jsx`<div class="contact-page">${SystemPage(0)}</div>`, {
+    pathname: "/contacts/orbits/0",
+  });
+  return Tip({
+    contents: jsx`<h2>System Members</h2>
+<p>
+  The first button next to a system members' name let you add them as a friend,
+  if you're not friends already.
+</p>
+<p>The second button removes them from the system.</p>
+`,
+    target: document.querySelector(".contact-header-container button.flat"),
+    prev: prevTip,
+    prevLabel: "System Details",
     next: nextTip,
     nextLabel: "Friends",
   });
@@ -266,7 +309,8 @@ function orbitSystemExamples() {
 }
 
 function friends() {
-  let modal = Tip({
+  showAppPage(Contacts, { pathname: "/contacts" });
+  return Tip({
     contents: jsx`<h2>Friends</h2>
 <p>
   Friends can send invitations to each other individually.
@@ -279,7 +323,6 @@ function friends() {
     next: nextTip,
     nextLabel: "Attractions",
   });
-  return modal;
 }
 
 function attractions() {
