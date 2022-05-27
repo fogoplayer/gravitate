@@ -6,10 +6,6 @@
   margin-bottom: 1em;
 }
 
-.view-attractions .contacts-list .contact-header-container {
-  font: inherit;
-}
-
 .view-attractions .contacts-list .contact-header-container .contact-name {
   font-weight: 700;
 }

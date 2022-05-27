@@ -5,19 +5,21 @@ import { getIcon } from "../services/firebase/storage.mjs";
 import { jsx } from "../services/render.mjs";
 
 export default function Contacts() {
+  setPageTitle("Contacts");
   return ContactsList(ContactsPageContact);
 }
 
-function ContactsPageContact(contacts) {
-  setPageTitle("Contacts");
+function ContactsPageContact(contacts, type) {
   const html = jsx`<ul>
   ${contacts.map(
     (contact) => jsx`
   <li>
-    <div class="contact-header-container">
-      ${getIcon(contact.icon)}
-      <span class="contact-name">${contact.name}</span>
-    </div>
+    <a href="/contacts/${type}/${contact.ref.id}">
+      <div class="contact-header-container">
+        ${getIcon(contact.icon)}
+        <span class="contact-name">${contact.name}</span>
+      </div>
+    </a>
   </li>
   `
   )}

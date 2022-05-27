@@ -12,9 +12,10 @@ import Login from "./pages/Login.mjs";
 import SignUp from "./pages/SignUp.mjs";
 import AppShell, { setPageTitle } from "./components/AppShell.mjs";
 import Spinner from "./components/Spinner.mjs";
-import Onboarding from "./pages/Onboarding/index.js";
+import Onboarding from "./pages/onboarding/index.js";
 import Changelog from "./pages/Changelog.mjs";
 import Settings from "./pages/Settings.mjs";
+import ContactPage from "./pages/contacts/index.js";
 
 // immediately show loading spinner
 append(
@@ -39,14 +40,15 @@ authStateChanged(async (user) => {
   );
   page("/view-attractions", (context) => showAppPage(ViewAttractions, context));
   page("/contacts", (context) => showAppPage(Contacts, context));
+  page("/contacts/:type/:id", (context) => showAppPage(ContactPage, context));
   page("/changelog", (context) => showAppPage(Changelog, context));
   page("/settings", (context) => showAppPage(Settings, context));
   page("/login", () => showExternalPage(Login));
   page("/signup", () => showExternalPage(SignUp));
   page("/onboarding/:page", (context) => showExternalPage(Onboarding, context));
   page("/*", () => {
-    if (user) page.redirect("view-attractions");
-    else page.redirect("login");
+    if (user) page.redirect("/view-attractions");
+    else page.redirect("/login");
   });
 
   if (window.location.hostname === "fogoplayer.github.io")
@@ -59,7 +61,15 @@ export function showAppPage(contents, context) {
     renderPage("/login");
     return;
   }
+
   showAppShell();
+  console.log(context.pathname.split("/"));
+  if (context.pathname.split("/").length > 2 /* ["", base] */) {
+    document.querySelector("#back-button").classList.add("show");
+  } else {
+    document.querySelector("#back-button").classList.remove("show");
+  }
+
   setPageTitle("Gravitate");
   const main = document.querySelector(".app-main");
   main.innerHTML = ``;

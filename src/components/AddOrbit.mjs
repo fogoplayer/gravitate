@@ -10,6 +10,7 @@ import { getIcon } from "../services/firebase/storage.mjs";
 import { append, jsx, renderPage } from "../services/render.mjs";
 import Input from "./Input.mjs";
 import Modal from "./Modal.mjs";
+import { FriendSelectTemplate } from "./templates/FriendSelectTemplate.mjs";
 
 export default function AddOrbit() {
   let members = new Set();
@@ -37,7 +38,17 @@ export default function AddOrbit() {
   </aside>
   <h2>Select members</h2>
   <ul id="orbit-user-list" class="user-list">${getCurrUserData().friends.map(
-    (friend) => Template(friend)
+    (friend) =>
+      FriendSelectTemplate(friend, {
+        name: "added-orbits",
+        onchange: function (e) {
+          if (e.target.checked) {
+            members.add(user.ref);
+          } else {
+            members.delete(user.ref);
+          }
+        },
+      })
   )}</ul>
   <button class="primary" id="add-orbit-button" onclick="${addOrbit}">
     Add orbits
@@ -58,28 +69,5 @@ export default function AddOrbit() {
     });
     afterUpdate(() => renderPage(window.location.pathname));
     modal.close();
-  }
-
-  function Template(user) {
-    return jsx`<li>
-  <label class="contact-header-container">
-    <input
-      type="checkbox"
-      name="added-orbits"
-      id="${user.name}"
-      value="${user.ref}"
-      onchange="${function (e) {
-        if (e.target.checked) {
-          members.add(user.ref);
-        } else {
-          members.delete(user.ref);
-        }
-      }}"
-      tabindex="0"
-      required
-    />
-    ${getIcon(user.icon)}<span class="contact-name">${user.name}</span>
-  </label>
-</li>`;
   }
 }

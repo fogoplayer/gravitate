@@ -1,6 +1,11 @@
 .tip {
   position: fixed;
   border-radius: 1em;
+  box-shadow: 0 0 0.5em -0.125em hsl(var(--theme-hue) 75% 25%);
+}
+
+.tip::backdrop {
+  background-color: transparent;
 }
 
 .tip.targeted.left {
@@ -13,10 +18,6 @@
 
 .tip.targeted[open] {
   display: flex;
-}
-
-.tip.targeted::backdrop {
-  background-color: transparent;
 }
 
 .tip section {

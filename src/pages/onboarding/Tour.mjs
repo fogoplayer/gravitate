@@ -2,16 +2,29 @@ import { showAppPage, showAppShell, showRefreshPage } from "../../App.mjs";
 import { setPageTitle } from "../../components/AppShell.mjs";
 import { reactions } from "../../components/AttractionDetails.mjs";
 import Tip from "../../components/Tip.mjs";
+import {
+  dangerousSetCurrUserData,
+  getCurrUserData,
+  loadUserData,
+} from "../../services/firebase/db.mjs";
 import { append, jsx, renderPage } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
+import FriendPage from "../contacts/FriendPage.mjs";
+import OrbitPage from "../contacts/OrbitPage.mjs";
+import SystemPage from "../contacts/SystemPage.mjs";
 import CreateAttraction from "../CreateAttraction.mjs";
 import ViewAttractions from "../ViewAttractions.mjs";
 
 const tour = [
   contactsOverview,
   orbits,
+  orbitDetails,
+  orbitMembers,
   systems,
+  systemDetails,
+  systemMembers,
   friends,
+  friendDetails,
   attractions,
   invitations,
   navigation,
@@ -21,12 +34,80 @@ let currTip = 0;
 
 export default function Tour() {
   setPageTitle("Tour");
+  setTourUserData();
 
   currTip = 0;
 
   showAppShell();
   showTourTip(currTip);
   return "";
+}
+
+function setTourUserData() {
+  const cachedUserData = getCurrUserData();
+
+  dangerousSetCurrUserData({
+    icon: "/images/cosmo.svg",
+    name: "Cosmo",
+    ref: "",
+    dataDocRef: "",
+    attractionsRef: "",
+    invitationsRef: "",
+    orbitsRef: "",
+    uid: "xIN98sxVcyRygMVDZ2NWfJ35Sm83",
+    attractions: [],
+    invitations: [],
+    orbits: [
+      {
+        name: "Cosmo's Orbit",
+        members: [
+          {
+            icon: cachedUserData.icon,
+            name: cachedUserData.name,
+            ref: "",
+          },
+        ],
+        icon: "🪐",
+        ref: { id: 0 },
+      },
+    ],
+    friends: [
+      {
+        icon: cachedUserData.icon,
+        name: cachedUserData.name,
+        ref: { id: 0 },
+      },
+    ],
+    systems: [
+      {
+        members: [
+          {
+            icon: window.location.origin + "/images/cosmo.svg",
+            name: "Cosmette",
+            ref: { id: 1 },
+          },
+          {
+            icon: cachedUserData.icon,
+            name: cachedUserData.name,
+            ref: "",
+          },
+          {
+            icon: window.location.origin + "/images/cosmo.svg",
+            name: "Cosmo",
+            ref: "",
+          },
+        ],
+        icon: "☀",
+        name: "Cosmo's System",
+        ref: { id: 0 },
+      },
+    ],
+  });
+
+  page.exit("/onboarding/tour", (context, next) => {
+    dangerousSetCurrUserData(cachedUserData);
+    window.location.href = "/contacts";
+  });
 }
 
 function showTourTip(tip) {
@@ -50,22 +131,18 @@ function closeAll() {
 }
 
 function contactsOverview() {
-  let modal = Tip({
+  showAppPage(Contacts, { pathname: "/contacts" });
+  return Tip({
     contents: jsx`<p>Gravitate exists to help you organize spur-of-the-moment events with your friends and family members.</p>
 <p>Let's start with how those friends and family members are organized!</p>`,
     next: nextTip,
     nextLabel: "Orbits",
   });
-  modal._showModal = modal.showModal;
-  modal.showModal = () => {
-    showAppPage(Contacts, { pathname: "/contacts" });
-    modal._showModal();
-  };
-  return modal;
 }
 
 function orbits() {
-  let modal = Tip({
+  showAppPage(Contacts, { pathname: "/contacts" });
+  return Tip({
     contents: jsx`<h2>Orbits</h2>
 <p>
   Orbits function like a mass text, inviting multiple people as if they were all
@@ -86,18 +163,48 @@ function orbits() {
   <li>also like a local band</li>
   <li>are karaoke divas</li>
 </ul>
-`,
-    target: document.querySelector(".orbits-wrapper .header-icon"),
+<p>Click on an orbit to view more details</p>`,
+    target: document.querySelector(".orbits-wrapper .contact-icon"),
     prev: prevTip,
     prevLabel: "Overview",
     next: nextTip,
+    nextLabel: "Orbit Details Page",
+  });
+}
+
+function orbitDetails() {
+  showAppPage(() => jsx`<div class="contact-page">${OrbitPage(0)}</div>`, {
+    pathname: "/contacts/orbits/0",
+  });
+  return Tip({
+    contents: jsx`<h2>Orbit Details Page</h2>
+<p>The orbit details page lets you see the name, icon, and members of the orbit.</p> 
+<p>Click on the orbit name or icon to change it.</p>`,
+    prev: prevTip,
+    prevLabel: "Orbits",
+    next: nextTip,
+    nextLabel: "Orbit Members",
+  });
+}
+
+function orbitMembers() {
+  showAppPage(() => jsx`<div class="contact-page">${OrbitPage(0)}</div>`, {
+    pathname: "/contacts/orbits/0",
+  });
+  return Tip({
+    contents: jsx`<h2>Orbit Members</h2>
+<p>Use the + to add friends to the orbit or the - to remove them. Click on a friend to be taken to their details page. (I'll show you those later)</p>`,
+    target: document.querySelector(".contact-header-container button.flat"),
+    prev: prevTip,
+    prevLabel: "Orbit Details Page",
+    next: nextTip,
     nextLabel: "Systems",
   });
-  return modal;
 }
 
 function systems() {
-  let modal = Tip({
+  showAppPage(Contacts, { pathname: "/contacts" });
+  return Tip({
     contents: jsx`<h2>Systems</h2>
 <p>
   Systems function like a group text: it's a bunch of people who can all send
@@ -129,15 +236,14 @@ function systems() {
 `,
     target: document.querySelector(".systems-wrapper .header-icon"),
     prev: prevTip,
-    prevLabel: "Orbits",
+    prevLabel: "Orbit Members",
     next: nextTip,
-    nextLabel: "Friends",
+    nextLabel: "System Details Page",
   });
-  return modal;
 }
 
 function orbitSystemExamples() {
-  let modal = Tip({
+  return Tip({
     contents: jsx`<h2>Orbits vs Systems</h2>
 <table>
   <tr>
@@ -163,28 +269,79 @@ function orbitSystemExamples() {
 </table>
 `,
     prev: () => showTourTip(currTip),
+    prevLabel: "Ststems",
+    next: nextTip,
+    nextLabel: "System Details Page",
+  });
+}
+
+function systemDetails() {
+  showAppPage(() => jsx`<div class="contact-page">${SystemPage(0)}</div>`, {
+    pathname: "/contacts/orbits/0",
+  });
+  return Tip({
+    contents: jsx`<h2>System Details Page</h2>
+<p>The system details page lets you see the name, icon, and members of the system.</p> 
+<p>Click on the system name or icon to change it.</p>`,
+    prev: prevTip,
     prevLabel: "Systems",
+    next: nextTip,
+    nextLabel: "System Members",
+  });
+}
+
+function systemMembers() {
+  showAppPage(() => jsx`<div class="contact-page">${SystemPage(0)}</div>`, {
+    pathname: "/contacts/orbits/0",
+  });
+  return Tip({
+    contents: jsx`<h2>System Members</h2>
+<p>
+  The first button next to a system members' name let you add them as a friend,
+  if you're not friends already.
+</p>
+<p>The second button removes them from the system.</p>
+`,
+    target: document.querySelector(".contact-header-container button.flat"),
+    prev: prevTip,
+    prevLabel: "System Details",
     next: nextTip,
     nextLabel: "Friends",
   });
-  return modal;
 }
 
 function friends() {
-  let modal = Tip({
+  showAppPage(Contacts, { pathname: "/contacts" });
+  return Tip({
     contents: jsx`<h2>Friends</h2>
 <p>
   Friends can send invitations to each other individually.
 </p>
 <p><b>You will only recieve invitations from people you have friended.</b></p>
 <p>To add someone as a friend, you will need to know their username or have them send you an add link.</p>`,
-    target: document.querySelector(".friends-wrapper .header-icon"),
+    target: document.querySelector(".friends-wrapper .contact-icon"),
     prev: prevTip,
     prevLabel: "Systems",
     next: nextTip,
+    nextLabel: "Friend Details",
+  });
+}
+
+function friendDetails() {
+  showAppPage(() => jsx`<div class="contact-page">${FriendPage(0)}</div>`, {
+    pathname: "/contacts/orbits/0",
+  });
+  return Tip({
+    contents: jsx`<h2>Friend Details Page</h2>
+<p>The friend details page lets you see the name and icon of your friend, any attractions they are hosting, and the orbits they are a member of and the systems you have both joined.</p> 
+<p>Click on their name to view it in full screen, then click again to close it.</p>
+<p>Click on an orbit or system to go to its details page.</p>`,
+    target: document.querySelector(".systems-wrapper .header-icon"),
+    prev: prevTip,
+    prevLabel: "Friends",
+    next: nextTip,
     nextLabel: "Attractions",
   });
-  return modal;
 }
 
 function attractions() {
@@ -192,7 +349,7 @@ function attractions() {
   let modal = Tip({
     contents: jsx`<h2>Attractions</h2>
 <p>
-  This page is for creating an event, which we call an "Attraction."
+  This page is for creating an event, which we call an "Attraction." You get to it by clicking the plus in the bottom bar.
 </p>
 <p>After putting in a title, location, and end time for the attraction, you can send it to any combination of your orbits, attractions, and friends by clicking on their name.</p>
 <p>They'll recieve a notification with the attraction details.</p>`,

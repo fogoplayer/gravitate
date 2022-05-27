@@ -14,7 +14,7 @@ export default function Settings() {
   setPageTitle("Settings");
 
   let { icon, name } = getCurrUserData();
-  return jsx`<div class="settings">
+  return jsx`<div class="contact-page">
     <form onsubmit="${onSubmit}">
       <label class="image-picker">
         <img class="pfp" src="${icon}" alt="Choose a profile picture" />

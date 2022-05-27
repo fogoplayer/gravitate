@@ -1,0 +1,30 @@
+.contact-page {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1em;
+  align-items: center;
+  padding: 1rem;
+}
+
+.contact-page form {
+  padding: 0;
+  align-items: center;
+}
+
+button.pfp {
+  /* display */
+  /* positioning */
+  /* box-model */
+  background-color: var(--theme-secondary-color);
+  width: 5rem;
+  height: 5rem;
+  padding: 1rem;
+
+  /* typography */
+  color: var(--light-text);
+  font-size: 4rem;
+  text-align: center;
+
+  /* manipulation */
+  /* misc */
+}

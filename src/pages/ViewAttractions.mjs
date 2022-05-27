@@ -9,6 +9,7 @@ import {
   AttractionInfo,
 } from "../components/AttractionDetails.mjs";
 import { setPageTitle } from "../components/AppShell.mjs";
+import { AttractionsTemplate } from "../components/templates/AttractionsTemplate.mjs";
 
 export default function ViewAttractions() {
   setPageTitle("Attractions");
@@ -47,7 +48,7 @@ export default function ViewAttractions() {
         <img src="/images/your-attractions.svg" alt="Your attractions icon" class="header-icon" />
         <span class="header-text">Your Attractions</span>
       </h2>
-      ${Template(attractions)}
+      ${AttractionsTemplate(attractions)}
     </li>
     <li class="systems-wrapper">
       <h2>
@@ -58,7 +59,7 @@ export default function ViewAttractions() {
         />
         <span class="header-text">Systems</span>
       </h2>
-      ${Template(systemInvites)}
+      ${AttractionsTemplate(systemInvites)}
     </li>
     <li class="friends-wrapper">
       <h2>
@@ -69,39 +70,9 @@ export default function ViewAttractions() {
         />
         <span class="header-text">Friends</span>
       </h2>
-      ${Template(friendInvites)}
+      ${AttractionsTemplate(friendInvites)}
     </li>
   </ul>
 </div>
 `;
-
-  function Template(attractions) {
-    const html = jsx`<ul>
-  ${attractions.map((attraction) => {
-    return jsx`
-  <li class="attraction">
-    <h3 class="contact-header-container" onclick=${toggleDetails}>
-      ${getIcon(attraction.icon)}
-      <span class="contact-name">${attraction.name}</span>
-      ${AttractionInfo(attraction)}
-    </h3>
-    ${AttractionDetails(attraction)}
-  </li>
-  `;
-  })}
-</ul>
-`;
-    return html;
-  }
-
-  function toggleDetails(e) {
-    let sibling = e.currentTarget.nextSibling;
-    if (sibling.classList.contains("open")) {
-      sibling.classList.replace("open", "transitioning");
-      setTimeout(() => sibling.classList.remove("transitioning"), 250);
-    } else {
-      sibling.classList.add("transitioning");
-      setTimeout(() => sibling.classList.replace("transitioning", "open"), 1);
-    }
-  }
 }

@@ -13,6 +13,7 @@ import {
   updateDoc,
   onSnapshot as onSnapshotDB,
   enableIndexedDbPersistence,
+  arrayRemove,
 } from "../../lib/firebase/9.7.0/firebase-firestore.js";
 export { deleteDoc } from "../../lib/firebase/9.7.0/firebase-firestore.js";
 import { parseEvents, parseGroups, parseIndividuals } from "./db-loadData.mjs";
@@ -69,12 +70,16 @@ export async function createUserData(userCredential) {
 export async function initDBWatchers() {
   initingWatchers = true;
   const promises = Array.from(watched).map((ref) => {
-    const segments = ref.split("/").length;
-    const isCollection = segments % 2;
-    if (isCollection) {
-      return onSnapshot(query(collection(db, ref)), loadUserData);
+    if (ref.type === "query") {
+      return onSnapshot(ref, loadUserData);
     } else {
-      return onSnapshot(doc(db, ref), loadUserData);
+      const segments = ref.split("/").length;
+      const isCollection = segments % 2;
+      if (isCollection) {
+        return onSnapshot(query(collection(db, ref)), loadUserData);
+      } else {
+        return onSnapshot(doc(db, ref), loadUserData);
+      }
     }
   });
   await Promise.all(promises);
@@ -96,6 +101,10 @@ enableIndexedDbPersistence(db).catch((err) => {
 export function getCurrUserData() {
   if (Object.keys(currUserData).length === 0) return false;
   return currUserData;
+}
+
+export function dangerousSetCurrUserData(obj) {
+  currUserData = obj;
 }
 
 export async function getDocData(ref) {
@@ -137,6 +146,10 @@ export async function update(ref, data) {
 
 export function push(data) {
   return arrayUnion(data);
+}
+
+export function pop(data) {
+  return arrayRemove(data);
 }
 
 export function afterUpdate(func) {
@@ -214,6 +227,7 @@ export async function loadUserData(user = {}) {
 
   // Systems
   let systems = userDataDoc.systems;
+  for (const system of systems) watch(system);
   currUserData.systems = await parseGroups(systems);
 
   showRefreshPage();

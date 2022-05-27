@@ -21,6 +21,8 @@ a.button.flat {
 
   /* manipulation */
   /* misc */
+  --bgColor: var(--theme-secondary-color);
+  --textColor: var(--light-text);
 }
 
 button.primary,
@@ -28,10 +30,10 @@ a.button.primary {
   /* display */
   /* positioning */
   /* box-model */
-  background-color: var(--theme-secondary-color);
+  background-color: var(--bgColor);
 
   /* typography */
-  color: var(--light-text);
+  color: var(--textColor);
   /* manipulation */
   /* misc */
 }
@@ -41,10 +43,10 @@ a.button.outline {
   /* display */
   /* positioning */
   /* box-model */
-  border: 1px solid var(--theme-secondary-color);
+  border: 1px solid currentColor;
 
   /* typography */
-  color: var(--theme-secondary-color);
+  color: var(--bgColor);
   /* manipulation */
   /* misc */
 }
@@ -56,9 +58,14 @@ a.button.flat {
   /* box-model */
 
   /* typography */
-  color: var(--theme-secondary-color);
+  color: var(--bgColor);
   /* manipulation */
   /* misc */
+}
+
+button.danger,
+a.button.danger {
+  --bgColor: var(--invalid-color);
 }
 
 button:disabled,
@@ -66,7 +73,7 @@ a.button:disabled {
   /* display */
   /* positioning */
   /* box-model */
-  background-color: var(--disabled-color);
+  --bgColor: var(--disabled-color);
 
   /* typography */
   /* manipulation */
@@ -92,15 +99,32 @@ a.button.inline {
 
 button:focus,
 a.button:focus {
-  background-color: var(--theme-primary-color);
+  --bgColor: var(--theme-primary-color);
+  --textColor: var(--light-text);
+}
+
+button.flat:focus,
+a.button.flat:focus,
+button.flat:focus-visible,
+a.button.flat:focus-visible {
+  outline: 1px solid var(--bgColor);
+  background-color: unset;
+}
+
+button.danger:focus,
+a.button.danger:focus,
+button.danger:focus-visible,
+a.button.danger:focus-visible {
+  background-color: var(--invalid-color);
   color: var(--light-text);
 }
 
-button.flat:focus-visible,
-a.button.flat:focus-visible {
-  color: var(--theme-primary-color);
-  outline: 1px solid var(--theme-primary-color);
-  background-color: unset;
+button.primary.danger:focus,
+a.button.primary.danger:focus,
+button.primary.danger:focus-visible,
+a.button.primary.danger:focus-visible {
+  background-color: var(--invalid-highlight);
+  color: var(--invalid-color);
 }
 
 button .spinner,

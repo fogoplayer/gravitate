@@ -4,7 +4,7 @@ function settingsTest() {
   describe("Settings", () => {
     test("/settings loads", async () => {
       await driver.get("http://localhost:5000/settings");
-      await querySelectorWait(".settings");
+      await querySelectorWait(".contact-page");
     });
   });
 

@@ -24,12 +24,12 @@ export async function uploadPFP(file) {
 }
 
 export function getIcon(icon) {
-  const HTTPS = "https://";
+  const HTTP = "http";
 
-  if (icon?.substring(0, HTTPS.length) === HTTPS) {
+  if (icon?.substring(0, HTTP.length) === HTTP) {
     return jsx`<img class="contact-icon pfp" src="${icon}" alt="User icon" />`;
   } else if (icon?.length) {
-    return jsx`<span class="contact-icon">${icon}</span>`;
+    return jsx`<span class="contact-icon noto">${icon}</span>`;
   } else {
     return jsx`<span class="contact-icon">🟣</span>`;
   }
