@@ -168,11 +168,12 @@ function orbitDetails1() {
   });
   return Tip({
     contents: jsx`<h2>Orbit Details, pt. 1</h2>
+<p>The orbit details page lets you see the name, icon, and members of the orbit.</p> 
 <p>Click on the orbit name or icon to change it.</p>`,
     prev: prevTip,
     prevLabel: "Orbits",
     next: nextTip,
-    nextLabel: "Orbit Details, pt. 2",
+    nextLabel: "Orbit Members",
   });
 }
 
@@ -181,11 +182,11 @@ function orbitDetails2() {
     pathname: "/contacts/orbits/0",
   });
   return Tip({
-    contents: jsx`<h2>Orbit Details, pt. 1</h2>
+    contents: jsx`<h2>Orbit Members</h2>
 <p>Use the + to add friends to the orbit or the - to remove them.</p>`,
     target: document.querySelector(".contact-header-container button.flat"),
     prev: prevTip,
-    prevLabel: "Orbit Details, pt. 1",
+    prevLabel: "Orbit Details",
     next: nextTip,
     nextLabel: "Systems",
   });
