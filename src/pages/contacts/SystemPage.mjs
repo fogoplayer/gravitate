@@ -33,7 +33,7 @@ export default function SystemPage(id) {
   ${system.icon}
   <div class="pfp-icon material-symbols-sharp">edit</div>
 </button>
-<button onclick="${showChangeNameModal}">
+<button class="edit-name" onclick="${showChangeNameModal}">
   <h2>${system.name}</h2>
 </button>
 <ul class="contacts-list contacts-list">

@@ -28,6 +28,26 @@ function orbitsTest() {
       expect((await pfp.getText())[0]).toBe(newIcon);
     });
 
+    test("Name can be edited", async () => {
+      let name = await querySelectorWait("main button.edit-name");
+      await name.click();
+
+      const nameInput = await querySelectorWait("#change-name #new-name");
+      const submit = await querySelectorWait("#change-name button.primary");
+      const newName =
+        "Orbit" === (await name.getText()) ? "Test Orbit" : "Orbit";
+      await nameInput.sendKeys(newName);
+      await submit.click();
+      await hardTimer(500);
+
+      await driver.get(
+        "http://localhost:5000/contacts/orbits/z0FqQLDNupyQy59pQiwI"
+      );
+      name = await querySelectorWait("main button.edit-name");
+
+      expect(await name.getText()).toBe(newName);
+    });
+
     test("Member can be added", async () => {
       const openModal = await querySelectorWait(".members-wrapper .header-btn");
       await openModal.click();

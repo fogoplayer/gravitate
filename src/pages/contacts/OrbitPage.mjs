@@ -32,7 +32,7 @@ export default function OrbitPage(id) {
   ${orbit.icon}
   <div class="pfp-icon material-symbols-sharp">edit</div>
 </button>
-<button onclick="${showChangeNameModal}">
+<button class="edit-name" onclick="${showChangeNameModal}">
   <h2>${orbit.name}</h2>
 </button>
 <ul class="contacts-list contacts-list">
