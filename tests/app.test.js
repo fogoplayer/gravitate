@@ -1,5 +1,6 @@
 const { changelogTest } = require("./changelog.mjs");
 const { contactsTest } = require("./contacts.mjs");
+const { friendsTest } = require("./contacts/friends.mjs");
 const { createAttractionTest } = require("./create-attractions.mjs");
 const { driver } = require("./driver.mjs");
 const { loginTest } = require("./login.mjs");
@@ -17,13 +18,14 @@ test("Driver starts", () => {
 
 signupTest();
 loginTest();
-createProfileTest();
-tourTest();
-viewAttractionsTest();
-createAttractionTest();
-contactsTest();
-settingsTest();
-changelogTest();
+// createProfileTest();
+// tourTest();
+// viewAttractionsTest();
+// createAttractionTest();
+// contactsTest();
+friendsTest();
+// settingsTest();
+// changelogTest();
 
 test("Driver stops", () => {
   return driver.quit();
