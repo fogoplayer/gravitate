@@ -153,8 +153,8 @@ function orbits() {
   <li>also like a local band</li>
   <li>are karaoke divas</li>
 </ul>
-<p>Click on an orbit to view more dtails</p>`,
-    target: document.querySelector(".orbits-wrapper .contact-name"),
+<p>Click on an orbit to view more details</p>`,
+    target: document.querySelector(".orbits-wrapper .contact-icon"),
     prev: prevTip,
     prevLabel: "Overview",
     next: nextTip,
@@ -168,8 +168,7 @@ function orbitDetails1() {
   });
   return Tip({
     contents: jsx`<h2>Orbit Details, pt. 1</h2>
-<p>Click on the orbit name or icon to change it</p>`,
-    target: document.querySelector(".pfp.noto"),
+<p>Click on the orbit name or icon to change it.</p>`,
     prev: prevTip,
     prevLabel: "Orbits",
     next: nextTip,

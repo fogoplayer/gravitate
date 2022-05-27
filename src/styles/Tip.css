@@ -3,6 +3,10 @@
   border-radius: 1em;
 }
 
+.tip::backdrop {
+  background-color: transparent;
+}
+
 .tip.targeted.left {
   border-top-left-radius: 0;
 }
@@ -13,10 +17,6 @@
 
 .tip.targeted[open] {
   display: flex;
-}
-
-.tip.targeted::backdrop {
-  background-color: transparent;
 }
 
 .tip section {

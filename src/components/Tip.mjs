@@ -8,12 +8,22 @@ export default function Tip({
   next,
   nextLabel = "",
 }) {
-  let direction;
+  let VW,
+    VH,
+    TARGET_CENTER_H,
+    TARGET_CENTER_V,
+    TARGET_LEFT,
+    TARGET_RIGHT,
+    direction;
 
   if (target) {
-    const VW = document.documentElement.clientWidth;
-    const TARGET_CENTER_H = target.offsetLeft + target.offsetWidth / 2;
-    direction = TARGET_CENTER_H < VW / 2 ? "left" : "right";
+    VW = document.documentElement.clientWidth;
+    VH = document.documentElement.clientHeight;
+    TARGET_CENTER_H = target.offsetLeft + target.offsetWidth / 2;
+    TARGET_CENTER_V = target.offsetTop + target.offsetHeight / 2;
+    TARGET_LEFT = target.offsetLeft;
+    TARGET_RIGHT = target.offsetLeft + target.offsetWidth;
+    direction = TARGET_CENTER_H < VW / 2 + 100 ? "left" : "right";
   }
 
   let modal = jsx`<dialog class="tip modal ${target ? "targeted" : ""} ${
@@ -57,33 +67,23 @@ export default function Tip({
   function positionToTarget() {
     if (!target) return;
 
-    const VH = document.documentElement.clientHeight;
-    const VW = document.documentElement.clientWidth;
-    const TARGET_CENTER_H = target.offsetLeft + target.offsetWidth / 2;
-    const TARGET_CENTER_V = target.offsetTop + target.offsetHeight / 2;
-    const TARGET_LEFT = target.offsetLeft;
-    const TARGET_RIGHT = target.offsetLeft + target.offsetWidth;
-
-    let x, y, maxHeight, maxWidth;
-
-    if (TARGET_CENTER_H < VW / 2) {
-      x = TARGET_RIGHT + "px";
-      y = TARGET_CENTER_V + "px";
-      maxWidth = VW - TARGET_RIGHT - 32 + "px";
-    } else {
-      x = "32px";
-      y = TARGET_CENTER_V + "px";
-      maxWidth = TARGET_LEFT + "px";
-    }
-
-    maxHeight = VH - parseInt(y) - 32 + "px";
-
     Object.assign(modal.style, {
       inset: "unset",
-      top: y,
-      left: x,
-      maxWidth: maxWidth,
-      maxHeight: maxHeight,
+      maxHeight: VH - TARGET_CENTER_H - 32 + "px",
+      right: "32px",
+      left: "32px",
     });
+
+    console.log(direction);
+
+    if (direction === "left") {
+      modal.style.left = TARGET_RIGHT + "px";
+      modal.style.top = TARGET_CENTER_V + "px";
+      modal.style.maxWidth = VW - TARGET_RIGHT - 32 + "px";
+    } else {
+      modal.style.right = VW - TARGET_LEFT + "px"; //"32px";
+      modal.style.top = TARGET_CENTER_V + "px";
+      modal.style.maxWidth = TARGET_LEFT - 32 + "px";
+    }
   }
 }
