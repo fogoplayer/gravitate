@@ -103,6 +103,10 @@ export function getCurrUserData() {
   return currUserData;
 }
 
+export function dangerousSetCurrUserData(obj) {
+  currUserData = obj;
+}
+
 export async function getDocData(ref) {
   if (typeof ref === "string") {
     ref = doc(db, ref);

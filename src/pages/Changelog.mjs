@@ -21,9 +21,11 @@ export default function Changelog() {
       </li>
       <li>Add a back button to non-root routes</li>
       <li>Fix tabindexes</li>
-      <li>Multiple titles</li>
+      <li>The browser title and header can now be set independently.</li>
+      <li>Contact pages now use IDs instead of names for routing</li>
+        
         <li>Add tour for user pages</li>
-        Use IDs instead of names for routing
+        
     </ul>
     <h3>1.4.0</h3>
     <ul>

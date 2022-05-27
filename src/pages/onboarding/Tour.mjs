@@ -2,6 +2,11 @@ import { showAppPage, showAppShell, showRefreshPage } from "../../App.mjs";
 import { setPageTitle } from "../../components/AppShell.mjs";
 import { reactions } from "../../components/AttractionDetails.mjs";
 import Tip from "../../components/Tip.mjs";
+import {
+  dangerousSetCurrUserData,
+  getCurrUserData,
+  loadUserData,
+} from "../../services/firebase/db.mjs";
 import { append, jsx, renderPage } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
 import CreateAttraction from "../CreateAttraction.mjs";
@@ -21,12 +26,75 @@ let currTip = 0;
 
 export default function Tour() {
   setPageTitle("Tour");
+  setTourUserData();
 
   currTip = 0;
 
   showAppShell();
   showTourTip(currTip);
   return "";
+}
+
+function setTourUserData() {
+  const cachedUserData = getCurrUserData();
+
+  dangerousSetCurrUserData({
+    icon: "/images/cosmo.svg",
+    name: "Cosmo",
+    ref: "",
+    dataDocRef: "",
+    attractionsRef: "",
+    invitationsRef: "",
+    orbitsRef: "",
+    uid: "xIN98sxVcyRygMVDZ2NWfJ35Sm83",
+    attractions: [],
+    invitations: [],
+    orbits: [
+      {
+        name: "Cosmo's Orbit",
+        members: [
+          {
+            icon: cachedUserData.icon,
+            name: cachedUserData.name,
+            ref: "",
+          },
+        ],
+        icon: "🪐",
+        ref: "",
+      },
+    ],
+    friends: [
+      {
+        icon: cachedUserData.icon,
+        name: cachedUserData.name,
+        ref: "",
+      },
+    ],
+    systems: [
+      {
+        members: [
+          {
+            icon: cachedUserData.icon,
+            name: cachedUserData.name,
+            ref: "",
+          },
+          {
+            icon: "/images/cosmo.svg",
+            name: "Cosmo",
+            ref: "",
+          },
+        ],
+        icon: "☀",
+        name: "Cosmo's System",
+        ref: "",
+      },
+    ],
+  });
+
+  page.exit("/onboarding/tour", (context, next) => {
+    dangerousSetCurrUserData(cachedUserData);
+    window.location.href = "/contacts";
+  });
 }
 
 function showTourTip(tip) {
