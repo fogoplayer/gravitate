@@ -87,11 +87,21 @@ ${Modal({
     document.querySelector("#unfriend-confirm").showModal();
   }
 
-  function unfriend(e) {
+  async function unfriend(e) {
     e.target.classList.add("loading");
+
+    // Remove from orbits
+    for (const orbit of orbits) {
+      await update(orbit.ref, {
+        members: pop(friend.ref),
+      });
+    }
+
+    // Unfriend
     update(dataDocRef, {
       friends: pop(friend.ref),
     });
+
     afterUpdate(() => renderPage("/contacts"));
   }
 
