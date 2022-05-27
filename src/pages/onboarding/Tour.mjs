@@ -9,6 +9,7 @@ import {
 } from "../../services/firebase/db.mjs";
 import { append, jsx, renderPage } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
+import FriendPage from "../contacts/FriendPage.mjs";
 import OrbitPage from "../contacts/OrbitPage.mjs";
 import SystemPage from "../contacts/SystemPage.mjs";
 import CreateAttraction from "../CreateAttraction.mjs";
@@ -23,6 +24,7 @@ const tour = [
   systemDetails,
   systemMembers,
   friends,
+  friendDetails,
   attractions,
   invitations,
   navigation,
@@ -240,6 +242,39 @@ function systems() {
   });
 }
 
+function orbitSystemExamples() {
+  return Tip({
+    contents: jsx`<h2>Orbits vs Systems</h2>
+<table>
+  <tr>
+    <th></th>
+    <th>Orbit</th>
+    <th>System</th>
+  </tr>
+  <tr>
+    <th>Group invitations</th>
+    <td>Members all recieve an invitation</td>
+    <td>Members all recieve an invitation</td>
+  </tr>
+  <tr>
+    <th>Invitation appearance</th>
+    <td>An individual invitation from a friend</td>
+    <td>A group invitation to the entire system</td>
+  </tr>
+  <tr>
+    <th>Attraction Creation</th>
+    <td>Only the orbit creator can create an attraction</td>
+    <td>Any member can create an attraction</td>
+  </tr>
+</table>
+`,
+    prev: () => showTourTip(currTip),
+    prevLabel: "Ststems",
+    next: nextTip,
+    nextLabel: "System Details Page",
+  });
+}
+
 function systemDetails() {
   showAppPage(() => jsx`<div class="contact-page">${SystemPage(0)}</div>`, {
     pathname: "/contacts/orbits/0",
@@ -275,39 +310,6 @@ function systemMembers() {
   });
 }
 
-function orbitSystemExamples() {
-  return Tip({
-    contents: jsx`<h2>Orbits vs Systems</h2>
-<table>
-  <tr>
-    <th></th>
-    <th>Orbit</th>
-    <th>System</th>
-  </tr>
-  <tr>
-    <th>Group invitations</th>
-    <td>Members all recieve an invitation</td>
-    <td>Members all recieve an invitation</td>
-  </tr>
-  <tr>
-    <th>Invitation appearance</th>
-    <td>An individual invitation from a friend</td>
-    <td>A group invitation to the entire system</td>
-  </tr>
-  <tr>
-    <th>Attraction Creation</th>
-    <td>Only the orbit creator can create an attraction</td>
-    <td>Any member can create an attraction</td>
-  </tr>
-</table>
-`,
-    prev: () => showTourTip(currTip),
-    prevLabel: "Systems",
-    next: nextTip,
-    nextLabel: "Friends",
-  });
-}
-
 function friends() {
   showAppPage(Contacts, { pathname: "/contacts" });
   return Tip({
@@ -317,9 +319,26 @@ function friends() {
 </p>
 <p><b>You will only recieve invitations from people you have friended.</b></p>
 <p>To add someone as a friend, you will need to know their username or have them send you an add link.</p>`,
-    target: document.querySelector(".friends-wrapper .header-icon"),
+    target: document.querySelector(".friends-wrapper .contact-icon"),
     prev: prevTip,
     prevLabel: "Systems",
+    next: nextTip,
+    nextLabel: "Friend Details",
+  });
+}
+
+function friendDetails() {
+  showAppPage(() => jsx`<div class="contact-page">${FriendPage(0)}</div>`, {
+    pathname: "/contacts/orbits/0",
+  });
+  return Tip({
+    contents: jsx`<h2>Friend Details Page</h2>
+<p>The friend details page lets you see the name and icon of your friend, any attractions they are hosting, and the orbits they are a member of and the systems you have both joined.</p> 
+<p>Click on their name to view it in full screen, then click again to close it.</p>
+<p>Click on an orbit or system to go to its details page.</p>`,
+    target: document.querySelector(".systems-wrapper .header-icon"),
+    prev: prevTip,
+    prevLabel: "Friends",
     next: nextTip,
     nextLabel: "Attractions",
   });
