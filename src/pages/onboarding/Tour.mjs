@@ -349,7 +349,7 @@ function attractions() {
   let modal = Tip({
     contents: jsx`<h2>Attractions</h2>
 <p>
-  This page is for creating an event, which we call an "Attraction."
+  This page is for creating an event, which we call an "Attraction." You get to it by clicking the plus in the bottom bar.
 </p>
 <p>After putting in a title, location, and end time for the attraction, you can send it to any combination of your orbits, attractions, and friends by clicking on their name.</p>
 <p>They'll recieve a notification with the attraction details.</p>`,
