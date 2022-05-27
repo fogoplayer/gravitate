@@ -9,12 +9,15 @@ import {
 } from "../../services/firebase/db.mjs";
 import { append, jsx, renderPage } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
+import OrbitPage from "../contacts/OrbitPage.mjs";
 import CreateAttraction from "../CreateAttraction.mjs";
 import ViewAttractions from "../ViewAttractions.mjs";
 
 const tour = [
   contactsOverview,
   orbits,
+  orbitDetails1,
+  orbitDetails2,
   systems,
   friends,
   attractions,
@@ -60,7 +63,7 @@ function setTourUserData() {
           },
         ],
         icon: "🪐",
-        ref: "",
+        ref: { id: 0 },
       },
     ],
     friends: [
@@ -118,22 +121,18 @@ function closeAll() {
 }
 
 function contactsOverview() {
-  let modal = Tip({
+  showAppPage(Contacts, { pathname: "/contacts" });
+  return Tip({
     contents: jsx`<p>Gravitate exists to help you organize spur-of-the-moment events with your friends and family members.</p>
 <p>Let's start with how those friends and family members are organized!</p>`,
     next: nextTip,
     nextLabel: "Orbits",
   });
-  modal._showModal = modal.showModal;
-  modal.showModal = () => {
-    showAppPage(Contacts, { pathname: "/contacts" });
-    modal._showModal();
-  };
-  return modal;
 }
 
 function orbits() {
-  let modal = Tip({
+  showAppPage(Contacts, { pathname: "/contacts" });
+  return Tip({
     contents: jsx`<h2>Orbits</h2>
 <p>
   Orbits function like a mass text, inviting multiple people as if they were all
@@ -154,18 +153,48 @@ function orbits() {
   <li>also like a local band</li>
   <li>are karaoke divas</li>
 </ul>
-`,
-    target: document.querySelector(".orbits-wrapper .header-icon"),
+<p>Click on an orbit to view more dtails</p>`,
+    target: document.querySelector(".orbits-wrapper .contact-name"),
     prev: prevTip,
     prevLabel: "Overview",
     next: nextTip,
+    nextLabel: "Orbit Details",
+  });
+}
+
+function orbitDetails1() {
+  showAppPage(() => jsx`<div class="contact-page">${OrbitPage(0)}</div>`, {
+    pathname: "/contacts/orbits/0",
+  });
+  return Tip({
+    contents: jsx`<h2>Orbit Details, pt. 1</h2>
+<p>Click on the orbit name or icon to change it</p>`,
+    target: document.querySelector(".pfp.noto"),
+    prev: prevTip,
+    prevLabel: "Orbits",
+    next: nextTip,
+    nextLabel: "Orbit Details, pt. 2",
+  });
+}
+
+function orbitDetails2() {
+  showAppPage(() => jsx`<div class="contact-page">${OrbitPage(0)}</div>`, {
+    pathname: "/contacts/orbits/0",
+  });
+  return Tip({
+    contents: jsx`<h2>Orbit Details, pt. 1</h2>
+<p>Use the + to add friends to the orbit or the - to remove them.</p>`,
+    target: document.querySelector(".contact-header-container button.flat"),
+    prev: prevTip,
+    prevLabel: "Orbit Details, pt. 1",
+    next: nextTip,
     nextLabel: "Systems",
   });
-  return modal;
 }
 
 function systems() {
-  let modal = Tip({
+  showAppPage(Contacts, { pathname: "/contacts" });
+  return Tip({
     contents: jsx`<h2>Systems</h2>
 <p>
   Systems function like a group text: it's a bunch of people who can all send
@@ -201,11 +230,10 @@ function systems() {
     next: nextTip,
     nextLabel: "Friends",
   });
-  return modal;
 }
 
 function orbitSystemExamples() {
-  let modal = Tip({
+  return Tip({
     contents: jsx`<h2>Orbits vs Systems</h2>
 <table>
   <tr>
@@ -235,7 +263,6 @@ function orbitSystemExamples() {
     next: nextTip,
     nextLabel: "Friends",
   });
-  return modal;
 }
 
 function friends() {
