@@ -1,6 +1,7 @@
 const { changelogTest } = require("./changelog.mjs");
 const { contactsTest } = require("./contacts.mjs");
 const { friendsTest } = require("./contacts/friends.mjs");
+const { orbitsTest } = require("./contacts/orbits.mjs");
 const { createAttractionTest } = require("./create-attractions.mjs");
 const { driver } = require("./driver.mjs");
 const { loginTest } = require("./login.mjs");
@@ -24,6 +25,7 @@ loginTest();
 // createAttractionTest();
 // contactsTest();
 friendsTest();
+orbitsTest();
 // settingsTest();
 // changelogTest();
 
