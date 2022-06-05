@@ -16,7 +16,6 @@
     "node": "~16.13.0"
   },
   "scripts": {
-    "start": "firebase serve",
     "test": "clear && jest tests/app.test.js --verbose"
   },
   "devDependencies": {
