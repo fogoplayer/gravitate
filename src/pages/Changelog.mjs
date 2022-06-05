@@ -6,6 +6,11 @@ export default function Changelog() {
   return jsx`<div class="changelog">
   <section>
     <h2>Alpha Release</h2>
+    <h3>1.4.2</h3>
+    <ul>
+      <li>Self-host more fonts and libraries</li>
+      <li>Allow invitations from fellow system members</li>
+    </ul>
     <h3>1.4.1</h3>
     <ul>
       <li>
