@@ -50,13 +50,17 @@ ${
     : jsx`
 <div class="join-link">
   <span>Invite link:</span>
-  <button class="link-text" onclick="${copyToClipboard}">${inviteLink}</button>
+  <button class="link-text" onclick="${copyInviteLinkToClipboard}">${inviteLink}</button>
   <button class="flat">
-    <span class="material-symbols-sharp" onclick="${copyToClipboard}"> content_copy </span>
+    <span class="material-symbols-sharp" onclick="${copyInviteLinkToClipboard}"> content_copy </span>
   </button>
-  <button class="flat">
+  ${
+    navigator.canShare({ text: inviteLink })
+      ? jsx`<button class="flat" onclick="${shareInviteLink}">
     <span class="material-symbols-sharp"> share </span>
-  </button>
+  </button>`
+      : ""
+  }
   <button class="flat">
     <span class="material-symbols-sharp"> refresh </span>
   </buttlion>
@@ -105,8 +109,12 @@ ${system.name}?
   })}
 `;
   // Invite Link
-  function copyToClipboard() {
+  function copyInviteLinkToClipboard(e) {
     navigator.clipboard.writeText(inviteLink);
+  }
+
+  async function shareInviteLink() {
+    await navigator.share({ text: inviteLink });
   }
 
   // Modals
