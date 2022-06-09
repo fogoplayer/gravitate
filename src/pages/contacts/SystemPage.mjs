@@ -28,6 +28,12 @@ export default function SystemPage(id) {
   let [system] = systems.filter((system) => system.ref.id === id);
 
   setPageTitle("Contacts", system.name);
+  const inviteLink =
+    window.location.origin +
+    "/contacts/invite/systems/" +
+    system.ref.id +
+    "/" +
+    system.invite.code;
 
   return jsx`<button class="pfp noto" onclick="${showChangeIconModal}">
   ${system.icon}
@@ -36,6 +42,30 @@ export default function SystemPage(id) {
 <button class="edit-name" onclick="${showChangeNameModal}">
   <h2>${system.name}</h2>
 </button>
+${
+  !system.invite.code
+    ? jsx`<button class="flat">
+  <span class="material-symbols-sharp"> link </span>Generate invite link</button
+>`
+    : jsx`
+<div class="join-link">
+  <span>Invite link:</span>
+  <button class="link-text" onclick="${copyToClipboard}">${inviteLink}</button>
+  <button class="flat">
+    <span class="material-symbols-sharp" onclick="${copyToClipboard}"> content_copy </span>
+  </button>
+  <button class="flat">
+    <span class="material-symbols-sharp"> share </span>
+  </button>
+  <button class="flat">
+    <span class="material-symbols-sharp"> refresh </span>
+  </buttlion>
+  <button class="flat">
+    <span class="material-symbols-sharp"> delete </span>
+  </button>
+</div>
+`
+}
 <ul class="contacts-list contacts-list">
   <li class="members-wrapper">
     <h2>
@@ -50,38 +80,34 @@ ${Modal({
   id: "change-icon",
   contents: jsx`
 <form onsubmit="${updateIcon}">
-  ${Input({
-    label: "New Icon",
-    id: "new-icon",
-    required: true,
-    pattern: ".",
-  })}
+  ${Input({ label: "New Icon", id: "new-icon", required: true, pattern: "." })}
   <aside>
     Icons are single characters, such as an emoji or a letter. Some emoji may
     not be supported.
   </aside>
   <button class="primary">Save icon ${Spinner()}</button>
-  </form>`,
-})} 
-${Modal({
-  id: "change-name",
-  contents: jsx`
+</form>
+`,
+})} ${Modal({
+    id: "change-name",
+    contents: jsx`
 <form onsubmit="${updateName}">
-  ${Input({
-    label: "New Name",
-    id: "new-name",
-    required: true,
-  })}
+  ${Input({ label: "New Name", id: "new-name", required: true })}
   <button class="primary">Save name ${Spinner()}</button>
-</form>`,
-})}
-${Modal({
-  id: "leave-modal",
-  contents: jsx`Are you sure you want to
-leave ${system.name}?
-<button class="primary danger" onclick="${leaveSystem}">Yes, delete ${Spinner()}</button>`,
-})}
+</form>
+`,
+  })} ${Modal({
+    id: "leave-modal",
+    contents: jsx`Are you sure you want to leave
+${system.name}?
+<button class="primary danger" onclick="${leaveSystem}">Yes, delete
+ ${Spinner()}</button>`,
+  })}
 `;
+  // Invite Link
+  function copyToClipboard() {
+    navigator.clipboard.writeText(inviteLink);
+  }
 
   // Modals
   function showChangeIconModal() {
