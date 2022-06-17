@@ -9,9 +9,16 @@ export default function SegmentControl({
 }) {
   return jsx`<ul class="segment-control" ...${props}>
   ${segments.map(
-    (segment) =>
+    (segment, index) =>
       jsx`<li class="segment"><label>
-        <input type="radio" name="${name}" ...${optionProps} value="${segment}"/><div>${segment}</div>
+        <input type="radio" name="${name}" ...${
+        index === 0
+          ? {
+              ...optionProps,
+              checked: true,
+            }
+          : optionProps
+      } value="${segment}" /><div>${segment}</div>
       </label></li>`
   )}
   <div class="highlight" />

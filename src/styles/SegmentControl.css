@@ -66,8 +66,13 @@
 }
 
 .segment-control .segment input:checked + div {
-  color: white;
+  color: var(--light-text);
   background-color: var(--theme-primary-color);
+}
+
+.segment-control .segment input:focus-visible + div {
+  color: var(--dark-text);
+  background-color: var(--theme-tertiary-color);
 }
 
 /* TODO highlight affect will come later*/
