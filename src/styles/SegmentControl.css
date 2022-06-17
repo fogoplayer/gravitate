@@ -1,0 +1,83 @@
+.segment-control {
+  --ctrl-margin: 0.5em;
+
+  /* display */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+
+  /* positioning */
+  position: relative;
+
+  /* box-model */
+  box-shadow: 0 0 0 1px var(--theme-primary-color) inset;
+  border-radius: var(--ctrl-margin);
+  padding-block: var(--ctrl-margin);
+
+  /* typography */
+  font-family: var(--header-font-family);
+  color: var(--theme-primary-color);
+
+  /* manipulation */
+  /* misc */
+  list-style: none;
+  isolation: isolate;
+}
+
+.segment-control input[type="radio"] {
+  /* display */
+  /* positioning */
+  /* box-model */
+  max-width: 0;
+  min-width: 0;
+  max-height: 0;
+  min-height: 0;
+  /* typography */
+  /* manipulation */
+  opacity: 0;
+  /* misc */
+}
+
+.segment-control .segment + .segment {
+  /* display */
+  /* positioning */
+  /* box-model */
+  border-left: 1px solid var(--theme-primary-color);
+
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
+.segment-control .segment div {
+  /* display */
+  display: inline-block;
+  /* positioning */
+  /* box-model */
+  border-radius: var(--ctrl-margin);
+  border-radius: var(--ctrl-margin);
+  padding-inline: 1em;
+  padding-block: var(--ctrl-margin);
+  margin-block: calc(-1 * var(--ctrl-margin));
+  margin-inline: -1px;
+  /* typography */
+  /* manipulation */
+  /* misc */
+}
+
+.segment-control .segment input:checked + div {
+  color: white;
+  background-color: var(--theme-primary-color);
+}
+
+/* TODO highlight affect will come later*/
+.segment-control .highlight {
+  display: none;
+  position: absolute;
+
+  background-color: var(--theme-primary-color);
+  mix-blend-mode: color-dodge;
+
+  inset: 0 auto;
+  width: 100px;
+}

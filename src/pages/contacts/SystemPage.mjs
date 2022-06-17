@@ -6,6 +6,7 @@ import {
 import Input from "../../components/Input.mjs";
 import Modal from "../../components/Modal.mjs";
 import Spinner from "../../components/Spinner.mjs";
+import SegmentControl from "../../components/SegmentControl.mjs";
 import { AttractionsTemplate } from "../../components/templates/AttractionsTemplate.mjs";
 import { FriendSelectTemplate } from "../../components/templates/FriendSelectTemplate.mjs";
 import {
@@ -44,7 +45,7 @@ export default function SystemPage(id) {
 </button>
 ${
   !system.invite.code
-    ? jsx`<button class="flat">
+    ? jsx`<button class="flat" onclick="${createNewInviteLink}">
   <span class="material-symbols-sharp"> link </span>Generate invite link</button
 >`
     : jsx`
@@ -61,7 +62,7 @@ ${
   </button>`
       : ""
   }
-  <button class="flat">
+  <button class="flat" onclick="${createNewInviteLink}">
     <span class="material-symbols-sharp"> refresh </span>
   </buttlion>
   <button class="flat">
@@ -100,15 +101,23 @@ ${Modal({
   <button class="primary">Save name ${Spinner()}</button>
 </form>
 `,
+  })}${Modal({
+    id: "new-invite-link",
+    open: true,
+    contents: SegmentControl({ segments: [1, 2, 3, 4, 5], name: "code-type" }),
   })} ${Modal({
     id: "leave-modal",
     contents: jsx`Are you sure you want to leave
 ${system.name}?
 <button class="primary danger" onclick="${leaveSystem}">Yes, delete
- ${Spinner()}</button>`,
+  ${Spinner()}</button>`,
   })}
 `;
   // Invite Link
+  function createNewInviteLink() {
+    update();
+  }
+
   function copyInviteLinkToClipboard(e) {
     navigator.clipboard.writeText(inviteLink);
   }
