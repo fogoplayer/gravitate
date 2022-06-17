@@ -65,7 +65,7 @@ ${
   <button class="flat" onclick="${showNewInviteLinkModal}">
     <span class="material-symbols-sharp"> refresh </span>
   </buttlion>
-  <button class="flat">
+  <button class="flat" onclick="${deleteInviteLink}">
     <span class="material-symbols-sharp"> delete </span>
   </button>
 </div>
@@ -120,7 +120,7 @@ ${system.name}?
   })}
 `;
   // Invite Link
-  function createNewInviteLink() {
+  async function createNewInviteLink() {
     const rand = Array.from(self.crypto.getRandomValues(new Uint32Array(2)));
 
     const code = rand.reduce((code, cryptoNumber) => {
@@ -129,7 +129,7 @@ ${system.name}?
     const oneTimeUse =
       document.querySelector("#new-invite-link :checked").value ===
       "Single Use";
-    update(system.ref, {
+    await update(system.ref, {
       invite: {
         code,
         oneTimeUse,
@@ -144,6 +144,16 @@ ${system.name}?
 
   async function shareInviteLink() {
     await navigator.share({ text: inviteLink });
+  }
+
+  async function deleteInviteLink() {
+    await update(system.ref, {
+      invite: {
+        code: "",
+        oneTimeUse: false,
+      },
+    });
+    renderPage(window.location.pathname);
   }
 
   // Modals
