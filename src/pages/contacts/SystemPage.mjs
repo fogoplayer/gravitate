@@ -45,7 +45,7 @@ export default function SystemPage(id) {
 </button>
 ${
   !system.invite.code
-    ? jsx`<button class="flat" onclick="${createNewInviteLink}">
+    ? jsx`<button class="flat" onclick="${showNewInviteLinkModal}">
   <span class="material-symbols-sharp"> link </span>Generate invite link</button
 >`
     : jsx`
@@ -62,7 +62,7 @@ ${
   </button>`
       : ""
   }
-  <button class="flat" onclick="${createNewInviteLink}">
+  <button class="flat" onclick="${showNewInviteLinkModal}">
     <span class="material-symbols-sharp"> refresh </span>
   </buttlion>
   <button class="flat">
@@ -103,8 +103,14 @@ ${Modal({
 `,
   })}${Modal({
     id: "new-invite-link",
-    open: true,
-    contents: SegmentControl({ segments: [1, 2, 3, 4, 5], name: "code-type" }),
+    contents: jsx`What kind of code? ${SegmentControl({
+      segments: ["Single Use", "Reusable"],
+      name: "code-type",
+    })}
+    <aside>Single use codes are consumed after someone joins the system using the code (more secure).</aside>
+     <aside>Reusable codes can be used by as many people as have access to the link, until the link is deleted or changed.</aside>
+    <button class="primary" onclick="${createNewInviteLink}">Create code</button>
+    `,
   })} ${Modal({
     id: "leave-modal",
     contents: jsx`Are you sure you want to leave
@@ -115,7 +121,21 @@ ${system.name}?
 `;
   // Invite Link
   function createNewInviteLink() {
-    update();
+    const rand = Array.from(self.crypto.getRandomValues(new Uint32Array(2)));
+
+    const code = rand.reduce((code, cryptoNumber) => {
+      return code + parseInt(cryptoNumber).toString(26);
+    }, "");
+    const oneTimeUse =
+      document.querySelector("#new-invite-link :checked").value ===
+      "Single Use";
+    update(system.ref, {
+      invite: {
+        code,
+        oneTimeUse,
+      },
+    });
+    renderPage(window.location.pathname);
   }
 
   function copyInviteLinkToClipboard(e) {
@@ -133,6 +153,10 @@ ${system.name}?
 
   function showChangeNameModal() {
     document.querySelector("#change-name").showModal();
+  }
+
+  function showNewInviteLinkModal() {
+    document.querySelector("#new-invite-link").showModal();
   }
 
   function showAddFriendModal(e) {
