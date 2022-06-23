@@ -34,7 +34,7 @@ export default function SystemPage(id) {
     "/contacts/invite/systems/" +
     system.ref.id +
     "/" +
-    system.invite.code;
+    system.code;
 
   return jsx`<button class="pfp noto" onclick="${showChangeIconModal}">
   ${system.icon}
@@ -44,7 +44,7 @@ export default function SystemPage(id) {
   <h2>${system.name}</h2>
 </button>
 ${
-  !system.invite.code
+  !system.code
     ? jsx`<button class="flat" onclick="${showNewInviteLinkModal}">
   <span class="material-symbols-sharp"> link </span>Generate invite link</button
 >`
@@ -126,16 +126,14 @@ ${system.name}?
     const code = rand.reduce((code, cryptoNumber) => {
       return code + parseInt(cryptoNumber).toString(26);
     }, "");
-    const oneTimeUse =
-      document.querySelector("#new-invite-link :checked").value ===
+    const codeMultiUse =
+      document.querySelector("#new-invite-link :checked").value !==
       "Single Use";
-    await update(system.ref, {
-      invite: {
-        code,
-        oneTimeUse,
-      },
+    update(system.ref, {
+      code,
+      codeMultiUse,
     });
-    renderPage(window.location.pathname);
+    afterUpdate(() => renderPage(window.location.pathname));
   }
 
   function copyInviteLinkToClipboard(e) {
@@ -148,10 +146,8 @@ ${system.name}?
 
   async function deleteInviteLink() {
     await update(system.ref, {
-      invite: {
-        code: "",
-        oneTimeUse: false,
-      },
+      code: "",
+      codeMultiUse: false,
     });
     renderPage(window.location.pathname);
   }
