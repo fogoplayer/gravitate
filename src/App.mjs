@@ -41,6 +41,9 @@ authStateChanged(async (user) => {
   page("/view-attractions", (context) => showAppPage(ViewAttractions, context));
   page("/contacts", (context) => showAppPage(Contacts, context));
   page("/contacts/:type/:id", (context) => showAppPage(ContactPage, context));
+  page("/contacts/invite/:type/:id/:code", (context) =>
+    showAppPage(Contacts, context)
+  );
   page("/changelog", (context) => showAppPage(Changelog, context));
   page("/settings", (context) => showAppPage(Settings, context));
   page("/login", () => showExternalPage(Login));
