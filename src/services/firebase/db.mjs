@@ -220,6 +220,8 @@ export async function loadUserData(user = {}) {
   // Data
   watch(currUserData.dataDocRef);
   let userDataDoc = await getDocData(currUserData.dataDocRef);
+  currUserData.code = userDataDoc.code;
+  currUserData.codeMultiUse = userDataDoc.codeMultiUse;
 
   // Friends
   let friends = userDataDoc.friends;

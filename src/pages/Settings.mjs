@@ -15,7 +15,7 @@ import SegmentControl from "../components/SegmentControl.mjs";
 export default function Settings() {
   setPageTitle("Settings");
 
-  let { icon, name, code, codeMultiUse, ref } = getCurrUserData();
+  let { icon, name, code, codeMultiUse, ref, dataDocRef } = getCurrUserData();
   const inviteLink =
     window.location.origin + "/contacts/invite/systems/" + ref.id + "/" + code;
 
@@ -133,7 +133,7 @@ export default function Settings() {
     const codeMultiUse =
       document.querySelector("#new-invite-link :checked").value !==
       "Single Use";
-    update(ref, {
+    update(dataDocRef, {
       code,
       codeMultiUse,
     });
@@ -149,7 +149,7 @@ export default function Settings() {
   }
 
   async function deleteInviteLink() {
-    await update(ref, {
+    await update(dataDocRef, {
       code: "",
       codeMultiUse: false,
     });
