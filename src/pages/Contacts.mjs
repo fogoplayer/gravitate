@@ -64,7 +64,6 @@ async function showJoin(context) {
         break;
 
       case "users":
-        debugger;
         /* Currently not worrying about it
         // Add to friends list. Error if code doesn't match
         await update(type + "/" + id + "data/data", {
