@@ -181,6 +181,7 @@ export async function loadUserData(user = {}) {
 
   Object.assign(currUserData, {
     dataDocRef: doc(db, `users/${user.uid}/data`, "data"),
+    codeDocRef: doc(db, `users/${user.uid}/data`, "code"),
     attractionsRef: collection(db, `users/${user.uid}/attractions`),
     invitationsRef: collection(db, `users/${user.uid}/invitations`),
     orbitsRef: collection(db, `users/${user.uid}/orbits`),
@@ -217,11 +218,15 @@ export async function loadUserData(user = {}) {
   let orbits = await getDocsData(currUserData.orbitsRef);
   currUserData.orbits = await parseGroups(orbits);
 
+  // Code
+  watch(currUserData.codeDocRef);
+  let codeDataDoc = await getDocData(currUserData.codeDocRef).catch(() => ({}));
+  currUserData.code = codeDataDoc.code;
+  currUserData.codeMultiUse = codeDataDoc.codeMultiUse;
+
   // Data
   watch(currUserData.dataDocRef);
   let userDataDoc = await getDocData(currUserData.dataDocRef);
-  currUserData.code = userDataDoc.code;
-  currUserData.codeMultiUse = userDataDoc.codeMultiUse;
 
   // Friends
   let friends = userDataDoc.friends;
