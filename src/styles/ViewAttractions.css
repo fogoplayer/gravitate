@@ -133,4 +133,9 @@
 
 .attraction-details table {
   width: fit-content;
+  vertical-align: top;
+}
+
+.attraction-details table tr {
+  vertical-align: inherit;
 }
