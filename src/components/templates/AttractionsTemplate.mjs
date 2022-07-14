@@ -31,13 +31,5 @@ export function AttractionsTemplate(attractions, emptyMessage) {
 
   function toggleAttractionDetails(e) {
     details.querySelector("dialog").showModal();
-    //   let sibling = e.currentTarget.nextSibling;
-    //   if (sibling.classList.contains("open")) {
-    //     sibling.classList.replace("open", "transitioning");
-    //     setTimeout(() => sibling.classList.remove("transitioning"), 250);
-    //   } else {
-    //     sibling.classList.add("transitioning");
-    //     setTimeout(() => sibling.classList.replace("transitioning", "open"), 1);
-    //   }
   }
 }

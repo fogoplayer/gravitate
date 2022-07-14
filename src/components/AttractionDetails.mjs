@@ -11,6 +11,7 @@ export const reactions = {
 
 export function AttractionInfo(attraction) {
   // Show expiration time if an invite
+  debugger;
   if (attraction.organizer) {
     return jsx`<span class="attraction-info">until <span class="expiration">${attraction.expiration.toLocaleTimeString(
       [],
@@ -181,6 +182,8 @@ export function AttractionDetails(attraction) {
       );
     })}
   </table>
+  <button class="primary" onclick="${(e) =>
+    e.target.closest("dialog").close()}">Close</button>
 </section>
 `;
   }
