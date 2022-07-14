@@ -170,7 +170,7 @@ export function AttractionDetails(attraction) {
       return (
         (attraction.reactions[reaction] &&
           jsx`<tr>
-        <th><span class="reaction">
+        <th><span class="reaction noto">
           ${reactions[reaction]}
         </span></th>
         <td>${attraction.reactions[reaction]?.map(
