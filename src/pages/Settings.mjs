@@ -11,13 +11,14 @@ import { jsx, renderPage } from "../../services/render.mjs";
 import { setPageTitle } from "../components/AppShell.mjs";
 import Modal from "../components/Modal.mjs";
 import SegmentControl from "../components/SegmentControl.mjs";
+import { setDoc } from "../services/firebase/db.mjs";
 
 export default function Settings() {
   setPageTitle("Settings");
 
-  let { icon, name, code, codeMultiUse, ref, dataDocRef } = getCurrUserData();
+  let { icon, name, code, codeMultiUse, ref, codeDocRef } = getCurrUserData();
   const inviteLink =
-    window.location.origin + "/contacts/invite/systems/" + ref.id + "/" + code;
+    window.location.origin + "/contacts/invite/users/" + ref.id + "/" + code;
 
   return jsx`<div class="contact-page">
     <form onsubmit="${onSubmit}">
@@ -133,7 +134,7 @@ export default function Settings() {
     const codeMultiUse =
       document.querySelector("#new-invite-link :checked").value !==
       "Single Use";
-    update(dataDocRef, {
+    setDoc(codeDocRef, {
       code,
       codeMultiUse,
     });
@@ -149,7 +150,7 @@ export default function Settings() {
   }
 
   async function deleteInviteLink() {
-    await update(dataDocRef, {
+    await setDoc(codeDocRef, {
       code: "",
       codeMultiUse: false,
     });
