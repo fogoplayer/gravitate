@@ -38,12 +38,6 @@
   content: attr(data-value);
 }
 
-.attraction {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 0.5em;
-}
-
 .attraction-details {
   display: flex;
   flex-flow: column nowrap;
