@@ -2,7 +2,6 @@ import { setPageTitle } from "../components/AppShell.mjs";
 import ContactsList from "../components/ContactsList.mjs";
 import Modal from "../components/Modal.mjs";
 import {
-  deleteDoc,
   getCurrUserData,
   getDocData,
   push,
@@ -39,6 +38,7 @@ function ContactsPageContact(contacts, type) {
 async function showJoin(context) {
   const { type, id, code } = context.params;
   const { ref, dataDocRef } = getCurrUserData();
+  let joining;
 
   try {
     switch (type) {
@@ -50,13 +50,13 @@ async function showJoin(context) {
         });
 
         // Add system to profile
-        const system = await getDocData(type + "/" + id);
+        joining = await getDocData(type + "/" + id);
         update(dataDocRef, {
-          systems: push(system.ref),
+          systems: push(joining.ref),
         });
 
         // Remove one-time codes
-        if (system.codeMultiUse === false) {
+        if (joining.codeMultiUse === false) {
           update(type + "/" + id, {
             code: "",
           });
@@ -64,25 +64,20 @@ async function showJoin(context) {
         break;
 
       case "users":
-        debugger;
-        /* Currently not worrying about it
-        // Add to friends list. Error if code doesn't match
-        await update(type + "/" + id + "data/data", {
-          code,
-          friends: push(ref),
-        }); */
-
-        // Add link owner as friend
-        const friend = await getDocData(type + "/" + id);
-        // const friendCode =
-        update(dataDocRef, {
-          friends: push(friend.ref),
+        // Check that code matches
+        await update(type + "/" + id + "/data/code", {
+          code: code,
         });
 
-        // Remove one-time codes
-        // if (system.codeMultiUse === false) {
-        //   deleteDoc(type + "/" + id + "/data/code");
-        // }
+        // Not adding the recipient as the link owner's friend
+
+        // Add link owner as friend
+        joining = await getDocData(type + "/" + id);
+        update(dataDocRef, {
+          friends: push(joining.ref),
+        });
+
+        // Codes can only be multi-use
         break;
 
       default:
@@ -92,7 +87,9 @@ async function showJoin(context) {
 
     // Display confirmation
     const modal = Modal({
-      contents: jsx`<h2>You joined <b>${system.name}</b></h2>
+      contents: jsx`<h2>You ${type === "systems" ? "joined" : "added"} <b>${
+        joining.name
+      }</b> ${type === "systems" ? "" : "as a friend"}</h2>
 <button class="primary" onclick=${(e) => {
         e.target.closest("dialog").close();
       }}>Ok</button>`,
@@ -101,9 +98,13 @@ async function showJoin(context) {
     append(document.body, modal);
     modal.showModal();
   } catch (e) {
+    console.error(e);
+
     // Error message
     const modal = Modal({
-      contents: jsx`<h2>Unable to join system. Please try again.</h2>
+      contents: jsx`<h2>Unable to ${
+        type === "systems" ? "join system" : "add friend"
+      }. Please try again.</h2>
   <button class="primary" onclick=${(e) => {
     e.target.closest("dialog").close();
   }}>Ok</button>`,
