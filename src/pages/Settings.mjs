@@ -77,18 +77,12 @@ export default function Settings() {
       <button class="flat" onclick="${deleteInviteLink}">
         <span class="material-symbols-sharp"> delete </span>
       </button>
-    </div>
-    `
+    </div>`
     }
    <a href="/onboarding/tour" class="button flat inline">Retake tour</a> 
    ${Modal({
      id: "new-invite-link",
-     contents: jsx`What kind of code? ${SegmentControl({
-       segments: ["Single Use", "Reusable"],
-       name: "code-type",
-     })}
-    <aside>Single use codes are consumed after someone adds you as a friend using the code (more secure).</aside>
-     <aside>Reusable codes can be used by as many people as have access to the link, until the link is deleted or changed.</aside>
+     contents: jsx`<aside>Note: All friend codes are multi-use!</aside>
     <button class="primary" onclick="${createNewInviteLink}">Create code</button>
     `,
    })} 
