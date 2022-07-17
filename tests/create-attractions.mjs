@@ -28,7 +28,9 @@ function createAttractionTest() {
       await expiration.sendKeys(
         (new Date().getHours() % 12 < 1 ? 1 : new Date().getHours() % 12) +
           ":" +
-          (new Date().getMinutes() + 2) +
+          (new Date().getMinutes().length > 1
+            ? ""
+            : "0" + new Date().getMinutes() + 2) +
           (new Date().getHours() < 12 ? "AM" : "PM")
       );
       await system.click();

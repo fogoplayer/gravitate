@@ -6,6 +6,8 @@ export default function Changelog() {
   return jsx`<div class="changelog">
   <section>
     <h2>Alpha Release</h2>
+    <h3>1.6</h3>
+    Switch attraction details to a popup for a less jarring transition
     <h3>1.5</h3>
     Redirect codes
     <h3>1.4.2</h3>

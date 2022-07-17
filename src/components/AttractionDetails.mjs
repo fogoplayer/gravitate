@@ -82,6 +82,8 @@ export function AttractionDetails(attraction) {
     </td>
   </tr>
 </table>
+<button class="primary" onclick="${(e) =>
+      e.target.closest("dialog").close()}">Close</button>
 </section>
 `;
     // Attraction
@@ -170,7 +172,7 @@ export function AttractionDetails(attraction) {
       return (
         (attraction.reactions[reaction] &&
           jsx`<tr>
-        <th><span class="reaction">
+        <th><span class="reaction noto">
           ${reactions[reaction]}
         </span></th>
         <td>${attraction.reactions[reaction]?.map(
@@ -181,6 +183,8 @@ export function AttractionDetails(attraction) {
       );
     })}
   </table>
+  <button class="primary" onclick="${(e) =>
+    e.target.closest("dialog").close()}">Close</button>
 </section>
 `;
   }

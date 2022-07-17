@@ -43,7 +43,7 @@ export default function ViewAttractions() {
     }catch{}
   </script>
   <ul class="contacts-list contacts-list">
-    <li class="orbits-wrapper">
+    <li class="attractions-wrapper">
       <h2>
         <img src="/images/your-attractions.svg" alt="Your attractions icon" class="header-icon" />
         <span class="header-text">Your Attractions</span>

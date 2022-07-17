@@ -1,0 +1,7 @@
+/* fallback */
+@font-face {
+  font-family: "Noto Emoji";
+  font-style: normal;
+  font-weight: 400;
+  src: url(NotoEmoji-VariableFont_wght.ttf);
+}
