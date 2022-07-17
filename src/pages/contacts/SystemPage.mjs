@@ -45,7 +45,7 @@ export default function SystemPage(id) {
 </button>
 ${
   !system.code
-    ? jsx`<button class="flat" onclick="${showNewInviteLinkModal}">
+    ? jsx`<button id="create-link" class="flat" onclick="${showNewInviteLinkModal}">
   <span class="material-symbols-sharp"> link </span>Generate invite link</button
 >`
     : jsx`

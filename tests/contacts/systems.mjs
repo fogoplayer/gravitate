@@ -35,17 +35,26 @@ function systemsTest() {
       const nameInput = await querySelectorWait("#change-name #new-name");
       const submit = await querySelectorWait("#change-name button.primary");
       const newName =
-        "Orbit" === (await name.getText()) ? "Test Orbit" : "Orbit";
+        "System" === (await name.getText()) ? "Test System" : "System";
       await nameInput.sendKeys(newName);
       await submit.click();
       await hardTimer(500);
 
       await driver.get(
-        "http://localhost:5000/contacts/orbits/z0FqQLDNupyQy59pQiwI"
+        "http://localhost:5000/contacts/systems/TMW5hHDB92H13e8gktbD"
       );
       name = await querySelectorWait("main button.edit-name");
 
       expect(await name.getText()).toBe(newName);
+    });
+
+    test("Invite link can be generated", async () => {
+      let createLink = await querySelectorWait("#create-link");
+      await createLink.click();
+      const closePopup = await querySelectorWait("dialog[open] .primary");
+      await closePopup.click();
+      let linkText = await querySelectorWait(".link-text");
+      expect(linkText.innerText).toBeTruthy();
     });
 
     // TODO wait to test until add codes
