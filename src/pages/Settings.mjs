@@ -79,7 +79,7 @@ export default function Settings() {
                 content_copy
               </span>
             </button>
-            ${navigator.canShare({ text: inviteLink })
+            ${navigator.canShare && navigator.canShare({ text: inviteLink })
               ? html`<button
                   class="flat"
                   onclick="${() => shareInviteLink(inviteLink)}"

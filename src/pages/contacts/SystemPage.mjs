@@ -63,7 +63,7 @@ export default function SystemPage(id) {
       copyInviteLinkToClipboard(inviteLink)}"> content_copy </span>
   </button>
   ${
-    navigator.canShare({ text: inviteLink })
+    navigator.canShare && navigator.canShare({ text: inviteLink })
       ? html`<button
           class="flat"
           onclick="${() => shareInviteLink(inviteLink)}"
