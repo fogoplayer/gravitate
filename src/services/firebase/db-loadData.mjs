@@ -26,9 +26,10 @@ export async function parseGroups(groups) {
 
         promises.push(promise);
       } else {
-        let promise = parseIndividuals(group.members).then((group) =>
-          newGroups.add(group)
-        );
+        let promise = parseIndividuals(group.members).then((members) => {
+          group.members = members;
+          newGroups.add(group);
+        });
         promises.push(promise);
       }
     } catch (error) {
@@ -49,7 +50,7 @@ export async function parseIndividuals(group) {
   for (let member in group) {
     group[member] = getDocData(group[member]);
   }
-  return Promise.all(group);
+  return await Promise.all(group);
 }
 
 export async function parseEvents(collection) {
