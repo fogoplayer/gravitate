@@ -15,17 +15,17 @@ export async function createNewInviteLinkAt(refWhereCodeIsStored) {
   }, "");
 
   if (refWhereCodeIsStored === codeDocRef) {
-    update(refWhereCodeIsStored, {
+    setDoc(refWhereCodeIsStored, {
       code,
-      codeMultiUse: true,
+      codeMultiUse,
     });
   } else {
     const codeMultiUse =
       document.querySelector("#new-invite-link :checked").value !==
       "Single Use";
-    setDoc(refWhereCodeIsStored, {
+    update(refWhereCodeIsStored, {
       code,
-      codeMultiUse,
+      codeMultiUse: true,
     });
   }
   afterUpdate(() => renderPage(window.location.pathname));
@@ -54,4 +54,14 @@ export async function deleteInviteLinkFrom(refWhereCodeIsStored) {
   }
 
   renderPage(window.location.pathname);
+}
+
+export function convertShortCode(type) {
+  switch (type) {
+    case "u":
+      return "users";
+
+    case "s":
+      return "systems";
+  }
 }

@@ -16,6 +16,7 @@ import Onboarding from "./pages/onboarding/index.js";
 import Changelog from "./pages/Changelog.mjs";
 import Settings from "./pages/Settings.mjs";
 import ContactPage from "./pages/contacts/index.js";
+import { convertShortCode } from "./services/invite-codes.mjs";
 
 // immediately show loading spinner
 append(
@@ -43,6 +44,10 @@ authStateChanged(async (user) => {
   page("/contacts/invite/:type/:id/:code", (context) =>
     showAppPage(Contacts, context)
   );
+  page("/i/:type/:id/:code", (context) => {
+    context.params.type = convertShortCode(context.params.type);
+    showAppPage(Contacts, context);
+  });
   page("/changelog", (context) => showAppPage(Changelog, context));
   page("/settings", (context) => showAppPage(Settings, context));
   page("/login", () => showExternalPage(Login));
