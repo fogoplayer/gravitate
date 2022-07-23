@@ -20,6 +20,7 @@ import {
 import { getIcon } from "../../services/firebase/storage.mjs";
 import { html, renderPage } from "../../services/render.mjs";
 import {
+  copyInviteLinkToClipboard,
   createNewInviteLinkAt,
   deleteInviteLinkFrom,
   shareInviteLink,
@@ -59,13 +60,18 @@ export default function SystemPage(id) {
       : html`
 <div class="join-link">
   <span>Invite link:</span>
-  <button class="link-text" onclick="${copyInviteLinkToClipboard}">${inviteLink}</button>
+  <button class="link-text" onclick="${() =>
+    copyInviteLinkToClipboard(inviteLink)}">${inviteLink}</button>
   <button class="flat">
-    <span class="material-symbols-sharp" onclick="${copyInviteLinkToClipboard}"> content_copy </span>
+    <span class="material-symbols-sharp" onclick="${() =>
+      copyInviteLinkToClipboard(inviteLink)}"> content_copy </span>
   </button>
   ${
     navigator.canShare({ text: inviteLink })
-      ? html`<button class="flat" onclick="${shareInviteLink(inviteLink)}">
+      ? html`<button
+          class="flat"
+          onclick="${() => shareInviteLink(inviteLink)}"
+        >
           <span class="material-symbols-sharp"> share </span>
         </button>`
       : ""
@@ -73,7 +79,7 @@ export default function SystemPage(id) {
   <button class="flat" onclick="${showNewInviteLinkModal}">
     <span class="material-symbols-sharp"> refresh </span>
   </buttlion>
-  <button class="flat" onclick="${deleteInviteLinkFrom(system.ref)}">
+  <button class="flat" onclick="${() => deleteInviteLinkFrom(system.ref)}">
     <span class="material-symbols-sharp"> delete </span>
   </button>
 </div>
