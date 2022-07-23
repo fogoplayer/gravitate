@@ -40,7 +40,10 @@ export async function parseIndividuals(group) {
   return group;
 }
 
-export async function parseEvents(events) {
+export async function parseEvents(collection) {
+  watch(collection);
+
+  let events = await getDocsData(collection);
   for (let event in events) {
     watch(events[event].ref);
 
@@ -69,6 +72,5 @@ export async function parseEvents(events) {
       return object;
     }, {});
   }
-
   return events;
 }
