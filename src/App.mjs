@@ -41,9 +41,6 @@ authStateChanged(async (user) => {
   page("/view-attractions", (context) => showAppPage(ViewAttractions, context));
   page("/contacts", (context) => showAppPage(Contacts, context));
   page("/contacts/:type/:id", (context) => showAppPage(ContactPage, context));
-  page("/contacts/invite/:type/:id/:code", (context) =>
-    showAppPage(Contacts, context)
-  );
   page("/i/:type/:id/:code", (context) => {
     context.params.type = convertShortCode(context.params.type);
     showAppPage(Contacts, context);
