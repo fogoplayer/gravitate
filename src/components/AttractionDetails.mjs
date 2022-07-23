@@ -98,7 +98,6 @@ export function AttractionDetails(attraction) {
     </section>`;
     // Attraction
   } else {
-    debugger;
     return html`<section class="attraction-details">
       <h4>Attraction Details</h4>
       <table>

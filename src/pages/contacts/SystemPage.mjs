@@ -19,6 +19,11 @@ import {
 } from "../../services/firebase/db.mjs";
 import { getIcon } from "../../services/firebase/storage.mjs";
 import { html, renderPage } from "../../services/render.mjs";
+import {
+  createNewInviteLinkAt,
+  deleteInviteLinkFrom,
+  shareInviteLink,
+} from "../../services/invite-codes.mjs";
 
 export default function SystemPage(id) {
   let { friends, systems, dataDocRef, ref } = getCurrUserData();
@@ -60,7 +65,7 @@ export default function SystemPage(id) {
   </button>
   ${
     navigator.canShare({ text: inviteLink })
-      ? html`<button class="flat" onclick="${shareInviteLink}">
+      ? html`<button class="flat" onclick="${shareInviteLink(inviteLink)}">
           <span class="material-symbols-sharp"> share </span>
         </button>`
       : ""
@@ -68,7 +73,7 @@ export default function SystemPage(id) {
   <button class="flat" onclick="${showNewInviteLinkModal}">
     <span class="material-symbols-sharp"> refresh </span>
   </buttlion>
-  <button class="flat" onclick="${deleteInviteLink}">
+  <button class="flat" onclick="${deleteInviteLinkFrom(system.ref)}">
     <span class="material-symbols-sharp"> delete </span>
   </button>
 </div>
@@ -130,7 +135,10 @@ export default function SystemPage(id) {
           Reusable codes can be used by as many people as have access to the
           link, until the link is deleted or changed.
         </aside>
-        <button class="primary" onclick="${createNewInviteLink}">
+        <button
+          class="primary"
+          onclick="${() => createNewInviteLinkAt(system.ref)}"
+        >
           Create code
         </button>`,
     })}
@@ -141,38 +149,6 @@ export default function SystemPage(id) {
           Yes, delete ${Spinner()}
         </button>`,
     })}`;
-  // Invite Link
-  async function createNewInviteLink() {
-    const rand = Array.from(self.crypto.getRandomValues(new Uint32Array(2)));
-
-    const code = rand.reduce((code, cryptoNumber) => {
-      return code + parseInt(cryptoNumber).toString(26);
-    }, "");
-    const codeMultiUse =
-      document.querySelector("#new-invite-link :checked").value !==
-      "Single Use";
-    update(system.ref, {
-      code,
-      codeMultiUse,
-    });
-    afterUpdate(() => renderPage(window.location.pathname));
-  }
-
-  function copyInviteLinkToClipboard(e) {
-    navigator.clipboard.writeText(inviteLink);
-  }
-
-  async function shareInviteLink() {
-    await navigator.share({ text: inviteLink });
-  }
-
-  async function deleteInviteLink() {
-    await update(system.ref, {
-      code: "",
-      codeMultiUse: false,
-    });
-    renderPage(window.location.pathname);
-  }
 
   // Modals
   function showChangeIconModal() {
