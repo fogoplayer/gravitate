@@ -5,7 +5,7 @@ import {
   usernameSearch,
 } from "../services/firebase/db.mjs";
 import { getIcon } from "../services/firebase/storage.mjs";
-import { append, jsx, renderPage } from "../services/render.mjs";
+import { append, html, renderPage } from "../services/render.mjs";
 import Input from "./Input.mjs";
 import Modal from "./Modal.mjs";
 import { FriendSelectTemplate } from "./templates/FriendSelectTemplate.mjs";
@@ -15,27 +15,28 @@ export default function AddFriend() {
   let newFriends = new Set();
 
   const modal = Modal({
-    contents: jsx`<form>
-  <h1>Add a Friend</h1>
-  <div class="inline-inputs">
-    ${Input({
-      label: "Username",
-      oninput: (e) => (searchValue = e.target.value),
-    })}
-    <button class="flat inline" onclick="${searchForFriends}">
-      <span class="material-symbols-sharp">search</span>
-    </button>
-  </div>
-</form>
-<aside>
-  You need to know a user's precise username to add them as a friend. If you
-  don't know their username, ask them to send you a share code.
-</aside>
-<form id="friend-user-list-container" class="user-list empty">
-  <ul id="friend-user-list" class="user-list"></ul>
-  <button class="primary" id="add-friends" onclick=${addFriends}>Add friends</button>
-</form>
-`,
+    contents: html`<form>
+        <h1>Add a Friend</h1>
+        <div class="inline-inputs">
+          ${Input({
+            label: "Username",
+            oninput: (e) => (searchValue = e.target.value),
+          })}
+          <button class="flat inline" onclick="${searchForFriends}">
+            <span class="material-symbols-sharp">search</span>
+          </button>
+        </div>
+      </form>
+      <aside>
+        You need to know a user's precise username to add them as a friend. If
+        you don't know their username, ask them to send you a share code.
+      </aside>
+      <form id="friend-user-list-container" class="user-list empty">
+        <ul id="friend-user-list" class="user-list"></ul>
+        <button class="primary" id="add-friends" onclick=${addFriends}>
+          Add friends
+        </button>
+      </form>`,
     id: "add-friend",
   });
 

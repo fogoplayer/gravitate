@@ -8,7 +8,7 @@ import {
   update,
 } from "../services/firebase/db.mjs";
 import { getIcon } from "../services/firebase/storage.mjs";
-import { append, jsx, renderPage } from "../services/render.mjs";
+import { append, html, renderPage } from "../services/render.mjs";
 
 export default function Contacts(context) {
   setPageTitle("Contacts");
@@ -17,22 +17,21 @@ export default function Contacts(context) {
 }
 
 function ContactsPageContact(contacts, type) {
-  const html = jsx`<ul>
-  ${contacts.map(
-    (contact) => jsx`
-  <li>
-    <a href="/contacts/${type}/${contact.ref.id}">
-      <div class="contact-header-container">
-        ${getIcon(contact.icon)}
-        <span class="contact-name">${contact.name}</span>
-      </div>
-    </a>
-  </li>
-  `
-  )}
-</ul>
-`;
-  return html;
+  const el = html`<ul>
+    ${contacts.map(
+      (contact) => html`
+        <li>
+          <a href="/contacts/${type}/${contact.ref.id}">
+            <div class="contact-header-container">
+              ${getIcon(contact.icon)}
+              <span class="contact-name">${contact.name}</span>
+            </div>
+          </a>
+        </li>
+      `
+    )}
+  </ul>`;
+  return el;
 }
 
 async function showJoin(context) {
@@ -87,12 +86,18 @@ async function showJoin(context) {
 
     // Display confirmation
     const modal = Modal({
-      contents: jsx`<h2>You ${type === "systems" ? "joined" : "added"} <b>${
-        joining.name
-      }</b> ${type === "systems" ? "" : "as a friend"}</h2>
-<button class="primary" onclick=${(e) => {
-        e.target.closest("dialog").close();
-      }}>Ok</button>`,
+      contents: html`<h2>
+          You ${type === "systems" ? "joined" : "added"}
+          <b>${joining.name}</b> ${type === "systems" ? "" : "as a friend"}
+        </h2>
+        <button
+          class="primary"
+          onclick=${(e) => {
+            e.target.closest("dialog").close();
+          }}
+        >
+          Ok
+        </button>`,
       onclose: () => renderPage("/contacts"),
     });
     append(document.body, modal);
@@ -102,12 +107,18 @@ async function showJoin(context) {
 
     // Error message
     const modal = Modal({
-      contents: jsx`<h2>Unable to ${
-        type === "systems" ? "join system" : "add friend"
-      }. Please try again.</h2>
-  <button class="primary" onclick=${(e) => {
-    e.target.closest("dialog").close();
-  }}>Ok</button>`,
+      contents: html`<h2>
+          Unable to ${type === "systems" ? "join system" : "add friend"}. Please
+          try again.
+        </h2>
+        <button
+          class="primary"
+          onclick=${(e) => {
+            e.target.closest("dialog").close();
+          }}
+        >
+          Ok
+        </button>`,
       onclose: () => renderPage("/contacts"),
     });
     append(document.body, modal);

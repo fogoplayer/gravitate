@@ -7,7 +7,7 @@ import {
   usernameSearch,
 } from "../../services/firebase/db.mjs";
 import { uploadPFP } from "../../services/firebase/storage.mjs";
-import { jsx, renderPage } from "../../services/render.mjs";
+import { html, renderPage } from "../../services/render.mjs";
 import { setPageTitle } from "../components/AppShell.mjs";
 import Modal from "../components/Modal.mjs";
 import SegmentControl from "../components/SegmentControl.mjs";
@@ -20,7 +20,7 @@ export default function Settings() {
   const inviteLink =
     window.location.origin + "/contacts/invite/users/" + ref.id + "/" + code;
 
-  return jsx`<div class="contact-page">
+  return html`<div class="contact-page">
     <form onsubmit="${onSubmit}">
       <label class="image-picker">
         <img class="pfp" src="${icon}" alt="Choose a profile picture" />
@@ -54,10 +54,11 @@ export default function Settings() {
     </form>
     ${
       !code
-        ? jsx`<button class="flat" onclick="${showNewInviteLinkModal}">
-      <span class="material-symbols-sharp"> link </span>Generate invite link</button
-    >`
-        : jsx`
+        ? html`<button class="flat" onclick="${showNewInviteLinkModal}">
+            <span class="material-symbols-sharp"> link </span>Generate invite
+            link
+          </button>`
+        : html`
     <div class="join-link">
       <span>Invite link:</span>
       <button class="link-text" onclick="${copyInviteLinkToClipboard}">${inviteLink}</button>
@@ -66,9 +67,9 @@ export default function Settings() {
       </button>
       ${
         navigator.canShare({ text: inviteLink })
-          ? jsx`<button class="flat" onclick="${shareInviteLink}">
-        <span class="material-symbols-sharp"> share </span>
-      </button>`
+          ? html`<button class="flat" onclick="${shareInviteLink}">
+              <span class="material-symbols-sharp"> share </span>
+            </button>`
           : ""
       }
       <button class="flat" onclick="${showNewInviteLinkModal}">
@@ -82,9 +83,10 @@ export default function Settings() {
    <a href="/onboarding/tour" class="button flat inline">Retake tour</a> 
    ${Modal({
      id: "new-invite-link",
-     contents: jsx`<aside>Note: All friend codes are multi-use!</aside>
-    <button class="primary" onclick="${createNewInviteLink}">Create code</button>
-    `,
+     contents: html`<aside>Note: All friend codes are multi-use!</aside>
+       <button class="primary" onclick="${createNewInviteLink}">
+         Create code
+       </button>`,
    })} 
 </div class="ignore settings"> 
 `;

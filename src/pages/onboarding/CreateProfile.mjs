@@ -8,41 +8,44 @@ import {
   usernameSearch,
 } from "../../services/firebase/db.mjs";
 import { uploadPFP } from "../../services/firebase/storage.mjs";
-import { jsx, renderPage } from "../../services/render.mjs";
+import { html, renderPage } from "../../services/render.mjs";
 
 export default function CreateProfile() {
   setPageTitle("Create Profile");
 
-  return jsx`<main class="main-bubble modal">
-  <form onsubmit="${onSubmit}">
-    <h1>Create your profile</h1>
-    <label class="image-picker">
-      <img class="pfp" src="${personImage()}" alt="Choose a profile picture" />
+  return html`<main class="main-bubble modal">
+    <form onsubmit="${onSubmit}">
+      <h1>Create your profile</h1>
+      <label class="image-picker">
+        <img
+          class="pfp"
+          src="${personImage()}"
+          alt="Choose a profile picture"
+        />
+        ${Input({
+          label: "Profile Picture",
+          id: "profile picture",
+          type: "file",
+          oninput: (e) => {
+            if (!e.target.files[0]) {
+              return;
+            }
+            uploadPFP(e.target.files[0]);
+            afterUpdate(() => {
+              document.querySelector(".image-picker img").src =
+                getCurrUserData().icon;
+            });
+          },
+        })}
+      </label>
       ${Input({
-        label: "Profile Picture",
-        id: "profile picture",
-        type: "file",
-        oninput: (e) => {
-          if (!e.target.files[0]) {
-            return;
-          }
-          uploadPFP(e.target.files[0]);
-          afterUpdate(() => {
-            document.querySelector(".image-picker img").src =
-              getCurrUserData().icon;
-          });
-        },
+        label: "Username",
+        id: "username",
+        errorMessage: "That username is taken. Please try again.",
       })}
-    </label>
-    ${Input({
-      label: "Username",
-      id: "username",
-      errorMessage: "That username is taken. Please try again.",
-    })}
-    <button class="primary">Save</button>
-  </form>
-</main>
-`;
+      <button class="primary">Save</button>
+    </form>
+  </main>`;
 }
 
 async function onSubmit(e) {

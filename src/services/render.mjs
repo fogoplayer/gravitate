@@ -1,5 +1,5 @@
 import htm from "../lib/htm.mjs";
-export const jsx = htm.bind(render);
+export const html = htm.bind(render);
 
 export function render(type, props, ...children) {
   this[0] = 3;
