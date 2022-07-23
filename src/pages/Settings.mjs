@@ -23,8 +23,7 @@ export default function Settings() {
   setPageTitle("Settings");
 
   let { icon, name, code, codeMultiUse, ref, codeDocRef } = getCurrUserData();
-  const inviteLink =
-    window.location.origin + "/contacts/invite/users/" + ref.id + "/" + code;
+  const inviteLink = window.location.origin + "/i/u/" + ref.id + "/" + code;
 
   return html`<div class="contact-page">
     <form onsubmit="${onSubmit}">
@@ -75,7 +74,7 @@ export default function Settings() {
             <button class="flat">
               <span
                 class="material-symbols-sharp"
-                onclick="${copyInviteLinkToClipboard}"
+                onclick="${() => copyInviteLinkToClipboard(inviteLink)}"
               >
                 content_copy
               </span>

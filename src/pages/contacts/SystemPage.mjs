@@ -36,11 +36,7 @@ export default function SystemPage(id) {
 
   setPageTitle("Contacts", system.name);
   const inviteLink =
-    window.location.origin +
-    "/contacts/invite/systems/" +
-    system.ref.id +
-    "/" +
-    system.code;
+    window.location.origin + "/i/s/" + system.ref.id + "/" + system.code;
 
   return html`<button class="pfp noto" onclick="${showChangeIconModal}">
       ${system.icon}
