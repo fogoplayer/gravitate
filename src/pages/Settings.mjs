@@ -63,7 +63,7 @@ export default function Settings() {
             <span class="material-symbols-sharp"> link </span>Generate invite
             link
           </button>`
-        : html` <div class="join-link">
+        : html`<div class="join-link">
             <span>Invite link:</span>
             <button
               class="link-text"
@@ -71,7 +71,7 @@ export default function Settings() {
             >
               ${inviteLink}
             </button>
-            <button class="flat">
+            <button id="copy-link" class="flat">
               <span
                 class="material-symbols-sharp"
                 onclick="${() => copyInviteLinkToClipboard(inviteLink)}"
@@ -87,12 +87,17 @@ export default function Settings() {
                   <span class="material-symbols-sharp"> share </span>
                 </button>`
               : ""}
-            <button class="flat" onclick="${showNewInviteLinkModal}">
+            <button
+              id="redo-link"
+              class="flat"
+              onclick="${showNewInviteLinkModal}"
+            >
               <span class="material-symbols-sharp"> refresh </span>
             </button>
             <button
+              id="delete-link"
               class="flat"
-              onclick="${() => deleteInviteLinkFrom(codeDocRef)}"
+              onclick="${() => deleteInviteLinkFrom(system.ref)}"
             >
               <span class="material-symbols-sharp"> delete </span>
             </button>

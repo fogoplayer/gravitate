@@ -53,8 +53,13 @@ function systemsTest() {
       await createLink.click();
       const closePopup = await querySelectorWait("dialog[open] .primary");
       await closePopup.click();
-      let linkText = await querySelectorWait(".link-text");
-      expect(linkText.innerText).toBeTruthy();
+      await querySelectorWait(".link-text");
+    });
+
+    test("Invite link can be deleted", async () => {
+      let deleteLink = await querySelectorWait("#delete-link");
+      await deleteLink.click();
+      await querySelectorWait("#create-link");
     });
 
     // TODO wait to test until add codes

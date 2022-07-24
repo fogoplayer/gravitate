@@ -54,32 +54,46 @@ export default function SystemPage(id) {
           <span class="material-symbols-sharp"> link </span>Generate invite link
         </button>`
       : html`
-<div class="join-link">
-  <span>Invite link:</span>
-  <button class="link-text" onclick="${() =>
-    copyInviteLinkToClipboard(inviteLink)}">${inviteLink}</button>
-  <button class="flat">
-    <span class="material-symbols-sharp" onclick="${() =>
-      copyInviteLinkToClipboard(inviteLink)}"> content_copy </span>
-  </button>
-  ${
-    navigator.canShare && navigator.canShare({ text: inviteLink })
-      ? html`<button
-          class="flat"
-          onclick="${() => shareInviteLink(inviteLink)}"
-        >
-          <span class="material-symbols-sharp"> share </span>
-        </button>`
-      : ""
-  }
-  <button class="flat" onclick="${showNewInviteLinkModal}">
-    <span class="material-symbols-sharp"> refresh </span>
-  </buttlion>
-  <button class="flat" onclick="${() => deleteInviteLinkFrom(system.ref)}">
-    <span class="material-symbols-sharp"> delete </span>
-  </button>
-</div>
-`}
+          <div class="join-link">
+            <span>Invite link:</span>
+            <button
+              class="link-text"
+              onclick="${() => copyInviteLinkToClipboard(inviteLink)}"
+            >
+              ${inviteLink}
+            </button>
+            <button id="copy-link" class="flat">
+              <span
+                class="material-symbols-sharp"
+                onclick="${() => copyInviteLinkToClipboard(inviteLink)}"
+              >
+                content_copy
+              </span>
+            </button>
+            ${navigator.canShare && navigator.canShare({ text: inviteLink })
+              ? html`<button
+                  class="flat"
+                  onclick="${() => shareInviteLink(inviteLink)}"
+                >
+                  <span class="material-symbols-sharp"> share </span>
+                </button>`
+              : ""}
+            <button
+              id="redo-link"
+              class="flat"
+              onclick="${showNewInviteLinkModal}"
+            >
+              <span class="material-symbols-sharp"> refresh </span>
+            </button>
+            <button
+              id="delete-link"
+              class="flat"
+              onclick="${() => deleteInviteLinkFrom(system.ref)}"
+            >
+              <span class="material-symbols-sharp"> delete </span>
+            </button>
+          </div>
+        `}
     <ul class="contacts-list contacts-list">
       <li class="members-wrapper">
         <h2>
@@ -138,6 +152,7 @@ export default function SystemPage(id) {
           link, until the link is deleted or changed.
         </aside>
         <button
+          id="submit-code"
           class="primary"
           onclick="${() => createNewInviteLinkAt(system.ref)}"
         >
