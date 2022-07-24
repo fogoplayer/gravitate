@@ -22,7 +22,6 @@ export default function ViewAttractions() {
 
   return html`<div class="ignore view-attractions">
     <div id="map">Loading map...</div>
-    <script></script>
     <ul class="contacts-list contacts-list">
       <li class="attractions-wrapper">
         <h2>

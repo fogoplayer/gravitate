@@ -21,28 +21,10 @@ export default function CreateAttraction() {
   };
 
   let timer;
+  loadMap();
 
   return html`<div class="ignore">
     <div id="map">Loading map...</div>
-    <script>
-      try {
-        mapboxgl.accessToken = "${MAPBOX_KEY}";
-        navigator.geolocation.getCurrentPosition((position) => {
-          position = position.coords;
-          const map = new mapboxgl.Map({
-            container: "map",
-            style: "mapbox://styles/mapbox/streets-v11",
-            center: [position.longitude, position.latitude],
-            zoom: 13,
-            interactive: false,
-          });
-          const marker = new mapboxgl.Marker()
-            .setLngLat([position.longitude, position.latitude])
-            .addTo(map);
-          globalSetMap(map);
-        });
-      } catch {}
-    </script>
     <form onsubmit=${onSubmit}>
       ${Input({
         label: "Event Name",
@@ -169,5 +151,30 @@ export default function CreateAttraction() {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  async function loadMap() {
+    const interval = setInterval(() => {
+      if (document.querySelector("#map")) {
+        try {
+          mapboxgl.accessToken = MAPBOX_KEY;
+          navigator.geolocation.getCurrentPosition((position) => {
+            position = position.coords;
+            const map = new mapboxgl.Map({
+              container: "map",
+              style: "mapbox://styles/mapbox/streets-v11",
+              center: [position.longitude, position.latitude],
+              zoom: 13,
+              interactive: false,
+            });
+            const marker = new mapboxgl.Marker(getIcon(getCurrUserData().icon))
+              .setLngLat([position.longitude, position.latitude])
+              .addTo(map);
+            globalSetMap(map);
+          });
+        } catch {}
+        clearInterval(interval);
+      }
+    }, 10);
   }
 }
