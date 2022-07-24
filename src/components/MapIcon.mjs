@@ -3,7 +3,12 @@ import { html } from "../services/render.mjs";
 export default function MapIcon(event) {
   console.log(event.expiration.toLocaleDateString().split(",")[0]);
   return html`
-    <div class="marker">
+    <div
+      class="marker"
+      onclick=${() => {
+        document.querySelector("#" + event.ref.id + "-modal").showModal();
+      }}
+    >
       <img
         class="marker-icon pfp"
         src=${event.organizer.icon}
