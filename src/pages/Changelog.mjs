@@ -6,10 +6,33 @@ export default function Changelog() {
   return html`<div class="changelog">
     <section>
       <h2>Alpha Release</h2>
-      <h3>1.5</h3>
-      The settings page lets you generate a link for people to add you as a
-      friend Sysytem pages let you generate a link for people to join the system
-      Switch attraction details to a popup for a less jarring transition
+      <h3>1.6.0</h3>
+      <ul>
+        <li>Use abbreviated invite links for easier sharing</li>
+        <li>Improved loading times by nearly 100%</li>
+        <li>
+          DevEx improvements:
+          <ul>
+            <li>
+              Added compatibility with tools for syntax highlighting lit-element
+            </li>
+            <li>Bug fixes for testing suite</li>
+          </ul>
+        </li>
+      </ul>
+      <h3>1.5.0</h3>
+      <ul>
+        <li>
+          The settings page lets you generate a link for people to add you as a
+          friend
+        </li>
+        <li>
+          System pages let you generate a link for people to join the system
+        </li>
+        <li>
+          Switch attraction details to a popup for a less jarring transition
+        </li>
+      </ul>
       <h3>1.4.2</h3>
       <ul>
         <li>Self-host more fonts and libraries</li>
