@@ -6,6 +6,10 @@ export default function Changelog() {
   return html`<div class="changelog">
     <section>
       <h2>Alpha Release</h2>
+      <h3>1.6.1</h3>
+      <ul>
+        <li>Self-host all remaining fonts</li>
+      </ul>
       <h3>1.6.0</h3>
       <ul>
         <li>Use abbreviated invite links for easier sharing</li>

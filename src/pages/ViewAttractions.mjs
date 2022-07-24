@@ -1,15 +1,10 @@
-import SelectInvitees from "../components/SelectInvitees.mjs";
-import Input from "../components/Input.mjs";
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { html } from "../services/render.mjs";
-import { getIcon } from "../services/firebase/storage.mjs";
-import {
-  AttractionDetails,
-  AttractionInfo,
-} from "../components/AttractionDetails.mjs";
+import { mapboxAPI } from "../services/mapbox.js";
 import { setPageTitle } from "../components/AppShell.mjs";
 import { AttractionsTemplate } from "../components/templates/AttractionsTemplate.mjs";
+import MapIcon from "../components/MapIcon.mjs";
 
 export default function ViewAttractions() {
   setPageTitle("Attractions");
@@ -23,25 +18,11 @@ export default function ViewAttractions() {
     else friendInvites.push(invite);
   });
 
+  loadMap();
+
   return html`<div class="ignore view-attractions">
     <div id="map">Loading map...</div>
-    <script>
-      try {
-        mapboxgl.accessToken = "${MAPBOX_KEY}";
-        navigator.geolocation.getCurrentPosition((position) => {
-          position = position.coords;
-          const map = new mapboxgl.Map({
-            container: "map",
-            style: "mapbox://styles/mapbox/streets-v11",
-            center: [position.longitude, position.latitude],
-            zoom: 13,
-          });
-          const marker = new mapboxgl.Marker()
-            .setLngLat([position.longitude, position.latitude])
-            .addTo(map);
-        });
-      } catch {}
-    </script>
+    <script></script>
     <ul class="contacts-list contacts-list">
       <li class="attractions-wrapper">
         <h2>
@@ -78,4 +59,36 @@ export default function ViewAttractions() {
       </li>
     </ul>
   </div>`;
+
+  async function loadMap() {
+    const interval = setInterval(() => {
+      if (document.querySelector("#map")) {
+        try {
+          mapboxgl.accessToken = MAPBOX_KEY;
+          navigator.geolocation.getCurrentPosition((position) => {
+            position = position.coords;
+            const map = new mapboxgl.Map({
+              container: "map",
+              style: "mapbox://styles/mapbox/streets-v11",
+              center: [position.longitude, position.latitude],
+              zoom: 13,
+            });
+
+            invitations.forEach((invitation) =>
+              mapboxAPI(invitation.location).then((location) => {
+                console.log(location[0].geometry.coordinates);
+                new mapboxgl.Marker(MapIcon(invitation))
+                  .setLngLat(location[0].geometry.coordinates)
+                  .addTo(map);
+              })
+            );
+            const marker = new mapboxgl.Marker()
+              .setLngLat([position.longitude, position.latitude])
+              .addTo(map);
+          });
+        } catch {}
+        clearInterval(interval);
+      }
+    }, 10);
+  }
 }
