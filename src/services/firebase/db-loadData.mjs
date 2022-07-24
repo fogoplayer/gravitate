@@ -13,13 +13,25 @@ const DOCUMENT_REFERENCE = "wc";
 
 export async function parseGroups(groups) {
   let newGroups = new Set();
+  let promises = [];
   for (let group of groups) {
     try {
       if (group.constructor.name == DOCUMENT_REFERENCE) {
-        group = await getDocData(group);
+        let promise = getDocData(group).then((group) =>
+          parseIndividuals(group.members).then((members) => {
+            group.members = members;
+            newGroups.add(group);
+          })
+        );
+
+        promises.push(promise);
+      } else {
+        let promise = parseIndividuals(group.members).then((members) => {
+          group.members = members;
+          newGroups.add(group);
+        });
+        promises.push(promise);
       }
-      group.members = await parseIndividuals(group.members);
-      newGroups.add(group);
     } catch (error) {
       if (error.code === "permission-denied" && group.path.match(/systems/)) {
         console.log(group);
@@ -30,17 +42,23 @@ export async function parseGroups(groups) {
       }
     }
   }
+  await Promise.all(promises);
   return Array.from(newGroups);
 }
 
 export async function parseIndividuals(group) {
   for (let member in group) {
-    group[member] = await getDocData(group[member]);
+    group[member] = getDocData(group[member]);
   }
-  return group;
+  return await Promise.all(group);
 }
 
-export async function parseEvents(events) {
+export async function parseEvents(collection) {
+  watch(collection);
+
+  let events = await getDocsData(collection);
+  let promises = [];
+
   for (let event in events) {
     watch(events[event].ref);
 
@@ -54,21 +72,29 @@ export async function parseEvents(events) {
 
     // Guest list
     if (events[event].guestList) {
-      events[event].guestList = await parseIndividuals(events[event].guestList);
+      promises.push(
+        parseIndividuals(events[event].guestList).then(
+          (guestList) => (events[event].guestList = guestList)
+        )
+      );
     }
 
     // Reactions
     watch(events[event].ref.path + "/reactions");
-    const reactions = await getDocsData(events[event].ref.path + "/reactions");
-    events[event].reactions = reactions.reduce((object, reaction) => {
-      if (object[reaction.reaction]) {
-        object[reaction.reaction].push(reaction);
-      } else {
-        object[reaction.reaction] = [reaction];
-      }
-      return object;
-    }, {});
+    promises.push(
+      getDocsData(events[event].ref.path + "/reactions").then(
+        (reactions) =>
+          (events[event].reactions = reactions.reduce((object, reaction) => {
+            if (object[reaction.reaction]) {
+              object[reaction.reaction].push(reaction);
+            } else {
+              object[reaction.reaction] = [reaction];
+            }
+            return object;
+          }, {}))
+      )
+    );
   }
-
+  await Promise.all(promises);
   return events;
 }

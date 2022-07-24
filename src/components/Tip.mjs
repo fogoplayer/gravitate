@@ -1,4 +1,4 @@
-import { jsx, renderPage } from "../services/render.mjs";
+import { html, renderPage } from "../services/render.mjs";
 
 export default function Tip({
   target,
@@ -26,37 +26,33 @@ export default function Tip({
     direction = TARGET_CENTER_H < VW / 2 + 100 ? "left" : "right";
   }
 
-  let modal = jsx`<dialog class="tip modal ${target ? "targeted" : ""} ${
-    direction ? direction : ""
-  }">
-  <section>
-  ${
-    prev
-      ? jsx`<button class="flat" onclick=${prev}>
-    <span>
-      <span class="material-symbols-sharp"> arrow_back</span>
-      ${prevLabel}
-    </span>
-  </button>`
-      : ""
-  }
-  <img class="float" src="../../images/cosmo.svg" alt="Cosmo" />
-  <main>
-    ${contents}
-  </main>
-  <button class="flat" ...${
-    next
-      ? { onclick: next }
-      : { onclick: () => renderPage("/view-attractions") }
-  }>
-    <span>
-      <span class="material-symbols-sharp"> arrow_forward</span> 
-      ${nextLabel} 
-    </span>
-  </button>
-  </section>
-</dialog>
-`;
+  let modal = html`<dialog
+    class="tip modal ${target ? "targeted" : ""} ${direction ? direction : ""}"
+  >
+    <section>
+      ${prev
+        ? html`<button class="flat" onclick=${prev}>
+            <span>
+              <span class="material-symbols-sharp"> arrow_back</span>
+              ${prevLabel}
+            </span>
+          </button>`
+        : ""}
+      <img class="float" src="../../images/cosmo.svg" alt="Cosmo" />
+      <main>${contents}</main>
+      <button
+        class="flat"
+        ...${next
+          ? { onclick: next }
+          : { onclick: () => renderPage("/view-attractions") }}
+      >
+        <span>
+          <span class="material-symbols-sharp"> arrow_forward</span>
+          ${nextLabel}
+        </span>
+      </button>
+    </section>
+  </dialog>`;
   positionToTarget();
   modal.addEventListener("cancel", (e) => {
     e.preventDefault();

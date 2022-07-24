@@ -2,13 +2,13 @@ import Spinner from "../components/Spinner.mjs";
 import Input from "../components/Input.mjs";
 import { authStateChanged } from "../services/firebase/auth.mjs";
 import { createAccount } from "../services/firebase/auth.mjs";
-import { jsx, renderPage } from "../services/render.mjs";
+import { html, renderPage } from "../services/render.mjs";
 import { setPageTitle } from "../components/AppShell.mjs";
 
 export default function SignUp() {
   setPageTitle("Sign Up");
 
-  return jsx`<main class="main-bubble modal login">
+  return html`<main class="main-bubble modal login">
   <h1>Gravitate</h1>
   <form onsubmit=${submit}>
     ${Input({ label: "Email", id: "email", required: true })}

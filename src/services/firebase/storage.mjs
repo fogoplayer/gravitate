@@ -4,7 +4,7 @@ import {
   ref,
   uploadBytes,
 } from "../../lib/firebase/9.7.0/firebase-storage.js";
-import { jsx } from "../render.mjs";
+import { html } from "../render.mjs";
 import { app } from "./app.mjs";
 import { getCurrUserData, update } from "./db.mjs";
 
@@ -27,10 +27,10 @@ export function getIcon(icon) {
   const HTTP = "http";
 
   if (icon?.substring(0, HTTP.length) === HTTP) {
-    return jsx`<img class="contact-icon pfp" src="${icon}" alt="User icon" />`;
+    return html`<img class="contact-icon pfp" src="${icon}" alt="User icon" />`;
   } else if (icon?.length) {
-    return jsx`<span class="contact-icon noto">${icon}</span>`;
+    return html`<span class="contact-icon noto">${icon}</span>`;
   } else {
-    return jsx`<span class="contact-icon">🟣</span>`;
+    return html`<span class="contact-icon">🟣</span>`;
   }
 }

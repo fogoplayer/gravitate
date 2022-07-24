@@ -7,7 +7,7 @@ import {
   getCurrUserData,
   loadUserData,
 } from "../../services/firebase/db.mjs";
-import { append, jsx, renderPage } from "../../services/render.mjs";
+import { append, html, renderPage } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
 import FriendPage from "../contacts/FriendPage.mjs";
 import OrbitPage from "../contacts/OrbitPage.mjs";
@@ -133,8 +133,13 @@ function closeAll() {
 function contactsOverview() {
   showAppPage(Contacts, { pathname: "/contacts" });
   return Tip({
-    contents: jsx`<p>Gravitate exists to help you organize spur-of-the-moment events with your friends and family members.</p>
-<p>Let's start with how those friends and family members are organized!</p>`,
+    contents: html`<p>
+        Gravitate exists to help you organize spur-of-the-moment events with
+        your friends and family members.
+      </p>
+      <p>
+        Let's start with how those friends and family members are organized!
+      </p>`,
     next: nextTip,
     nextLabel: "Orbits",
   });
@@ -143,27 +148,30 @@ function contactsOverview() {
 function orbits() {
   showAppPage(Contacts, { pathname: "/contacts" });
   return Tip({
-    contents: jsx`<h2>Orbits</h2>
-<p>
-  Orbits function like a mass text, inviting multiple people as if they were all
-  individuals.
-</p>
-<p>
-  It's for groups of people who don't know each other, but share two things:
-</p>
-<ol>
-  <li>A common interest</li>
-  <li><b>You!</b></li>
-</ol>
-<p>That's why we call it an "orbit": they're all "orbiting" around you.</p>
-<p>For example, you might want to have an orbit for friends who:</p>
-<ul>
-  <li>are Planet Fitness members</li>
-  <li>share your major</li>
-  <li>also like a local band</li>
-  <li>are karaoke divas</li>
-</ul>
-<p>Click on an orbit to view more details</p>`,
+    contents: html`<h2>Orbits</h2>
+      <p>
+        Orbits function like a mass text, inviting multiple people as if they
+        were all individuals.
+      </p>
+      <p>
+        It's for groups of people who don't know each other, but share two
+        things:
+      </p>
+      <ol>
+        <li>A common interest</li>
+        <li><b>You!</b></li>
+      </ol>
+      <p>
+        That's why we call it an "orbit": they're all "orbiting" around you.
+      </p>
+      <p>For example, you might want to have an orbit for friends who:</p>
+      <ul>
+        <li>are Planet Fitness members</li>
+        <li>share your major</li>
+        <li>also like a local band</li>
+        <li>are karaoke divas</li>
+      </ul>
+      <p>Click on an orbit to view more details</p>`,
     target: document.querySelector(".orbits-wrapper .contact-icon"),
     prev: prevTip,
     prevLabel: "Overview",
@@ -173,13 +181,16 @@ function orbits() {
 }
 
 function orbitDetails() {
-  showAppPage(() => jsx`<div class="contact-page">${OrbitPage(0)}</div>`, {
+  showAppPage(() => html`<div class="contact-page">${OrbitPage(0)}</div>`, {
     pathname: "/contacts/orbits/0",
   });
   return Tip({
-    contents: jsx`<h2>Orbit Details Page</h2>
-<p>The orbit details page lets you see the name, icon, and members of the orbit.</p> 
-<p>Click on the orbit name or icon to change it.</p>`,
+    contents: html`<h2>Orbit Details Page</h2>
+      <p>
+        The orbit details page lets you see the name, icon, and members of the
+        orbit.
+      </p>
+      <p>Click on the orbit name or icon to change it.</p>`,
     prev: prevTip,
     prevLabel: "Orbits",
     next: nextTip,
@@ -188,12 +199,15 @@ function orbitDetails() {
 }
 
 function orbitMembers() {
-  showAppPage(() => jsx`<div class="contact-page">${OrbitPage(0)}</div>`, {
+  showAppPage(() => html`<div class="contact-page">${OrbitPage(0)}</div>`, {
     pathname: "/contacts/orbits/0",
   });
   return Tip({
-    contents: jsx`<h2>Orbit Members</h2>
-<p>Use the + to add friends to the orbit or the - to remove them. Click on a friend to be taken to their details page. (I'll show you those later)</p>`,
+    contents: html`<h2>Orbit Members</h2>
+      <p>
+        Use the + to add friends to the orbit or the - to remove them. Click on
+        a friend to be taken to their details page. (I'll show you those later)
+      </p>`,
     target: document.querySelector(".contact-header-container button.flat"),
     prev: prevTip,
     prevLabel: "Orbit Details Page",
@@ -205,35 +219,36 @@ function orbitMembers() {
 function systems() {
   showAppPage(Contacts, { pathname: "/contacts" });
   return Tip({
-    contents: jsx`<h2>Systems</h2>
-<p>
-  Systems function like a group text: it's a bunch of people who can all send
-  invites to each other.
-</p>
-<p>
-  We call it a "system" because it's like a solar system, with everyone
-  revolving around a shared interest.
-</p>
-<p>For example, you might want to have an system for:</p>
-<ul>
-  <li>a book group that meets sporadically</li>
-  <li>an intramural ultimate frisbee team</li>
-  <li>extended family members who live near each other</li>
-</ul>
-<p>To join a system, a system member will need to send you an invite link.</p>
-<aside>
-  Not sure about the difference between orbits and systems? Learn more
-  <a
-    onclick="${() => {
-      closeAll();
-      const el = orbitSystemExamples();
-      append(document.body, el);
-      el.showModal();
-    }}"
-    ><u>here</u></a
-  >
-</aside>
-`,
+    contents: html`<h2>Systems</h2>
+      <p>
+        Systems function like a group text: it's a bunch of people who can all
+        send invites to each other.
+      </p>
+      <p>
+        We call it a "system" because it's like a solar system, with everyone
+        revolving around a shared interest.
+      </p>
+      <p>For example, you might want to have an system for:</p>
+      <ul>
+        <li>a book group that meets sporadically</li>
+        <li>an intramural ultimate frisbee team</li>
+        <li>extended family members who live near each other</li>
+      </ul>
+      <p>
+        To join a system, a system member will need to send you an invite link.
+      </p>
+      <aside>
+        Not sure about the difference between orbits and systems? Learn more
+        <a
+          onclick="${() => {
+            closeAll();
+            const el = orbitSystemExamples();
+            append(document.body, el);
+            el.showModal();
+          }}"
+          ><u>here</u></a
+        >
+      </aside>`,
     target: document.querySelector(".systems-wrapper .header-icon"),
     prev: prevTip,
     prevLabel: "Orbit Members",
@@ -244,30 +259,29 @@ function systems() {
 
 function orbitSystemExamples() {
   return Tip({
-    contents: jsx`<h2>Orbits vs Systems</h2>
-<table>
-  <tr>
-    <th></th>
-    <th>Orbit</th>
-    <th>System</th>
-  </tr>
-  <tr>
-    <th>Group invitations</th>
-    <td>Members all recieve an invitation</td>
-    <td>Members all recieve an invitation</td>
-  </tr>
-  <tr>
-    <th>Invitation appearance</th>
-    <td>An individual invitation from a friend</td>
-    <td>A group invitation to the entire system</td>
-  </tr>
-  <tr>
-    <th>Attraction Creation</th>
-    <td>Only the orbit creator can create an attraction</td>
-    <td>Any member can create an attraction</td>
-  </tr>
-</table>
-`,
+    contents: html`<h2>Orbits vs Systems</h2>
+      <table>
+        <tr>
+          <th></th>
+          <th>Orbit</th>
+          <th>System</th>
+        </tr>
+        <tr>
+          <th>Group invitations</th>
+          <td>Members all recieve an invitation</td>
+          <td>Members all recieve an invitation</td>
+        </tr>
+        <tr>
+          <th>Invitation appearance</th>
+          <td>An individual invitation from a friend</td>
+          <td>A group invitation to the entire system</td>
+        </tr>
+        <tr>
+          <th>Attraction Creation</th>
+          <td>Only the orbit creator can create an attraction</td>
+          <td>Any member can create an attraction</td>
+        </tr>
+      </table>`,
     prev: () => showTourTip(currTip),
     prevLabel: "Ststems",
     next: nextTip,
@@ -276,13 +290,16 @@ function orbitSystemExamples() {
 }
 
 function systemDetails() {
-  showAppPage(() => jsx`<div class="contact-page">${SystemPage(0)}</div>`, {
+  showAppPage(() => html`<div class="contact-page">${SystemPage(0)}</div>`, {
     pathname: "/contacts/orbits/0",
   });
   return Tip({
-    contents: jsx`<h2>System Details Page</h2>
-<p>The system details page lets you see the name, icon, and members of the system.</p> 
-<p>Click on the system name or icon to change it.</p>`,
+    contents: html`<h2>System Details Page</h2>
+      <p>
+        The system details page lets you see the name, icon, and members of the
+        system.
+      </p>
+      <p>Click on the system name or icon to change it.</p>`,
     prev: prevTip,
     prevLabel: "Systems",
     next: nextTip,
@@ -291,17 +308,16 @@ function systemDetails() {
 }
 
 function systemMembers() {
-  showAppPage(() => jsx`<div class="contact-page">${SystemPage(0)}</div>`, {
+  showAppPage(() => html`<div class="contact-page">${SystemPage(0)}</div>`, {
     pathname: "/contacts/orbits/0",
   });
   return Tip({
-    contents: jsx`<h2>System Members</h2>
-<p>
-  The first button next to a system members' name let you add them as a friend,
-  if you're not friends already.
-</p>
-<p>The second button removes them from the system.</p>
-`,
+    contents: html`<h2>System Members</h2>
+      <p>
+        The first button next to a system members' name let you add them as a
+        friend, if you're not friends already.
+      </p>
+      <p>The second button removes them from the system.</p>`,
     target: document.querySelector(".contact-header-container button.flat"),
     prev: prevTip,
     prevLabel: "System Details",
@@ -313,12 +329,15 @@ function systemMembers() {
 function friends() {
   showAppPage(Contacts, { pathname: "/contacts" });
   return Tip({
-    contents: jsx`<h2>Friends</h2>
-<p>
-  Friends can send invitations to each other individually.
-</p>
-<p><b>You will only recieve invitations from people you have friended.</b></p>
-<p>To add someone as a friend, you will need to know their username or have them send you an add link.</p>`,
+    contents: html`<h2>Friends</h2>
+      <p>Friends can send invitations to each other individually.</p>
+      <p>
+        <b>You will only recieve invitations from people you have friended.</b>
+      </p>
+      <p>
+        To add someone as a friend, you will need to know their username or have
+        them send you an add link.
+      </p>`,
     target: document.querySelector(".friends-wrapper .contact-icon"),
     prev: prevTip,
     prevLabel: "Systems",
@@ -328,14 +347,21 @@ function friends() {
 }
 
 function friendDetails() {
-  showAppPage(() => jsx`<div class="contact-page">${FriendPage(0)}</div>`, {
+  showAppPage(() => html`<div class="contact-page">${FriendPage(0)}</div>`, {
     pathname: "/contacts/orbits/0",
   });
   return Tip({
-    contents: jsx`<h2>Friend Details Page</h2>
-<p>The friend details page lets you see the name and icon of your friend, any attractions they are hosting, and the orbits they are a member of and the systems you have both joined.</p> 
-<p>Click on their name to view it in full screen, then click again to close it.</p>
-<p>Click on an orbit or system to go to its details page.</p>`,
+    contents: html`<h2>Friend Details Page</h2>
+      <p>
+        The friend details page lets you see the name and icon of your friend,
+        any attractions they are hosting, and the orbits they are a member of
+        and the systems you have both joined.
+      </p>
+      <p>
+        Click on their name to view it in full screen, then click again to close
+        it.
+      </p>
+      <p>Click on an orbit or system to go to its details page.</p>`,
     target: document.querySelector(".systems-wrapper .header-icon"),
     prev: prevTip,
     prevLabel: "Friends",
@@ -347,12 +373,17 @@ function friendDetails() {
 function attractions() {
   showAppPage(CreateAttraction, { pathname: "/create-attraction" });
   let modal = Tip({
-    contents: jsx`<h2>Attractions</h2>
-<p>
-  This page is for creating an event, which we call an "Attraction." You get to it by clicking the plus in the bottom bar.
-</p>
-<p>After putting in a title, location, and end time for the attraction, you can send it to any combination of your orbits, attractions, and friends by clicking on their name.</p>
-<p>They'll recieve a notification with the attraction details.</p>`,
+    contents: html`<h2>Attractions</h2>
+      <p>
+        This page is for creating an event, which we call an "Attraction." You
+        get to it by clicking the plus in the bottom bar.
+      </p>
+      <p>
+        After putting in a title, location, and end time for the attraction, you
+        can send it to any combination of your orbits, attractions, and friends
+        by clicking on their name.
+      </p>
+      <p>They'll recieve a notification with the attraction details.</p>`,
     target: document.querySelector(".menu-button"),
     prev: prevTip,
     prevLabel: "Friends",
@@ -365,21 +396,21 @@ function attractions() {
 function invitations() {
   showAppPage(ViewAttractions, { pathname: "/view-attractions" });
   let modal = Tip({
-    contents: jsx`<h2>Invitations</h2>
-<p>This page allows you to view your invitations and attractions.</p>
-<p>
-  Clicking on an attraction or invitation lets you see additional details and
-  RSVP
-</p>
-<p>There are five responses you can send:</p>
-<ul>
-  ${Object.keys(reactions).map((reaction) => {
-    return jsx`<li><span class="noto">${
-      reactions[reaction]
-    }</span>: ${reaction.toLowerCase()}</li>`;
-  })}
-</ul>
-`,
+    contents: html`<h2>Invitations</h2>
+      <p>This page allows you to view your invitations and attractions.</p>
+      <p>
+        Clicking on an attraction or invitation lets you see additional details
+        and RSVP
+      </p>
+      <p>There are five responses you can send:</p>
+      <ul>
+        ${Object.keys(reactions).map((reaction) => {
+          return html`<li>
+            <span class="noto">${reactions[reaction]}</span>:
+            ${reaction.toLowerCase()}
+          </li>`;
+        })}
+      </ul>`,
     prev: prevTip,
     prevLabel: "Attractions",
     next: nextTip,
@@ -391,12 +422,14 @@ function invitations() {
 
 function navigation() {
   let modal = Tip({
-    contents: jsx`<h2>Navigation</h2>
-<p>Use the bar at the bottom of the screen to access the main pages of the app.</p>
-<p>
-  Click your profile picture for additional pages, such as settings.
-</p>
-`,
+    contents: html`<h2>Navigation</h2>
+      <p>
+        Use the bar at the bottom of the screen to access the main pages of the
+        app.
+      </p>
+      <p>
+        Click your profile picture for additional pages, such as settings.
+      </p>`,
     target: document.querySelector(".app-header #pfp"),
     prev: prevTip,
     prevLabel: "Invitations",
@@ -410,8 +443,11 @@ function navigation() {
 function refresh() {
   showRefreshPage();
   let modal = Tip({
-    contents: jsx`<h2>Refresh</h2>
-<p>When the refresh button appears, that means there are updates that aren't being displayed. Click on it to reload the page.</p>`,
+    contents: html`<h2>Refresh</h2>
+      <p>
+        When the refresh button appears, that means there are updates that
+        aren't being displayed. Click on it to reload the page.
+      </p>`,
     target: document.querySelector(".app-header #refresh-page"),
     prev: prevTip,
     prevLabel: "Navigation",

@@ -28,3 +28,45 @@ button.pfp {
   /* manipulation */
   /* misc */
 }
+
+.join-link {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  max-width: 100%;
+
+  font-family: var(--header-font-family);
+}
+
+.join-link .row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  font-family: var(--header-font-family);
+}
+
+.join-link .row * {
+  flex: 0 0 auto;
+}
+
+.join-link .link-text {
+  flex: 0 1 auto;
+
+  /* display: inline-block; */
+
+  min-width: 0;
+
+  /* typography */
+  font-family: var(--font-family);
+  text-transform: unset;
+  color: var(--disabled-color);
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

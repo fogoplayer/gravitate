@@ -1,4 +1,4 @@
-const { By } = require("selenium-webdriver");
+const { By, Key } = require("selenium-webdriver");
 const { querySelectorWait, driver, hardTimer } = require("./driver.mjs");
 
 let currTime;
@@ -26,10 +26,17 @@ function createAttractionTest() {
         "1600 Amphitheatre Parkway, Mountain View, CA 94043"
       );
       await expiration.sendKeys(
-        (new Date().getHours() % 12 < 1 ? 1 : new Date().getHours() % 12) +
-          ":" +
-          (new Date().getMinutes() + 2) +
-          (new Date().getHours() < 12 ? "AM" : "PM")
+        Key.DOWN,
+        Key.TAB,
+        Key.DOWN,
+        Key.TAB,
+        Key.DOWN
+        // (new Date().getHours() % 12 < 1 ? 1 : new Date().getHours() % 12) +
+        //   ":" +
+        //   (new Date().getMinutes().length > 1
+        //     ? ""
+        //     : "0" + new Date().getMinutes() + 2) +
+        //   (new Date().getHours() < 12 ? "AM" : "PM")
       );
       await system.click();
 

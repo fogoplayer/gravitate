@@ -38,31 +38,14 @@
   content: attr(data-value);
 }
 
-.attraction {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 0.5em;
-}
-
 .attraction-details {
-  display: none;
+  display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: flex-start;
   gap: 0.5em;
   overflow: hidden;
   transition: 0.25s max-height;
-}
-
-.attraction-details.transitioning {
-  display: flex;
-  max-height: 0;
-}
-
-.attraction-details.open {
-  display: flex;
-  max-height: 14em;
-  max-height: unset;
 }
 
 .attraction-details h4 {
@@ -83,7 +66,7 @@
   /* positioning */
   /* box-model */
   /* typography */
-  font-size: 2em;
+  font-size: min(2em, 6vw);
   color: var(--theme-secondary-color);
 
   /* manipulation */
@@ -143,5 +126,14 @@
 }
 
 .attraction-details table {
+  display: grid;
+  gap: 0.5em;
+  grid-template-columns: repeat(2, auto);
   width: fit-content;
+  vertical-align: top;
+}
+
+.attraction-details table tr {
+  display: contents;
+  display: subgrid;
 }

@@ -1,5 +1,5 @@
-import { jsx } from "../services/render.mjs";
+import { html } from "../services/render.mjs";
 
 export default function Spinner() {
-  return jsx`<div class="spinner"/>`;
+  return html`<div class="spinner" />`;
 }

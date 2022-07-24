@@ -1,6 +1,6 @@
 import "./lib/pwaupdate.js";
 
-import { append, jsx, renderPage } from "./services/render.mjs";
+import { append, html, renderPage } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 import ViewAttractions from "./pages/ViewAttractions.mjs";
@@ -16,16 +16,16 @@ import Onboarding from "./pages/onboarding/index.js";
 import Changelog from "./pages/Changelog.mjs";
 import Settings from "./pages/Settings.mjs";
 import ContactPage from "./pages/contacts/index.js";
+import { convertShortCode } from "./services/invite-codes.mjs";
 
 // immediately show loading spinner
 append(
   document.body,
-  jsx`<div class="login-spinner">
-  <h1>Gravitate</h1>
-  ${Spinner()}
-  <div>Checking login status...</div>
-</div>
-`
+  html`<div class="login-spinner">
+    <h1>Gravitate</h1>
+    ${Spinner()}
+    <div>Checking login status...</div>
+  </div>`
 );
 
 authStateChanged(async (user) => {
@@ -41,6 +41,10 @@ authStateChanged(async (user) => {
   page("/view-attractions", (context) => showAppPage(ViewAttractions, context));
   page("/contacts", (context) => showAppPage(Contacts, context));
   page("/contacts/:type/:id", (context) => showAppPage(ContactPage, context));
+  page("/i/:type/:id/:code", (context) => {
+    context.params.type = convertShortCode(context.params.type);
+    showAppPage(Contacts, context);
+  });
   page("/changelog", (context) => showAppPage(Changelog, context));
   page("/settings", (context) => showAppPage(Settings, context));
   page("/login", () => showExternalPage(Login));
@@ -73,7 +77,7 @@ export function showAppPage(contents, context) {
   setPageTitle("Gravitate");
   const main = document.querySelector(".app-main");
   main.innerHTML = ``;
-  append(main, jsx`${contents(context)}`);
+  append(main, html`${contents(context)}`);
 
   // Functions for after render
   setActiveLinks(context);

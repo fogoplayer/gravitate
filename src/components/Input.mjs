@@ -1,4 +1,4 @@
-import { jsx } from "../services/render.mjs";
+import { html } from "../services/render.mjs";
 
 export default function Input({
   label,
@@ -8,23 +8,23 @@ export default function Input({
   errorMessage = "",
   ...props
 }) {
-  const input = jsx`<label class="text-input-component ${className}">
+  const input = html`<label class="text-input-component ${className}">
     <span class="text-input-label">${label}</span>
     <div class="text-input-wrapper">
-      <input oninput="${onInput}" class="text-input" type="text" ...${props}/>
-      <button class="show-hide-password" type="button" onclick=${showHidePassword}>
+      <input oninput="${onInput}" class="text-input" type="text" ...${props} />
+      <button
+        class="show-hide-password"
+        type="button"
+        onclick=${showHidePassword}
+      >
         <span class="material-symbols-sharp show-password">visibility</span>
         <span class="material-symbols-sharp hide-password">visibility_off</span>
       </button>
     </div>
-    ${
-      errorMessage
-        ? jsx`<span class="error-message">${errorMessage}</span>`
-        : ""
-    }
-  </label>
-`;
-
+    ${errorMessage
+      ? html`<span class="error-message">${errorMessage}</span>`
+      : ""}
+  </label>`;
   onInput({ target: input.querySelector("input") });
   return input;
 

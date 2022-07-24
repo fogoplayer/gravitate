@@ -181,6 +181,7 @@ export async function loadUserData(user = {}) {
 
   Object.assign(currUserData, {
     dataDocRef: doc(db, `users/${user.uid}/data`, "data"),
+    codeDocRef: doc(db, `users/${user.uid}/data`, "code"),
     attractionsRef: collection(db, `users/${user.uid}/attractions`),
     invitationsRef: collection(db, `users/${user.uid}/invitations`),
     orbitsRef: collection(db, `users/${user.uid}/orbits`),
@@ -194,28 +195,23 @@ export async function loadUserData(user = {}) {
   });
 
   // Convert references to objects
-  // Attractions
-  watch(currUserData.attractionsRef);
-  let attractions = await getDocsData(currUserData.attractionsRef);
-  // attractions.guestList = parseIndividuals(attractions.guestList);
-  currUserData.attractions = await parseEvents(attractions);
-
-  // Invitations
-  watch(currUserData.invitationsRef);
-  let invitations = await getDocsData(currUserData.invitationsRef);
-  invitations = await parseEvents(invitations);
-  for (let invitation of invitations) {
-    invitation.organizer = await getDocData(invitation.organizer);
-    if (invitation.origin) {
-      invitation.origin = await getDocData(invitation?.origin);
-    }
-  }
-  currUserData.invitations = invitations;
+  let attractions = parseEvents(currUserData.attractionsRef);
+  let invitations = parseEvents(currUserData.invitationsRef);
 
   // Orbits
   watch(currUserData.orbitsRef);
-  let orbits = await getDocsData(currUserData.orbitsRef);
-  currUserData.orbits = await parseGroups(orbits);
+  let orbits = getDocsData(currUserData.orbitsRef).then((orbits) =>
+    parseGroups(orbits)
+  );
+
+  // Code
+  watch(currUserData.codeDocRef);
+  let codeDataDoc = getDocData(currUserData.codeDocRef)
+    .then((codeData) => {
+      currUserData.code = codeData.code;
+      currUserData.codeMultiUse = codeData.codeMultiUse;
+    })
+    .catch(() => ({}));
 
   // Data
   watch(currUserData.dataDocRef);
@@ -223,12 +219,37 @@ export async function loadUserData(user = {}) {
 
   // Friends
   let friends = userDataDoc.friends;
-  currUserData.friends = await parseIndividuals(friends);
+  friends = parseIndividuals(friends);
 
   // Systems
   let systems = userDataDoc.systems;
   for (const system of systems) watch(system);
-  currUserData.systems = await parseGroups(systems);
+  systems = parseGroups(systems);
+
+  [attractions, invitations, orbits, friends, codeDataDoc, systems] =
+    await Promise.all([
+      attractions,
+      invitations,
+      orbits,
+      friends,
+      codeDataDoc,
+      systems,
+    ]);
+  Object.assign(currUserData, {
+    attractions,
+    invitations,
+    orbits,
+    friends /* code data is assigned earlier */,
+    systems,
+  });
+
+  for (let invitation of invitations) {
+    invitation.organizer = await getDocData(invitation.organizer);
+    if (invitation.origin) {
+      invitation.origin = await getDocData(invitation?.origin);
+    }
+  }
+  currUserData.invitations = invitations;
 
   showRefreshPage();
 

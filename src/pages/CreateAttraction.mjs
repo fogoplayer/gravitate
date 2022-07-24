@@ -10,7 +10,7 @@ import { afterUpdate } from "../services/firebase/db.mjs";
 import { getIcon } from "../services/firebase/storage.mjs";
 import { map } from "../services/mapbox.js";
 import { mapboxAPI } from "../services/mapbox.js";
-import { jsx, renderPage } from "../services/render.mjs";
+import { html, renderPage } from "../services/render.mjs";
 
 export default function CreateAttraction() {
   setPageTitle("Create");
@@ -22,84 +22,92 @@ export default function CreateAttraction() {
 
   let timer;
 
-  return jsx`<div class="ignore">
-  <div id="map">Loading map...</div>
-  <script>
-    try{
-      mapboxgl.accessToken = "${MAPBOX_KEY}";
-      navigator.geolocation.getCurrentPosition((position) => {
-        position = position.coords;
-        const map = new mapboxgl.Map({
-          container: "map",
-          style: "mapbox://styles/mapbox/streets-v11",
-          center: [position.longitude, position.latitude],
-          zoom: 13,
-          interactive:false,
+  return html`<div class="ignore">
+    <div id="map">Loading map...</div>
+    <script>
+      try {
+        mapboxgl.accessToken = "${MAPBOX_KEY}";
+        navigator.geolocation.getCurrentPosition((position) => {
+          position = position.coords;
+          const map = new mapboxgl.Map({
+            container: "map",
+            style: "mapbox://styles/mapbox/streets-v11",
+            center: [position.longitude, position.latitude],
+            zoom: 13,
+            interactive: false,
+          });
+          const marker = new mapboxgl.Marker()
+            .setLngLat([position.longitude, position.latitude])
+            .addTo(map);
+          globalSetMap(map);
         });
-        const marker = new mapboxgl.Marker()
-          .setLngLat([position.longitude, position.latitude])
-          .addTo(map);
-        globalSetMap(map)
-      });
-    }catch{}
-  </script>
-  <form onsubmit=${onSubmit}>
-    ${Input({
-      label: "Event Name",
-      id: "event-name",
-      name: "event-name",
-      required: true,
-      oninput: (e) => {
-        newAttraction.name = e.target.value;
-      },
-    })}
-    <div class="inline-inputs">
-  ${Input({
-    label: "Event Location",
-    id: "event-location",
-    name: "event-location",
-    required: true,
-    list: "location-options",
-    oninput: (e) => {
-      locationSearch(e.target.value);
-      newAttraction.location = e.target.value;
-    },
-  })}
-      <datalist id="location-options"></datalist>
-      <button class="flat inline small" onclick=${useMyLocation} type="button">Use my location</button>
-    </div>
-    ${Input({
-      label: "Expiration Time",
-      id: "expiration-time",
-      name: "expiration-time",
-      type: "time",
-      required: true,
-      oninput: (e) =>
-        (newAttraction.expiration = getExpirationDate(e.target.value)),
-    })}
-  ${ContactsList(ContactTemplate)}
-    <button id="submit-button" class="primary">
-      Create attraction
-      ${Spinner()}
-    </button>
-  </form>
-</div>
-`;
+      } catch {}
+    </script>
+    <form onsubmit=${onSubmit}>
+      ${Input({
+        label: "Event Name",
+        id: "event-name",
+        name: "event-name",
+        required: true,
+        oninput: (e) => {
+          newAttraction.name = e.target.value;
+        },
+      })}
+      <div class="inline-inputs">
+        ${Input({
+          label: "Event Location",
+          id: "event-location",
+          name: "event-location",
+          required: true,
+          list: "location-options",
+          oninput: (e) => {
+            locationSearch(e.target.value);
+            newAttraction.location = e.target.value;
+          },
+        })}
+        <datalist id="location-options"></datalist>
+        <button
+          class="flat inline small"
+          onclick=${useMyLocation}
+          type="button"
+        >
+          Use my location
+        </button>
+      </div>
+      ${Input({
+        label: "Expiration Time",
+        id: "expiration-time",
+        name: "expiration-time",
+        type: "time",
+        required: true,
+        oninput: (e) =>
+          (newAttraction.expiration = getExpirationDate(e.target.value)),
+      })}
+      ${ContactsList(ContactTemplate)}
+      <button id="submit-button" class="primary">
+        Create attraction ${Spinner()}
+      </button>
+    </form>
+  </div>`;
   function ContactTemplate(contacts, name) {
-    const html = jsx`<ul></ul>`;
+    const el = html`<ul></ul>`;
     contacts.forEach(async (contact) => {
-      html.append(jsx`<li>
-  <label class="contact-header-container">
-    <input type="checkbox" name="${name}" id="${contact.name}" value="${
-        contact.name
-      }" oninput=${onCheckboxInput} tabIndex=0/>
-    ${getIcon(contact.icon)}
-    <span class="contact-name">${contact.name}</span>
-  </label>
-</li>
-`);
+      el.append(html`<li>
+        <label class="contact-header-container">
+          <input
+            type="checkbox"
+            name="${name}"
+            id="${contact.name}"
+            value="${contact.name}"
+            oninput=${onCheckboxInput}
+            tabindex="0"
+          />
+          ${getIcon(contact.icon)}
+          <span class="contact-name">${contact.name}</span>
+        </label>
+      </li>`);
     });
-    return html;
+    return el;
   }
 
   async function useMyLocation() {
@@ -123,7 +131,9 @@ export default function CreateAttraction() {
         document
           .querySelector("#location-options")
           .appendChild(
-            jsx`<option value=${address.place_name}>${address.place_name}</option>`
+            html`<option value=${address.place_name}>
+              ${address.place_name}
+            </option>`
           );
       });
 

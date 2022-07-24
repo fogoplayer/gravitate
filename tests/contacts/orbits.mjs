@@ -48,27 +48,6 @@ function orbitsTest() {
       expect(await name.getText()).toBe(newName);
     });
 
-    test("Member can be added", async () => {
-      const openModal = await querySelectorWait(".members-wrapper .header-btn");
-      await openModal.click();
-
-      const friendSelect = await querySelectorWait(
-        "#add-members .contact-header-container"
-      );
-      await friendSelect.click();
-
-      const submit = await querySelectorWait("#add-members button.primary");
-      submit.click();
-      await hardTimer(500);
-
-      await driver.get(
-        "http://localhost:5000/contacts/orbits/z0FqQLDNupyQy59pQiwI"
-      );
-
-      const friend = await querySelectorWait(".members-wrapper .contact-name");
-      expect(await friend.getText()).toEqual("User2");
-    });
-
     test("Member can be removed", async () => {
       const openModal = await querySelectorWait(
         ".members-wrapper .contact-header-container button"
