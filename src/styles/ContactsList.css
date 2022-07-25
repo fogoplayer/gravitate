@@ -122,11 +122,12 @@
   width: 1.73em;
 }
 
-.contact-header-container .contact-icon.pfp {
+.contact-header-container .contact-icon .pfp {
   padding: 0;
+  max-width: 1.5em;
 }
 
 .contact-header-container .contact-name {
   padding: 0.5em;
-  flex: 0 0 auto;
+  flex: 1 0 auto;
 }
