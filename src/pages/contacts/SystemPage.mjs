@@ -251,7 +251,7 @@ export default function SystemPage(id) {
                   : ""}"
               >
                 <div class="contact-header-container">
-                  ${getIcon(contact.icon)}
+                  <div class="contact-icon">${getIcon(contact.icon)}</div>
                   <span class="contact-name">${contact.name}</span>
                   ${!(
                     contact.ref.id === ref.id ||

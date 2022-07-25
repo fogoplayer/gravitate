@@ -189,7 +189,7 @@ export default function OrbitPage(id) {
             <li>
               <a href="/contacts/${type}/${contact.ref.id}">
                 <div class="contact-header-container">
-                  ${getIcon(contact.icon)}
+                  <div class="contact-icon">${getIcon(contact.icon)}</div>
                   <span class="contact-name">${contact.name}</span>
                   <button
                     type="button"
