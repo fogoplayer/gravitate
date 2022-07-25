@@ -84,7 +84,7 @@ export default function CreateAttraction() {
             oninput=${onCheckboxInput}
             tabindex="0"
           />
-          ${getIcon(contact.icon)}
+          <div class="contact-icon">${getIcon(contact.icon)}</div>
           <span class="contact-name">${contact.name}</span>
         </label>
       </li>`);
