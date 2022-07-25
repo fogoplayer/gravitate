@@ -80,6 +80,14 @@ export default function ViewAttractions() {
                   .addTo(map);
               })
             );
+
+            attractions.forEach((attraction) =>
+              mapboxAPI(attraction.location).then((location) => {
+                new mapboxgl.Marker(MapIcon(attraction))
+                  .setLngLat(location[0].geometry.coordinates)
+                  .addTo(map);
+              })
+            );
           });
         } catch {}
         clearInterval(interval);
