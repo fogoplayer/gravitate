@@ -75,15 +75,11 @@ export default function ViewAttractions() {
 
             invitations.forEach((invitation) =>
               mapboxAPI(invitation.location).then((location) => {
-                console.log(location[0].geometry.coordinates);
                 new mapboxgl.Marker(MapIcon(invitation))
                   .setLngLat(location[0].geometry.coordinates)
                   .addTo(map);
               })
             );
-            const marker = new mapboxgl.Marker()
-              .setLngLat([position.longitude, position.latitude])
-              .addTo(map);
           });
         } catch {}
         clearInterval(interval);
