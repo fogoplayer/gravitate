@@ -1,0 +1,49 @@
+#map .marker {
+  /* display */
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0.5em;
+  justify-content: space-between;
+
+  /* positioning */
+  /* box-model */
+  background-color: var(--light-text);
+  border-radius: 100vmax;
+  max-height: var(--size);
+  max-width: var(--size);
+
+  /* typography */
+  font-size: 0.75rem;
+  line-height: 1.15em;
+  /* manipulation */
+  /* misc */
+  --size: 4em;
+}
+
+#map .marker-icon {
+  width: var(--size);
+  height: var(--size);
+}
+
+#map .marker-text {
+  display: none;
+  flex-flow: column nowrap;
+  gap: 0.5em;
+  padding-block: 0.5em;
+}
+
+#map .marker-text h2 {
+  font-size: 1.15em;
+  line-height: 1.15em;
+}
+
+#map .marker:hover {
+  max-width: unset;
+  padding-right: calc(var(--size) / 2);
+  --size: 6em;
+  z-index: 10;
+}
+
+#map .marker:hover .marker-text {
+  display: flex;
+}

@@ -19,6 +19,7 @@ export function AttractionsTemplate(attractions, emptyMessage) {
               ${AttractionInfo(attraction)}
             </h3>
             ${Modal({
+              id: attraction.ref.id + "-modal",
               contents: AttractionDetails(attraction),
             })}
           </li>

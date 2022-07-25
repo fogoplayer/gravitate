@@ -123,7 +123,7 @@ aside {
   border-radius: 50%;
   border: 1px solid var(--theme-secondary-color);
   width: 7em;
-  max-height: 7em;
+  max-height: min(7em, 100%);
   aspect-ratio: 1/1;
 
   /* typography */
