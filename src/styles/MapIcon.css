@@ -17,7 +17,7 @@
   line-height: 1.15em;
   /* manipulation */
   /* misc */
-  --size: 6em;
+  --size: 4em;
 }
 
 #map .marker-icon {
@@ -40,6 +40,7 @@
 #map .marker:hover {
   max-width: unset;
   padding-right: calc(var(--size) / 2);
+  --size: 6em;
 }
 
 #map .marker:hover .marker-text {
