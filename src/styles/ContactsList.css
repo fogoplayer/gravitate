@@ -59,6 +59,12 @@
   width: 1.5rem;
 }
 
+.contacts-list h2 button:focus-visible,
+.contacts-list .contact-header-container button:focus-visible {
+  background-color: var(--theme-primary-color);
+  outline: 1px solid var(--theme-primary-color);
+}
+
 .contacts-list h2 button:first-of-type,
 .contacts-list .contact-header-container button:first-of-type {
   margin-left: auto;
