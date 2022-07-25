@@ -14,6 +14,11 @@
   display: contents;
 }
 
+.app-main .create-attraction #map .pfp {
+  max-width: 4em;
+  max-height: 4em;
+}
+
 .app-main #map {
   /* display */
   flex: 1 1 0;

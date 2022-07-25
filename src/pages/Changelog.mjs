@@ -6,8 +6,9 @@ export default function Changelog() {
   return html`<div class="changelog">
     <section>
       <h2>Alpha Release</h2>
-      <h3>1.6.1</h3>
+      <h3>1.7.0</h3>
       <ul>
+        <li>Add map icons for the Attractions and Create Attractions pages</li>
         <li>Self-host all remaining fonts</li>
       </ul>
       <h3>1.6.0</h3>

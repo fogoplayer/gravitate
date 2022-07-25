@@ -20,10 +20,10 @@ export default function CreateAttraction() {
     friends: new Set(),
   };
 
-  let timer;
+  let timer, map, userLocationMarker;
   loadMap();
 
-  return html`<div class="ignore">
+  return html`<div class="ignore create-attraction">
     <div id="map">Loading map...</div>
     <form onsubmit=${onSubmit}>
       ${Input({
@@ -100,6 +100,7 @@ export default function CreateAttraction() {
         .querySelector("#event-location")
         .parentNode.parentNode.classList.add("not-empty");
       map?.panTo([coords.longitude, coords.latitude]);
+      userLocationMarker?.setLngLat([coords.longitude, coords.latitude]);
 
       newAttraction.location = address.place_name;
     });
@@ -120,6 +121,7 @@ export default function CreateAttraction() {
       });
 
       map?.panTo(addresses[0]?.center);
+      userLocationMarker?.setLngLat(addresses[0]?.center);
     };
 
     clearTimeout(timer);
@@ -160,14 +162,16 @@ export default function CreateAttraction() {
           mapboxgl.accessToken = MAPBOX_KEY;
           navigator.geolocation.getCurrentPosition((position) => {
             position = position.coords;
-            const map = new mapboxgl.Map({
+            map = new mapboxgl.Map({
               container: "map",
               style: "mapbox://styles/mapbox/streets-v11",
               center: [position.longitude, position.latitude],
               zoom: 13,
               interactive: false,
             });
-            const marker = new mapboxgl.Marker(getIcon(getCurrUserData().icon))
+            userLocationMarker = new mapboxgl.Marker(
+              getIcon(getCurrUserData().icon)
+            )
               .setLngLat([position.longitude, position.latitude])
               .addTo(map);
             globalSetMap(map);
