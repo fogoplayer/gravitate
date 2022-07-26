@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  sendPasswordResetEmail,
 } from "../../lib/firebase/9.7.0/firebase-auth.js";
 import { createUserData } from "./db.mjs";
 
@@ -38,4 +39,8 @@ export function authStateChanged(callback) {
 export async function logOut() {
   await signOut(auth);
   page.redirect("/login");
+}
+
+export async function resetPassword(email) {
+  await sendPasswordResetEmail(auth, email);
 }
