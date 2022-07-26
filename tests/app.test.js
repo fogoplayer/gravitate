@@ -8,6 +8,7 @@ const { driver } = require("./driver.mjs");
 const { loginTest } = require("./login.mjs");
 const { createProfileTest } = require("./onboarding/createProfile.mjs");
 const { tourTest } = require("./onboarding/tour.mjs");
+const { resetPasswordTest } = require("./reset-password.mjs");
 const { settingsTest } = require("./settings.mjs");
 const { signupTest } = require("./signup.mjs");
 const { viewAttractionsTest } = require("./view-attractions.mjs");
@@ -19,6 +20,7 @@ test("Driver starts", () => {
 });
 
 signupTest();
+resetPasswordTest();
 loginTest();
 createProfileTest();
 tourTest();
