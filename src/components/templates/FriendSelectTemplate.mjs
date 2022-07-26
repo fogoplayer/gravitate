@@ -11,7 +11,7 @@ export function FriendSelectTemplate(user, props = {}) {
         tabindex="0"
         ...${props}
       />
-      ${getIcon(user.icon)}
+      <div class="contact-icon">${getIcon(user.icon)}</div>
       <span class="contact-name">${user.name}</span>
     </label>
   </li>`;

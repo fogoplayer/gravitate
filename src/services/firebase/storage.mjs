@@ -27,10 +27,10 @@ export function getIcon(icon) {
   const HTTP = "http";
 
   if (icon?.substring(0, HTTP.length) === HTTP) {
-    return html`<img class="contact-icon pfp" src="${icon}" alt="User icon" />`;
+    return html`<img class="pfp" src="${icon}" alt="User icon" />`;
   } else if (icon?.length) {
-    return html`<span class="contact-icon noto">${icon}</span>`;
+    return html`<span class="noto pfp">${icon}</span>`;
   } else {
-    return html`<span class="contact-icon">🟣</span>`;
+    return html`<span class="pfp">🟣</span>`;
   }
 }

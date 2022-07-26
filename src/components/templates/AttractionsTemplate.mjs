@@ -14,7 +14,7 @@ export function AttractionsTemplate(attractions, emptyMessage) {
               class="contact-header-container"
               onclick=${toggleAttractionDetails}
             >
-              ${getIcon()}
+              <div class="contact-icon">${getIcon()}</div>
               <span class="contact-name">${attraction.name}</span>
               ${AttractionInfo(attraction)}
             </h3>

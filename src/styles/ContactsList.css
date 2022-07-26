@@ -59,6 +59,12 @@
   width: 1.5rem;
 }
 
+.contacts-list h2 button:focus-visible,
+.contacts-list .contact-header-container button:focus-visible {
+  background-color: var(--theme-primary-color);
+  outline: 1px solid var(--theme-primary-color);
+}
+
 .contacts-list h2 button:first-of-type,
 .contacts-list .contact-header-container button:first-of-type {
   margin-left: auto;
@@ -112,15 +118,19 @@
   line-height: 1.3333em;
   font-size: 1.5em;
   text-align: center;
-  padding-inline: 0.35rem;
+  /* padding-inline: 0.35rem; */
   width: 1.73em;
 }
 
-.contact-header-container .contact-icon.pfp {
+.contact-header-container .contact-icon .pfp {
   padding: 0;
+  max-width: 100%;
+  margin-block: -0.115em;
+  transform: scale(0.7);
 }
 
 .contact-header-container .contact-name {
   padding: 0.5em;
-  flex: 0 0 auto;
+  line-height: 1.25em;
+  flex: 1 0 auto;
 }

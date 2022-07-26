@@ -116,6 +116,9 @@ aside {
 
 .pfp {
   /* display */
+  display: grid;
+  place-items: center;
+
   /* positioning */
   position: relative;
 

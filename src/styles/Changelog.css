@@ -28,6 +28,12 @@
   /* misc */
 }
 
+.changelog section h3 .date {
+  font-size: 0.75em;
+  font-style: italic;
+  margin-left: 2.5em;
+}
+
 .changelog li {
   margin-left: 1.5em;
 }

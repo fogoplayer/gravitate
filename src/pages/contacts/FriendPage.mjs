@@ -116,7 +116,7 @@ export default function FriendPage(id) {
             <li>
               <a href="/contacts/${type}/${contact.ref.id}">
                 <div class="contact-header-container">
-                  ${getIcon(contact.icon)}
+                  <div class="contact-icon">${getIcon(contact.icon)}</div>
                   <span class="contact-name">${contact.name}</span>
                 </div>
               </a>
