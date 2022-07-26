@@ -17,7 +17,8 @@
   },
   "scripts": {
     "start": "firebase serve",
-    "test": "clear && jest tests/app.test.js --verbose"
+    "test": "clear && jest tests/app.test.js --verbose",
+    "deploybeta": "git checkout master && git merge beta && firebase deploy --only hosting && git checkout beta"
   },
   "devDependencies": {
     "jest": "^28.1.0",
