@@ -103,6 +103,7 @@ export default function Settings() {
             </button>
           </div>`
     }
+   <a href="/reset-password" class="button flat inline">Reset password</a> 
    <a href="/onboarding/tour" class="button flat inline">Retake tour</a> 
    ${Modal({
      id: "new-invite-link",

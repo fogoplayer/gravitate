@@ -23,7 +23,7 @@ export default function Login() {
     </button>
   </form>
   <div>
-    <button class="flat small">Forgot password</button>
+    <a href="reset-password" class="button flat small">Forgot password</a>
     <a href="signup" class="button flat small">Sign up</button>
   </div>
 </main>`;
