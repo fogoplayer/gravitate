@@ -103,18 +103,19 @@ export default function Settings() {
             </button>
           </div>`
     }
-   <a href="/reset-password" class="button flat inline">Reset password</a> 
-   <a href="/onboarding/tour" class="button flat inline">Retake tour</a> 
-   ${Modal({
-     id: "new-invite-link",
-     contents: html`<aside>Note: All friend codes are multi-use!</aside>
-       <button
-         class="primary"
-         onclick="${() => createNewInviteLinkAt(codeDocRef)}"
-       >
-         Create code
-       </button>`,
-   })} 
+  <a href="/reset-password" class="button flat">Reset password</a> 
+  <a href="/onboarding/tour" class="button flat">Retake tour</a>
+  <a href="settings/send-feedback" class="button flat">Send Feedback</a>
+  ${Modal({
+    id: "new-invite-link",
+    contents: html`<aside>Note: All friend codes are multi-use!</aside>
+      <button
+        class="primary"
+        onclick="${() => createNewInviteLinkAt(codeDocRef)}"
+      >
+        Create code
+      </button>`,
+  })} 
 </div class="ignore settings"> 
 `;
 
