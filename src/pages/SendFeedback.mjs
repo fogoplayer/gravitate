@@ -20,7 +20,7 @@ import {
 } from "../services/invite-codes.mjs";
 
 export default function SendFeedback() {
-  setPageTitle("Send Feedback");
+  setPageTitle("Feedback");
 
   let page, shortDescription, longDescription;
 

@@ -49,7 +49,9 @@ authStateChanged(async (user) => {
   });
   page("/changelog", (context) => showAppPage(Changelog, context));
   page("/settings", (context) => showAppPage(Settings, context));
-  page("/send-feedback", (context) => showAppPage(SendFeedback, context));
+  page("/settings/send-feedback", (context) =>
+    showAppPage(SendFeedback, context)
+  );
   page("/login", () => showExternalPage(Login));
   page("/signup", () => showExternalPage(SignUp));
   page("/reset-password", () => showExternalPage(ResetPassword));
