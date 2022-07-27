@@ -1,41 +1,33 @@
 import Input from "../../components/Input.mjs";
 import { getCurrentUser } from "../../services/firebase/auth.mjs";
-import {
-  afterUpdate,
-  getCurrUserData,
-  update,
-  usernameSearch,
-} from "../../services/firebase/db.mjs";
-import { uploadPFP } from "../../services/firebase/storage.mjs";
+import { getCurrUserData } from "../../services/firebase/db.mjs";
 import { html, renderPage } from "../../services/render.mjs";
 import { setPageTitle } from "../components/AppShell.mjs";
-import Modal from "../components/Modal.mjs";
 import SegmentControl from "../components/SegmentControl.mjs";
 import { addDoc, setDoc } from "../services/firebase/db.mjs";
-import {
-  copyInviteLinkToClipboard,
-  createNewInviteLinkAt,
-  deleteInviteLinkFrom,
-  shareInviteLink,
-} from "../services/invite-codes.mjs";
 
 export default function SendFeedback() {
   setPageTitle("Feedback");
 
-  let page, shortDescription, longDescription;
+  let type, page, shortDescription, longDescription;
 
   return html`<form class="send-feedback" onsubmit="${onSubmit}">
     ${SegmentControl({
       segments: ["Bug Report", "Feature Request", "Other"],
+      onchange(e) {
+        type = e.target.value;
+      },
     })}
     ${Input({
       label: "Relevant Page (Optional)",
+      id: "page",
       oninput(e) {
         page = e.target.value;
       },
     })}
     ${Input({
       label: "Short Description",
+      id: "short-description",
       oninput(e) {
         shortDescription = e.target.value;
       },
@@ -46,6 +38,7 @@ export default function SendFeedback() {
         <div class="text-input-wrapper">
           <textarea
             class="text-input"
+            id="description"
             oninput="${textAreaMaintainer}"
           ></textarea>
         </div>
@@ -61,6 +54,7 @@ export default function SendFeedback() {
     const { email, ...user } = getCurrentUser();
     let { uid } = getCurrUserData();
     const report = {
+      type,
       complete: false,
       uid,
       email,
@@ -70,7 +64,7 @@ export default function SendFeedback() {
       shortDescription,
       longDescription,
     };
-    // addDoc("tickets/", report);
+    addDoc("tickets/", report);
 
     const address = "zarinloosli@gmail.com";
     const subject = "Gravitate Bug Report";

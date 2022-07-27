@@ -22,6 +22,7 @@ export default function SegmentControl({
                   }
                 : optionProps}
               value="${segment}"
+              onchange=${onChange}
             />
             <div>${segment}</div>
           </label>
