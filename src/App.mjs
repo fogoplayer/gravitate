@@ -18,6 +18,7 @@ import Settings from "./pages/Settings.mjs";
 import ContactPage from "./pages/contacts/index.js";
 import { convertShortCode } from "./services/invite-codes.mjs";
 import ResetPassword from "./pages/ResetPassword.mjs";
+import SendFeedback from "./pages/SendFeedback.mjs";
 
 // immediately show loading spinner
 append(
@@ -48,6 +49,7 @@ authStateChanged(async (user) => {
   });
   page("/changelog", (context) => showAppPage(Changelog, context));
   page("/settings", (context) => showAppPage(Settings, context));
+  page("/send-feedback", (context) => showAppPage(SendFeedback, context));
   page("/login", () => showExternalPage(Login));
   page("/signup", () => showExternalPage(SignUp));
   page("/reset-password", () => showExternalPage(ResetPassword));

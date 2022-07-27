@@ -1,0 +1,26 @@
+.app-main .send-feedback {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1em;
+  height: 100%;
+  align-items: center;
+}
+
+.send-feedback .textarea {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+.send-feedback .textarea .text-input-component.not-empty,
+.send-feedback .textarea .text-input-component:focus-within {
+  height: 100%;
+}
+
+.send-feedback .not-empty .text-input-wrapper,
+.send-feedback .text-input-component:focus-within .text-input-wrapper,
+.send-feedback .text-input-component:focus-within textarea.text-input,
+.send-feedback .not-empty textarea.text-input {
+  height: 100%;
+  max-height: unset;
+  font-family: var(--font-family);
+}
