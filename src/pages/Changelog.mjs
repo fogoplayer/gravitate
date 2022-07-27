@@ -6,14 +6,19 @@ export default function Changelog() {
   return html`<div class="changelog">
     <section>
       <h2>Alpha Release</h2>
-      <h3>1.7.1 <span class="date"></span></h3>
+      <h3>1.8.0 <span class="date">7/26/22</span></h3>
+      <ul>
+        <li>Add forgot password page</li>
+        <li>Add user feedback page, accessible from settings</li>
+      </ul>
+      <h3>1.7.1 <span class="date">7/25/22</span></h3>
       <ul>
         <li>Radio labels fill background</li>
         <li>Focus state for contactlist buttons</li>
         <li>Add shadow to overflow menu</li>
         <li>Include dates in changelog entries</li>
       </ul>
-      <h3>1.7.0 <span class="date">7/25/22</span></h3>
+      <h3>1.7.0</h3>
       <ul>
         <li>Add map icons for the Attractions and Create Attractions pages</li>
         <li>Self-host all remaining fonts</li>

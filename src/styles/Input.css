@@ -73,6 +73,7 @@
   background-color: transparent;
 
   /* typography */
+  font-family: inherit;
   font-size: inherit;
   text-overflow: ellipsis;
 

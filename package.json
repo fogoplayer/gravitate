@@ -1,6 +1,6 @@
 {
   "name": "gravitate",
-  "version": "1.4.1",
+  "version": "1.8.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -16,7 +16,9 @@
     "node": "~16.13.0"
   },
   "scripts": {
-    "test": "clear && jest tests/app.test.js --verbose"
+    "start": "firebase serve",
+    "test": "clear && jest tests/app.test.js --verbose",
+    "deploybeta": "git checkout main && git merge beta && firebase deploy --only hosting && git checkout beta"
   },
   "devDependencies": {
     "jest": "^28.1.0",
