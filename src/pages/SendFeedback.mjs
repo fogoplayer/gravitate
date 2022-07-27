@@ -10,6 +10,7 @@ export default function SendFeedback() {
   setPageTitle("Feedback");
 
   let type, page, shortDescription, longDescription;
+  type = page = shortDescription = longDescription = "";
 
   return html`<form class="send-feedback" onsubmit="${onSubmit}">
     ${SegmentControl({

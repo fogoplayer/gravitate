@@ -9,6 +9,7 @@ const { loginTest } = require("./login.mjs");
 const { createProfileTest } = require("./onboarding/createProfile.mjs");
 const { tourTest } = require("./onboarding/tour.mjs");
 const { resetPasswordTest } = require("./reset-password.mjs");
+const { sendFeedbackTest } = require("./send-feedback.mjs");
 const { settingsTest } = require("./settings.mjs");
 const { signupTest } = require("./signup.mjs");
 const { viewAttractionsTest } = require("./view-attractions.mjs");
@@ -19,19 +20,20 @@ test("Driver starts", () => {
   return driver;
 });
 
-signupTest();
-resetPasswordTest();
+// signupTest();
+// resetPasswordTest();
 loginTest();
-createProfileTest();
-tourTest();
-createAttractionTest();
-viewAttractionsTest();
-contactsTest();
-friendsTest();
-orbitsTest();
-systemsTest();
-settingsTest();
-changelogTest();
+// createProfileTest();
+// tourTest();
+// createAttractionTest();
+// viewAttractionsTest();
+// contactsTest();
+// friendsTest();
+// orbitsTest();
+// systemsTest();
+// settingsTest();
+sendFeedbackTest();
+// changelogTest();
 
 test("Driver stops", () => {
   return driver.quit();
