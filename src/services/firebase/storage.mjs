@@ -3,6 +3,7 @@ import {
   getStorage,
   ref,
   uploadBytes,
+  uploadString,
 } from "../../lib/firebase/9.7.0/firebase-storage.js";
 import { html } from "../render.mjs";
 import { app } from "./app.mjs";
@@ -14,12 +15,12 @@ export async function uploadPFP(file) {
   if (!file) {
     return false;
   }
-  const extension = file.name.split(".").at(-1);
-  const fileRef = ref(
-    storage,
-    "users/" + getCurrUserData().uid + "/pfp." + extension
-  );
-  await uploadBytes(fileRef, file);
+  file = file.replace(/.*,/, "");
+  debugger;
+
+  const fileRef = ref(storage, "users/" + getCurrUserData().uid + "/pfp.png");
+  // await uploadBytes(fileRef, file);
+  await uploadString(fileRef, file, "base64", {});
   update(getCurrUserData().ref, { icon: await getDownloadURL(fileRef) });
 }
 

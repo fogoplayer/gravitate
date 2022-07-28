@@ -26,16 +26,7 @@ export default function CreateProfile() {
           label: "Profile Picture",
           id: "profile picture",
           type: "file",
-          oninput: (e) => {
-            if (!e.target.files[0]) {
-              return;
-            }
-            uploadPFP(e.target.files[0]);
-            afterUpdate(() => {
-              document.querySelector(".image-picker img").src =
-                getCurrUserData().icon;
-            });
-          },
+          oninput: processImage,
         })}
       </label>
       ${Input({
@@ -72,6 +63,47 @@ async function onSubmit(e) {
         .parentNode.parentNode.classList.add("invalid");
     }
   }
+}
+
+function processImage(e) {
+  if (!e.target.files[0]) {
+    return;
+  }
+
+  uploadSmallImg(e);
+
+  // uploadPFP(e.target.files[0]);
+}
+
+function uploadSmallImg(e) {
+  let imageFile = e.target.files[0];
+
+  // Create reader
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    var img = document.createElement("img");
+    img.onload = () => {
+      resizeImg(img, imageFile);
+    };
+    img.src = e.target.result;
+  };
+  // Run reader
+  reader.readAsDataURL(imageFile);
+}
+
+function resizeImg(img, imageFile) {
+  // Dynamically create a canvas element
+  var canvas = document.createElement("canvas");
+  document.body.appendChild(canvas);
+  var ctx = canvas.getContext("2d");
+
+  // Actual resizing
+  ctx.drawImage(img, 0, 0, 300, 300);
+
+  // Show resized image in preview element
+  var dataurl = canvas.toDataURL();
+  document.querySelector(".pfp").src = dataurl;
+  uploadPFP(dataurl);
 }
 
 function personImage() {
