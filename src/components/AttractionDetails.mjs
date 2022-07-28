@@ -1,6 +1,17 @@
-import { html } from "../services/render.mjs";
+import { afterUpdate, deleteDoc } from "../services/firebase/db.mjs";
+import { html, renderPage } from "../services/render.mjs";
+import Modal from "./Modal.mjs";
+import Spinner from "./Spinner.mjs";
 
 export default function AttractionDetails(attraction, reactions) {
+  const confirmDeleteModal = Modal({
+    id: "delete-modal",
+    contents: html`Are you sure you want to delete ${attraction.name}?
+      <button class="primary danger" onclick="${confirmDelete}">
+        Yes, delete ${Spinner()}
+      </button>`,
+  });
+
   return html`<section class="attraction-details">
     <h4>Attraction Details</h4>
     <table>
@@ -94,7 +105,27 @@ export default function AttractionDetails(attraction, reactions) {
       >
         Close
       </button>
-      <button class="outline danger">Delete</button>
+      <button
+        class="outline danger"
+        onclick=${() => confirmDeleteModal.showModal()}
+      >
+        Delete
+      </button>
     </div>
+    ${confirmDeleteModal}
   </section>`;
+
+  function confirmDelete(e) {
+    e.target.classList.add("loading");
+    debugger;
+    attraction.guestList.forEach((guest) => {
+      const invitationRef =
+        guest.ref.path + "/invitations/" + attraction.ref.id;
+      debugger;
+      deleteDoc(invitationRef);
+    });
+    debugger;
+    deleteDoc(attraction.ref);
+    afterUpdate(() => renderPage("/view-attractions"));
+  }
 }
