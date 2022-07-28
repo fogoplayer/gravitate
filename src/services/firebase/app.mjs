@@ -6,6 +6,7 @@ import { initializeApp } from "../../lib/firebase/9.7.0/firebase-app.js";
 let appConfig;
 
 if (
+  window.location.hostname.includes("alpha") ||
   window.location.hostname.includes("beta") ||
   window.location.hostname.includes("localhost")
 ) {
