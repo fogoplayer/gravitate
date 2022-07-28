@@ -92,16 +92,33 @@ function uploadSmallImg(e) {
 }
 
 function resizeImg(img, imageFile) {
-  // Dynamically create a canvas element
+  // Size limits
+  var MAX_WIDTH = 300;
+  var MAX_HEIGHT = 300;
+
+  var width = img.width;
+  var height = img.height;
+  if (width < height) {
+    if (width > MAX_WIDTH) {
+      height = height * (MAX_WIDTH / width);
+      width = MAX_WIDTH;
+    }
+  } else {
+    if (height > MAX_HEIGHT) {
+      width = width * (MAX_HEIGHT / height);
+      height = MAX_HEIGHT;
+    }
+  }
+
+  // Shrink to canvas
   var canvas = document.createElement("canvas");
-  document.body.appendChild(canvas);
+  canvas.width = width;
+  canvas.height = height;
   var ctx = canvas.getContext("2d");
-
-  // Actual resizing
-  ctx.drawImage(img, 0, 0, 300, 300);
-
-  // Show resized image in preview element
+  ctx.drawImage(img, 0, 0, width, height);
   var dataurl = canvas.toDataURL();
+
+  // Show & upload resized image
   document.querySelector(".pfp").src = dataurl;
   uploadPFP(dataurl);
 }

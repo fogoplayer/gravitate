@@ -16,10 +16,7 @@ export async function uploadPFP(file) {
     return false;
   }
   file = file.replace(/.*,/, "");
-  debugger;
-
   const fileRef = ref(storage, "users/" + getCurrUserData().uid + "/pfp.png");
-  // await uploadBytes(fileRef, file);
   await uploadString(fileRef, file, "base64", {});
   update(getCurrUserData().ref, { icon: await getDownloadURL(fileRef) });
 }
