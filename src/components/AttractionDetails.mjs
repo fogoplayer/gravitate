@@ -117,7 +117,7 @@ export function AttractionDetails(attraction) {
         <tr>
           <th>Expiration:</th>
           <td>
-            ${attraction.expiration.toLocaleTimeString([], {
+            ${attraction.expiration?.toLocaleTimeString([], {
               hour: "2-digit",
               minute: "2-digit",
             })}
@@ -129,7 +129,7 @@ export function AttractionDetails(attraction) {
         <tr>
           <th>Orbits:</th>
           <td>
-            ${(attraction.orbits.length &&
+            ${(attraction.orbits?.length &&
               attraction.orbits.map(
                 (orbit, index) => (index > 0 ? ", " : "") + orbit.name
               )) ||
@@ -139,7 +139,7 @@ export function AttractionDetails(attraction) {
         <tr>
           <th>Systems:</th>
           <td>
-            ${(attraction.systems.length &&
+            ${(attraction.systems?.length &&
               attraction.systems.map(
                 (system, index) => (index > 0 ? ", " : "") + system.name
               )) ||
@@ -149,7 +149,7 @@ export function AttractionDetails(attraction) {
         <tr>
           <th>Friends:</th>
           <td>
-            ${(attraction.orbits.length &&
+            ${(attraction.friends?.length &&
               attraction.friends.map(
                 (friend, index) => (index > 0 ? ", " : "") + friend.name
               )) ||
@@ -159,7 +159,7 @@ export function AttractionDetails(attraction) {
         <tr>
           <th>All invitees:</th>
           <td>
-            ${attraction.guestList.map(
+            ${attraction.guestList?.map(
               (guest, index) => (index > 0 ? ", " : "") + guest.name
             )}
           </td>
@@ -167,7 +167,7 @@ export function AttractionDetails(attraction) {
         <tr>
           <th>Expiration:</th>
           <td>
-            ${attraction.expiration.toLocaleTimeString([], {
+            ${attraction.expiration?.toLocaleTimeString([], {
               hour: "2-digit",
               minute: "2-digit",
             })}
