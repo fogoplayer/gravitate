@@ -11,6 +11,11 @@ export default function Changelog() {
         <li>Prepare for beta release</li>
         <li>Explain required permissions in tour</li>
         <li>Require a friend to be selected in Add Friend popup</li>
+        <li>Compress profile pictures on upload</li>
+        <li>
+          Creating an attraction that you are invited to no longer crashes the
+          app, though a refresh will be required as the page loads prematurely
+        </li>
       </ul>
       <h3>1.8.0 <span class="date">7/26/22</span></h3>
       <ul>
