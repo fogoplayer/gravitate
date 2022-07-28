@@ -21,6 +21,7 @@
     "deploybeta": "git checkout main && git merge beta --no-edit && git push && firebase deploy --only hosting && git checkout beta"
   },
   "devDependencies": {
+    "eslint": "^8.20.0",
     "jest": "^28.1.0",
     "jest-puppeteer": "^6.1.0",
     "puppeteer": "^14.1.1",
