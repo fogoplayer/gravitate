@@ -1,6 +1,6 @@
 import { showAppPage, showAppShell, showRefreshPage } from "../../App.mjs";
 import { setPageTitle } from "../../components/AppShell.mjs";
-import { reactions } from "../../components/AttractionDetails.mjs";
+import { reactions } from "../../components/EventDetails.mjs";
 import Tip from "../../components/Tip.mjs";
 import {
   dangerousSetCurrUserData,

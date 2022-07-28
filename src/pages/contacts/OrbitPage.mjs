@@ -1,8 +1,4 @@
 import { setPageTitle } from "../../components/AppShell.mjs";
-import {
-  AttractionDetails,
-  AttractionInfo,
-} from "../../components/AttractionDetails.mjs";
 import Input from "../../components/Input.mjs";
 import Modal from "../../components/Modal.mjs";
 import Spinner from "../../components/Spinner.mjs";
