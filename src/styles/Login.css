@@ -32,5 +32,11 @@
 }
 
 .main-bubble .other-links {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1.5em;
+  column-gap: 1.5em;
+  row-gap: 1em;
+  justify-content: space-around;
   text-align: center;
 }

@@ -23,8 +23,8 @@ export default function Login() {
     </button>
   </form>
   <div class="other-links">
-    <a href="reset-password" class="button flat small">Forgot password</a>
-    <a href="signup" class="button flat small">Sign up</button>
+    <a href="reset-password" class="button flat inline small">Forgot password</a>
+    <a href="signup" class="button flat inline small">Sign up</button>
   </div>
 </main>`;
   async function submit(e) {

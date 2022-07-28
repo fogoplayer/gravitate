@@ -24,7 +24,7 @@ export default function SignUp() {
     </button>
   </form>
   <div>
-    <a href="login" class="button flat small">Log in</button>
+    <a href="login" class="button flat inline small">Log in</button>
   </div>
 </main>`;
   async function submit(e) {
