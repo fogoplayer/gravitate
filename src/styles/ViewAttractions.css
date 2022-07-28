@@ -53,6 +53,10 @@
   text-transform: uppercase;
 }
 
+.attraction-details .inline-inputs {
+  font-size: inherit;
+}
+
 .attraction-details .react {
   all: unset;
 

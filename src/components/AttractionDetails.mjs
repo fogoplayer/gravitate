@@ -96,8 +96,8 @@ export function AttractionDetails(attraction) {
         Close
       </button>
     </section>`;
-    // Attraction
   } else {
+    // Attraction
     return html`<section class="attraction-details">
       <h4>Attraction Details</h4>
       <table>
@@ -193,12 +193,15 @@ export function AttractionDetails(attraction) {
           );
         })}
       </table>
-      <button
-        class="primary"
-        onclick="${(e) => e.target.closest("dialog").close()}"
-      >
-        Close
-      </button>
+      <div class="inline-inputs">
+        <button
+          class="primary"
+          onclick="${(e) => e.target.closest("dialog").close()}"
+        >
+          Close
+        </button>
+        <button class="outline danger">Delete</button>
+      </div>
     </section>`;
   }
 }
