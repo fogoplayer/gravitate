@@ -30,3 +30,7 @@
 .main-bubble form {
   display: contents;
 }
+
+.main-bubble .other-links {
+  text-align: center;
+}

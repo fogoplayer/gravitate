@@ -22,7 +22,7 @@ export default function Login() {
     Log in ${Spinner()}
     </button>
   </form>
-  <div>
+  <div class="other-links">
     <a href="reset-password" class="button flat small">Forgot password</a>
     <a href="signup" class="button flat small">Sign up</button>
   </div>
