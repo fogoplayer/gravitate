@@ -6,6 +6,12 @@ export default function Changelog() {
   return html`<div class="changelog">
     <section>
       <h2>Alpha Release</h2>
+      <h3>1.8.1 <span class="date">7/27/22</span></h3>
+      <ul>
+        <li>Prepare for beta release</li>
+        <li>Explain required permissions in tour</li>
+        <li>Require a friend to be selected in Add Friend popup</li>
+      </ul>
       <h3>1.8.0 <span class="date">7/26/22</span></h3>
       <ul>
         <li>Add forgot password page</li>

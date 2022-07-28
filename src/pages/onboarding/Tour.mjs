@@ -16,6 +16,8 @@ import CreateAttraction from "../CreateAttraction.mjs";
 import ViewAttractions from "../ViewAttractions.mjs";
 
 const tour = [
+  permissionsExplanation,
+  permissionsRequest,
   contactsOverview,
   orbits,
   orbitDetails,
@@ -130,6 +132,45 @@ function closeAll() {
   Array.from(openTips).forEach((dialog) => dialog.close());
 }
 
+function permissionsExplanation() {
+  showAppPage(Contacts, { pathname: "/contacts" });
+  return Tip({
+    contents: html`<p>
+        First, we need you to grant a couple of permissions so that you can have
+        access to all of our features:
+      </p>
+      <ul>
+        <li>
+          Location access lets us show you which events are closest to you
+        </li>
+        <li>Notification access lets us notify you when an event is created</li>
+      </ul>
+      <p>
+        If you refuse either of these permissions, the rest of the app will
+        still work.
+      </p>`,
+    next: nextTip,
+    nextLabel: "Continue",
+  });
+}
+
+function permissionsRequest() {
+  debugger;
+  const notificationNeeded = Notification.permission === "default";
+  navigator?.permissions
+    ?.query({ name: "geolocation" })
+    .then((needLocation) => {
+      if (notificationNeeded || needLocation.state === "prompt") {
+        navigator.geolocation.getCurrentPosition(() => {}); // location permission
+        Notification.requestPermission(); // notification permission
+      } else {
+        nextTip();
+      }
+    });
+
+  return permissionsExplanation();
+}
+
 function contactsOverview() {
   showAppPage(Contacts, { pathname: "/contacts" });
   return Tip({
@@ -137,9 +178,9 @@ function contactsOverview() {
         Gravitate exists to help you organize spur-of-the-moment events with
         your friends and family members.
       </p>
-      <p>
-        Let's start with how those friends and family members are organized!
-      </p>`,
+      <p>Let's look at how those friends and family members are organized!</p>`,
+    prev: prevTip,
+    prevLabel: "Permissions",
     next: nextTip,
     nextLabel: "Orbits",
   });

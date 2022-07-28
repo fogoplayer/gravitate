@@ -121,7 +121,9 @@ export default function CreateAttraction() {
       });
 
       map?.panTo(addresses[0]?.center);
-      userLocationMarker?.setLngLat(addresses[0]?.center);
+      if (addresses.length) {
+        userLocationMarker?.setLngLat(addresses[0]?.center);
+      }
     };
 
     clearTimeout(timer);
