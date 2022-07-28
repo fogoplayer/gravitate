@@ -1,10 +1,10 @@
 import Input from "../../components/Input.mjs";
 import { getCurrentUser } from "../../services/firebase/auth.mjs";
 import { getCurrUserData } from "../../services/firebase/db.mjs";
-import { html, renderPage } from "../../services/render.mjs";
+import { html } from "../../services/render.mjs";
 import { setPageTitle } from "../components/AppShell.mjs";
 import SegmentControl from "../components/SegmentControl.mjs";
-import { addDoc, setDoc } from "../services/firebase/db.mjs";
+import { addDoc } from "../services/firebase/db.mjs";
 
 export default function SendFeedback() {
   setPageTitle("Feedback");
@@ -52,7 +52,7 @@ export default function SendFeedback() {
     e.preventDefault();
 
     // Firebase
-    const { email, ...user } = getCurrentUser();
+    const { email } = getCurrentUser();
     let { uid } = getCurrUserData();
     const report = {
       type,
@@ -72,9 +72,9 @@ export default function SendFeedback() {
     const body =
       "Report Data:%0D%0A%0D%0A" +
       JSON.stringify(report)
-        .replace(/[\{\}]/g, "") // remove braces
-        .replace(/\"/g, "") // remove quotes
-        .replace(/\,/g, "%0D%0A"); // add line breaks
+        .replace(/[{}]/g, "") // remove braces
+        .replace(/"/g, "") // remove quotes
+        .replace(/,/g, "%0D%0A"); // add line breaks
     console.log(body);
     // Email
     window.open(`mailto:${address}?subject=${subject}&body=${body}`, "_blank");

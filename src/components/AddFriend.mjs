@@ -4,7 +4,6 @@ import {
   update,
   usernameSearch,
 } from "../services/firebase/db.mjs";
-import { getIcon } from "../services/firebase/storage.mjs";
 import { append, html, renderPage } from "../services/render.mjs";
 import Input from "./Input.mjs";
 import Modal from "./Modal.mjs";

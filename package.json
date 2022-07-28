@@ -17,8 +17,9 @@
   },
   "scripts": {
     "start": "firebase serve",
-    "test": "clear && jest tests/app.test.js --verbose",
-    "deploybeta": "git checkout main && git merge beta --no-edit && git push && firebase deploy --only hosting && git checkout beta"
+    "test": "clear && jest tests/app.test.js && npm run lint",
+    "deploybeta": "git checkout main && git merge beta --no-edit && git push && firebase deploy --only hosting && git checkout beta",
+    "lint": "npx eslint --fix './src' --ext .mjs"
   },
   "devDependencies": {
     "eslint": "^8.20.0",

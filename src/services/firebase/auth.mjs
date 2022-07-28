@@ -1,4 +1,3 @@
-import { app } from "./app.mjs";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -21,11 +20,7 @@ export async function createAccount(email, password) {
 }
 
 export async function signIn(email, password) {
-  const userCredential = await signInWithEmailAndPassword(
-    auth,
-    email,
-    password
-  );
+  await signInWithEmailAndPassword(auth, email, password);
 }
 
 export function getCurrentUser() {

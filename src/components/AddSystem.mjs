@@ -6,11 +6,9 @@ import {
   systems,
   update,
 } from "../services/firebase/db.mjs";
-import { getIcon } from "../services/firebase/storage.mjs";
-import { append, html, renderPage } from "../services/render.mjs";
+import { html, renderPage } from "../services/render.mjs";
 import Input from "./Input.mjs";
 import Modal from "./Modal.mjs";
-import { FriendSelectTemplate } from "./templates/FriendSelectTemplate.mjs";
 
 export default function AddSystem() {
   let { ref, dataDocRef } = getCurrUserData();

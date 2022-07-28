@@ -1,3 +1,5 @@
+/* globals mapboxgl globalSetMap */
+
 import { setPageTitle } from "../components/AppShell.mjs";
 import ContactsList from "../components/ContactsList.mjs";
 import Input from "../components/Input.mjs";
@@ -8,7 +10,6 @@ import { getExpirationDate } from "../services/date.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { afterUpdate } from "../services/firebase/db.mjs";
 import { getIcon } from "../services/firebase/storage.mjs";
-import { map } from "../services/mapbox.js";
 import { mapboxAPI } from "../services/mapbox.js";
 import { html, renderPage } from "../services/render.mjs";
 
@@ -109,7 +110,7 @@ export default function CreateAttraction() {
   async function locationSearch(searchTerm) {
     const getAddress = async () => {
       let addresses = await mapboxAPI(searchTerm, 5);
-      document.querySelector("#location-options").innerHTML = ``;
+      document.querySelector("#location-options").innerHTML = "";
       addresses.forEach((address) => {
         document
           .querySelector("#location-options")
@@ -178,7 +179,9 @@ export default function CreateAttraction() {
               .addTo(map);
             globalSetMap(map);
           });
-        } catch {}
+        } catch (e) {
+          console.error(e);
+        }
         clearInterval(interval);
       }
     }, 10);

@@ -33,7 +33,7 @@ export function AttractionsTemplate(attractions, emptyMessage) {
   }
   return details;
 
-  function toggleAttractionDetails(e) {
+  function toggleAttractionDetails() {
     details.querySelector("dialog").showModal();
   }
 }

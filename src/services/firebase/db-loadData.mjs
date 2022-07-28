@@ -8,7 +8,7 @@ import {
   watch,
 } from "./db.mjs";
 
-const DOCUMENT_SNAPSHOT = "Ph";
+// const DOCUMENT_SNAPSHOT = "Ph";
 const DOCUMENT_REFERENCE = "wc";
 
 export async function parseGroups(groups) {

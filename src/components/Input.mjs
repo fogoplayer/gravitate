@@ -2,7 +2,6 @@ import { html } from "../services/render.mjs";
 
 export default function Input({
   label,
-  ref,
   className = "",
   oninput = () => {},
   errorMessage = "",

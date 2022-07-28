@@ -1,6 +1,5 @@
 import Spinner from "../components/Spinner.mjs";
 import Input from "../components/Input.mjs";
-import { authStateChanged } from "../services/firebase/auth.mjs";
 import { createAccount } from "../services/firebase/auth.mjs";
 import { html, renderPage } from "../services/render.mjs";
 import { setPageTitle } from "../components/AppShell.mjs";

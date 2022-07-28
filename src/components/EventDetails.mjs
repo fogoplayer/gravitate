@@ -1,5 +1,4 @@
 import { html } from "../services/render.mjs";
-import { react } from "../services/attractions.mjs";
 import { InvitationDetails } from "./InvitationDetails.mjs";
 import AttractionDetails from "./AttractionDetails.mjs";
 

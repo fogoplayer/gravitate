@@ -2,7 +2,6 @@ import {
   getDownloadURL,
   getStorage,
   ref,
-  uploadBytes,
   uploadString,
 } from "../../lib/firebase/9.7.0/firebase-storage.js";
 import { html } from "../render.mjs";

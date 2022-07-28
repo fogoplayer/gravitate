@@ -53,7 +53,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
       <button
         id="back-button"
         tabindex="2"
-        onclick=${(e) => {
+        onclick=${() => {
           renderPage("/" + window.location.pathname.split("/")[1]);
         }}
       >
@@ -63,7 +63,7 @@ export default function AppShell(hideAppDrawer, showAppDrawer, logOut) {
       <button
         id="refresh-page"
         tabindex="3"
-        onclick=${(e) => {
+        onclick=${() => {
           renderPage(window.location.pathname);
           hideRefreshPage();
         }}

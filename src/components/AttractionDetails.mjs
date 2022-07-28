@@ -117,14 +117,11 @@ export default function AttractionDetails(attraction, reactions) {
 
   function confirmDelete(e) {
     e.target.classList.add("loading");
-    debugger;
     attraction.guestList.forEach((guest) => {
       const invitationRef =
         guest.ref.path + "/invitations/" + attraction.ref.id;
-      debugger;
       deleteDoc(invitationRef);
     });
-    debugger;
     deleteDoc(attraction.ref);
     afterUpdate(() => renderPage("/view-attractions"));
   }

@@ -5,7 +5,6 @@ import Tip from "../../components/Tip.mjs";
 import {
   dangerousSetCurrUserData,
   getCurrUserData,
-  loadUserData,
 } from "../../services/firebase/db.mjs";
 import { append, html, renderPage } from "../../services/render.mjs";
 import Contacts from "../Contacts.mjs";
@@ -106,7 +105,7 @@ function setTourUserData() {
     ],
   });
 
-  page.exit("/onboarding/tour", (context, next) => {
+  page.exit("/onboarding/tour", () => {
     dangerousSetCurrUserData(cachedUserData);
     window.location.href = "/contacts";
   });
@@ -155,7 +154,6 @@ function permissionsExplanation() {
 }
 
 function permissionsRequest() {
-  debugger;
   const notificationNeeded = Notification.permission === "default";
   navigator?.permissions
     ?.query({ name: "geolocation" })
