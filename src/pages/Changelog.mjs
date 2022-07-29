@@ -9,7 +9,7 @@ export default function Changelog() {
       <h3>2.0.0</h3>
       <ul>
         <li>
-          Production version of the site is now available at
+          Production version of the site is now available at ${""}
           <a href="gravitate.zarinloosli.com">gravitate.zarinloosli.com</a>
         </li>
       </ul>
