@@ -5,7 +5,7 @@ export default function Modal({ contents, ...props }) {
     <section class="modal-contents">${contents}</section>
   </dialog>`;
 
-  function onClick(e) {
+  function onClick() {
     onclick = (e) => {
       if (e.target.classList.contains("modal")) {
         e.preventDefault();

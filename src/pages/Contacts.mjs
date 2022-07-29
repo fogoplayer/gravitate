@@ -81,7 +81,6 @@ async function showJoin(context) {
 
       default:
         throw new Error();
-        break;
     }
 
     // Display confirmation

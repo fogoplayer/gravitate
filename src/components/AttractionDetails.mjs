@@ -1,204 +1,128 @@
-import { html } from "../services/render.mjs";
-import { react } from "../services/attractions.mjs";
+import { afterUpdate, deleteDoc } from "../services/firebase/db.mjs";
+import { html, renderPage } from "../services/render.mjs";
+import Modal from "./Modal.mjs";
+import Spinner from "./Spinner.mjs";
 
-export const reactions = {
-  "ON MY WAY": "🔜",
-  "RUNNING LATE": "🕜",
-  "CAN'T COME": "😢",
-  "BE THERE NEXT TIME": "🗓",
-  "NOT INTERESTED": "❌",
-};
+export default function AttractionDetails(attraction, reactions) {
+  const confirmDeleteModal = Modal({
+    id: "delete-modal",
+    contents: html`Are you sure you want to delete ${attraction.name}?
+      <button class="primary danger" onclick="${confirmDelete}">
+        Yes, delete ${Spinner()}
+      </button>`,
+  });
 
-export function AttractionInfo(attraction) {
-  // Show expiration time if an invite
-  if (attraction.organizer) {
-    return html`<span class="attraction-info"
-      >until
-      <span class="expiration"
-        >${attraction.expiration.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        })}</span
-      ></span
-    >`;
-  } else {
-    return html`<span class="attraction-info header-reactions">
-      ${Object.keys(reactions).map(
-        (reaction) =>
-          html`<span
-            class="reaction noto"
-            data-value="${attraction.reactions[reaction]?.length || 0}"
+  return html`<section class="attraction-details">
+    <h4>Attraction Details</h4>
+    <table>
+      <tr>
+        <th>Location:</th>
+        <td>
+          ${attraction.location + " "}
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+              attraction.location
+            )}"
+            target="_blank"
+            >(Open in Google Maps)</a
           >
-            ${reactions[reaction]}
-          </span>`
-      )}
-    </span>`;
-  }
-}
+        </td>
+      </tr>
+      <tr>
+        <th>Expiration:</th>
+        <td>
+          ${attraction.expiration?.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </td>
+      </tr>
+    </table>
+    <h4>Invited</h4>
+    <table>
+      <tr>
+        <th>Orbits:</th>
+        <td>
+          ${(attraction.orbits?.length &&
+            attraction.orbits.map(
+              (orbit, index) => (index > 0 ? ", " : "") + orbit.name
+            )) ||
+          html`<i>None</i>`}
+        </td>
+      </tr>
+      <tr>
+        <th>Systems:</th>
+        <td>
+          ${(attraction.systems?.length &&
+            attraction.systems.map(
+              (system, index) => (index > 0 ? ", " : "") + system.name
+            )) ||
+          html`<i>None</i>`}
+        </td>
+      </tr>
+      <tr>
+        <th>Friends:</th>
+        <td>
+          ${(attraction.friends?.length &&
+            attraction.friends.map(
+              (friend, index) => (index > 0 ? ", " : "") + friend.name
+            )) ||
+          html`<i>None</i>`}
+        </td>
+      </tr>
+      <tr>
+        <th>All invitees:</th>
+        <td>
+          ${attraction.guestList?.map(
+            (guest, index) => (index > 0 ? ", " : "") + guest.name
+          )}
+        </td>
+      </tr>
+    </table>
+    <h4>Responses</h4>
+    <table>
+      ${Object.keys(reactions).map((reaction) => {
+        return (
+          (attraction.reactions[reaction] &&
+            html`<tr>
+              <th>
+                <span class="reaction noto"> ${reactions[reaction]} </span>
+              </th>
+              <td>
+                ${attraction.reactions[reaction]?.map(
+                  (reactee, index) => (index > 0 ? ", " : "") + reactee.name
+                )}
+              </td>
+            </tr>`) ||
+          ""
+        );
+      })}
+    </table>
+    <div class="inline-inputs">
+      <button
+        class="primary"
+        onclick="${(e) => e.target.closest("dialog").close()}"
+      >
+        Close
+      </button>
+      <button
+        class="outline danger"
+        onclick=${() => confirmDeleteModal.showModal()}
+      >
+        Delete
+      </button>
+    </div>
+    ${confirmDeleteModal}
+  </section>`;
 
-export function AttractionDetails(attraction) {
-  // Invitation
-  if (attraction.organizer) {
-    return html`<section class="attraction-details">
-      <h4>RSVP</h4>
-      <fieldset class="react">
-        <legend>RSVP</legend>
-        ${Object.keys(reactions).map((reaction) => {
-          return html`<label>
-            <input
-              type="radio"
-              name="reactions"
-              value="${reaction}"
-              oninput=${() => react(attraction.attractionRef, reaction)}
-              ...${reaction === attraction.reaction ? { checked: true } : ""}
-            />
-            <span class="reaction" data-value="${reaction}"
-              >${reactions[reaction]}</span
-            >
-          </label>`;
-        })}
-      </fieldset>
-      <h4>Attraction Details</h4>
-      <table>
-        <tr>
-          <th>Organizer:</th>
-          <td>${attraction.organizer.name}</td>
-        </tr>
-        ${attraction.origin
-          ? html`
-              <tr>
-                <th>System:</th>
-                <td>
-                  <span class="noto">${attraction.origin.icon}</span>
-                  ${" " + attraction.origin.name}
-                </td>
-              </tr>
-            `
-          : ""}
-        <tr>
-          <th>Location:</th>
-          <td>
-            ${attraction.location + " "}
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                attraction.location
-              )}"
-              target="_blank"
-              >(Open in Google Maps)</a
-            >
-          </td>
-        </tr>
-      </table>
-      <button
-        class="primary"
-        onclick="${(e) => e.target.closest("dialog").close()}"
-      >
-        Close
-      </button>
-    </section>`;
-    // Attraction
-  } else {
-    return html`<section class="attraction-details">
-      <h4>Attraction Details</h4>
-      <table>
-        <tr>
-          <th>Location:</th>
-          <td>
-            ${attraction.location + " "}
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                attraction.location
-              )}"
-              target="_blank"
-              >(Open in Google Maps)</a
-            >
-          </td>
-        </tr>
-        <tr>
-          <th>Expiration:</th>
-          <td>
-            ${attraction.expiration?.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </td>
-        </tr>
-      </table>
-      <h4>Invited</h4>
-      <table>
-        <tr>
-          <th>Orbits:</th>
-          <td>
-            ${(attraction.orbits?.length &&
-              attraction.orbits.map(
-                (orbit, index) => (index > 0 ? ", " : "") + orbit.name
-              )) ||
-            html`<i>None</i>`}
-          </td>
-        </tr>
-        <tr>
-          <th>Systems:</th>
-          <td>
-            ${(attraction.systems?.length &&
-              attraction.systems.map(
-                (system, index) => (index > 0 ? ", " : "") + system.name
-              )) ||
-            html`<i>None</i>`}
-          </td>
-        </tr>
-        <tr>
-          <th>Friends:</th>
-          <td>
-            ${(attraction.friends?.length &&
-              attraction.friends.map(
-                (friend, index) => (index > 0 ? ", " : "") + friend.name
-              )) ||
-            html`<i>None</i>`}
-          </td>
-        </tr>
-        <tr>
-          <th>All invitees:</th>
-          <td>
-            ${attraction.guestList?.map(
-              (guest, index) => (index > 0 ? ", " : "") + guest.name
-            )}
-          </td>
-        </tr>
-        <tr>
-          <th>Expiration:</th>
-          <td>
-            ${attraction.expiration?.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </td>
-        </tr>
-      </table>
-      <h4>Responses</h4>
-      <table>
-        ${Object.keys(reactions).map((reaction) => {
-          return (
-            (attraction.reactions[reaction] &&
-              html`<tr>
-                <th>
-                  <span class="reaction noto"> ${reactions[reaction]} </span>
-                </th>
-                <td>
-                  ${attraction.reactions[reaction]?.map(
-                    (reactee, index) => (index > 0 ? ", " : "") + reactee.name
-                  )}
-                </td>
-              </tr>`) ||
-            ""
-          );
-        })}
-      </table>
-      <button
-        class="primary"
-        onclick="${(e) => e.target.closest("dialog").close()}"
-      >
-        Close
-      </button>
-    </section>`;
+  function confirmDelete(e) {
+    e.target.classList.add("loading");
+    attraction.guestList.forEach((guest) => {
+      const invitationRef =
+        guest.ref.path + "/invitations/" + attraction.ref.id;
+      deleteDoc(invitationRef);
+    });
+    deleteDoc(attraction.ref);
+    afterUpdate(() => renderPage("/view-attractions"));
   }
 }

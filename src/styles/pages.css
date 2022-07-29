@@ -79,6 +79,7 @@
   flex-flow: row wrap;
   align-items: flex-end;
   gap: 1em;
+  justify-content: center;
 
   width: 100%;
   font-size: 1.5em;

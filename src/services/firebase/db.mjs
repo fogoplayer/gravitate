@@ -3,6 +3,7 @@ import {
   arrayUnion,
   addDoc as addDocToDB,
   setDoc as setDocInDB,
+  deleteDoc as deleteDocInDB,
   getFirestore,
   collection,
   getDoc,
@@ -15,9 +16,8 @@ import {
   enableIndexedDbPersistence,
   arrayRemove,
 } from "../../lib/firebase/9.7.0/firebase-firestore.js";
-export { deleteDoc } from "../../lib/firebase/9.7.0/firebase-firestore.js";
 import { parseEvents, parseGroups, parseIndividuals } from "./db-loadData.mjs";
-import { hideRefreshPage, showRefreshPage } from "../../App.mjs";
+import { showRefreshPage } from "../../App.mjs";
 
 const db = getFirestore(app);
 const users = collection(db, "users");
@@ -56,12 +56,14 @@ export function onSnapshot(ref, func) {
 export async function createUserData(userCredential) {
   const uid = userCredential.user.uid;
 
-  const profile = await setDoc(doc(db, "users", uid), {
+  // Profile
+  await setDoc(doc(db, "users", uid), {
     name: "",
     icon: "",
   });
 
-  const data = await setDoc(doc(db, `users/${uid}/data`, "data"), {
+  // Data
+  await setDoc(doc(db, `users/${uid}/data`, "data"), {
     systems: [],
     friends: [],
   });
@@ -135,6 +137,13 @@ export function addDoc(path, data) {
     path = collection(db, path);
   }
   return addDocToDB(path, data);
+}
+
+export async function deleteDoc(ref, data) {
+  if (typeof ref === "string") {
+    ref = doc(db, ref);
+  }
+  return await deleteDocInDB(ref, data);
 }
 
 export async function update(ref, data) {

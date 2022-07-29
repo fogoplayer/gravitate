@@ -22,9 +22,9 @@ export default function Login() {
     Log in ${Spinner()}
     </button>
   </form>
-  <div>
-    <a href="reset-password" class="button flat small">Forgot password</a>
-    <a href="signup" class="button flat small">Sign up</button>
+  <div class="other-links">
+    <a href="reset-password" class="button flat inline small">Forgot password</a>
+    <a href="signup" class="button flat inline small">Sign up</button>
   </div>
 </main>`;
   async function submit(e) {

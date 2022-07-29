@@ -7,7 +7,7 @@ export function TODAY() {
 }
 
 export function dateFromTime(startDate, time) {
-  let [hours, mins, secs] = time.split(":");
+  let [hours, mins] = time.split(":");
   return new Date(
     startDate.getFullYear(),
     startDate.getMonth(),

@@ -20,20 +20,20 @@ test("Driver starts", () => {
   return driver;
 });
 
-// signupTest();
-// resetPasswordTest();
+signupTest();
+resetPasswordTest();
 loginTest();
-// createProfileTest();
-// tourTest();
-// createAttractionTest();
-// viewAttractionsTest();
-// contactsTest();
-// friendsTest();
-// orbitsTest();
-// systemsTest();
-// settingsTest();
+createProfileTest();
+tourTest();
+createAttractionTest();
+viewAttractionsTest();
+contactsTest();
+friendsTest();
+orbitsTest();
+systemsTest();
+settingsTest();
 sendFeedbackTest();
-// changelogTest();
+changelogTest();
 
 test("Driver stops", () => {
   return driver.quit();

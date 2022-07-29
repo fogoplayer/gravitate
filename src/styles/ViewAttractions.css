@@ -11,6 +11,7 @@
 }
 .view-attractions .contacts-list .contact-header-container .expiration {
   font-weight: 500;
+  margin-left: 0.15em;
 }
 
 .view-attractions .contacts-list .contact-header-container .header-reactions {
@@ -51,6 +52,10 @@
 .attraction-details h4 {
   color: var(--theme-primary-color);
   text-transform: uppercase;
+}
+
+.attraction-details .inline-inputs {
+  font-size: inherit;
 }
 
 .attraction-details .react {

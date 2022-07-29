@@ -1,12 +1,11 @@
-import { getCurrentUser } from "../services/firebase/auth.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
-import { append, html } from "../services/render.mjs";
+import { html } from "../services/render.mjs";
 import AddFriend from "./AddFriend.mjs";
 import AddOrbit from "./AddOrbit.mjs";
 import AddSystem from "./AddSystem.mjs";
 
 export default function ContactsList(Template) {
-  let { orbits, systems, friends, ...rest } = getCurrUserData();
+  let { orbits, systems, friends } = getCurrUserData();
   let page = html`<ul class="contacts-list contacts-list">
     <li class="orbits-wrapper">
       <h2>

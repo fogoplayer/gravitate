@@ -1,3 +1,4 @@
+/* eslint-disable */
 export class User {
   constructor(
     name = "",
@@ -6,11 +7,11 @@ export class User {
     systems = [],
     friends = [],
     invitations = [],
-    attractions = [],
+    attractions = []
   ) {
     Object.assign(this, arguments);
   }
-};
+}
 
 export class Orbit {
   constructor(name = "", icon = "", members = []) {
@@ -25,13 +26,23 @@ export class System {
 }
 
 export class Attraction {
-  constructor(organizer = "", name = "", location = "", expiration = new Date()) {
+  constructor(
+    organizer = "",
+    name = "",
+    location = "",
+    expiration = new Date()
+  ) {
     Object.assign(this, arguments);
   }
 }
 
 export class Invitation {
-  constructor(organizer = "", name = "", location = "", expiration = new Date()) {
+  constructor(
+    organizer = "",
+    name = "",
+    location = "",
+    expiration = new Date()
+  ) {
     Object.assign(this, arguments);
   }
 }

@@ -1,6 +1,7 @@
+import { getCurrUserData } from "../../services/firebase/db.mjs";
 import { getIcon } from "../../services/firebase/storage.mjs";
 import { html } from "../../services/render.mjs";
-import { AttractionDetails, AttractionInfo } from "../AttractionDetails.mjs";
+import { EventDetails, AttractionInfo } from "../EventDetails.mjs";
 import Modal from "../Modal.mjs";
 
 export function AttractionsTemplate(attractions, emptyMessage) {
@@ -14,13 +15,17 @@ export function AttractionsTemplate(attractions, emptyMessage) {
               class="contact-header-container"
               onclick=${toggleAttractionDetails}
             >
-              <div class="contact-icon">${getIcon()}</div>
+              <div class="contact-icon">
+                ${getIcon(
+                  attraction?.organizer?.icon || getCurrUserData().icon
+                )}
+              </div>
               <span class="contact-name">${attraction.name}</span>
               ${AttractionInfo(attraction)}
             </h3>
             ${Modal({
               id: attraction.ref.id + "-modal",
-              contents: AttractionDetails(attraction),
+              contents: EventDetails(attraction),
             })}
           </li>
         `;
@@ -33,7 +38,7 @@ export function AttractionsTemplate(attractions, emptyMessage) {
   }
   return details;
 
-  function toggleAttractionDetails(e) {
+  function toggleAttractionDetails() {
     details.querySelector("dialog").showModal();
   }
 }

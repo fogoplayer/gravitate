@@ -2,12 +2,8 @@ import {
   addDoc,
   afterUpdate,
   getCurrUserData,
-  push,
-  update,
-  usernameSearch,
 } from "../services/firebase/db.mjs";
-import { getIcon } from "../services/firebase/storage.mjs";
-import { append, html, renderPage } from "../services/render.mjs";
+import { html, renderPage } from "../services/render.mjs";
 import Input from "./Input.mjs";
 import Modal from "./Modal.mjs";
 import { FriendSelectTemplate } from "./templates/FriendSelectTemplate.mjs";
@@ -43,9 +39,9 @@ export default function AddOrbit() {
             name: "added-orbits",
             onchange: function (e) {
               if (e.target.checked) {
-                members.add(user.ref);
+                members.add(friend.ref);
               } else {
-                members.delete(user.ref);
+                members.delete(friend.ref);
               }
             },
           })

@@ -1,3 +1,4 @@
+/* globals mapboxgl */
 import { MAPBOX_KEY } from "../services/config.mjs";
 import { getCurrUserData } from "../services/firebase/db.mjs";
 import { html } from "../services/render.mjs";
@@ -8,8 +9,7 @@ import MapIcon from "../components/MapIcon.mjs";
 
 export default function ViewAttractions() {
   setPageTitle("Attractions");
-  let { attractions, systems, friends, invitations, ...rest } =
-    getCurrUserData();
+  let { attractions, invitations } = getCurrUserData();
   let friendInvites = [];
   let systemInvites = [];
 
@@ -89,7 +89,9 @@ export default function ViewAttractions() {
               })
             );
           });
-        } catch {}
+        } catch (e) {
+          console.error(e);
+        }
         clearInterval(interval);
       }
     }, 10);

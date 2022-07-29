@@ -4,7 +4,7 @@ import { append, html, renderPage } from "./services/render.mjs";
 import Contacts from "./pages/Contacts.mjs";
 import CreateAttraction from "./pages/CreateAttraction.mjs";
 import ViewAttractions from "./pages/ViewAttractions.mjs";
-import { signIn, authStateChanged } from "./services/firebase/auth.mjs";
+import { authStateChanged } from "./services/firebase/auth.mjs";
 import { initDBWatchers, loadUserData } from "./services/firebase/db.mjs";
 import { getCurrUserData } from "./services/firebase/db.mjs";
 import { logOut } from "./services/firebase/auth.mjs";
@@ -31,7 +31,7 @@ append(
 );
 
 authStateChanged(async (user) => {
-  let currUserData = await loadUserData(user);
+  await loadUserData(user);
   if (user) {
     initDBWatchers();
     import("./services/firebase/messaging.mjs");
@@ -82,7 +82,7 @@ export function showAppPage(contents, context) {
 
   setPageTitle("Gravitate");
   const main = document.querySelector(".app-main");
-  main.innerHTML = ``;
+  main.innerHTML = "";
   append(main, html`${contents(context)}`);
 
   // Functions for after render
@@ -92,7 +92,7 @@ export function showAppPage(contents, context) {
 
 export function showAppShell() {
   if (!document.querySelector(".app-header")) {
-    document.body.innerHTML = ``;
+    document.body.innerHTML = "";
     append(document.body, AppShell(hideAppDrawer, showAppDrawer, logOut));
   }
 }
@@ -126,7 +126,7 @@ function showAppDrawer() {
   document.querySelector(".drop-nav").showModal();
 }
 
-function hideAppDrawer(e) {
+function hideAppDrawer() {
   document.querySelector(".drop-nav").classList.add("closing");
   setTimeout(() => {
     document.querySelector(".drop-nav").close();

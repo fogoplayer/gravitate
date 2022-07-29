@@ -1,10 +1,4 @@
-import {
-  addDoc,
-  push,
-  getCurrUserData,
-  update,
-  setDoc,
-} from "./firebase/db.mjs";
+import { addDoc, getCurrUserData, update, setDoc } from "./firebase/db.mjs";
 
 export default async function createAttraction(attraction) {
   const { ref } = getCurrUserData();

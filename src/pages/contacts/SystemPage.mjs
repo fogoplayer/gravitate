@@ -1,17 +1,10 @@
 import { setPageTitle } from "../../components/AppShell.mjs";
-import {
-  AttractionDetails,
-  AttractionInfo,
-} from "../../components/AttractionDetails.mjs";
 import Input from "../../components/Input.mjs";
 import Modal from "../../components/Modal.mjs";
 import Spinner from "../../components/Spinner.mjs";
 import SegmentControl from "../../components/SegmentControl.mjs";
-import { AttractionsTemplate } from "../../components/templates/AttractionsTemplate.mjs";
-import { FriendSelectTemplate } from "../../components/templates/FriendSelectTemplate.mjs";
 import {
   afterUpdate,
-  deleteDoc,
   getCurrUserData,
   pop,
   push,
@@ -28,8 +21,6 @@ import {
 
 export default function SystemPage(id) {
   let { friends, systems, dataDocRef, ref } = getCurrUserData();
-  let members = new Set();
-  let icon;
 
   // Filter imports
   let [system] = systems.filter((system) => system.ref.id === id);

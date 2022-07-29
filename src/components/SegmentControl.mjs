@@ -1,8 +1,8 @@
-import { html, renderPage } from "../services/render.mjs";
+import { html } from "../services/render.mjs";
 
 export default function SegmentControl({
   segments = [],
-  onchange = (e) => {},
+  onchange = () => {},
   optionProps = {},
   name = "segment-control-" + document.querySelectorAll(".segment-control"),
   ...props

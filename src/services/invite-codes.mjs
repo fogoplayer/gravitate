@@ -17,7 +17,6 @@ export async function createNewInviteLinkAt(refWhereCodeIsStored) {
   if (refWhereCodeIsStored === codeDocRef) {
     setDoc(refWhereCodeIsStored, {
       code,
-      codeMultiUse,
     });
   } else {
     const codeMultiUse =
@@ -25,7 +24,7 @@ export async function createNewInviteLinkAt(refWhereCodeIsStored) {
       "Single Use";
     update(refWhereCodeIsStored, {
       code,
-      codeMultiUse: true,
+      codeMultiUse,
     });
   }
   afterUpdate(() => renderPage(window.location.pathname));

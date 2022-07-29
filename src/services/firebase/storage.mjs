@@ -2,7 +2,6 @@ import {
   getDownloadURL,
   getStorage,
   ref,
-  uploadBytes,
   uploadString,
 } from "../../lib/firebase/9.7.0/firebase-storage.js";
 import { html } from "../render.mjs";
@@ -29,6 +28,6 @@ export function getIcon(icon) {
   } else if (icon?.length) {
     return html`<span class="noto pfp">${icon}</span>`;
   } else {
-    return html`<span class="pfp">🟣</span>`;
+    return html`<span class="noto pfp">🟣</span>`;
   }
 }
