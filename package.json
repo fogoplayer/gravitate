@@ -1,6 +1,6 @@
 {
   "name": "gravitate",
-  "version": "1.8.1",
+  "version": "2.0.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "start": "firebase serve",
     "test": "clear && jest tests/app.test.js && npm run lint",
     "deployprod": "git checkout main && git merge dev --no-edit && git push && firebase deploy --only hosting -P prod && git checkout dev",
-    "deploybeta": "git checkout dev && git push && firebase deploy --only hosting -P default",
+    "deploydev": "git checkout dev && git push && firebase deploy --only hosting -P default",
     "lint": "npx eslint --fix './src' --ext .mjs"
   },
   "devDependencies": {
