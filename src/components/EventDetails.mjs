@@ -13,8 +13,8 @@ export const reactions = {
 export function AttractionInfo(attraction) {
   // Show expiration time if an invite
   if (attraction.organizer) {
-    return html`<span class="attraction-info"
-      >until
+    return html`<span class="attraction-info">
+      until
       <span class="expiration"
         >${attraction.expiration.toLocaleTimeString([], {
           hour: "2-digit",

@@ -28,6 +28,6 @@ export function getIcon(icon) {
   } else if (icon?.length) {
     return html`<span class="noto pfp">${icon}</span>`;
   } else {
-    return html`<span class="pfp">🟣</span>`;
+    return html`<span class="noto pfp">🟣</span>`;
   }
 }

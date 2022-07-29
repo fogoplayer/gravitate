@@ -5,8 +5,8 @@ export default function Changelog() {
   setPageTitle("Changelog");
   return html`<div class="changelog">
     <section>
-      <h2>Alpha Release</h2>
-      <h3>1.8.1 <span class="date">7/27/22</span></h3>
+      <h2>Alpha Releases</h2>
+      <h3>1.8.1 <span class="date">7/28/22</span></h3>
       <ul>
         <li>Prepare for beta release</li>
         <li>Explain required permissions in tour</li>
@@ -16,6 +16,7 @@ export default function Changelog() {
           Creating an attraction that you are invited to no longer crashes the
           app, though a refresh will be required as the page loads prematurely
         </li>
+        <li>Add the profile picture of the creator on the attractions list</li>
       </ul>
       <h3>1.8.0 <span class="date">7/26/22</span></h3>
       <ul>

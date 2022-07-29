@@ -11,6 +11,7 @@
 }
 .view-attractions .contacts-list .contact-header-container .expiration {
   font-weight: 500;
+  margin-left: 0.15em;
 }
 
 .view-attractions .contacts-list .contact-header-container .header-reactions {
