@@ -5,6 +5,39 @@ export default function Changelog() {
   setPageTitle("Changelog");
   return html`<div class="changelog">
     <section>
+      <h2>Beta Releases</h2>
+      <h3>2.0.0</h3>
+      <ul>
+        <li>
+          Production version of the site is now available at
+          <a href="gravitate.zarinloosli.com">gravitate.zarinloosli.com</a>
+        </li>
+      </ul>
+      <p>
+        Thank you to everyone who installed the Gravitate beta! I wanted to
+        briefly explain why I'm calling this a "beta":
+      </p>
+      <p>
+        This version of Gravitate should be complete and relatively bug-free. As
+        you can see below, I've put a lot of work into patching bugs, as well as
+        creating the features necessary for the app to be usable in its current
+        state.
+      </p>
+      <p>
+        However, we are still a long way from what I would consider "finished."
+        Everything from small tweaks to whole new features.
+      </p>
+      <p>
+        I'm opening this to public beta for two reasons: first, I'm proud of the
+        work I've done here and want to be able to use it with my friends and
+        family! And second, now that the app's feature set is ready for the
+        real-world, I want to make sure it works in the real world before I go
+        building anything new.
+      </p>
+      <p>
+        Please submit bugs and ideas for new features using the form in the
+        settings page. I'm excited to see what this will become!
+      </p>
       <h2>Alpha Releases</h2>
       <h3>1.8.1 <span class="date">7/28/22</span></h3>
       <ul>
