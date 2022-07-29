@@ -1,5 +1,5 @@
 {
-  "version": "1.4.2",
+  "version": "2.0.0",
   "background_color": "#570080",
   "description": "Invite people to come along for the ride",
   "dir": "ltr",
@@ -20,6 +20,11 @@
       "src": "images/maskable-logo.svg",
       "purpose": "maskable",
       "sizes": "any"
+    },
+    {
+      "src": "images/screenshots/logo.png",
+      "purpose": "any",
+      "sizes": "512x512"
     }
   ],
   "categories": [
