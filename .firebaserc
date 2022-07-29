@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "gravitate-43a9a"
-  }
+    "default": "gravitate-43a9a",
+    "prod": "gravitate-prod-53542"
+  },
+  "targets": {}
 }
