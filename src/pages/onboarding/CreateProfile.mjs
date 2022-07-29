@@ -68,57 +68,7 @@ function processImage(e) {
     return;
   }
 
-  uploadSmallImg(e);
-
-  // uploadPFP(e.target.files[0]);
-}
-
-function uploadSmallImg(e) {
-  let imageFile = e.target.files[0];
-
-  // Create reader
-  var reader = new FileReader();
-  reader.onload = function (e) {
-    var img = document.createElement("img");
-    img.onload = () => {
-      resizeImg(img, imageFile);
-    };
-    img.src = e.target.result;
-  };
-  // Run reader
-  reader.readAsDataURL(imageFile);
-}
-
-function resizeImg(img) {
-  // Size limits
-  var MAX_WIDTH = 300;
-  var MAX_HEIGHT = 300;
-
-  var width = img.width;
-  var height = img.height;
-  if (width < height) {
-    if (width > MAX_WIDTH) {
-      height = height * (MAX_WIDTH / width);
-      width = MAX_WIDTH;
-    }
-  } else {
-    if (height > MAX_HEIGHT) {
-      width = width * (MAX_HEIGHT / height);
-      height = MAX_HEIGHT;
-    }
-  }
-
-  // Shrink to canvas
-  var canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  var ctx = canvas.getContext("2d");
-  ctx.drawImage(img, 0, 0, width, height);
-  var dataurl = canvas.toDataURL();
-
-  // Show & upload resized image
-  document.querySelector(".pfp").src = dataurl;
-  uploadPFP(dataurl);
+  uploadPFP(e.target.files[0]);
 }
 
 function personImage() {
